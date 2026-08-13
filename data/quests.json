@@ -1,0 +1,125 @@
+{
+  "generated": "2026-08-13",
+  "note": "Progress is stored in your browser only. Tick things off as you do them.",
+  "items": [
+    {
+      "id": "quest-arrondissements",
+      "title": "Arrondissement Quest",
+      "emoji": "🗺️",
+      "description": "Explore all 20 arrondissements properly — not passing through, actually spending an afternoon.",
+      "targets": [
+        "1st — Palais-Royal", "2nd — the passages", "3rd — Haut Marais", "4th — Île Saint-Louis",
+        "5th — Latin Quarter", "6th — Saint-Germain", "7th — Invalides", "8th — Monceau",
+        "9th — rue des Martyrs", "10th — home", "11th — Oberkampf", "12th — Aligre & Coulée verte",
+        "13th — Butte-aux-Cailles", "14th — Daguerre & Montsouris", "15th — Petite Ceinture",
+        "16th — Mallet-Stevens", "17th — Batignolles", "18th — Montmartre north slope",
+        "19th — Mouzaïa", "20th — Belleville"
+      ],
+      "preCompleted": ["10th — home"]
+    },
+    {
+      "id": "quest-bakeries",
+      "title": "French Food Quest",
+      "emoji": "🥐",
+      "description": "Ten great boulangeries. Judge them on the plain croissant — that is where they cannot hide.",
+      "targets": [
+        "Du Pain et des Idées (10th)", "Boulangerie Utopie (11th)", "Mamiche (10th)",
+        "Liberté (10th)", "Ten Belles Bread (11th)", "Poilâne (6th)", "Blé Sucré (12th)",
+        "Circus Bakery (5th)", "Bontemps (3rd)", "Yann Couvreur (10th)"
+      ]
+    },
+    {
+      "id": "quest-coffee",
+      "title": "Coffee Quest",
+      "emoji": "☕",
+      "description": "Specialty coffee in ten different arrondissements. No two from the same one.",
+      "targets": [
+        "Ten Belles (10th)", "Café Oberkampf (11th)", "Boot Café (3rd)", "Le Peloton (4th)",
+        "Telescope (1st)", "KB CaféShop (9th)", "Lomi (18th)", "Brûlerie de Belleville (19th)",
+        "Hexagone (14th)", "Substance (16th)"
+      ]
+    },
+    {
+      "id": "quest-parks",
+      "title": "Paris Parks Quest",
+      "emoji": "🌳",
+      "description": "Fifteen parks and gardens. Sitting down in them counts; walking through does not.",
+      "targets": [
+        "Buttes-Chaumont (19th)", "Parc de Belleville (20th)", "Père-Lachaise (20th)",
+        "Jardin du Luxembourg (6th)", "Jardin des Plantes (5th)", "Parc Monceau (8th)",
+        "Parc Montsouris (14th)", "Jardin du Palais-Royal (1st)", "Coulée verte (12th)",
+        "Parc de Bercy (12th)", "Parc André-Citroën (15th)", "Parc Martin Luther King (17th)",
+        "Bois de Vincennes (12th)", "Jardin Villemin (10th)", "Square du Vert-Galant (1st)"
+      ]
+    },
+    {
+      "id": "quest-free-museums",
+      "title": "Free Culture Quest",
+      "emoji": "🏛️",
+      "description": "The 14 city museums whose permanent collections are free every single day. Most Parisians have not done half of these.",
+      "targets": [
+        "Musée Carnavalet (3rd)", "Petit Palais (8th)", "Maison de Victor Hugo (4th)",
+        "Musée Cognacq-Jay (3rd)", "Musée de la Vie Romantique (9th)", "Musée d'Art Moderne (16th)",
+        "Musée Bourdelle (15th)", "Musée Zadkine (6th)", "Musée Cernuschi (8th)",
+        "Maison de Balzac (16th)", "Musée Jean Moulin (15th)", "Musée de la Libération (14th)",
+        "Crypte archéologique (4th)", "Pavillon de l'Arsenal (4th)"
+      ]
+    },
+    {
+      "id": "quest-markets",
+      "title": "Market Quest",
+      "emoji": "🧺",
+      "description": "Ten markets — food, flea and flower. Buy at least one thing at each.",
+      "targets": [
+        "Marché d'Aligre (12th)", "Marché des Enfants Rouges (3rd)", "Marché Saint-Quentin (10th)",
+        "Marché Bastille (11th)", "Marché Raspail bio (6th)", "Puces de Vanves (14th)",
+        "Puces de Saint-Ouen", "Marché Belleville (20th)", "Marché Président Wilson (16th)",
+        "Marché aux Livres Georges Brassens (15th)"
+      ]
+    },
+    {
+      "id": "quest-hidden",
+      "title": "Hidden Paris Quest",
+      "emoji": "💎",
+      "description": "Places you would never find without being told.",
+      "targets": [
+        "Quartier de la Mouzaïa (19th)", "La Campagne à Paris (20th)", "Cité Florale (13th)",
+        "Arènes de Lutèce (5th)", "Passage de l'Ancre (3rd)", "Petite Ceinture (15th)",
+        "59 Rivoli (1st)", "Village Saint-Paul (4th)", "Rue Mallet-Stevens (16th)",
+        "Cité des Fleurs (17th)", "Rue des Cascades (20th)", "La Ruche (15th)"
+      ]
+    },
+    {
+      "id": "quest-design",
+      "title": "Design Quest",
+      "emoji": "🛍️",
+      "description": "Independent French design, craft and homeware shops. No chains.",
+      "targets": [
+        "La Trésorerie (10th)", "Empreintes (3rd)", "E. Dehillerin (1st)", "Astier de Villatte (1st)",
+        "Sennelier (7th)", "Artazart (10th)", "Ofr. (3rd)", "Green Factory (3rd)",
+        "La Tuile à Loup (5th)", "Marché Paul Bert Serpette (Saint-Ouen)"
+      ]
+    },
+    {
+      "id": "quest-daytrips",
+      "title": "Outside Paris Quest",
+      "emoji": "🚆",
+      "description": "Get out of the city. You live between two of the best stations in France.",
+      "targets": [
+        "Chantilly", "Reims & champagne", "Vaux-le-Vicomte by candlelight", "Provins",
+        "Auvers-sur-Oise", "Fontainebleau", "Giverny", "Versailles", "Meaux",
+        "Saint-Germain-en-Laye", "Senlis", "Chartres"
+      ]
+    },
+    {
+      "id": "quest-learn",
+      "title": "Learn Something Quest",
+      "emoji": "🎓",
+      "description": "Six things you can actually do with your hands, as a pair.",
+      "targets": [
+        "Croissant-making class", "Pottery wheel session", "Wine tasting course",
+        "Perfume blending", "Terrarium workshop", "Coffee cupping at a roastery"
+      ]
+    }
+  ]
+}

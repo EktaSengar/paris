@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paris for You — Ekta &amp; Kartik</title>
+<meta name="description" content="A personal Paris exploration guide. What's worth doing today, tonight, this weekend and beyond — from the 10th.">
+<meta name="theme-color" content="#faf7f2">
+<link rel="stylesheet" href="css/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-top">
+      <div>
+        <p class="kicker" id="dateline">Loading…</p>
+        <h1 class="wordmark">Paris <em>for you</em></h1>
+        <p class="subtitle">Ekta &amp; Kartik · 10<sup>e</sup> · Canal Saint-Martin</p>
+      </div>
+      <div class="weather" id="weather" aria-live="polite"></div>
+    </div>
+    <div id="notice-slot"></div>
+  </div>
+</header>
+
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#brief" class="nav-link">Brief</a>
+    <a href="#today" class="nav-link">Today</a>
+    <a href="#tonight" class="nav-link">Tonight</a>
+    <a href="#weekend" class="nav-link">Weekend</a>
+    <a href="#free" class="nav-link">Free</a>
+    <a href="#missions" class="nav-link">Missions</a>
+    <a href="#hidden" class="nav-link">Hidden</a>
+    <a href="#food" class="nav-link">Food</a>
+    <a href="#explore" class="nav-link">Explore</a>
+    <a href="#daytrips" class="nav-link">Day trips</a>
+    <a href="#quests" class="nav-link">Quests</a>
+  </div>
+</nav>
+
+<main class="wrap" id="main">
+
+  <!-- ===== WHAT SHOULD WE DO ===== -->
+  <section class="panel" id="chooser">
+    <div class="panel-head">
+      <h2>What should we do?</h2>
+      <button id="surprise" class="surprise-btn" type="button">🎲 Surprise us</button>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <span class="filter-label">I have</span>
+        <div class="pills" id="time-pills" role="group" aria-label="Time available">
+          <button class="pill" data-time="60">1 hour</button>
+          <button class="pill" data-time="120">2 hours</button>
+          <button class="pill" data-time="300">Half a day</button>
+          <button class="pill" data-time="600">Full day</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Mood</span>
+        <div class="pills" id="mood-pills" role="group" aria-label="Mood">
+          <button class="pill" data-mood="relax">Relax</button>
+          <button class="pill" data-mood="explore">Explore</button>
+          <button class="pill" data-mood="food">Eat</button>
+          <button class="pill" data-mood="learn">Learn</button>
+          <button class="pill" data-mood="culture">Culture</button>
+          <button class="pill" data-mood="outdoors">Outdoors</button>
+          <button class="pill" data-mood="shop">Shop</button>
+          <button class="pill" data-mood="romantic">Romantic</button>
+          <button class="pill" data-mood="unusual">Unusual</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">Filters</span>
+        <div class="pills" id="flag-pills" role="group" aria-label="Filters">
+          <button class="pill" data-flag="free">🆓 Free</button>
+          <button class="pill" data-flag="cheap">💶 Under €20</button>
+          <button class="pill" data-flag="near">📍 Under 30 min</button>
+          <button class="pill" data-flag="couple">❤️ Couple</button>
+          <button class="pill" data-flag="indoor">🏛️ Indoor</button>
+          <button class="pill" data-flag="outdoor">🌳 Outdoor</button>
+          <button class="pill" data-flag="new">✨ Not done yet</button>
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button id="clear-filters" class="link-btn" type="button">Clear all</button>
+        <span id="filter-count" class="filter-count"></span>
+      </div>
+    </div>
+
+    <div id="filter-results" class="grid" hidden></div>
+  </section>
+
+  <!-- ===== DAILY BRIEF ===== -->
+  <section id="brief" class="section">
+    <h2 class="section-title">🌤️ Your Paris brief</h2>
+    <p class="section-sub" id="brief-sub"></p>
+    <div id="brief-body" class="brief"></div>
+  </section>
+
+  <!-- ===== SECTIONS ===== -->
+  <section id="today" class="section">
+    <h2 class="section-title">Happening today</h2>
+    <p class="section-sub">Things you could realistically do in the next few hours.</p>
+    <div class="grid" id="today-grid"></div>
+  </section>
+
+  <section id="tonight" class="section">
+    <h2 class="section-title">🌙 This evening</h2>
+    <p class="section-sub">After work, low effort, worth leaving the flat for.</p>
+    <div class="grid" id="tonight-grid"></div>
+  </section>
+
+  <section id="weekend" class="section">
+    <h2 class="section-title">🏆 This weekend</h2>
+    <p class="section-sub" id="weekend-sub"></p>
+    <div id="weekend-picks" class="picks"></div>
+    <div id="weekend-plan" class="plan"></div>
+  </section>
+
+  <section id="free" class="section">
+    <h2 class="section-title">🆓 Free this week</h2>
+    <p class="section-sub">Costs nothing. Several of these are better than the things that cost money.</p>
+    <div class="grid" id="free-grid"></div>
+  </section>
+
+  <section id="missions" class="section">
+    <h2 class="section-title">🚶 Ready-made routes</h2>
+    <p class="section-sub">Not a list — a sequence. Leave at the stated time and follow it.</p>
+    <div class="grid" id="itinerary-grid"></div>
+  </section>
+
+  <section id="hidden" class="section">
+    <h2 class="section-title">💎 Hidden Paris</h2>
+    <p class="section-sub">Small, odd, or overlooked. The things you would not find on your own.</p>
+    <div class="grid" id="hidden-grid"></div>
+  </section>
+
+  <section id="food" class="section">
+    <h2 class="section-title">☕ Food discoveries</h2>
+    <p class="section-sub">Coffee, bakeries, markets and food worth crossing the city for.</p>
+    <div class="grid" id="food-grid"></div>
+  </section>
+
+  <section id="outside10" class="section">
+    <h2 class="section-title">🗺️ Worth leaving the 10th for</h2>
+    <p class="section-sub">Genuinely worth the Metro ride.</p>
+    <div class="grid" id="outside-grid"></div>
+  </section>
+
+  <section id="explore" class="section">
+    <h2 class="section-title">🧭 Explore a new arrondissement</h2>
+    <p class="section-sub" id="explore-sub"></p>
+    <div id="explore-feature"></div>
+    <details class="all-arr">
+      <summary>All 20 arrondissements</summary>
+      <div id="arr-list" class="arr-list"></div>
+    </details>
+  </section>
+
+  <section id="daytrips" class="section">
+    <h2 class="section-title">🚆 Near Paris</h2>
+    <p class="section-sub">You live between Gare du Nord and Gare de l'Est. Use them.</p>
+    <div class="pills sub-pills" id="trip-pills">
+      <button class="pill active" data-band="all">All</button>
+      <button class="pill" data-band="under1">Under 1 hour</button>
+      <button class="pill" data-band="under1_5">Under 1h30</button>
+    </div>
+    <div class="grid" id="daytrip-grid"></div>
+  </section>
+
+  <section id="quests" class="section">
+    <h2 class="section-title">🏅 Paris quests</h2>
+    <p class="section-sub">Long games. Progress is saved in this browser.</p>
+    <div id="quest-list" class="quest-list"></div>
+  </section>
+
+  <section id="saved" class="section">
+    <h2 class="section-title">📍 Your list</h2>
+    <p class="section-sub">Things you have marked to visit, and what you have already done.</p>
+    <div id="saved-body"></div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p>Built for Ekta &amp; Kartik. Distances are estimates from the Canal Saint-Martin area — no exact address is stored anywhere in this site.</p>
+    <p class="tiny">Events carry a source and a last-verified date, and expire automatically. Opening hours change: always check the official link before you travel. Your ratings, saved places and quest progress live only in this browser.</p>
+    <p class="tiny" id="data-stamp"></p>
+  </div>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="js/state.js"></script>
+<script src="js/weather.js"></script>
+<script src="js/scoring.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

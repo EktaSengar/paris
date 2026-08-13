@@ -1,0 +1,946 @@
+{
+  "generated": "2026-08-13",
+  "window": {
+    "from": "2026-08-13",
+    "to": "2026-10-31"
+  },
+  "note": "Time-sensitive entries. Anything past its `end` date is pruned automatically by scripts/refresh.mjs. Verify prices and times at the official URL before travelling.",
+  "items": [
+    {
+      "id": "villette-open-air-cinema-2026",
+      "title": "Open-Air Cinema at La Villette",
+      "emoji": "🎬",
+      "type": "event",
+      "categories": [
+        "film",
+        "outdoor",
+        "culture"
+      ],
+      "arr": 19,
+      "area": "Parc de la Villette · Prairie du Triangle",
+      "address": "211 av. Jean-Jaurès, 75019",
+      "price": 0,
+      "priceNote": "Free · deckchair + blanket €6",
+      "start": "2026-07-22",
+      "end": "2026-08-16",
+      "days": [
+        3,
+        4,
+        5,
+        6,
+        0
+      ],
+      "times": "Lawn opens 17:00 · screenings 18:00 (family) & 21:00 (adults)",
+      "durationMin": 150,
+      "minutesFromHome": 22,
+      "transit": "M5 to Porte de Pantin — or walk the canal from home in ~40 min",
+      "why": "The 35th edition, and it ends this Sunday. This year's theme is the forest. Bring a bottle and a blanket, get there by 20:15 for the 21:00 film. The canal walk up from Jaurès at dusk is half the pleasure — it is genuinely one of the best free nights in Paris and it is basically in your neighbourhood.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "free",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "afterwork",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "programme": [
+        {
+          "date": "2026-08-13",
+          "text": "18:00 Peter and the Wolf (shorts) · 21:00 Winter's Bone"
+        },
+        {
+          "date": "2026-08-14",
+          "text": "18:00 Kirikou and the Sorceress · 21:00 Stand by Me"
+        },
+        {
+          "date": "2026-08-15",
+          "text": "18:00 Wolfwalkers · 21:00 Cast Away"
+        },
+        {
+          "date": "2026-08-16",
+          "text": "18:00 Mia and the Migoo · 21:00 Moonrise Kingdom"
+        }
+      ],
+      "nearby": [
+        {
+          "emoji": "☕",
+          "text": "Café Bonjour Madame, Ourcq → 10 min"
+        },
+        {
+          "emoji": "🍺",
+          "text": "Canal-side bars at Jaurès → 12 min"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Parc des Buttes-Chaumont → 15 min"
+        }
+      ],
+      "source": "Sortiraparis / La Villette",
+      "url": "https://lavillette.com/programmation/cinema-en-plein-air_e1054",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "paris-plages-2026",
+      "title": "Paris Plages",
+      "emoji": "🏖️",
+      "type": "event",
+      "categories": [
+        "outdoor",
+        "seasonal",
+        "free"
+      ],
+      "arr": 19,
+      "area": "Bassin de la Villette + Seine banks",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2026-07-04",
+      "end": "2026-08-30",
+      "times": "Daily, roughly 10:00–22:00",
+      "durationMin": 120,
+      "minutesFromHome": 12,
+      "transit": "M5 to Stalingrad, or a 20-min walk straight up the canal",
+      "why": "24th edition. The Bassin de la Villette stretch is the one locals actually use — pétanque, deckchairs, open-air dancing, cheap drinks — and it is the closest big summer thing to your flat. Skip the Seine section, it is mostly tourists. Go on a weekday evening around 19:00 when the light is good and the crowds have thinned.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "free",
+        "spontaneous",
+        "relax"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "outdoor",
+        "afterwork",
+        "couple"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "nearby": [
+        {
+          "emoji": "🥐",
+          "text": "Du Pain et des Idées → 12 min walk"
+        },
+        {
+          "emoji": "☕",
+          "text": "Ten Belles → 15 min walk"
+        },
+        {
+          "emoji": "🎬",
+          "text": "MK2 Quai de Seine / Quai de Loire → on site"
+        }
+      ],
+      "source": "Paris.fr",
+      "url": "https://www.paris.fr/pages/paris-plages-2211",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "olympic-cauldron-2026",
+      "title": "The Olympic Cauldron Rises at Sunset",
+      "emoji": "🎈",
+      "type": "event",
+      "categories": [
+        "outdoor",
+        "free",
+        "unusual"
+      ],
+      "arr": 1,
+      "area": "Jardin des Tuileries",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2026-06-21",
+      "end": "2026-09-14",
+      "times": "Rises at sunset, stays up until 02:00 · visible on the ground from 10:00",
+      "durationMin": 45,
+      "minutesFromHome": 22,
+      "transit": "M8 to Concorde, or M1 to Tuileries",
+      "why": "The balloon-and-flame cauldron from the 2024 Games comes back every summer and floats over the Tuileries after dark. It is free, it is genuinely beautiful, and almost nobody plans for it. Pair it with a walk along the Seine — sunset in mid-August is around 21:00, so aim to be there by 20:45.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "free",
+        "romantic",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "romantic",
+        "afterwork",
+        "outdoor",
+        "hiddengem"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "nearby": [
+        {
+          "emoji": "🎨",
+          "text": "Jeu de Paume photography → 3 min"
+        },
+        {
+          "emoji": "🌉",
+          "text": "Pont des Arts + Seine walk → 10 min"
+        },
+        {
+          "emoji": "🎡",
+          "text": "Fête des Tuileries funfair → on site"
+        }
+      ],
+      "source": "Paris.fr",
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "paris-jazz-festival-2026",
+      "title": "Paris Jazz Festival — Parc Floral",
+      "emoji": "🎷",
+      "type": "event",
+      "categories": [
+        "music",
+        "jazz",
+        "outdoor",
+        "culture"
+      ],
+      "arr": 12,
+      "area": "Parc Floral, Bois de Vincennes",
+      "price": 2.7,
+      "priceNote": "Concerts free · €2.70 park entry",
+      "start": "2026-06-06",
+      "end": "2026-09-04",
+      "days": [
+        6,
+        0
+      ],
+      "times": "Weekend afternoons, generally from 15:00",
+      "durationMin": 180,
+      "minutesFromHome": 40,
+      "transit": "M1 to Château de Vincennes, then ~10 min walk",
+      "why": "Concerts by serious French and international jazz musicians for the price of a coffee — €2.70 gets you into the park and the music is free. Bring a picnic and lie on the grass. This is the single best value cultural thing running in Paris right now, and it runs every weekend until early September.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoor",
+        "cheap",
+        "culture",
+        "relax"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "dontmiss",
+        "outdoor",
+        "couple",
+        "weekend"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "nearby": [
+        {
+          "emoji": "🏰",
+          "text": "Château de Vincennes → 10 min"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Lac Daumesnil, rowing boats → 20 min"
+        },
+        {
+          "emoji": "🦋",
+          "text": "Parc Floral butterfly garden → on site"
+        }
+      ],
+      "source": "Paris.fr / Parc Floral",
+      "url": "https://www.parisjazzfestival.paris/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "classique-au-vert-2026",
+      "title": "Classique au Vert — Open-Air Classical",
+      "emoji": "🎻",
+      "type": "event",
+      "categories": [
+        "music",
+        "classical",
+        "outdoor",
+        "culture"
+      ],
+      "arr": 12,
+      "area": "Parc Floral, Bois de Vincennes",
+      "price": 2.7,
+      "priceNote": "Concerts free · €2.70 park entry",
+      "start": "2026-08-01",
+      "end": "2026-09-04",
+      "days": [
+        6,
+        0
+      ],
+      "times": "Weekend afternoons, generally from 16:00",
+      "durationMin": 150,
+      "minutesFromHome": 40,
+      "transit": "M1 to Château de Vincennes, then ~10 min walk",
+      "why": "The classical sibling of the jazz festival, on the same lawn, same €2.70. Chamber ensembles and small orchestras playing outdoors in August. If you have never done a concert lying on grass with a bottle of wine, do this one before September 4.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoor",
+        "cheap",
+        "culture",
+        "romantic"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "romantic",
+        "outdoor",
+        "couple",
+        "weekend"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "source": "Parc Floral",
+      "url": "https://www.classiqueauvert.paris/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "nuits-des-etoiles-parks-2026",
+      "title": "Free Stargazing Evenings in Paris Parks",
+      "emoji": "🔭",
+      "type": "event",
+      "categories": [
+        "outdoor",
+        "unusual",
+        "free",
+        "learn"
+      ],
+      "arr": null,
+      "area": "21 parks across Paris",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2026-07-01",
+      "end": "2026-09-05",
+      "times": "From 21:00, some sessions run to 01:00",
+      "durationMin": 90,
+      "minutesFromHome": 15,
+      "transit": "Varies — Jardin d'Éole and Buttes-Chaumont are your closest sites",
+      "why": "The Association Française d'Astronomie sets up telescopes in Paris parks on summer nights and lets anyone look through them, for free. Jardin d'Éole is a 15-minute walk from you. Check their calendar for which park is hosting on a given night — it rotates, so this needs one click before you go.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "free",
+        "unusual",
+        "learn"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "hiddengem",
+        "afterwork",
+        "outdoor",
+        "unusual"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "source": "Association Française d'Astronomie",
+      "url": "https://www.afastronomie.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "marcounet-guinguette-2026",
+      "title": "Salsa & Swing on the Péniche Marcounet",
+      "emoji": "💃",
+      "type": "event",
+      "categories": [
+        "music",
+        "dance",
+        "outdoor",
+        "free"
+      ],
+      "arr": 4,
+      "area": "Quai des Célestins, near Pont Marie",
+      "price": 0,
+      "priceNote": "Free entry · drinks paid",
+      "start": "2026-06-01",
+      "end": "2026-08-31",
+      "days": [
+        6,
+        0
+      ],
+      "times": "Salsa Sat 15:30–18:30 · Swing Sun 15:00–21:00",
+      "durationMin": 150,
+      "minutesFromHome": 20,
+      "transit": "M7 to Pont Marie, or a 35-min walk down the canal and along the Seine",
+      "why": "A barge moored on the Seine that turns into an open-air dance floor at weekends. Nobody minds if you cannot dance — half the crowd is learning. Free, unpretentious, and about as romantic as a Sunday afternoon in Paris gets. Sunday swing is the better of the two.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoor",
+        "free",
+        "romantic",
+        "socialize"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "romantic",
+        "couple",
+        "weekend",
+        "hiddengem"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "nearby": [
+        {
+          "emoji": "🏝️",
+          "text": "Île Saint-Louis + Berthillon → 8 min"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Village Saint-Paul antique shops → 6 min"
+        }
+      ],
+      "source": "Secrets of Paris",
+      "url": "https://www.peniche-marcounet.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "fete-des-tuileries-2026",
+      "title": "Fête des Tuileries Funfair",
+      "emoji": "🎡",
+      "type": "event",
+      "categories": [
+        "outdoor",
+        "seasonal",
+        "unusual"
+      ],
+      "arr": 1,
+      "area": "Jardin des Tuileries",
+      "price": 0,
+      "priceNote": "Free entry · rides paid individually",
+      "start": "2026-06-27",
+      "end": "2026-08-23",
+      "times": "Daily from 11:00 until late",
+      "durationMin": 90,
+      "minutesFromHome": 22,
+      "transit": "M8 to Concorde",
+      "why": "A proper old-fashioned funfair in the Tuileries with a big wheel that gives you one of the best cheap views in Paris. Worth combining with the Olympic cauldron after dark — they are in the same garden. Ten days left.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "outdoor",
+        "couple",
+        "afterwork"
+      ],
+      "uniqueness": 3,
+      "quality": 3,
+      "source": "Secrets of Paris",
+      "url": "https://www.sortiraparis.com/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "javelle-guinguette-2026",
+      "title": "La Javelle Summer Guinguette",
+      "emoji": "🍹",
+      "type": "event",
+      "categories": [
+        "outdoor",
+        "music",
+        "food",
+        "free"
+      ],
+      "arr": 12,
+      "area": "Bercy",
+      "price": 0,
+      "priceNote": "Free entry",
+      "start": "2026-05-01",
+      "end": "2026-08-30",
+      "times": "Weekdays 17:00–00:00 · weekends 12:00–00:00",
+      "durationMin": 150,
+      "minutesFromHome": 30,
+      "transit": "M5 direct to Bercy",
+      "why": "Riverside guinguette with DJs, live music, karaoke and comedy nights, free to get in. It is a single Metro line from you with no changes. Good low-effort answer to 'we want to be outside with a drink and something happening'.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "outdoor",
+        "free",
+        "socialize",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "afterwork",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "source": "Secrets of Paris",
+      "url": "https://www.lajavelle.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "grand-palais-leandro-erlich-2026",
+      "title": "Leandro Erlich — Grand Palais",
+      "emoji": "🎨",
+      "type": "exhibition",
+      "categories": [
+        "art",
+        "culture",
+        "indoor"
+      ],
+      "arr": 8,
+      "area": "Grand Palais",
+      "price": 17,
+      "priceNote": "~€17 · book a slot online",
+      "start": "2026-05-28",
+      "end": "2026-09-06",
+      "durationMin": 120,
+      "minutesFromHome": 28,
+      "transit": "M1 to Champs-Élysées–Clemenceau",
+      "why": "The biggest Erlich show ever staged in Europe. He is the artist who builds swimming pools you can walk under and buildings you can climb sideways — optical-illusion installations you physically enter. It is the rare major exhibition that is genuinely fun rather than dutiful, and it is very good on a rainy or blisteringly hot day.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "indoor",
+        "unusual"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "Grand Palais",
+      "url": "https://www.grandpalais.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "grand-palais-hilma-af-klint-2026",
+      "title": "Hilma af Klint — Grand Palais",
+      "emoji": "🖼️",
+      "type": "exhibition",
+      "categories": [
+        "art",
+        "culture",
+        "indoor"
+      ],
+      "arr": 8,
+      "area": "Grand Palais",
+      "price": 17,
+      "priceNote": "~€17 · book a slot online",
+      "start": "2026-03-01",
+      "end": "2026-08-30",
+      "durationMin": 105,
+      "minutesFromHome": 28,
+      "transit": "M1 to Champs-Élysées–Clemenceau",
+      "why": "Her first showing in France, and it closes August 30. Af Klint was painting large abstract canvases years before Kandinsky and then asked for them to stay hidden for 20 years after her death. Seeing them in person is a genuinely strange experience. Closing soon — this is a now-or-never one.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "indoor"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "indoor",
+        "closingsoon"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "Grand Palais",
+      "url": "https://www.grandpalais.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "beyond-the-streets-villette-2026",
+      "title": "Beyond the Streets — Graffiti & Street Art",
+      "emoji": "🎨",
+      "type": "exhibition",
+      "categories": [
+        "art",
+        "culture",
+        "indoor"
+      ],
+      "arr": 19,
+      "area": "Grande Halle de la Villette",
+      "price": 18,
+      "priceNote": "~€18",
+      "start": "2026-04-01",
+      "end": "2026-08-30",
+      "durationMin": 120,
+      "minutesFromHome": 22,
+      "transit": "M5 to Porte de Pantin",
+      "why": "3,600 m² and over 100 major graffiti and street artists, in the huge iron hall at La Villette. It is a short hop from you on line 5. Best move: do the exhibition in the afternoon, then stay in the park for the open-air cinema at 21:00 — same site, one trip, whole day sorted.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "indoor"
+      ],
+      "indoor": true,
+      "labels": [
+        "couple",
+        "indoor",
+        "closingsoon"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairsWith": [
+        "villette-open-air-cinema-2026"
+      ],
+      "source": "La Villette",
+      "url": "https://lavillette.com/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "jeu-de-paume-photo-2026",
+      "title": "Two Photography Retrospectives — Jeu de Paume",
+      "emoji": "📷",
+      "type": "exhibition",
+      "categories": [
+        "photography",
+        "art",
+        "culture",
+        "indoor"
+      ],
+      "arr": 1,
+      "area": "Jeu de Paume, Jardin des Tuileries",
+      "price": 12,
+      "priceNote": "~€12",
+      "start": "2026-06-01",
+      "end": "2026-09-27",
+      "durationMin": 90,
+      "minutesFromHome": 22,
+      "transit": "M8 to Concorde",
+      "why": "Jeu de Paume is the serious photography house in Paris and it is small enough to do properly in 90 minutes without museum fatigue. Two retrospectives running at once until late September. Then walk out into the Tuileries and stay for the cauldron at sunset.",
+      "goodFor": [
+        "couple",
+        "culture",
+        "indoor",
+        "weekend"
+      ],
+      "indoor": true,
+      "labels": [
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "pairsWith": [
+        "olympic-cauldron-2026"
+      ],
+      "source": "Jeu de Paume",
+      "url": "https://jeudepaume.org/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "musee-maillol-versace-2026",
+      "title": "Gianni Versace Retrospective — Musée Maillol",
+      "emoji": "👗",
+      "type": "exhibition",
+      "categories": [
+        "fashion",
+        "design",
+        "culture",
+        "indoor"
+      ],
+      "arr": 7,
+      "area": "Musée Maillol",
+      "price": 16,
+      "priceNote": "~€16",
+      "start": "2026-04-01",
+      "end": "2026-10-31",
+      "durationMin": 90,
+      "minutesFromHome": 30,
+      "transit": "M8 to Invalides / M12 to Rue du Bac",
+      "why": "A full Versace retrospective in a small, manageable museum — the archive pieces are extraordinary up close, and Maillol never gets the crush that the big houses do. Runs until the end of October, so this is one to keep in your back pocket for a grey autumn Sunday rather than a sunny August one.",
+      "goodFor": [
+        "couple",
+        "culture",
+        "indoor",
+        "weekend"
+      ],
+      "indoor": true,
+      "labels": [
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "source": "Musée Maillol",
+      "url": "https://www.museemaillol.com/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "quai-branly-esprit-du-temps-2026",
+      "title": "1913–1923: L'esprit du temps — Quai Branly",
+      "emoji": "🗿",
+      "type": "exhibition",
+      "categories": [
+        "history",
+        "art",
+        "culture",
+        "indoor"
+      ],
+      "arr": 7,
+      "area": "Musée du Quai Branly – Jacques Chirac",
+      "price": 14,
+      "priceNote": "~€14",
+      "start": "2026-04-01",
+      "end": "2026-09-20",
+      "durationMin": 120,
+      "minutesFromHome": 35,
+      "transit": "M9 to Alma–Marceau, then walk",
+      "why": "The decade that broke and remade European culture, told through the objects that arrived in Paris from elsewhere during it. Quai Branly is also one of the best buildings in Paris — the Jean Nouvel green wall and the garden are worth the trip on their own, and the garden is free.",
+      "goodFor": [
+        "couple",
+        "culture",
+        "indoor",
+        "learn"
+      ],
+      "indoor": true,
+      "labels": [
+        "indoor",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "source": "Musée du Quai Branly",
+      "url": "https://www.quaibranly.fr/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "palais-tokyo-nocturnes-2026",
+      "title": "Nocturnes d'Été — Palais de Tokyo",
+      "emoji": "🌙",
+      "type": "event",
+      "categories": [
+        "art",
+        "culture",
+        "free",
+        "indoor"
+      ],
+      "arr": 16,
+      "area": "Palais de Tokyo",
+      "price": 0,
+      "priceNote": "Free on nocturne evenings",
+      "start": "2026-07-01",
+      "end": "2026-08-31",
+      "times": "One evening per week — check the site for this week's date",
+      "durationMin": 120,
+      "minutesFromHome": 30,
+      "transit": "M9 to Iéna",
+      "why": "Palais de Tokyo is open until midnight most nights anyway, but during the summer nocturnes the contemporary art shows are free. It is the least reverent museum in Paris — concrete, loud, occasionally baffling — and much better as a date than a worthy afternoon at the Louvre. Confirm the evening on their site before you go.",
+      "goodFor": [
+        "couple",
+        "evening",
+        "culture",
+        "free",
+        "indoor",
+        "unusual"
+      ],
+      "indoor": true,
+      "labels": [
+        "free",
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "source": "Palais de Tokyo",
+      "url": "https://palaisdetokyo.com/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "theatre-verdure-shakespeare-2026",
+      "title": "Open-Air Theatre — Jardin Shakespeare",
+      "emoji": "🎭",
+      "type": "event",
+      "categories": [
+        "theatre",
+        "outdoor",
+        "culture"
+      ],
+      "arr": 16,
+      "area": "Pré Catelan, Bois de Boulogne",
+      "price": 15,
+      "priceNote": "Free to €25 depending on the show",
+      "start": "2026-05-01",
+      "end": "2026-09-27",
+      "durationMin": 150,
+      "minutesFromHome": 45,
+      "transit": "M1 to Les Sablons, then a walk through the Bois",
+      "why": "A green amphitheatre hidden inside the Bois de Boulogne, planted with every species Shakespeare mentions, staging open-air theatre all summer. Very few Parisians have been. It is far, so treat it as a whole afternoon: walk in the Bois, then the show.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoor",
+        "culture",
+        "romantic"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "hiddengem",
+        "romantic",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "source": "Secrets of Paris",
+      "url": "https://www.paris.fr/lieux/jardin-shakespeare-2358",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "rock-en-seine-2026",
+      "title": "Rock en Seine",
+      "emoji": "🎸",
+      "type": "event",
+      "categories": [
+        "music",
+        "festival",
+        "outdoor"
+      ],
+      "arr": null,
+      "area": "Domaine national de Saint-Cloud",
+      "price": 75,
+      "priceNote": "~€75/day · passes cost more",
+      "start": "2026-08-26",
+      "end": "2026-08-30",
+      "durationMin": 600,
+      "minutesFromHome": 55,
+      "transit": "M9 to Pont de Sèvres + shuttle, or M10 to Boulogne",
+      "why": "The big one at the end of August, in the grounds of a former royal estate. The Cure close it on the 30th, Nick Cave and the Bad Seeds play the 28th, Tyler the Creator opens on the 26th, Lorde headlines the 27th. Day tickets beat passes unless you want all five. Book now if you want it — this sells through.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoor",
+        "music"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "outdoor",
+        "bookahead"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "source": "Rock en Seine",
+      "url": "https://www.rockenseine.com/",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "journees-du-patrimoine-2026",
+      "title": "Journées Européennes du Patrimoine",
+      "emoji": "🏛️",
+      "type": "event",
+      "categories": [
+        "culture",
+        "architecture",
+        "free",
+        "unusual"
+      ],
+      "arr": null,
+      "area": "All of Paris and Île-de-France",
+      "price": 0,
+      "priceNote": "Free — but the good sites need booking",
+      "start": "2026-09-19",
+      "end": "2026-09-20",
+      "durationMin": 300,
+      "minutesFromHome": 15,
+      "transit": "Everywhere — pick sites near home first",
+      "why": "The single best weekend of the Paris year and it is worth planning for now. Thousands of buildings normally shut to the public open their doors for free: ministries, private hôtels particuliers, the Élysée, Freemason lodges, working ateliers. The 2026 theme is architectural heritage in danger. The catch is that the desirable sites open bookings in late August and are gone within hours — set a reminder for the last week of August.",
+      "goodFor": [
+        "couple",
+        "weekend",
+        "free",
+        "culture",
+        "unusual",
+        "learn"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "bookahead",
+        "unusual",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "Ville de Paris",
+      "url": "https://www.paris.fr/evenements/les-journees-europeennes-du-patrimoine-2026-decouvrez-le-programme-113133",
+      "lastVerified": "2026-08-13"
+    },
+    {
+      "id": "esports-world-cup-paris-2026",
+      "title": "Esports World Cup",
+      "emoji": "🎮",
+      "type": "event",
+      "categories": [
+        "unusual",
+        "indoor"
+      ],
+      "arr": 15,
+      "area": "Paris Expo Porte de Versailles",
+      "price": 25,
+      "priceNote": "From ~€25",
+      "start": "2026-08-01",
+      "end": "2026-08-23",
+      "durationMin": 240,
+      "minutesFromHome": 40,
+      "transit": "M12 to Porte de Versailles",
+      "why": "Included because it is genuinely unlike anything else on this list: a 500 m² gaming floor, showmatches, talks and live music inside the Expo halls. Worth it if you are at all curious about what a 20,000-person crowd watching a video game feels like. Skip it otherwise.",
+      "goodFor": [
+        "unusual",
+        "indoor",
+        "weekend"
+      ],
+      "indoor": true,
+      "labels": [
+        "unusual",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 3,
+      "source": "Sortiraparis",
+      "url": "https://esportsworldcup.com/",
+      "lastVerified": "2026-08-13"
+    }
+  ]
+}
