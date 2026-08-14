@@ -1,4 +1,4 @@
-# Paris for Two
+# Paris for You
 
 A personal Paris exploration guide for Ekta & Kartik, living in the 10th.
 
