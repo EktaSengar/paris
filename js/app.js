@@ -147,13 +147,39 @@ const App = (() => {
   const mapsLink = i =>
     `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${i.title} ${i.area || ''} Paris`)}`;
 
+  /* Commons renders only a fixed set of thumbnail widths — anything else is a
+     400. Keep in sync with THUMB_WIDTHS in scripts/images.mjs. */
+  const THUMB_WIDTHS = [250, 500, 960, 1280];
+
+  function srcset(url) {
+    const m = url.match(/^(.*\/thumb\/.*\/)\d+px-(.+)$/);
+    if (!m) return '';
+    return THUMB_WIDTHS.map(w => `${m[1]}${w}px-${m[2]} ${w}w`).join(', ');
+  }
+
+  function img(item, sizes, cls = '') {
+    const set = srcset(item.image);
+    return `<img src="${esc(item.image)}"${set ? ` srcset="${esc(set)}" sizes="${sizes}"` : ''}
+      alt="${esc(item.imageSubject || item.title)}" class="${cls}"
+      loading="lazy" decoding="async"
+      onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">`;
+  }
+
+  /* Images served from cache can finish loading before the inline onload is
+     wired up, which would leave them stuck at opacity 0 on every revisit.
+     Sweep after each render and reveal anything already decoded. */
+  function settleImages(root = document) {
+    root.querySelectorAll('img:not(.loaded)').forEach(i => {
+      if (i.complete) i.classList.add('loaded');
+    });
+  }
+
+  // three columns at 1040px, two from 620px, otherwise nearly full width
+  const CARD_SIZES = '(min-width: 940px) 320px, (min-width: 620px) 45vw, 92vw';
+
   function shot(item) {
     if (!item.image) return `<div class="shot">${badge(item)}</div>`;
-    return `<div class="shot">
-      <img src="${esc(item.image)}" alt="${esc(item.imageSubject || item.title)}"
-           loading="lazy" decoding="async" onload="this.classList.add('loaded')">
-      ${badge(item)}
-    </div>`;
+    return `<div class="shot">${img(item, CARD_SIZES)}${badge(item)}</div>`;
   }
 
   const RATINGS = [
@@ -260,6 +286,7 @@ const App = (() => {
     }
 
     applyFilters();
+    settleImages($('#view'));
   }
 
   function listFor(view) {
@@ -380,7 +407,7 @@ const App = (() => {
       ].filter(([, v]) => v);
 
       feature = `<div class="hood">
-        ${local ? `<div class="hood-shot"><img src="${esc(local.image)}" alt="${esc(local.imageSubject || f.name)}" loading="lazy" decoding="async"></div>` : ''}
+        ${local ? `<div class="hood-shot">${img(local, '(min-width: 1040px) 1000px, 96vw', 'loaded')}</div>` : ''}
         <h3>${f.arr}<sup>e</sup> — ${esc(f.name)}</h3>
         <p class="sub">About ${f.minutesFromHome} minutes from you${local ? ` · photo: ${esc(local.imageSubject)}` : ''}</p>
         <div class="facts-grid">
@@ -532,6 +559,7 @@ const App = (() => {
 
     $('#lede').textContent = 'One thing, picked for today.';
     $('#view').innerHTML = `<div class="grid">${card(chosen, 'surprise open')}</div>`;
+    settleImages($('#view'));
     $$('.tab').forEach(t => t.classList.remove('on'));
     $('#count').textContent = '';
     window.scrollTo({ top: $('#main').offsetTop - 60, behavior: 'smooth' });

@@ -48,7 +48,7 @@ const QUERIES = {
   'palais-tokyo-nocturnes-2026': 'Palais de Tokyo',
   'theatre-verdure-shakespeare-2026': 'Pré Catelan',
   'rock-en-seine-2026': 'Domaine national de Saint-Cloud',
-  'journees-du-patrimoine-2026': 'Journées européennes du patrimoine',
+  'journees-du-patrimoine-2026': 'Palais de l\'Élysée',
   'esports-world-cup-paris-2026': 'Paris Expo Porte de Versailles',
 
   // places
@@ -76,7 +76,7 @@ const QUERIES = {
   'pavillon-arsenal': "Pavillon de l'Arsenal",
   'musee-carnavalet': 'Musée Carnavalet',
   'petit-palais': 'Petit Palais',
-  'musee-vie-romantique': 'Musée de la Vie romantique',
+  'musee-vie-romantique': 'Rue Chaptal',
   '59-rivoli': '59 Rivoli',
   'buttes-chaumont': 'Parc des Buttes-Chaumont',
   'parc-belleville': 'Parc de Belleville',
@@ -173,8 +173,16 @@ async function pageImages(titles, lang) {
 
     (q.pages || []).forEach(p => {
       if (!p.thumbnail?.source) return;
+      const src = clean(p.thumbnail.source);
+
+      // Only take Commons-hosted files. Images under /wikipedia/<lang>/ are
+      // local uploads, which for institutions are usually non-free logos
+      // used under fair use — not ours to republish, and a logo is a poor
+      // photograph anyway.
+      if (!src.includes('/wikipedia/commons/')) return;
+
       const original = chain.get(p.title) ?? p.title;
-      found.set(original, clean(p.thumbnail.source));
+      found.set(original, src);
     });
 
     await sleep(1500);
@@ -213,6 +221,81 @@ const fileFromUrl = u => {
   const m = u.match(/\/commons\/(?:thumb\/)?[0-9a-f]\/[0-9a-f]{2}\/([^/]+)/);
   return m ? decodeURIComponent(m[1]) : null;
 };
+
+/* Commons only renders a fixed set of thumbnail widths — anything else is a
+   400. Probed against upload.wikimedia.org, these are the ones that work.
+   Keep in sync with THUMB_WIDTHS in js/app.js, which builds the srcset. */
+export const THUMB_WIDTHS = [120, 250, 500, 960, 1280, 1920];
+
+/* Rewrite any Commons URL into a thumbnail of the given width. It is the
+   difference between a 300 KB download and a 45 KB one for a card that is
+   340 px wide. Originals served straight from /commons/x/xy/ get a /thumb/
+   path built for them. */
+function thumbUrl(url, width) {
+  if (!THUMB_WIDTHS.includes(width)) throw new Error(`width ${width} is not one Commons will render`);
+  const thumb = url.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/thumb\/[0-9a-f]\/[0-9a-f]{2}\/[^/]+\/)\d+px-(.+)$/);
+  if (thumb) return `${thumb[1]}${width}px-${thumb[2]}`;
+
+  const orig = url.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/)([0-9a-f]\/[0-9a-f]{2}\/)([^/]+)$/);
+  if (orig) {
+    const name = orig[3];
+    // Commons serves SVG and some formats as PNG thumbs; keep it to raster here.
+    if (/\.(jpe?g|png|gif)$/i.test(name)) return `${orig[1]}thumb/${orig[2]}${name}/${width}px-${name}`;
+  }
+  return null;
+}
+
+/* HEAD with retries — a burst of these gets throttled, and a throttled
+   response must not be mistaken for a missing image. */
+async function reachable(url, attempt = 0) {
+  const res = await fetch(url, { method: 'HEAD', headers: { 'user-agent': UA },
+    signal: AbortSignal.timeout(25000) }).catch(() => null);
+
+  if (res && res.ok) return true;
+  if (res && res.status === 400) return false;         // genuinely not a valid size
+  if (attempt >= 3) return false;
+  await sleep(3000 * (attempt + 1));
+  return reachable(url, attempt + 1);
+}
+
+/* Normalise every stored image to a 500px thumbnail. The rewrite is
+   deterministic, so we do it first and verify afterwards, reverting only
+   what genuinely fails. */
+async function resizePass() {
+  const WIDTH = 500;
+  const touched = [];
+  let kept = 0;
+
+  for (const file of FILES) {
+    const full = path.join(DATA, file);
+    const doc = JSON.parse(await fs.readFile(full, 'utf8'));
+
+    for (const item of doc.items) {
+      if (!item.image) continue;
+      const candidate = thumbUrl(item.image, WIDTH);
+      if (!candidate || candidate === item.image) { kept++; continue; }
+      touched.push({ item, was: item.image, now: candidate });
+      item.image = candidate;
+    }
+    docsToWrite.set(full, doc);
+  }
+
+  console.log(`Rewriting ${touched.length} to ${WIDTH}px, ${kept} already fine. Verifying…`);
+
+  let reverted = 0;
+  for (const t of touched) {
+    if (!(await reachable(t.now))) { t.item.image = t.was; reverted++; console.log(`  ! reverted ${t.item.id}`); }
+    await sleep(400);
+  }
+
+  for (const [full, doc] of docsToWrite) {
+    await fs.writeFile(full, JSON.stringify(doc, null, 2) + '\n', 'utf8');
+  }
+
+  console.log(`\nResize: ${touched.length - reverted} now ${WIDTH}px, ${reverted} reverted, ${kept} unchanged.`);
+}
+
+const docsToWrite = new Map();
 
 async function run() {
   /* 1 — gather every article we need to look up. */
@@ -280,4 +363,5 @@ async function run() {
   }
 }
 
-run().catch(e => { console.error(e); process.exit(1); });
+const main = process.argv.includes('--resize') ? resizePass : run;
+main().catch(e => { console.error(e); process.exit(1); });

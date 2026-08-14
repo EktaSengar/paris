@@ -47,6 +47,21 @@ than fake it, those cards borrow a picture of the street or quarter they stand
 on, and `imageSubject` records what is genuinely in the frame so the card can
 say so in its credit line. Each card names the photographer and the licence.
 
+Two things worth knowing before touching this:
+
+- Only Commons-hosted files are accepted. Anything under `/wikipedia/<lang>/`
+  is a local upload, which for museums and festivals is usually a non-free
+  logo used under fair use — not ours to republish, and a poor picture anyway.
+- Commons renders **only a fixed set of thumbnail widths** — 120, 250, 500,
+  960, 1280, 1920. Any other width is a 400. Cards store the 500px variant and
+  the browser picks from a `srcset` at render time.
+
+```bash
+node scripts/images.mjs           # fill in anything missing
+node scripts/images.mjs --force   # re-resolve everything
+node scripts/images.mjs --resize  # normalise widths, verifying each
+```
+
 ### The ranking
 
 Nothing is shown in file order. Every candidate is scored against:
