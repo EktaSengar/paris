@@ -7,7 +7,11 @@
       "title": "Saturday Morning on Your Own Doorstep",
       "emoji": "☕",
       "type": "itinerary",
-      "categories": ["food", "walk", "shop"],
+      "categories": [
+        "food",
+        "walk",
+        "shop"
+      ],
       "arr": 10,
       "price": 15,
       "priceNote": "~€15 each",
@@ -15,26 +19,66 @@
       "minutesFromHome": 0,
       "startTime": "09:30",
       "why": "The mission you can do in slippers. Note the trap: Du Pain et des Idées, the best bakery near you, is closed at weekends — so the weekend route goes to Mamiche instead, and you save the other one for a weekday morning.",
-      "goodFor": ["food", "weekend", "morning", "couple", "cheap", "relax"],
+      "goodFor": [
+        "food",
+        "weekend",
+        "morning",
+        "couple",
+        "cheap",
+        "relax"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["foodmission", "cheap", "couple", "weekend"],
+      "labels": [
+        "foodmission",
+        "cheap",
+        "couple",
+        "weekend"
+      ],
       "uniqueness": 3,
       "quality": 5,
       "stops": [
-        { "emoji": "☕", "text": "Coffee at Ten Belles, rue de la Grange aux Belles", "walk": "8 min from home" },
-        { "emoji": "🍞", "text": "Babka at Mamiche, rue du Château d'Eau", "walk": "6 min" },
-        { "emoji": "🏠", "text": "Browse La Trésorerie for the flat — the best homewares shop in Paris", "walk": "2 min" },
-        { "emoji": "🥬", "text": "Marché Saint-Quentin for the week's food, and a glass of wine at the bar in the middle", "walk": "7 min" },
-        { "emoji": "📚", "text": "Finish at Artazart on the canal, then sit on the water", "walk": "10 min" }
-      ]
+        {
+          "emoji": "☕",
+          "text": "Coffee at Ten Belles, rue de la Grange aux Belles",
+          "walk": "8 min from home"
+        },
+        {
+          "emoji": "🍞",
+          "text": "Babka at Mamiche, rue du Château d'Eau",
+          "walk": "6 min"
+        },
+        {
+          "emoji": "🏠",
+          "text": "Browse La Trésorerie for the flat — the best homewares shop in Paris",
+          "walk": "2 min"
+        },
+        {
+          "emoji": "🥬",
+          "text": "Marché Saint-Quentin for the week's food, and a glass of wine at the bar in the middle",
+          "walk": "7 min"
+        },
+        {
+          "emoji": "📚",
+          "text": "Finish at Artazart on the canal, then sit on the water",
+          "walk": "10 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg/1280px-2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg",
+      "imageSubject": "Canal Saint-Martin",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "rainy-day-passages",
       "title": "The Rainy Day Route",
       "emoji": "☔",
       "type": "itinerary",
-      "categories": ["walk", "culture", "shop", "indoor"],
+      "categories": [
+        "walk",
+        "culture",
+        "shop",
+        "indoor"
+      ],
       "arr": 2,
       "price": 10,
       "priceNote": "Free, plus whatever you drink",
@@ -42,27 +86,70 @@
       "minutesFromHome": 15,
       "startTime": "11:00",
       "why": "Almost the entire route is under glass. When it is raining and you refuse to spend the day indoors, this is the answer — four 19th-century arcades chained together, with second-hand bookshops, stamp dealers, an old walking-cane maker and tea rooms. Ends at a free museum with a garden café.",
-      "goodFor": ["walk", "culture", "indoor", "couple", "weekend", "free"],
+      "goodFor": [
+        "walk",
+        "culture",
+        "indoor",
+        "couple",
+        "weekend",
+        "free"
+      ],
       "indoor": true,
       "rainyDayPick": true,
-      "labels": ["free", "indoor", "couple", "hiddengem"],
+      "labels": [
+        "free",
+        "indoor",
+        "couple",
+        "hiddengem"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "Start at Grands Boulevards", "walk": "M8/M9, 15 min from home" },
-        { "emoji": "🏛️", "text": "Passage des Panoramas — the oldest arcade in Paris, 1799", "walk": "on arrival" },
-        { "emoji": "📖", "text": "Cross the boulevard to Passage Jouffroy, then Passage Verdeau for old books and cameras", "walk": "3 min" },
-        { "emoji": "🍽️", "text": "Lunch in one of the passage bistros", "walk": "on site" },
-        { "emoji": "✨", "text": "Walk to Galerie Vivienne — mosaic floors, the beautiful one", "walk": "12 min" },
-        { "emoji": "🌹", "text": "Finish at Musée de la Vie Romantique: free, and tea in the glass conservatory", "walk": "20 min or M12" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "Start at Grands Boulevards",
+          "walk": "M8/M9, 15 min from home"
+        },
+        {
+          "emoji": "🏛️",
+          "text": "Passage des Panoramas — the oldest arcade in Paris, 1799",
+          "walk": "on arrival"
+        },
+        {
+          "emoji": "📖",
+          "text": "Cross the boulevard to Passage Jouffroy, then Passage Verdeau for old books and cameras",
+          "walk": "3 min"
+        },
+        {
+          "emoji": "🍽️",
+          "text": "Lunch in one of the passage bistros",
+          "walk": "on site"
+        },
+        {
+          "emoji": "✨",
+          "text": "Walk to Galerie Vivienne — mosaic floors, the beautiful one",
+          "walk": "12 min"
+        },
+        {
+          "emoji": "🌹",
+          "text": "Finish at Musée de la Vie Romantique: free, and tea in the glass conservatory",
+          "walk": "20 min or M12"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GalerieVivienne1.jpg/1280px-GalerieVivienne1.jpg",
+      "imageSubject": "Galerie Vivienne",
+      "imageCredit": "David Pendery · CC BY-SA 4.0"
     },
     {
       "id": "sunday-aligre-coulee-verte",
       "title": "The Perfect Sunday: Market, Picnic, Viaduct",
       "emoji": "🧺",
       "type": "itinerary",
-      "categories": ["food", "walk", "outdoors"],
+      "categories": [
+        "food",
+        "walk",
+        "outdoors"
+      ],
       "arr": 12,
       "price": 20,
       "priceNote": "~€20 for a very good picnic for two",
@@ -70,28 +157,77 @@
       "minutesFromHome": 22,
       "startTime": "10:00",
       "why": "The single best use of a sunny Sunday in Paris, and it costs almost nothing. Buy lunch at the best market in the city, then eat it four metres above the street on a garden built along a disused railway. Go early — Aligre is finished by 13:30.",
-      "goodFor": ["food", "weekend", "outdoors", "couple", "cheap", "romantic"],
+      "goodFor": [
+        "food",
+        "weekend",
+        "outdoors",
+        "couple",
+        "cheap",
+        "romantic"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["dontmiss", "cheap", "couple", "weekend", "outdoor", "foodmission"],
+      "labels": [
+        "dontmiss",
+        "cheap",
+        "couple",
+        "weekend",
+        "outdoor",
+        "foodmission"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "M8 to Ledru-Rollin", "walk": "22 min from home" },
-        { "emoji": "🧀", "text": "Marché Beauvau covered hall — cheese, charcuterie, olives", "walk": "5 min" },
-        { "emoji": "🍑", "text": "The open-air market outside for fruit; prices drop as they pack up", "walk": "on site" },
-        { "emoji": "🪞", "text": "Ten minutes in the little flea market on the square — people sell genuinely odd things", "walk": "on site" },
-        { "emoji": "🥐", "text": "Madeleines from Blé Sucré, rue Antoine Vollon", "walk": "4 min" },
-        { "emoji": "🌿", "text": "Up onto the Coulée verte at Bastille and walk east through the rose arches", "walk": "12 min" },
-        { "emoji": "🧺", "text": "Picnic on a bench above the street, then carry on to the Jardin de Reuilly", "walk": "25 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "M8 to Ledru-Rollin",
+          "walk": "22 min from home"
+        },
+        {
+          "emoji": "🧀",
+          "text": "Marché Beauvau covered hall — cheese, charcuterie, olives",
+          "walk": "5 min"
+        },
+        {
+          "emoji": "🍑",
+          "text": "The open-air market outside for fruit; prices drop as they pack up",
+          "walk": "on site"
+        },
+        {
+          "emoji": "🪞",
+          "text": "Ten minutes in the little flea market on the square — people sell genuinely odd things",
+          "walk": "on site"
+        },
+        {
+          "emoji": "🥐",
+          "text": "Madeleines from Blé Sucré, rue Antoine Vollon",
+          "walk": "4 min"
+        },
+        {
+          "emoji": "🌿",
+          "text": "Up onto the Coulée verte at Bastille and walk east through the rose arches",
+          "walk": "12 min"
+        },
+        {
+          "emoji": "🧺",
+          "text": "Picnic on a bench above the street, then carry on to the Jardin de Reuilly",
+          "walk": "25 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Promenade_plant%C3%A9e.JPG/1280px-Promenade_plant%C3%A9e.JPG",
+      "imageSubject": "Coulée verte René-Dumont",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "sunset-belleville",
       "title": "After-Work Sunset, Cheap and Perfect",
       "emoji": "🌅",
       "type": "itinerary",
-      "categories": ["outdoors", "food", "evening"],
+      "categories": [
+        "outdoors",
+        "food",
+        "evening"
+      ],
       "arr": 20,
       "price": 25,
       "priceNote": "A bottle from a caviste + cheap dinner",
@@ -99,25 +235,63 @@
       "minutesFromHome": 18,
       "startTime": "19:30",
       "why": "The best free view in Paris, eighteen minutes from home, with none of the crowd at Sacré-Cœur. Buy the wine before you go up — there is nothing at the top. Then walk down into Belleville, which has the cheapest good food in the city.",
-      "goodFor": ["outdoors", "evening", "couple", "romantic", "cheap", "spontaneous"],
+      "goodFor": [
+        "outdoors",
+        "evening",
+        "couple",
+        "romantic",
+        "cheap",
+        "spontaneous"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["free", "romantic", "afterwork", "couple", "cheap", "outdoor"],
+      "labels": [
+        "free",
+        "romantic",
+        "afterwork",
+        "couple",
+        "cheap",
+        "outdoor"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "stops": [
-        { "emoji": "🍷", "text": "Buy a bottle and two plastic cups near Couronnes", "walk": "M2, 18 min from home" },
-        { "emoji": "🌇", "text": "Up to the top terrace of Parc de Belleville — arrive 40 min before sunset", "walk": "8 min uphill" },
-        { "emoji": "🎨", "text": "Come down through rue Denoyez for the street art", "walk": "10 min" },
-        { "emoji": "🍜", "text": "Dinner on rue de Belleville — Chinese, Vietnamese or North African, all excellent, all cheap", "walk": "5 min" }
-      ]
+        {
+          "emoji": "🍷",
+          "text": "Buy a bottle and two plastic cups near Couronnes",
+          "walk": "M2, 18 min from home"
+        },
+        {
+          "emoji": "🌇",
+          "text": "Up to the top terrace of Parc de Belleville — arrive 40 min before sunset",
+          "walk": "8 min uphill"
+        },
+        {
+          "emoji": "🎨",
+          "text": "Come down through rue Denoyez for the street art",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🍜",
+          "text": "Dinner on rue de Belleville — Chinese, Vietnamese or North African, all excellent, all cheap",
+          "walk": "5 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG/1280px-P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG",
+      "imageSubject": "Parc de Belleville",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "explore-the-13th",
       "title": "You Have Never Really Explored the 13th",
       "emoji": "🗺️",
       "type": "itinerary",
-      "categories": ["walk", "outdoors", "food", "explore"],
+      "categories": [
+        "walk",
+        "outdoors",
+        "food",
+        "explore"
+      ],
       "arr": 13,
       "price": 15,
       "priceNote": "~€15 including the pool",
@@ -125,27 +299,71 @@
       "minutesFromHome": 30,
       "startTime": "11:00",
       "why": "The 13th is the arrondissement people in the 10th most reliably neglect, and it has a hilltop village, an art deco swimming pool fed by a natural spring, thirteen-storey murals, streets named after flowers, and the best Asian food in France. One direct Metro line from you.",
-      "goodFor": ["walk", "weekend", "outdoors", "couple", "explore", "food"],
+      "goodFor": [
+        "walk",
+        "weekend",
+        "outdoors",
+        "couple",
+        "explore",
+        "food"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["explorenew", "hiddengem", "couple", "weekend", "cheap"],
+      "labels": [
+        "explorenew",
+        "hiddengem",
+        "couple",
+        "weekend",
+        "cheap"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "M7 direct to Corvisart", "walk": "30 min from home" },
-        { "emoji": "🎨", "text": "The street art circuit — start with the murals around boulevard Vincent Auriol", "walk": "10 min" },
-        { "emoji": "🐦", "text": "Up into La Butte-aux-Cailles: cobbles, ivy, low houses, no cars", "walk": "8 min" },
-        { "emoji": "🏊", "text": "Swim in the 1920s Piscine de la Butte-aux-Cailles, artesian spring water, about €4", "walk": "on site" },
-        { "emoji": "🌺", "text": "La Cité Florale — five tiny streets named after flowers, all hollyhocks and cottages", "walk": "12 min" },
-        { "emoji": "🍲", "text": "Late lunch on avenue de Choisy — the Vietnamese here is the real thing", "walk": "15 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "M7 direct to Corvisart",
+          "walk": "30 min from home"
+        },
+        {
+          "emoji": "🎨",
+          "text": "The street art circuit — start with the murals around boulevard Vincent Auriol",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🐦",
+          "text": "Up into La Butte-aux-Cailles: cobbles, ivy, low houses, no cars",
+          "walk": "8 min"
+        },
+        {
+          "emoji": "🏊",
+          "text": "Swim in the 1920s Piscine de la Butte-aux-Cailles, artesian spring water, about €4",
+          "walk": "on site"
+        },
+        {
+          "emoji": "🌺",
+          "text": "La Cité Florale — five tiny streets named after flowers, all hollyhocks and cottages",
+          "walk": "12 min"
+        },
+        {
+          "emoji": "🍲",
+          "text": "Late lunch on avenue de Choisy — the Vietnamese here is the real thing",
+          "walk": "15 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG/1280px-P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG",
+      "imageSubject": "Butte-aux-Cailles",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "villette-full-day",
       "title": "One Trip, Whole Day: La Villette",
       "emoji": "🎬",
       "type": "itinerary",
-      "categories": ["culture", "outdoors", "film"],
+      "categories": [
+        "culture",
+        "outdoors",
+        "film"
+      ],
       "arr": 19,
       "price": 18,
       "priceNote": "Exhibition ~€18 · everything else free",
@@ -153,27 +371,69 @@
       "minutesFromHome": 22,
       "startTime": "15:00",
       "why": "Everything on this route is on one site, twenty-two minutes from you on line 5, and half of it is free. The trick is the timing: exhibition in the afternoon, canal-side drink as the light goes, then lie on the grass for a film at 21:00. You do not move more than 500 metres after 15:00.",
-      "goodFor": ["culture", "outdoors", "evening", "couple", "weekend"],
+      "goodFor": [
+        "culture",
+        "outdoors",
+        "evening",
+        "couple",
+        "weekend"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["dontmiss", "couple", "outdoor", "afterwork"],
+      "labels": [
+        "dontmiss",
+        "couple",
+        "outdoor",
+        "afterwork"
+      ],
       "uniqueness": 4,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "M5 to Porte de Pantin", "walk": "22 min from home" },
-        { "emoji": "🎨", "text": "Beyond the Streets at the Grande Halle — 3,600 m² of graffiti and street art", "walk": "3 min" },
-        { "emoji": "🍹", "text": "Drink on the Bassin de la Villette terraces as it cools down", "walk": "12 min" },
-        { "emoji": "🧺", "text": "Get a spot on the Prairie du Triangle by 20:15 with a blanket", "walk": "12 min back" },
-        { "emoji": "🎬", "text": "Free open-air film at 21:00 under the stars", "walk": "on site" },
-        { "emoji": "🚶", "text": "Walk home down the canal if the night is warm — 40 minutes, and worth it", "walk": "40 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "M5 to Porte de Pantin",
+          "walk": "22 min from home"
+        },
+        {
+          "emoji": "🎨",
+          "text": "Beyond the Streets at the Grande Halle — 3,600 m² of graffiti and street art",
+          "walk": "3 min"
+        },
+        {
+          "emoji": "🍹",
+          "text": "Drink on the Bassin de la Villette terraces as it cools down",
+          "walk": "12 min"
+        },
+        {
+          "emoji": "🧺",
+          "text": "Get a spot on the Prairie du Triangle by 20:15 with a blanket",
+          "walk": "12 min back"
+        },
+        {
+          "emoji": "🎬",
+          "text": "Free open-air film at 21:00 under the stars",
+          "walk": "on site"
+        },
+        {
+          "emoji": "🚶",
+          "text": "Walk home down the canal if the night is warm — 40 minutes, and worth it",
+          "walk": "40 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/1280px-Parc_de_la_Villette%2C_Paris_2010.jpg",
+      "imageSubject": "Parc de la Villette",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "buttes-mouzaia",
       "title": "The Secret Village Twenty Minutes Away",
       "emoji": "🏡",
       "type": "itinerary",
-      "categories": ["walk", "outdoors", "hidden"],
+      "categories": [
+        "walk",
+        "outdoors",
+        "hidden"
+      ],
       "arr": 19,
       "price": 0,
       "priceNote": "Free",
@@ -181,26 +441,66 @@
       "minutesFromHome": 15,
       "startTime": "14:00",
       "why": "Most people go to Buttes-Chaumont and stop there. Behind it is the Mouzaïa — a grid of cobbled private lanes of rose-covered cottages, built cheap in the 1900s because old gypsum mines underneath meant nothing heavy could be built on top. You will not believe you are in Paris, and it is fifteen minutes from your flat.",
-      "goodFor": ["walk", "outdoors", "free", "couple", "romantic", "explore"],
+      "goodFor": [
+        "walk",
+        "outdoors",
+        "free",
+        "couple",
+        "romantic",
+        "explore"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["free", "hiddengem", "romantic", "couple", "outdoor"],
+      "labels": [
+        "free",
+        "hiddengem",
+        "romantic",
+        "couple",
+        "outdoor"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "M7bis to Botzaris", "walk": "15 min from home" },
-        { "emoji": "🌳", "text": "Into Buttes-Chaumont, up to the temple on the rock for the view", "walk": "15 min" },
-        { "emoji": "🌉", "text": "Cross the suspension bridge, out of the north-east gate", "walk": "10 min" },
-        { "emoji": "🏡", "text": "The Mouzaïa villas — rue de Mouzaïa, Villa de Bellevue, Villa des Lilas", "walk": "10 min" },
-        { "emoji": "☕", "text": "Coffee tasting at Brûlerie de Belleville if it is open", "walk": "15 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "M7bis to Botzaris",
+          "walk": "15 min from home"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Into Buttes-Chaumont, up to the temple on the rock for the view",
+          "walk": "15 min"
+        },
+        {
+          "emoji": "🌉",
+          "text": "Cross the suspension bridge, out of the north-east gate",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🏡",
+          "text": "The Mouzaïa villas — rue de Mouzaïa, Villa de Bellevue, Villa des Lilas",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee tasting at Brûlerie de Belleville if it is open",
+          "walk": "15 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg/1280px-P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg",
+      "imageSubject": "Quartier d'Amérique",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "marais-design-crawl",
       "title": "Design Crawl for the Flat",
       "emoji": "🪴",
       "type": "itinerary",
-      "categories": ["shop", "design", "home"],
+      "categories": [
+        "shop",
+        "design",
+        "home"
+      ],
       "arr": 3,
       "price": 0,
       "priceNote": "Free to browse, dangerous to your wallet",
@@ -208,27 +508,68 @@
       "minutesFromHome": 15,
       "startTime": "11:00",
       "why": "If you want to make the flat nicer, this is the densest concentration of good independent design shops in Paris, all within a ten-minute radius of each other in the north Marais, with the oldest covered market in the city in the middle of it for lunch.",
-      "goodFor": ["shop", "home", "weekend", "couple", "design"],
+      "goodFor": [
+        "shop",
+        "home",
+        "weekend",
+        "couple",
+        "design"
+      ],
       "indoor": true,
       "rainyDayPick": true,
-      "labels": ["couple", "indoor", "weekend"],
+      "labels": [
+        "couple",
+        "indoor",
+        "weekend"
+      ],
       "uniqueness": 4,
       "quality": 5,
       "stops": [
-        { "emoji": "🚇", "text": "Walk, or M8 to Filles du Calvaire", "walk": "15 min from home" },
-        { "emoji": "🏺", "text": "Empreintes — four floors of contemporary French craft, free to visit", "walk": "on arrival" },
-        { "emoji": "📖", "text": "Ofr. for art books and independent magazines", "walk": "4 min" },
-        { "emoji": "🍲", "text": "Lunch in the Marché des Enfants Rouges — arrive before 12:30 for a seat", "walk": "3 min" },
-        { "emoji": "🛋️", "text": "Merci and the shops along rue Charlot and rue de Poitou", "walk": "6 min" },
-        { "emoji": "🪴", "text": "Green Factory for a terrarium on the way home", "walk": "10 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "Walk, or M8 to Filles du Calvaire",
+          "walk": "15 min from home"
+        },
+        {
+          "emoji": "🏺",
+          "text": "Empreintes — four floors of contemporary French craft, free to visit",
+          "walk": "on arrival"
+        },
+        {
+          "emoji": "📖",
+          "text": "Ofr. for art books and independent magazines",
+          "walk": "4 min"
+        },
+        {
+          "emoji": "🍲",
+          "text": "Lunch in the Marché des Enfants Rouges — arrive before 12:30 for a seat",
+          "walk": "3 min"
+        },
+        {
+          "emoji": "🛋️",
+          "text": "Merci and the shops along rue Charlot and rue de Poitou",
+          "walk": "6 min"
+        },
+        {
+          "emoji": "🪴",
+          "text": "Green Factory for a terrarium on the way home",
+          "walk": "10 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paris_Hotel_de_Sens_dsc04028.jpg/1280px-Paris_Hotel_de_Sens_dsc04028.jpg",
+      "imageSubject": "Le Marais",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "vanves-flea-sunday",
       "title": "Flea Market Dawn Raid",
       "emoji": "🪞",
       "type": "itinerary",
-      "categories": ["market", "shop", "vintage"],
+      "categories": [
+        "market",
+        "shop",
+        "vintage"
+      ],
       "arr": 14,
       "price": 30,
       "priceNote": "Bring cash — €30 goes a long way",
@@ -236,19 +577,54 @@
       "minutesFromHome": 35,
       "startTime": "08:00",
       "why": "The unglamorous truth about flea markets is that everything good is gone by ten. Vanves is the one worth the early alarm: real people selling from trestle tables, prices you can haggle, silver cutlery and old linen and ceramics. It shuts at 14:00 sharp. Then a park and lunch to recover.",
-      "goodFor": ["shop", "weekend", "morning", "couple", "home", "cheap"],
+      "goodFor": [
+        "shop",
+        "weekend",
+        "morning",
+        "couple",
+        "home",
+        "cheap"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["hiddengem", "weekend", "couple", "cheap"],
+      "labels": [
+        "hiddengem",
+        "weekend",
+        "couple",
+        "cheap"
+      ],
       "uniqueness": 5,
       "quality": 4,
       "stops": [
-        { "emoji": "🚇", "text": "M13 to Porte de Vanves — leave home by 08:00", "walk": "35 min from home" },
-        { "emoji": "🪙", "text": "Work avenue Marc Sangnier first, then Georges Lafenestre", "walk": "on arrival" },
-        { "emoji": "☕", "text": "Coffee and regroup, then a second pass — sellers soften after 11:00", "walk": "on site" },
-        { "emoji": "🌳", "text": "Parc Montsouris to sit down with your finds", "walk": "20 min" },
-        { "emoji": "🥖", "text": "Lunch on rue Daguerre, a pedestrian market street that feels like a village", "walk": "15 min" }
-      ]
+        {
+          "emoji": "🚇",
+          "text": "M13 to Porte de Vanves — leave home by 08:00",
+          "walk": "35 min from home"
+        },
+        {
+          "emoji": "🪙",
+          "text": "Work avenue Marc Sangnier first, then Georges Lafenestre",
+          "walk": "on arrival"
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee and regroup, then a second pass — sellers soften after 11:00",
+          "walk": "on site"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Parc Montsouris to sit down with your finds",
+          "walk": "20 min"
+        },
+        {
+          "emoji": "🥖",
+          "text": "Lunch on rue Daguerre, a pedestrian market street that feels like a village",
+          "walk": "15 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fa%C3%A7ade_Mairie_de_Vanves.jpg/1280px-Fa%C3%A7ade_Mairie_de_Vanves.jpg",
+      "imageSubject": "Vanves",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

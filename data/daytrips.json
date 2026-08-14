@@ -7,7 +7,11 @@
       "title": "Chantilly",
       "emoji": "🏰",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "outdoors"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "outdoors"
+      ],
       "price": 20,
       "priceNote": "~€18 return + €18 château",
       "minutesFromHome": 35,
@@ -15,20 +19,38 @@
       "transit": "Gare du Nord → Chantilly-Gouvieux, ~25 min direct, then a 20-min walk through the park",
       "durationMin": 420,
       "why": "The best value day trip you have, and almost nobody in Paris realises it is twenty-five minutes from Gare du Nord. A moated château holding the second-best collection of old master paintings in France after the Louvre, the grandest stables ever built for horses, a Le Nôtre park you can row a boat on, and the village where crème Chantilly was invented — you can eat it in the château's own dairy. Go early, come back for dinner.",
-      "goodFor": ["couple", "weekend", "culture", "outdoors", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "outdoors",
+        "daytrip"
+      ],
       "indoor": false,
-      "labels": ["dontmiss", "daytrip", "couple", "weekend"],
+      "labels": [
+        "dontmiss",
+        "daytrip",
+        "couple",
+        "weekend"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "url": "https://chateaudechantilly.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Ch%C3%A2teau_de_Chantilly_2.jpg/1280px-Ch%C3%A2teau_de_Chantilly_2.jpg",
+      "imageSubject": "Château de Chantilly",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "reims-champagne",
       "title": "Reims & the Champagne Cellars",
       "emoji": "🥂",
       "type": "daytrip",
-      "categories": ["daytrip", "food", "culture"],
+      "categories": [
+        "daytrip",
+        "food",
+        "culture"
+      ],
       "price": 60,
       "priceNote": "~€50 return TGV if booked early + tastings from €25",
       "minutesFromHome": 55,
@@ -36,21 +58,40 @@
       "transit": "Gare de l'Est → Reims by TGV, about 46 min",
       "durationMin": 480,
       "why": "Champagne is forty-six minutes from the station at the end of your street. Reims has a UNESCO cathedral where the kings of France were crowned, and beneath the city are kilometres of Roman chalk quarries now used as champagne cellars — Taittinger and Ruinart both run tours that end in a tasting. Book the cellar tour and the TGV a few weeks ahead and this costs less than a nice dinner in Paris.",
-      "goodFor": ["couple", "weekend", "food", "romantic", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "food",
+        "romantic",
+        "daytrip"
+      ],
       "indoor": true,
       "bookAhead": true,
-      "labels": ["dontmiss", "daytrip", "romantic", "couple", "bookahead"],
+      "labels": [
+        "dontmiss",
+        "daytrip",
+        "romantic",
+        "couple",
+        "bookahead"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "url": "https://www.reims-tourisme.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Exterior_view_of_the_west_facade_of_Notre-Dame_Cathedral_in_Reims.jpg/1280px-Exterior_view_of_the_west_facade_of_Notre-Dame_Cathedral_in_Reims.jpg",
+      "imageSubject": "Cathédrale Notre-Dame de Reims",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "vaux-le-vicomte",
       "title": "Vaux-le-Vicomte by Candlelight",
       "emoji": "🕯️",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "romantic"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "romantic"
+      ],
       "price": 25,
       "priceNote": "~€22 château + ~€18 return",
       "minutesFromHome": 70,
@@ -58,22 +99,45 @@
       "transit": "Gare de Lyon → Verneuil-l'Étang (~35 min), then the Châteaubus shuttle",
       "durationMin": 360,
       "why": "The château that made Louis XIV so jealous he had its owner arrested and hired the same team to build Versailles. On Saturday evenings from May to early October they light two thousand candles through the house and gardens and you walk round in the dark. It is the most romantic thing within an hour of Paris and it is far less known than it should be. Check their site for candlelight dates before booking.",
-      "goodFor": ["couple", "romantic", "weekend", "culture", "evening", "daytrip"],
+      "goodFor": [
+        "couple",
+        "romantic",
+        "weekend",
+        "culture",
+        "evening",
+        "daytrip"
+      ],
       "indoor": false,
       "bookAhead": true,
-      "seasonal": ["summer", "autumn"],
-      "labels": ["dontmiss", "romantic", "couple", "bookahead", "daytrip"],
+      "seasonal": [
+        "summer",
+        "autumn"
+      ],
+      "labels": [
+        "dontmiss",
+        "romantic",
+        "couple",
+        "bookahead",
+        "daytrip"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "url": "https://vaux-le-vicomte.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/0_Maincy_-_Ch%C3%A2teau_de_Vaux-le-Vicomte_%282%29.JPG/1280px-0_Maincy_-_Ch%C3%A2teau_de_Vaux-le-Vicomte_%282%29.JPG",
+      "imageSubject": "Château de Vaux-le-Vicomte",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "provins",
       "title": "Provins",
       "emoji": "🛡️",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "unusual"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "unusual"
+      ],
       "price": 20,
       "priceNote": "~€20 return",
       "minutesFromHome": 95,
@@ -81,20 +145,38 @@
       "transit": "Gare de l'Est → Provins direct, about 1h25",
       "durationMin": 420,
       "why": "A complete walled medieval town, UNESCO-listed, reachable on a single direct train from the station nearest your flat. Ramparts you can walk along, underground tunnels dug by merchants in the 12th century, and, in summer, falconry displays and jousting that are much better than that sounds. Go on a day when you want to be somewhere that feels nothing like Paris.",
-      "goodFor": ["couple", "weekend", "culture", "unusual", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "unusual",
+        "daytrip"
+      ],
       "indoor": false,
-      "labels": ["daytrip", "unusual", "couple", "weekend"],
+      "labels": [
+        "daytrip",
+        "unusual",
+        "couple",
+        "weekend"
+      ],
       "uniqueness": 5,
       "quality": 4,
       "url": "https://www.provins.net/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Provins_-_Mars_2025.jpg/1280px-Provins_-_Mars_2025.jpg",
+      "imageSubject": "Provins",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "auvers-sur-oise",
       "title": "Auvers-sur-Oise",
       "emoji": "🌻",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "outdoors"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "outdoors"
+      ],
       "price": 15,
       "priceNote": "~€12 return",
       "minutesFromHome": 70,
@@ -102,22 +184,44 @@
       "transit": "Gare du Nord → Auvers-sur-Oise, about 1h with a change at Pontoise; direct trains at weekends in season",
       "durationMin": 360,
       "why": "Van Gogh spent the last seventy days of his life here and painted seventy-five canvases. The village has barely changed: you can stand in the wheatfield he painted the crows over, see the church from the picture, climb the stairs to the tiny attic room he died in, and visit his grave beside his brother's. It is a strange, quiet, moving day out and it costs almost nothing.",
-      "goodFor": ["couple", "weekend", "culture", "outdoors", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "outdoors",
+        "daytrip"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "seasonal": ["spring", "summer", "autumn"],
-      "labels": ["hiddengem", "daytrip", "couple", "cheap"],
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "labels": [
+        "hiddengem",
+        "daytrip",
+        "couple",
+        "cheap"
+      ],
       "uniqueness": 5,
       "quality": 5,
       "url": "https://www.auvers-sur-oise.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Auvers_town_hall.jpg/1280px-Auvers_town_hall.jpg",
+      "imageSubject": "Auvers-sur-Oise",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "fontainebleau",
       "title": "Fontainebleau & the Forest",
       "emoji": "🌲",
       "type": "daytrip",
-      "categories": ["daytrip", "outdoors", "culture"],
+      "categories": [
+        "daytrip",
+        "outdoors",
+        "culture"
+      ],
       "price": 25,
       "priceNote": "~€20 return + €14 château",
       "minutesFromHome": 65,
@@ -125,22 +229,43 @@
       "transit": "Gare de Lyon → Fontainebleau-Avon, ~40 min, then bus 1",
       "durationMin": 420,
       "why": "A royal palace lived in continuously for eight centuries — more interesting and far emptier than Versailles — inside a 25,000-hectare forest of sandstone boulders that is one of the birthplaces of rock climbing. Do the château in the morning and walk in the forest after, or skip the château entirely and just walk. Autumn is the best season for it.",
-      "goodFor": ["couple", "weekend", "outdoors", "culture", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "outdoors",
+        "culture",
+        "daytrip"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "seasonal": ["spring", "summer", "autumn"],
-      "labels": ["daytrip", "outdoor", "couple"],
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "labels": [
+        "daytrip",
+        "outdoor",
+        "couple"
+      ],
       "uniqueness": 4,
       "quality": 5,
       "url": "https://www.chateaudefontainebleau.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Ch%C3%A2teau_de_Fontainebleau_%28Fontainebleau%29_edited_%282%29.jpg/1280px-Ch%C3%A2teau_de_Fontainebleau_%28Fontainebleau%29_edited_%282%29.jpg",
+      "imageSubject": "Château de Fontainebleau",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "giverny",
       "title": "Giverny — Monet's Garden",
       "emoji": "🎨",
       "type": "daytrip",
-      "categories": ["daytrip", "outdoors", "culture"],
+      "categories": [
+        "daytrip",
+        "outdoors",
+        "culture"
+      ],
       "price": 40,
       "priceNote": "~€30 return + €13 garden",
       "minutesFromHome": 80,
@@ -148,23 +273,45 @@
       "transit": "Gare Saint-Lazare → Vernon-Giverny (~50 min), then the shuttle bus",
       "durationMin": 420,
       "why": "The actual garden, the actual water-lily pond, the actual green bridge. Open roughly April to the start of November only. Go on a weekday and be at the gate when it opens, because by 11:00 it is shoulder to shoulder and the whole point is the quiet. The Musée des Impressionnismes next door is a good, near-empty second stop.",
-      "goodFor": ["couple", "outdoors", "culture", "romantic", "daytrip"],
+      "goodFor": [
+        "couple",
+        "outdoors",
+        "culture",
+        "romantic",
+        "daytrip"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "seasonal": ["spring", "summer", "autumn"],
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
       "bookAhead": true,
-      "labels": ["daytrip", "romantic", "couple", "bookahead"],
+      "labels": [
+        "daytrip",
+        "romantic",
+        "couple",
+        "bookahead"
+      ],
       "uniqueness": 4,
       "quality": 5,
       "url": "https://fondation-monet.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DJI_0096dxopb.jpg/1280px-DJI_0096dxopb.jpg",
+      "imageSubject": "Giverny",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "versailles",
       "title": "Versailles",
       "emoji": "👑",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "outdoors"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "outdoors"
+      ],
       "price": 32,
       "priceNote": "~€22 passport ticket + ~€8 return",
       "minutesFromHome": 60,
@@ -172,21 +319,38 @@
       "transit": "M5 to Gare d'Austerlitz then RER C, or RER B to Saint-Michel and change",
       "durationMin": 480,
       "why": "Worth doing once, but do it properly and against the grain: skip the state apartments queue, go straight to the gardens and the Trianon estate, and see Marie-Antoinette's hamlet, which is a fake rustic village with a working farm and is far stranger and better than the palace. On summer weekends the fountains run to music, and the night fountain shows run through September.",
-      "goodFor": ["couple", "weekend", "culture", "outdoors", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "outdoors",
+        "daytrip"
+      ],
       "indoor": false,
       "bookAhead": true,
-      "labels": ["daytrip", "couple", "bookahead"],
+      "labels": [
+        "daytrip",
+        "couple",
+        "bookahead"
+      ],
       "uniqueness": 3,
       "quality": 5,
       "url": "https://www.chateauversailles.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_083.jpg/1280px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_083.jpg",
+      "imageSubject": "Château de Versailles",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "sceaux",
       "title": "Parc de Sceaux",
       "emoji": "🌸",
       "type": "daytrip",
-      "categories": ["daytrip", "outdoors", "free"],
+      "categories": [
+        "daytrip",
+        "outdoors",
+        "free"
+      ],
       "price": 0,
       "priceNote": "Park free · ~€6 return",
       "minutesFromHome": 45,
@@ -194,22 +358,44 @@
       "transit": "RER B to Parc de Sceaux or Bourg-la-Reine",
       "durationMin": 240,
       "why": "A vast free Le Nôtre park with canals and terraces, forty-five minutes away. The real reason to go is the first two weeks of April, when the Japanese cherry orchard in the Bosquet Nord flowers all at once and the whole thing turns pink — it is the best hanami in the Paris region and it is free. Set a reminder for late March.",
-      "goodFor": ["couple", "outdoors", "free", "weekend", "romantic", "daytrip"],
+      "goodFor": [
+        "couple",
+        "outdoors",
+        "free",
+        "weekend",
+        "romantic",
+        "daytrip"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "seasonal": ["spring", "summer"],
-      "labels": ["free", "daytrip", "outdoor", "romantic"],
+      "seasonal": [
+        "spring",
+        "summer"
+      ],
+      "labels": [
+        "free",
+        "daytrip",
+        "outdoor",
+        "romantic"
+      ],
       "uniqueness": 4,
       "quality": 4,
       "url": "https://domaine-de-sceaux.hauts-de-seine.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Les_parterres_de_Le_N%C3%B4tre_restitu%C3%A9s_%28Domaine_de_Sceaux%29_%289761188032%29.jpg/1280px-Les_parterres_de_Le_N%C3%B4tre_restitu%C3%A9s_%28Domaine_de_Sceaux%29_%289761188032%29.jpg",
+      "imageSubject": "Parc de Sceaux",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "senlis",
       "title": "Senlis",
       "emoji": "⛪",
       "type": "daytrip",
-      "categories": ["daytrip", "culture", "unusual"],
+      "categories": [
+        "daytrip",
+        "culture",
+        "unusual"
+      ],
       "price": 20,
       "priceNote": "~€18 return",
       "minutesFromHome": 65,
@@ -217,22 +403,44 @@
       "transit": "Gare du Nord → Chantilly, then the bus to Senlis",
       "durationMin": 300,
       "why": "A small medieval town of cobbled lanes and a Gothic cathedral, with Roman walls and a ruined royal castle, that almost no visitor to Paris reaches because there is no direct train. Combine it with Chantilly in one day — same line, and the bus between them takes twenty minutes. Very good in autumn.",
-      "goodFor": ["couple", "weekend", "culture", "daytrip"],
+      "goodFor": [
+        "couple",
+        "weekend",
+        "culture",
+        "daytrip"
+      ],
       "indoor": false,
-      "seasonal": ["spring", "autumn", "winter"],
-      "labels": ["hiddengem", "daytrip", "couple"],
+      "seasonal": [
+        "spring",
+        "autumn",
+        "winter"
+      ],
+      "labels": [
+        "hiddengem",
+        "daytrip",
+        "couple"
+      ],
       "uniqueness": 5,
       "quality": 4,
-      "pairsWith": ["chantilly"],
+      "pairsWith": [
+        "chantilly"
+      ],
       "url": "https://www.senlis-tourisme.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Senlis_-_general_view_003.jpg/1280px-Senlis_-_general_view_003.jpg",
+      "imageSubject": "Senlis (Oise)",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "meaux",
       "title": "Meaux",
       "emoji": "🧀",
       "type": "daytrip",
-      "categories": ["daytrip", "food", "culture"],
+      "categories": [
+        "daytrip",
+        "food",
+        "culture"
+      ],
       "price": 12,
       "priceNote": "~€12 return",
       "minutesFromHome": 40,
@@ -240,20 +448,38 @@
       "transit": "Gare de l'Est → Meaux, about 25 min",
       "durationMin": 300,
       "why": "Twenty-five minutes from the end of your street, and the home of Brie de Meaux. A Gothic cathedral, an episcopal palace with a garden laid out by Le Nôtre in the shape of a bishop's mitre, and cheese-makers you can visit. Add the Musée de la Grande Guerre, one of the best First World War museums in Europe, if that interests you. A good half-day when you want out of the city without a project.",
-      "goodFor": ["couple", "food", "culture", "daytrip", "cheap"],
+      "goodFor": [
+        "couple",
+        "food",
+        "culture",
+        "daytrip",
+        "cheap"
+      ],
       "indoor": false,
-      "labels": ["cheap", "hiddengem", "daytrip", "foodmission"],
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "daytrip",
+        "foodmission"
+      ],
       "uniqueness": 4,
       "quality": 4,
       "url": "https://www.paysdemeaux-tourisme.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Cath%C3%A9drale_Saint-Etienne_de_Meaux..JPG/1280px-Cath%C3%A9drale_Saint-Etienne_de_Meaux..JPG",
+      "imageSubject": "Cathédrale Saint-Étienne de Meaux",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "saint-germain-en-laye",
       "title": "Saint-Germain-en-Laye",
       "emoji": "🌳",
       "type": "daytrip",
-      "categories": ["daytrip", "outdoors", "culture"],
+      "categories": [
+        "daytrip",
+        "outdoors",
+        "culture"
+      ],
       "price": 8,
       "priceNote": "~€8 return · château free on some days",
       "minutesFromHome": 45,
@@ -261,21 +487,38 @@
       "transit": "RER A direct, about 35 min from Châtelet",
       "durationMin": 240,
       "why": "The easiest half-day escape: one RER, no changes, and you step out into a château that is now the national archaeology museum, with a 2.4 km stone terrace by Le Nôtre looking back over the whole of Paris. The forest behind it is enormous. Good for an afternoon when you want trees and a view without committing to a whole day.",
-      "goodFor": ["couple", "outdoors", "culture", "daytrip", "cheap"],
+      "goodFor": [
+        "couple",
+        "outdoors",
+        "culture",
+        "daytrip",
+        "cheap"
+      ],
       "indoor": false,
       "weatherSensitive": true,
-      "labels": ["cheap", "daytrip", "outdoor", "couple"],
+      "labels": [
+        "cheap",
+        "daytrip",
+        "outdoor",
+        "couple"
+      ],
       "uniqueness": 3,
       "quality": 4,
       "url": "https://www.seine-saintgermain.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ch%C3%A2teau_de_Saint-Germain-en-Laye.jpg/1280px-Ch%C3%A2teau_de_Saint-Germain-en-Laye.jpg",
+      "imageSubject": "Château de Saint-Germain-en-Laye",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "chartres",
       "title": "Chartres",
       "emoji": "🔵",
       "type": "daytrip",
-      "categories": ["daytrip", "culture"],
+      "categories": [
+        "daytrip",
+        "culture"
+      ],
       "price": 35,
       "priceNote": "~€35 return",
       "minutesFromHome": 80,
@@ -283,14 +526,30 @@
       "transit": "Gare Montparnasse → Chartres, about 1h05",
       "durationMin": 360,
       "why": "The finest medieval stained glass anywhere in the world, almost all of it original 13th-century, in a cathedral that survived both wars intact. The blue is a colour nobody has since managed to reproduce. From April to October the whole town is lit with projections after dark under the Chartres en Lumières programme, which makes an evening return worth it.",
-      "goodFor": ["couple", "culture", "daytrip", "weekend"],
+      "goodFor": [
+        "couple",
+        "culture",
+        "daytrip",
+        "weekend"
+      ],
       "indoor": true,
-      "seasonal": ["spring", "summer", "autumn"],
-      "labels": ["daytrip", "couple", "culture"],
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "labels": [
+        "daytrip",
+        "couple",
+        "culture"
+      ],
       "uniqueness": 4,
       "quality": 5,
       "url": "https://www.chartres-tourisme.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Cath%C3%A9drale_Notre_Dame_-_Chartres_%28FR28%29_-_2021-03-14_-_4.jpg/1280px-Cath%C3%A9drale_Notre_Dame_-_Chartres_%28FR28%29_-_2021-03-14_-_4.jpg",
+      "imageSubject": "Cathédrale Notre-Dame de Chartres",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

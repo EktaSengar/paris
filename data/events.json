@@ -87,7 +87,10 @@
       ],
       "source": "Sortiraparis / La Villette",
       "url": "https://lavillette.com/programmation/cinema-en-plein-air_e1054",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/1280px-Parc_de_la_Villette%2C_Paris_2010.jpg",
+      "imageSubject": "Parc de la Villette",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "paris-plages-2026",
@@ -144,7 +147,10 @@
       ],
       "source": "Paris.fr",
       "url": "https://www.paris.fr/pages/paris-plages-2211",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bassin_villette.jpg/1280px-Bassin_villette.jpg",
+      "imageSubject": "Bassin de la Villette",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "olympic-cauldron-2026",
@@ -202,7 +208,10 @@
       ],
       "source": "Paris.fr",
       "url": "https://www.paris.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg/1280px-Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg",
+      "imageSubject": "Jardin des Tuileries",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "paris-jazz-festival-2026",
@@ -265,7 +274,10 @@
       ],
       "source": "Paris.fr / Parc Floral",
       "url": "https://www.parisjazzfestival.paris/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Parc_Floral_de_Paris.jpg/1280px-Parc_Floral_de_Paris.jpg",
+      "imageSubject": "Parc floral de Paris",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "classique-au-vert-2026",
@@ -314,7 +326,10 @@
       "quality": 5,
       "source": "Parc Floral",
       "url": "https://www.classiqueauvert.paris/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Parc_Floral_de_Paris.jpg/1280px-Parc_Floral_de_Paris.jpg",
+      "imageSubject": "Parc floral de Paris",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "nuits-des-etoiles-parks-2026",
@@ -359,7 +374,10 @@
       "quality": 4,
       "source": "Association Française d'Astronomie",
       "url": "https://www.afastronomie.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Obs-Paris-coupole-Arago.jpg",
+      "imageSubject": "Observatoire de Paris",
+      "imageCredit": "Wikimedia Commons · CC BY-SA 3.0"
     },
     {
       "id": "marcounet-guinguette-2026",
@@ -418,7 +436,10 @@
       ],
       "source": "Secrets of Paris",
       "url": "https://www.peniche-marcounet.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pont_Marie.jpg/1280px-Pont_Marie.jpg",
+      "imageSubject": "Pont Marie",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "fete-des-tuileries-2026",
@@ -458,7 +479,10 @@
       "quality": 3,
       "source": "Secrets of Paris",
       "url": "https://www.sortiraparis.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg/1280px-Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg",
+      "imageSubject": "Jardin des Tuileries",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "javelle-guinguette-2026",
@@ -502,7 +526,10 @@
       "quality": 4,
       "source": "Secrets of Paris",
       "url": "https://www.lajavelle.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg/1280px-Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg",
+      "imageSubject": "Parc de Bercy",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "grand-palais-leandro-erlich-2026",
@@ -541,7 +568,10 @@
       "quality": 5,
       "source": "Grand Palais",
       "url": "https://www.grandpalais.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/1280px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
+      "imageSubject": "Grand Palais",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "grand-palais-hilma-af-klint-2026",
@@ -579,7 +609,10 @@
       "quality": 5,
       "source": "Grand Palais",
       "url": "https://www.grandpalais.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hilma-af-Klint-uncropped.jpg/1280px-Hilma-af-Klint-uncropped.jpg",
+      "imageSubject": "Hilma af Klint",
+      "imageCredit": "AnonymousUnknown author · Public domain"
     },
     {
       "id": "beyond-the-streets-villette-2026",
@@ -620,7 +653,10 @@
       ],
       "source": "La Villette",
       "url": "https://lavillette.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg/1280px-Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg",
+      "imageSubject": "Grande halle de la Villette",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "jeu-de-paume-photo-2026",
@@ -661,7 +697,10 @@
       ],
       "source": "Jeu de Paume",
       "url": "https://jeudepaume.org/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Le_Jeu_de_Paume%2C_1_place_de_la_Concorde_%C3%A0_Paris%2C_juillet_2021.jpg/1280px-Le_Jeu_de_Paume%2C_1_place_de_la_Concorde_%C3%A0_Paris%2C_juillet_2021.jpg",
+      "imageSubject": "Galerie nationale du Jeu de Paume",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "musee-maillol-versace-2026",
@@ -699,7 +738,10 @@
       "quality": 4,
       "source": "Musée Maillol",
       "url": "https://www.museemaillol.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mus%C3%A9e_Maillol_Paris_7e_001.jpg/1280px-Mus%C3%A9e_Maillol_Paris_7e_001.jpg",
+      "imageSubject": "Musée Maillol",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "quai-branly-esprit-du-temps-2026",
@@ -737,7 +779,10 @@
       "quality": 4,
       "source": "Musée du Quai Branly",
       "url": "https://www.quaibranly.fr/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Mus%C3%A9e_du_quai_Branly_-_20150801_16h07_%2810629%29.jpg/1280px-Mus%C3%A9e_du_quai_Branly_-_20150801_16h07_%2810629%29.jpg",
+      "imageSubject": "Musée du quai Branly - Jacques-Chirac",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "palais-tokyo-nocturnes-2026",
@@ -780,7 +825,10 @@
       "quality": 4,
       "source": "Palais de Tokyo",
       "url": "https://palaisdetokyo.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Palais_de_Tokyo_20030101w.JPG/1280px-Palais_de_Tokyo_20030101w.JPG",
+      "imageSubject": "Palais de Tokyo",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "theatre-verdure-shakespeare-2026",
@@ -821,7 +869,10 @@
       "quality": 4,
       "source": "Secrets of Paris",
       "url": "https://www.paris.fr/lieux/jardin-shakespeare-2358",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/GOUDEAU%26VIDAL_-_Vacherie_du_Pr%C3%A9-Catelan.jpg/1280px-GOUDEAU%26VIDAL_-_Vacherie_du_Pr%C3%A9-Catelan.jpg",
+      "imageSubject": "Pré Catelan",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "rock-en-seine-2026",
@@ -861,7 +912,10 @@
       "quality": 5,
       "source": "Rock en Seine",
       "url": "https://www.rockenseine.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Parc_saint-cloud.jpg/1280px-Parc_saint-cloud.jpg",
+      "imageSubject": "Domaine national de Saint-Cloud",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "journees-du-patrimoine-2026",
@@ -905,7 +959,10 @@
       "quality": 5,
       "source": "Ville de Paris",
       "url": "https://www.paris.fr/evenements/les-journees-europeennes-du-patrimoine-2026-decouvrez-le-programme-113133",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/fr/thumb/f/f3/European_Heritage_Days_Logo.svg/1280px-European_Heritage_Days_Logo.svg.png",
+      "imageSubject": "Journées européennes du patrimoine",
+      "imageCredit": "Wikimedia Commons"
     },
     {
       "id": "esports-world-cup-paris-2026",
@@ -940,7 +997,10 @@
       "quality": 3,
       "source": "Sortiraparis",
       "url": "https://esportsworldcup.com/",
-      "lastVerified": "2026-08-13"
+      "lastVerified": "2026-08-13",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG/1280px-P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG",
+      "imageSubject": "Paris Expo Porte de Versailles",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

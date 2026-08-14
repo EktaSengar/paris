@@ -32,8 +32,20 @@ data/
   quests.json         long-running exploration goals
 scripts/
   refresh.mjs   prune + validate; run daily by CI
+  images.mjs    resolve one openly-licensed photo per card
   serve.mjs     local preview server
 ```
+
+### Photographs
+
+Every card carries a picture from Wikimedia Commons, resolved at build time by
+`scripts/images.mjs` and baked into the JSON as a plain URL — so the browser
+makes no API call and nothing can rate-limit the page.
+
+Small businesses rarely have a freely licensed photograph of their own. Rather
+than fake it, those cards borrow a picture of the street or quarter they stand
+on, and `imageSubject` records what is genuinely in the frame so the card can
+say so in its credit line. Each card names the photographer and the licence.
 
 ### The ranking
 
