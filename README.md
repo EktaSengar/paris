@@ -1,4 +1,4 @@
-# Paris for You
+# Paris for Two
 
 A personal Paris exploration guide for Ekta & Kartik, living in the 10th.
 
@@ -139,6 +139,14 @@ city's own data and needs no key.
 
 No exact address is in this repository or sent anywhere. Distances are
 estimated from the neighbourhood, and the weather request uses coordinates
-rounded to two decimal places — roughly a kilometre. Ratings, saved places
-and quest progress are stored in your browser's localStorage and are never
-transmitted. There is no analytics, no tracking and no login.
+rounded to two decimal places — roughly a kilometre. Ratings, saved places,
+quest progress and your theme choice are stored in your browser's localStorage
+and are never transmitted. There is no analytics, no tracking and no login.
+
+## Appearance
+
+Light by default, deliberately — it reads like paper and suits the thing better
+than a dark interface. The site does **not** follow the operating system's dark
+mode; the moon button in the header switches to a warm dark theme and the choice
+is remembered. An inline script in `<head>` applies a saved dark preference
+before first paint so it never flashes light on the way in.

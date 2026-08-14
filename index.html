@@ -3,18 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paris for You</title>
-<meta name="description" content="A personal Paris guide — what's worth doing today, tonight and this weekend, from the 10th.">
-<meta name="theme-color" content="#fbfaf8">
+<title>Paris for Two</title>
+<meta name="description" content="A personal Paris guide for Ekta &amp; Kartik — what's worth doing today, tonight and this weekend, from the 10th.">
+<meta name="theme-color" content="#fdfaf5">
 <link rel="stylesheet" href="css/style.css">
+<script>
+  /* Set the theme before first paint so a saved dark preference never flashes light. */
+  try {
+    var t = localStorage.getItem('paris-for-you.theme');
+    if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  } catch (e) {}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
 </head>
 <body>
 
 <header class="head">
   <div class="wrap">
-    <p class="date" id="dateline"></p>
-    <h1 class="title">Paris <em>for you</em></h1>
+    <div class="head-top">
+      <div>
+        <p class="date" id="dateline"></p>
+        <h1 class="title">Paris <em>for two</em></h1>
+      </div>
+      <button id="theme" class="theme" type="button" title="Switch to dark" aria-label="Switch to dark">☾</button>
+    </div>
+    <hr class="rule">
+    <p class="epigraph" id="epigraph"></p>
     <p class="meta-line" id="conditions"></p>
     <div id="notice"></div>
   </div>
@@ -25,6 +39,7 @@
     <button class="tab" data-view="today">Today</button>
     <button class="tab" data-view="tonight">Tonight</button>
     <button class="tab" data-view="weekend">Weekend</button>
+    <button class="tab" data-view="romance">For two</button>
     <button class="tab" data-view="free">Free</button>
     <button class="tab" data-view="routes">Routes</button>
     <button class="tab" data-view="food">Food</button>
@@ -90,7 +105,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>Distances are estimated from the Canal Saint-Martin area. No exact address is stored in this site.</p>
+    <p>Made for Ekta &amp; Kartik. Distances are estimated from the Canal Saint-Martin area — no exact address is stored in this site.</p>
     <p>Events carry a source and a verified date and expire on their own. Hours change — check the link before you travel. Ratings and progress stay in this browser.</p>
     <p id="stamp"></p>
     <p>Photographs from Wikimedia Commons under their respective licences, credited on each card.</p>

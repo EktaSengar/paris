@@ -48,6 +48,37 @@ const App = (() => {
   const isEdible = i =>
     ['bakery', 'cafe', 'market'].includes(i.type) || (i.labels || []).includes('foodmission');
 
+  const isForTwo = i =>
+    (i.labels || []).includes('romantic') ||
+    (i.goodFor || []).includes('romantic') ||
+    (i.goodFor || []).includes('couple');
+
+  /* One line under the wordmark, chosen by the date so it changes daily
+     but stays the same all day. Written for the two of them, not for a
+     brochure — the aim is a nudge out of the door, not a poem. */
+  const EPIGRAPHS = [
+    'Somewhere to walk, and each other to walk with. That is the whole plan.',
+    'The canal is four minutes away and the light is best around seven.',
+    'Paris rewards the second look more than the first. Go somewhere twice.',
+    'Nothing here needs booking. Put your shoes on and see what happens.',
+    'The best evenings start with no particular destination.',
+    'You live here. That means the good things can wait for a Tuesday.',
+    'Take the long way. It is the same distance and a better story.',
+    'Two coffees, one wander, no itinerary.',
+    'Somewhere in this city there is a street you will love and have never seen.',
+    'The city is at its best when you are not trying to see it.',
+    'Go for the bread. Stay for the afternoon.',
+    'A short trip you actually take beats the grand one you keep postponing.',
+    'Sit by the water. Let the evening do the rest.',
+    'Every arrondissement has one thing worth crossing town for.'
+  ];
+
+  function epigraph() {
+    const start = new Date(TODAY.getFullYear(), 0, 0);
+    const day = Math.floor((TODAY - start) / 86400000);
+    return EPIGRAPHS[day % EPIGRAPHS.length];
+  }
+
   /* Best across the weekend, each candidate judged under the weather of
      whichever day it is actually open. */
   function bestForWeekend(pool, satISO, sunISO, filter) {
@@ -126,6 +157,7 @@ const App = (() => {
     else if (item.type === 'daytrip') bits.push('Out of town');
     if (item.minutesFromHome != null) bits.push(`${item.minutesFromHome} min`);
     bits.push(priceText(item));
+    if (isForTwo(item)) bits.push('<span class="duo" title="Good for two">♥</span>');
     return bits.join(' · ');
   }
 
@@ -253,6 +285,7 @@ const App = (() => {
     today:   'Open today, close to home, and worth the trip out of the flat.',
     tonight: 'After work. Low effort, short distance.',
     weekend: '',
+    romance: 'For the two of you — long evenings, good views, and places worth lingering in.',
     free:    'Costs nothing. Several of these are better than the things that do.',
     routes:  'Sequences, not lists. Leave at the stated time and follow the order.',
     food:    'Coffee, bread, markets and things worth crossing the city to eat.',
@@ -301,6 +334,14 @@ const App = (() => {
           ((i.labels || []).includes('afterwork') ||
            (i.goodFor || []).includes('evening') ||
            (i.goodFor || []).includes('spontaneous'))).slice(0, 9);
+      case 'romance':
+        // Explicitly romantic first, then things simply good for two.
+        return Rank.rank(ALL, CTX, isForTwo)
+          .sort((a, b) => {
+            const r = i => ((i.labels || []).includes('romantic') ||
+                            (i.goodFor || []).includes('romantic')) ? 0 : 1;
+            return r(a) - r(b);
+          }).slice(0, 12);
       case 'free':
         return Rank.rank(ALL, CTX, i =>
           !i.price && (!i.start || i.start <= weekEnd)).slice(0, 12);
@@ -514,6 +555,7 @@ const App = (() => {
 
   function renderHeader() {
     $('#dateline').textContent = fmtLong(TODAY);
+    $('#epigraph').textContent = epigraph();
 
     const bits = [];
     if (WX) {
@@ -567,7 +609,38 @@ const App = (() => {
 
   /* ---------- wiring ---------- */
 
+  /* ---------- theme ---------- */
+
+  const THEME_KEY = 'paris-for-you.theme';
+
+  function applyTheme(mode) {
+    const dark = mode === 'dark';
+    if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+
+    const b = $('#theme');
+    b.textContent = dark ? '☀' : '☾';
+    b.title = dark ? 'Switch to light' : 'Switch to dark';
+    b.setAttribute('aria-label', b.title);
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', dark ? '#17120f' : '#fdfaf5');
+  }
+
+  function initTheme() {
+    let saved = null;
+    try { saved = localStorage.getItem(THEME_KEY); } catch (e) {}
+    applyTheme(saved === 'dark' ? 'dark' : 'light');   // light unless asked otherwise
+  }
+
   function wire() {
+    $('#theme').addEventListener('click', () => {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = dark ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
+    });
+
     $('#tabs').addEventListener('click', e => {
       const t = e.target.closest('.tab'); if (!t) return;
       VIEW = t.dataset.view;
@@ -652,6 +725,7 @@ const App = (() => {
   /* ---------- boot ---------- */
 
   async function init() {
+    initTheme();
     await load();
     try { WX = await Weather.load(); } catch (e) { console.warn('weather failed', e); }
     buildContext();
