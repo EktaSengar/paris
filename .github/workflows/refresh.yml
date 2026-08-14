@@ -11,7 +11,10 @@ on:
   push:
     paths:
       - 'data/**'
-      - 'scripts/refresh.mjs'
+      - 'css/**'
+      - 'js/**'
+      - 'index.html'
+      - 'scripts/**'
       - '.github/workflows/refresh.yml'
 
 permissions:
@@ -40,15 +43,20 @@ jobs:
         if: github.event_name != 'pull_request'
         run: node scripts/refresh.mjs
 
+      # Pages serves assets with max-age=600, so without content-hashed URLs a
+      # returning browser can pair new HTML with ten-minute-old CSS and JS.
+      - name: Stamp asset URLs
+        run: node scripts/version.mjs
+
       - name: Commit any changes
         if: github.event_name != 'pull_request'
         run: |
-          if [ -z "$(git status --porcelain data)" ]; then
-            echo "Nothing changed — no events expired today."
+          if [ -z "$(git status --porcelain data index.html)" ]; then
+            echo "Nothing changed — no events expired and assets already stamped."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
-          git commit -m "chore: prune expired events ($(date -u +%Y-%m-%d))"
+          git add data index.html
+          git commit -m "chore: prune expired events and restamp assets ($(date -u +%Y-%m-%d))"
           git push

@@ -33,7 +33,27 @@ data/
 scripts/
   refresh.mjs   prune + validate; run daily by CI
   images.mjs    resolve one openly-licensed photo per card
+  version.mjs   content-hash the CSS/JS URLs so caches cannot go stale
   serve.mjs     local preview server
+```
+
+### Caching
+
+GitHub Pages serves assets with `cache-control: max-age=600`. Without
+cache-busting, deploying a change means that for the next ten minutes a
+returning browser can pair the **new** `index.html` with the **old** cached
+`style.css` and `app.js` — which looks like a half-broken page: tabs with no
+spacing, views that say "nothing here" because the cached script has never
+heard of them.
+
+`scripts/version.mjs` stamps every local CSS/JS link with a hash of that
+file's contents, so a changed file always gets a new URL and an unchanged one
+stays cached. **Run it after touching anything in `css/` or `js/`** — CI runs
+it too, as a backstop:
+
+```bash
+node scripts/version.mjs           # restamp
+node scripts/version.mjs --check   # fail if stamps are stale
 ```
 
 ### Photographs
