@@ -120,6 +120,27 @@ const QUERIES = {
   'chartres': 'Cathédrale Notre-Dame de Chartres'
 };
 
+/* Photo provenance.
+
+   Some cards show a photograph of the thing itself; others borrow one of the
+   street or quarter, because no free photo of that café exists. The interface
+   needs to know which: it leads with a picture only when the picture is
+   actually informative. A beige street shot at card size tells you nothing
+   about a bakery, so those views use type instead.
+
+   Anything not listed here is assumed to be a photo of the subject itself. */
+const CONTEXT_ONLY = new Set([
+  'du-pain-et-des-idees', 'ten-belles', 'holybelly', 'boulangerie-utopie', 'mamiche',
+  'cafe-oberkampf', 'belleville-brulerie', 'boot-cafe', 'la-tresorerie', 'empreintes',
+  'e-dehillerin', 'artazart', 'ofr-bookshop', 'green-factory', 'sennelier',
+  'musee-vie-romantique', 'la-cuisine-paris', 'studio-des-parfums', 'o-chateau-wine',
+  'ceramics-workshop-paris', 'puces-vanves', 'vanves-flea-sunday',
+  'nuits-des-etoiles-parks-2026', 'marcounet-guinguette-2026', 'journees-du-patrimoine-2026',
+  'canal-saturday-morning', 'rainy-day-passages', 'sunday-aligre-coulee-verte',
+  'sunset-belleville', 'explore-the-13th', 'villette-full-day', 'buttes-mouzaia',
+  'marais-design-crawl', 'esports-world-cup-paris-2026', 'grand-palais-hilma-af-klint-2026'
+]);
+
 const FILES = ['events.json', 'places.json', 'itineraries.json', 'daytrips.json'];
 const WIKIS = ['fr', 'en'];
 const BATCH = 20;          // the API takes up to 50 titles; 20 keeps URLs sane
@@ -347,6 +368,7 @@ async function run() {
     items.forEach(item => {
       item.image = url;
       item.imageSubject = query;                 // what is genuinely in the frame
+      item.imageKind = CONTEXT_ONLY.has(item.id) ? 'context' : 'subject';
       item.imageCredit = c ? `${c.artist} · ${c.licence}` : 'Wikimedia Commons';
       resolved++;
     });

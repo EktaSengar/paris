@@ -48,10 +48,16 @@ const App = (() => {
   const isEdible = i =>
     ['bakery', 'cafe', 'market'].includes(i.type) || (i.labels || []).includes('foodmission');
 
+  /* Broad — used by the filter, because almost everything here suits two people. */
   const isForTwo = i =>
     (i.labels || []).includes('romantic') ||
     (i.goodFor || []).includes('romantic') ||
     (i.goodFor || []).includes('couple');
+
+  /* Narrow — used for the ♥ mark. If nearly every item carries it the mark
+     stops meaning anything, so only the genuinely romantic ones get it. */
+  const isRomantic = i =>
+    (i.labels || []).includes('romantic') || (i.goodFor || []).includes('romantic');
 
   /* One line under the wordmark, chosen by the date so it changes daily
      but stays the same all day. Written for the two of them, not for a
@@ -157,7 +163,7 @@ const App = (() => {
     else if (item.type === 'daytrip') bits.push('Out of town');
     if (item.minutesFromHome != null) bits.push(`${item.minutesFromHome} min`);
     bits.push(priceText(item));
-    if (isForTwo(item)) bits.push('<span class="duo" title="Good for two">♥</span>');
+    if (isRomantic(item)) bits.push('<span class="duo" title="Romantic">♥</span>');
     return bits.join(' · ');
   }
 
@@ -279,19 +285,99 @@ const App = (() => {
     ? `<div class="grid">${items.map(i => card(i)).join('')}</div>`
     : `<p class="empty">${esc(empty || 'Nothing here right now.')}</p>`;
 
+  /* ---------- presentation pieces ----------
+     Five shapes, chosen by what the content is:
+       hero   one lead item, only where the photograph is really of the place
+       row    a name and a distance — for things read by scanning
+       route  a numbered sequence
+       trip   wide editorial
+       card   the photo card, kept for events and exhibitions
+  */
+
+  /* A photograph earns the lead only if it shows the thing itself. Cafés
+     borrow a picture of their street, which is honest but says nothing —
+     those never take the hero slot. */
+  const hasRealPhoto = i => i.image && i.imageKind === 'subject';
+
+  function hero(item) {
+    return `<a class="hero" data-id="${esc(item.id)}" href="${item.url ? esc(item.url) : mapsLink(item)}"
+        target="_blank" rel="noopener">
+      <div class="hero-img">${img(item, '(min-width: 1040px) 1000px, 96vw', 'loaded')}</div>
+      <div class="hero-body">
+        <p class="hero-kicker">${kicker(item)}</p>
+        <h2 class="hero-title">${esc(item.title)}</h2>
+        <p class="hero-why">${esc(item.why || '')}</p>
+      </div>
+    </a>`;
+  }
+
+  function row(item) {
+    const bits = [];
+    if (item.area) bits.push(esc(item.area));
+    if (item.priceNote) bits.push(esc(item.priceNote));
+    else if (!item.price) bits.push('Free');
+    return `<div class="row ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
+      <h3 class="row-name">${esc(item.title)}${isRomantic(item) ? ' <span class="duo" title="Romantic">♥</span>' : ''}</h3>
+      <span class="row-dist">${item.minutesFromHome != null ? `${item.minutesFromHome} min` : ''}</span>
+      <p class="row-meta">${bits.join(' · ')}</p>
+      <p class="row-why">${esc(item.why || '')}</p>
+      ${detail(item)}
+    </div>`;
+  }
+
+  const rows = (items, empty) => items.length
+    ? `<div class="list">${items.map(row).join('')}</div>`
+    : `<p class="empty">${esc(empty || 'Nothing here right now.')}</p>`;
+
+  function routeCard(item) {
+    const steps = (item.stops || []).map(s =>
+      `<li>${esc(s.text)}${s.walk ? `<span class="w">${esc(s.walk)}</span>` : ''}</li>`).join('');
+    const meta = [
+      item.arr ? `${item.arr}e` : null,
+      item.startTime ? `from ${item.startTime}` : null,
+      durText(item.durationMin),
+      item.priceNote || (item.price ? `€${item.price}` : 'Free')
+    ].filter(Boolean).join(' · ');
+
+    return `<div class="route" data-id="${esc(item.id)}">
+      <div class="route-head">
+        <h3>${esc(item.title)}</h3>
+        <p class="route-meta">${esc(meta)}</p>
+        <p class="route-why">${esc(item.why || '')}</p>
+      </div>
+      <ol class="steps">${steps}</ol>
+    </div>`;
+  }
+
+  function tripBlock(item) {
+    return `<article class="trip" data-id="${esc(item.id)}">
+      <div class="trip-img">
+        ${item.image ? img(item, '(min-width: 760px) 520px, 94vw', 'loaded') : ''}
+        <span class="trip-time">${item.minutesFromHome} min away</span>
+      </div>
+      <div class="trip-body">
+        <h3>${esc(item.title)}</h3>
+        <p class="trip-meta">${esc([item.transit, item.priceNote].filter(Boolean).join(' · '))}</p>
+        <p class="trip-why">${esc(item.why || '')}</p>
+        <div class="links">
+          ${item.url ? `<a href="${esc(item.url)}" target="_blank" rel="noopener">Official site</a>` : ''}
+          <a href="${mapsLink(item)}" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  const stripHead = (title, note) =>
+    `<div class="strip-head"><h2>${esc(title)}</h2>${note ? `<p>${esc(note)}</p>` : ''}</div>`;
+
   /* ---------- views ---------- */
 
   const LEDE = {
-    today:   'Open today, close to home, and worth the trip out of the flat.',
-    tonight: 'After work. Low effort, short distance.',
+    today:   'What is open, close, and worth leaving the flat for.',
     weekend: '',
-    romance: 'For the two of you — long evenings, good views, and places worth lingering in.',
-    free:    'Costs nothing. Several of these are better than the things that do.',
-    routes:  'Sequences, not lists. Leave at the stated time and follow the order.',
-    food:    'Coffee, bread, markets and things worth crossing the city to eat.',
-    hidden:  'Small, odd or overlooked — the ones you would not find on your own.',
-    trips:   'You live between Gare du Nord and Gare de l’Est. Use them.',
+    eat:     'Coffee, bread and markets. Names and walking distances — the photographs would only be of the street.',
     explore: '',
+    away:    'You live between Gare du Nord and Gare de l’Est. Some of these are closer than the other side of Paris.',
     quests:  'Long games. Progress is saved in this browser.',
     saved:   'What you have marked, and what you have already done.'
   };
@@ -301,68 +387,48 @@ const App = (() => {
     const box = $('#view');
     const w = weekend();
 
-    if (VIEW === 'weekend') {
-      $('#lede').textContent = weekendLede(w);
-      box.innerHTML = renderWeekend(w);
-    } else if (VIEW === 'explore') {
-      $('#lede').textContent = exploreLede();
-      box.innerHTML = renderExplore();
-    } else if (VIEW === 'quests') {
-      $('#lede').textContent = LEDE.quests;
-      box.innerHTML = renderQuests();
-    } else if (VIEW === 'saved') {
-      $('#lede').textContent = LEDE.saved;
-      box.innerHTML = renderSaved();
-    } else {
-      $('#lede').textContent = LEDE[VIEW] || '';
-      box.innerHTML = grid(listFor(VIEW), emptyFor(VIEW));
-    }
+    $('#lede').textContent = LEDE[VIEW] || '';
+
+    if      (VIEW === 'today')   box.innerHTML = renderToday();
+    else if (VIEW === 'weekend') { $('#lede').textContent = weekendLede(w); box.innerHTML = renderWeekend(w); }
+    else if (VIEW === 'eat')     box.innerHTML = renderEat();
+    else if (VIEW === 'explore') { $('#lede').textContent = exploreLede(); box.innerHTML = renderExplore(); }
+    else if (VIEW === 'away')    box.innerHTML = renderAway();
+    else if (VIEW === 'quests')  box.innerHTML = renderQuests();
+    else if (VIEW === 'saved')   box.innerHTML = renderSaved();
 
     applyFilters();
     settleImages($('#view'));
   }
 
-  function listFor(view) {
-    const weekEnd = iso(addDays(TODAY, 7));
-    switch (view) {
-      case 'today':
-        return Rank.rank(ALL, CTX, i =>
-          Rank.isOpenOn(i, TODAY_ISO) && (i.durationMin ?? 120) <= 360).slice(0, 9);
-      case 'tonight':
-        return Rank.rank(ALL, CTX, i =>
-          Rank.isOpenOn(i, TODAY_ISO) && (i.minutesFromHome ?? 99) <= 40 &&
-          ((i.labels || []).includes('afterwork') ||
-           (i.goodFor || []).includes('evening') ||
-           (i.goodFor || []).includes('spontaneous'))).slice(0, 9);
-      case 'romance':
-        // Explicitly romantic first, then things simply good for two.
-        return Rank.rank(ALL, CTX, isForTwo)
-          .sort((a, b) => {
-            const r = i => ((i.labels || []).includes('romantic') ||
-                            (i.goodFor || []).includes('romantic')) ? 0 : 1;
-            return r(a) - r(b);
-          }).slice(0, 12);
-      case 'free':
-        return Rank.rank(ALL, CTX, i =>
-          !i.price && (!i.start || i.start <= weekEnd)).slice(0, 12);
-      case 'routes':
-        return Rank.rank(D.itineraries.items || [], CTX);
-      case 'food':
-        return Rank.rank(ALL, CTX, i =>
-          isEdible(i) || (i.categories || []).includes('food')).slice(0, 12);
-      case 'hidden':
-        return Rank.rank(ALL, CTX, i => (i.labels || []).includes('hiddengem')).slice(0, 12);
-      case 'trips':
-        return Rank.rank(D.daytrips.items || [], CTX);
-      default:
-        return [];
-    }
-  }
+  /* ---------- today ---------- */
 
-  const emptyFor = v => ({
-    today:   'Nothing scheduled today — try the weekend.',
-    tonight: 'Nothing obvious tonight. The canal is always there.'
-  }[v]);
+  function renderToday() {
+    const openNow = i => Rank.isOpenOn(i, TODAY_ISO);
+    const ranked = Rank.rank(ALL, CTX, i => openNow(i) && (i.durationMin ?? 120) <= 420);
+    if (!ranked.length) return `<p class="empty">Nothing scheduled today — try the weekend.</p>`;
+
+    const used = new Set();
+    // The lead needs a photograph that is actually of the place.
+    const lead = ranked.find(hasRealPhoto) || ranked[0];
+    used.add(lead.id);
+
+    const evening = Rank.rank(ALL, CTX, i =>
+      openNow(i) && !used.has(i.id) && (i.minutesFromHome ?? 99) <= 40 &&
+      ((i.labels || []).includes('afterwork') ||
+       (i.goodFor || []).includes('evening') ||
+       (i.goodFor || []).includes('spontaneous'))).slice(0, 3);
+    evening.forEach(i => used.add(i.id));
+
+    const also = ranked.filter(i => !used.has(i.id)).slice(0, 6);
+
+    return hero(lead)
+      + (also.length ? stripHead('Also today') + rows(also) : '')
+      + (evening.length
+          ? stripHead('This evening', 'Short trips, late openings')
+            + `<div class="grid">${evening.map(i => card(i)).join('')}</div>`
+          : '');
+  }
 
   /* ---------- weekend ---------- */
 
@@ -383,15 +449,15 @@ const App = (() => {
       return { label, it };
     };
 
-    const picks = [
-      pick('Best overall'),
+    const best = pick('Best overall');
+    const rest = [
       pick('Best free',     i => !i.price),
       pick('Best food',     isEdible),
       pick('Most unusual',  i => (i.uniqueness || 0) >= 5),
       pick('Best day trip', i => i.type === 'daytrip')
     ].filter(Boolean);
 
-    // Two different days, ranked against their own forecasts.
+    // Two days, each ranked against its own forecast, never repeating.
     const planned = new Set();
     const isEvening = i => (i.labels || []).includes('afterwork') || (i.goodFor || []).includes('evening');
     const isMorning = i => (i.goodFor || []).includes('morning') || (i.categories || []).includes('market');
@@ -400,7 +466,7 @@ const App = (() => {
     const day = (d, dISO) => {
       const c = ctxFor(dISO);
       const wx = WX && WX.byDate[dISO];
-      const rows = [['Morning', isMorning], ['Afternoon', isDay], ['Evening', isEvening]].map(([when, test]) => {
+      const slots = [['Morning', isMorning], ['Afternoon', isDay], ['Evening', isEvening]].map(([when, test]) => {
         const it = Rank.rank(ALL, c, i => Rank.isOpenOn(i, dISO) && !planned.has(i.id) && test(i))[0];
         if (!it) return '';
         planned.add(it.id);
@@ -408,16 +474,45 @@ const App = (() => {
           <div class="s"><b>${esc(it.title)}</b>${esc((it.why || '').split('. ')[0])}.</div></div>`;
       }).join('');
 
+      const holiday = HOLIDAYS[dISO];
       return `<div class="day">
         <h3>${d.toLocaleDateString('en-GB', { weekday: 'long' })}</h3>
-        <p class="when">${fmtShort(d)}${wx ? ` · ${wx.tmax}°, ${esc(wx.label.toLowerCase())}${wx.rain >= 40 ? `, ${wx.rain}% rain` : ''}` : ''}${HOLIDAYS[dISO] ? ` · ${esc(HOLIDAYS[dISO])}, shops shut` : ''}</p>
-        ${rows || '<p class="empty">Keep it open.</p>'}
+        <p class="when">${fmtShort(d)}${wx ? ` · ${wx.tmax}°, ${esc(wx.label.toLowerCase())}${wx.rain >= 40 ? `, ${wx.rain}% rain` : ''}` : ''}${holiday ? ` · ${esc(holiday)}, shops shut` : ''}</p>
+        ${slots || '<p class="empty">Keep it open.</p>'}
       </div>`;
     };
 
-    return `<div class="plan">${day(w.sat, w.satISO)}${day(w.sun, w.sunISO)}</div>
-      <p class="sub-head">The five picks</p>
-      <div class="grid">${picks.map(p => card(p.it, '', p.label)).join('')}</div>`;
+    return (best && hasRealPhoto(best.it) ? hero(best.it) : '')
+      + stripHead('How the two days could go')
+      + `<div class="plan">${day(w.sat, w.satISO)}${day(w.sun, w.sunISO)}</div>`
+      + stripHead('And if you want one thing')
+      + `<div class="list">${rest.map(p => {
+          const r = row(p.it);
+          return r.replace('<p class="row-meta">', `<p class="row-meta"><b class="pick-label">${esc(p.label)}</b> · `);
+        }).join('')}</div>`;
+  }
+
+  /* ---------- eat ---------- */
+
+  function renderEat() {
+    const groups = [
+      ['Coffee',    i => i.type === 'cafe'],
+      ['Bakeries',  i => i.type === 'bakery'],
+      ['Markets',   i => i.type === 'market'],
+      ['Missions',  i => i.type === 'itinerary' && (i.labels || []).includes('foodmission')],
+      ['And also',  i => !['cafe', 'bakery', 'market'].includes(i.type) && i.type !== 'itinerary' &&
+                         ((i.categories || []).includes('food') || (i.labels || []).includes('foodmission'))]
+    ];
+
+    const taken = new Set();
+    const out = groups.map(([name, test]) => {
+      const items = Rank.rank(ALL, CTX, i => !taken.has(i.id) && test(i));
+      items.forEach(i => taken.add(i.id));
+      if (!items.length) return '';
+      return `<div class="list-group"><h3>${name}</h3>${rows(items)}</div>`;
+    }).join('');
+
+    return out || `<p class="empty">Nothing to eat. Unlikely.</p>`;
   }
 
   /* ---------- explore ---------- */
@@ -426,7 +521,7 @@ const App = (() => {
     const n = Store.arrs().length;
     return n
       ? `${n} of 20 marked explored. Here is the nearest one you have not done.`
-      : 'Twenty arrondissements. Here is a good place to start.';
+      : 'Twenty arrondissements, some walks, and the things you would never find on your own.';
   }
 
   function renderExplore() {
@@ -436,10 +531,9 @@ const App = (() => {
     const f = (pool.length ? pool : hoods.filter(h => !h.isHome))
       .slice().sort((a, b) => a.minutesFromHome - b.minutesFromHome)[0];
 
-    let feature = '';
+    let dossier = '';
     if (f) {
-      // Borrow a photograph from something we already have in that arrondissement.
-      const local = ALL.find(i => i.arr === f.arr && i.image);
+      const local = ALL.find(i => i.arr === f.arr && hasRealPhoto(i)) || ALL.find(i => i.arr === f.arr && i.image);
       const facts = [
         ['Known for', f.famousFor], ['Streets', (f.streets || []).join(' · ')],
         ['Coffee', f.cafe], ['Bakery', f.bakery], ['Culture', f.culture],
@@ -447,7 +541,7 @@ const App = (() => {
         ['The walk', f.walk], ['Hidden gem', f.hidden]
       ].filter(([, v]) => v);
 
-      feature = `<div class="hood">
+      dossier = `<div class="hood">
         ${local ? `<div class="hood-shot">${img(local, '(min-width: 1040px) 1000px, 96vw', 'loaded')}</div>` : ''}
         <h3>${f.arr}<sup>e</sup> — ${esc(f.name)}</h3>
         <p class="sub">About ${f.minutesFromHome} minutes from you${local ? ` · photo: ${esc(local.imageSubject)}` : ''}</p>
@@ -457,14 +551,34 @@ const App = (() => {
       </div>`;
     }
 
-    return feature + `<p class="sub-head">All twenty</p><div class="arr-grid">${
-      hoods.map(h => `<div class="arr">
-        <span class="n">${h.arr}<sup>e</sup></span>
-        <span class="nm">${esc(h.name)}</span>
-        <button type="button" data-arr="${h.arr}" class="${Store.hasArr(h.arr) || h.isHome ? 'on' : ''}">
-          ${h.isHome ? 'Home' : (Store.hasArr(h.arr) ? 'Explored' : 'Mark')}
-        </button>
-      </div>`).join('')}</div>`;
+    const routes = Rank.rank(D.itineraries.items || [], CTX).slice(0, 4);
+    const hidden = Rank.rank(ALL, CTX, i =>
+      (i.labels || []).includes('hiddengem') && i.type !== 'itinerary').slice(0, 8);
+
+    return dossier
+      + stripHead('Walks and routes', 'Follow the order')
+      + `<div class="routes">${routes.map(routeCard).join('')}</div>`
+      + stripHead('Hidden Paris')
+      + rows(hidden)
+      + stripHead('All twenty')
+      + `<div class="arr-grid">${hoods.map(h => `<div class="arr">
+          <span class="n">${h.arr}<sup>e</sup></span>
+          <span class="nm">${esc(h.name)}</span>
+          <button type="button" data-arr="${h.arr}" class="${Store.hasArr(h.arr) || h.isHome ? 'on' : ''}">
+            ${h.isHome ? 'Home' : (Store.hasArr(h.arr) ? 'Explored' : 'Mark')}
+          </button>
+        </div>`).join('')}</div>`;
+  }
+
+  /* ---------- away ---------- */
+
+  function renderAway() {
+    const trips = Rank.rank(D.daytrips.items || [], CTX);
+    const featured = trips.slice(0, 6);
+    const rest = trips.slice(6);
+
+    return `<div class="trips">${featured.map(tripBlock).join('')}</div>`
+      + (rest.length ? stripHead('Also reachable') + rows(rest) : '');
   }
 
   /* ---------- quests ---------- */
@@ -488,17 +602,14 @@ const App = (() => {
   /* ---------- saved ---------- */
 
   function renderSaved() {
-    const byId = new Map(ALL.map(i => [i.id, i]));
     const groups = [['Want to visit', 'want'], ['Loved', 'loved'], ['Good', 'good'], ['Not for us', 'meh']];
     const html = groups.map(([label, key]) => {
-      const names = ALL.filter(i => Store.rating(i.id) === key).map(i => i.title);
-      if (!names.length) return '';
-      return `<div class="saved-group"><h3>${label}</h3><ul>${
-        names.map(n => `<li>${esc(n)}</li>`).join('')}</ul></div>`;
+      const items = ALL.filter(i => Store.rating(i.id) === key);
+      if (!items.length) return '';
+      return `<div class="list-group"><h3>${label}</h3>${rows(items)}</div>`;
     }).join('');
-    return html || `<p class="empty">Nothing marked yet. Open any card's details and use the buttons — the ranking learns from them.</p>`;
+    return html || `<p class="empty">Nothing marked yet. Open anything and use the buttons — the ranking learns from them.</p>`;
   }
-
   /* ---------- filters ---------- */
 
   const F = { time: null, moods: new Set(), flags: new Set() };
@@ -527,27 +638,43 @@ const App = (() => {
     if (F.flags.has('free')    && i.price) return false;
     if (F.flags.has('cheap')   && (i.price ?? 0) > 20) return false;
     if (F.flags.has('near')    && (i.minutesFromHome ?? 99) > 30) return false;
+    if (F.flags.has('fortwo')  && !isForTwo(i)) return false;
+    if (F.flags.has('hidden')  && !(i.labels || []).includes('hiddengem')) return false;
     if (F.flags.has('indoor')  && i.indoor !== true) return false;
     if (F.flags.has('outdoor') && i.indoor !== false) return false;
     if (F.flags.has('new')     && Store.isDone(i.id)) return false;
     return true;
   }
 
-  /* Filtering narrows whatever view you are in, rather than replacing it. */
+  /* Filtering narrows whatever view you are in rather than replacing it,
+     so it has to work across every layout, not just the card grid. */
+  const FILTERABLE = '#view .card, #view .row, #view .trip, #view .route, #view .hero';
+
   function applyFilters() {
+    const nodes = $$(FILTERABLE);
+
     if (!filterActive()) {
       $('#count').textContent = '';
-      $$('#view .card').forEach(c => { c.style.display = ''; });
+      nodes.forEach(n => { n.style.display = ''; });
+      $$('#view .list-group, #view .strip-head').forEach(g => { g.style.display = ''; });
       return;
     }
+
     const byId = new Map(ALL.map(i => [i.id, i]));
     let shown = 0;
-    $$('#view .card').forEach(c => {
-      const item = byId.get(c.dataset.id);
+    nodes.forEach(n => {
+      const item = byId.get(n.dataset.id);
       const ok = item ? matches(item) : true;
-      c.style.display = ok ? '' : 'none';
+      n.style.display = ok ? '' : 'none';
       if (ok) shown++;
     });
+
+    // Hide a group heading once everything under it has been filtered away.
+    $$('#view .list-group').forEach(g => {
+      const any = Array.from(g.querySelectorAll('.row')).some(r => r.style.display !== 'none');
+      g.style.display = any ? '' : 'none';
+    });
+
     $('#count').textContent = `${shown} shown`;
   }
 
@@ -641,8 +768,9 @@ const App = (() => {
       try { localStorage.setItem(THEME_KEY, next); } catch (e) {}
     });
 
-    $('#tabs').addEventListener('click', e => {
-      const t = e.target.closest('.tab'); if (!t) return;
+    // Both the nav bar and the footer links change view.
+    document.addEventListener('click', e => {
+      const t = e.target.closest('.tab, .tab-link'); if (!t) return;
       VIEW = t.dataset.view;
       render();
       window.scrollTo({ top: $('#main').offsetTop - 60, behavior: 'smooth' });
@@ -687,6 +815,14 @@ const App = (() => {
       const c = b.closest('.card');
       const open = c.classList.toggle('open');
       b.textContent = open ? 'Less' : 'Details';
+    });
+
+    // a list row opens on click — but not when the click was meant for a
+    // link or one of the rating buttons inside it
+    document.addEventListener('click', e => {
+      const r = e.target.closest('.row'); if (!r) return;
+      if (e.target.closest('a, button')) return;
+      r.classList.toggle('open');
     });
 
     // ratings

@@ -38,7 +38,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Place_de_la_R%C3%A9publique_%28Paris%29%2C_r%C3%A9am%C3%A9nagement%2C_2012-04-05_44.jpg/500px-Place_de_la_R%C3%A9publique_%28Paris%29%2C_r%C3%A9am%C3%A9nagement%2C_2012-04-05_44.jpg",
       "imageSubject": "Rue Yves-Toudic",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "ten-belles",
@@ -75,7 +76,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg/500px-2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg",
       "imageSubject": "Canal Saint-Martin",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "holybelly",
@@ -112,7 +114,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/RueLucienSampaixdebut.jpg/500px-RueLucienSampaixdebut.jpg",
       "imageSubject": "Rue Lucien-Sampaix",
-      "imageCredit": "gillll75 · Public domain"
+      "imageCredit": "gillll75 · Public domain",
+      "imageKind": "context"
     },
     {
       "id": "boulangerie-utopie",
@@ -148,7 +151,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/P1040610_Paris_XI_rueJean-Pierre_Timbaud_rwk.JPG/500px-P1040610_Paris_XI_rueJean-Pierre_Timbaud_rwk.JPG",
       "imageSubject": "Rue Jean-Pierre-Timbaud",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "mamiche",
@@ -184,7 +188,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Paris_gare_du_nord_4_bis.JPG/500px-Paris_gare_du_nord_4_bis.JPG",
       "imageSubject": "10e arrondissement de Paris",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "cafe-oberkampf",
@@ -221,7 +226,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg/500px-Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg",
       "imageSubject": "Rue Oberkampf",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "belleville-brulerie",
@@ -261,7 +267,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG/500px-P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG",
       "imageSubject": "Belleville (Paris)",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "boot-cafe",
@@ -298,7 +305,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/P1170964_Paris_III_rue_du_Pont-aux-Choux_rwk.jpg/500px-P1170964_Paris_III_rue_du_Pont-aux-Choux_rwk.jpg",
       "imageSubject": "Rue du Pont-aux-Choux",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "marche-aligre",
@@ -352,7 +360,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/March%C3%A9_d%27Aligre.jpg/500px-March%C3%A9_d%27Aligre.jpg",
       "imageSubject": "Marché d'Aligre",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "marche-enfants-rouges",
@@ -398,7 +407,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/March%C3%A9_des_Enfants-Rouges%2C_Paris_May_2016.jpg/500px-March%C3%A9_des_Enfants-Rouges%2C_Paris_May_2016.jpg",
       "imageSubject": "Marché des Enfants-Rouges",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "marche-saint-quentin",
@@ -444,7 +454,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/March%C3%A9_Saint-Quentin_%C3%A0_Paris_le_17_juillet_2015_-_12.jpg/500px-March%C3%A9_Saint-Quentin_%C3%A0_Paris_le_17_juillet_2015_-_12.jpg",
       "imageSubject": "Marché Saint-Quentin",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "puces-vanves",
@@ -493,7 +504,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fa%C3%A7ade_Mairie_de_Vanves.jpg/500px-Fa%C3%A7ade_Mairie_de_Vanves.jpg",
       "imageSubject": "Vanves",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "puces-saint-ouen",
@@ -538,7 +550,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Enseignes_Puces_Saint-Ouen.jpg/500px-Enseignes_Puces_Saint-Ouen.jpg",
       "imageSubject": "Marché aux puces de Saint-Ouen",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "la-tresorerie",
@@ -579,7 +592,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Paris_gare_du_nord_4_bis.JPG/500px-Paris_gare_du_nord_4_bis.JPG",
       "imageSubject": "10e arrondissement de Paris",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "empreintes",
@@ -619,7 +633,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paris_rue_charlot.jpg/500px-Paris_rue_charlot.jpg",
       "imageSubject": "Rue Charlot",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "e-dehillerin",
@@ -656,7 +671,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Rue_Coquilli%C3%A8re_Paris_2011.jpg/500px-Rue_Coquilli%C3%A8re_Paris_2011.jpg",
       "imageSubject": "Rue Coquillière",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "artazart",
@@ -693,7 +709,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Canal_Saint-Martin_P1060441.JPG/500px-Canal_Saint-Martin_P1060441.JPG",
       "imageSubject": "Quai de Valmy",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "ofr-bookshop",
@@ -734,7 +751,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Paris_rue_dupetit_thouars.jpg/500px-Paris_rue_dupetit_thouars.jpg",
       "imageSubject": "Rue Dupetit-Thouars",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "green-factory",
@@ -773,7 +791,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Paris_rue_notre_dame_de_nazareth.jpg/500px-Paris_rue_notre_dame_de_nazareth.jpg",
       "imageSubject": "Rue Notre-Dame-de-Nazareth",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "sennelier",
@@ -810,7 +829,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Quai_Voltaire_Paris.jpg/500px-Quai_Voltaire_Paris.jpg",
       "imageSubject": "Quai Voltaire",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "musee-chasse-nature",
@@ -852,7 +872,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Fa%C3%A7ades_du_Mus%C3%A9e_de_la_chasse_et_de_la_nature.jpg/500px-Fa%C3%A7ades_du_Mus%C3%A9e_de_la_chasse_et_de_la_nature.jpg",
       "imageSubject": "Musée de la chasse et de la nature",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "pavillon-arsenal",
@@ -894,7 +915,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Pavillon_de_l%27Arsenal%2C_Paris_27_February_2016.jpg/500px-Pavillon_de_l%27Arsenal%2C_Paris_27_February_2016.jpg",
       "imageSubject": "Pavillon de l'Arsenal",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "musee-carnavalet",
@@ -935,7 +957,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Cour_Louis_XIV_au_Mus%C3%A9e_Carnavalet_%C3%A0_Paris_le_30_septembre_2016_-_17.jpg/500px-Cour_Louis_XIV_au_Mus%C3%A9e_Carnavalet_%C3%A0_Paris_le_30_septembre_2016_-_17.jpg",
       "imageSubject": "Musée Carnavalet",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "petit-palais",
@@ -979,7 +1002,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Petit-Palais-Paris-02-2018.jpg/500px-Petit-Palais-Paris-02-2018.jpg",
       "imageSubject": "Petit Palais",
-      "imageCredit": "Gunnar Klack · CC BY-SA 4.0"
+      "imageCredit": "Gunnar Klack · CC BY-SA 4.0",
+      "imageKind": "subject"
     },
     {
       "id": "musee-vie-romantique",
@@ -1020,7 +1044,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Rue_Chaptal_Paris_9e.jpg/500px-Rue_Chaptal_Paris_9e.jpg",
       "imageSubject": "Rue Chaptal",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "59-rivoli",
@@ -1062,7 +1087,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/59_rue_de_Rivoli%2C_Paris_1er.jpg/500px-59_rue_de_Rivoli%2C_Paris_1er.jpg",
       "imageSubject": "59 Rivoli",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "buttes-chaumont",
@@ -1105,7 +1131,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/ParcDesButtesChaumont.JPG/500px-ParcDesButtesChaumont.JPG",
       "imageSubject": "Parc des Buttes-Chaumont",
-      "imageCredit": "O.Taris · CC BY-SA 3.0"
+      "imageCredit": "O.Taris · CC BY-SA 3.0",
+      "imageKind": "subject"
     },
     {
       "id": "parc-belleville",
@@ -1149,7 +1176,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG/500px-P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG",
       "imageSubject": "Parc de Belleville",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "coulee-verte",
@@ -1195,7 +1223,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Promenade_plant%C3%A9e.JPG/500px-Promenade_plant%C3%A9e.JPG",
       "imageSubject": "Coulée verte René-Dumont",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "petite-ceinture",
@@ -1239,7 +1268,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Pc_20eme.JPG/500px-Pc_20eme.JPG",
       "imageSubject": "Ligne de Petite Ceinture",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "passages-couverts",
@@ -1284,7 +1314,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GalerieVivienne1.jpg/500px-GalerieVivienne1.jpg",
       "imageSubject": "Galerie Vivienne",
-      "imageCredit": "David Pendery · CC BY-SA 4.0"
+      "imageCredit": "David Pendery · CC BY-SA 4.0",
+      "imageKind": "subject"
     },
     {
       "id": "passage-brady",
@@ -1326,7 +1357,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Passage_Brady.jpg/500px-Passage_Brady.jpg",
       "imageSubject": "Passage Brady",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "mouzaia",
@@ -1373,7 +1405,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg/500px-P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg",
       "imageSubject": "Quartier d'Amérique",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "butte-aux-cailles",
@@ -1418,7 +1451,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG/500px-P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG",
       "imageSubject": "Butte-aux-Cailles",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "pere-lachaise",
@@ -1459,7 +1493,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Main_gate_of_the_P%C3%A8re-Lachaise_Cemetery%2C_Paris_13_June_2014.jpg/500px-Main_gate_of_the_P%C3%A8re-Lachaise_Cemetery%2C_Paris_13_June_2014.jpg",
       "imageSubject": "Cimetière du Père-Lachaise",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "jardin-villemin",
@@ -1499,7 +1534,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Jardin_Villemin_%40_Paris_%2833114056303%29.jpg/500px-Jardin_Villemin_%40_Paris_%2833114056303%29.jpg",
       "imageSubject": "Jardin Villemin",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "la-cuisine-paris",
@@ -1541,7 +1577,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/PC190028_Paris_IV_Hotel_de_ville_reduct.jpg/500px-PC190028_Paris_IV_Hotel_de_ville_reduct.jpg",
       "imageSubject": "Quai de l'Hôtel-de-Ville",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "studio-des-parfums",
@@ -1584,7 +1621,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Perfume_Organ%2C_Grasse.jpg/500px-Perfume_Organ%2C_Grasse.jpg",
       "imageSubject": "Orgue à parfums",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "o-chateau-wine",
@@ -1626,7 +1664,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Wine_cellar.jpg/500px-Wine_cellar.jpg",
       "imageSubject": "Cave à vin",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "ceramics-workshop-paris",
@@ -1668,7 +1707,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Potter_in_Rabka_04.JPG/500px-Potter_in_Rabka_04.JPG",
       "imageSubject": "Tour de potier",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     }
   ]
 }

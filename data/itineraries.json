@@ -66,7 +66,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg/500px-2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg",
       "imageSubject": "Canal Saint-Martin",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "rainy-day-passages",
@@ -138,7 +139,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/GalerieVivienne1.jpg/500px-GalerieVivienne1.jpg",
       "imageSubject": "Galerie Vivienne",
-      "imageCredit": "David Pendery · CC BY-SA 4.0"
+      "imageCredit": "David Pendery · CC BY-SA 4.0",
+      "imageKind": "context"
     },
     {
       "id": "sunday-aligre-coulee-verte",
@@ -216,7 +218,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Promenade_plant%C3%A9e.JPG/500px-Promenade_plant%C3%A9e.JPG",
       "imageSubject": "Coulée verte René-Dumont",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "sunset-belleville",
@@ -279,7 +282,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG/500px-P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG",
       "imageSubject": "Parc de Belleville",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "explore-the-13th",
@@ -352,7 +356,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG/500px-P1010326_Paris_XIII_Butte-aux-Cailles_Carrefour_rues_de_la_BaC_et_des_5_diamants_reductwk.JPG",
       "imageSubject": "Butte-aux-Cailles",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "villette-full-day",
@@ -422,7 +427,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/500px-Parc_de_la_Villette%2C_Paris_2010.jpg",
       "imageSubject": "Parc de la Villette",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "buttes-mouzaia",
@@ -489,7 +495,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg/500px-P1200479_Paris_XIX_place_des_Fetes_parvis_central_rwk.jpg",
       "imageSubject": "Quartier d'Amérique",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "marais-design-crawl",
@@ -558,7 +565,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paris_Hotel_de_Sens_dsc04028.jpg/500px-Paris_Hotel_de_Sens_dsc04028.jpg",
       "imageSubject": "Le Marais",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     },
     {
       "id": "vanves-flea-sunday",
@@ -624,7 +632,8 @@
       ],
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Fa%C3%A7ade_Mairie_de_Vanves.jpg/500px-Fa%C3%A7ade_Mairie_de_Vanves.jpg",
       "imageSubject": "Vanves",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "context"
     }
   ]
 }

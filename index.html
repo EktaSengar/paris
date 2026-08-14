@@ -36,18 +36,17 @@
 
 <nav class="tabs" id="tabs">
   <div class="wrap tabs-inner">
-    <button class="tab" data-view="today">Today</button>
-    <button class="tab" data-view="tonight">Tonight</button>
-    <button class="tab" data-view="weekend">Weekend</button>
-    <button class="tab" data-view="romance">For two</button>
-    <button class="tab" data-view="free">Free</button>
-    <button class="tab" data-view="routes">Routes</button>
-    <button class="tab" data-view="food">Food</button>
-    <button class="tab" data-view="hidden">Hidden</button>
-    <button class="tab" data-view="trips">Day trips</button>
-    <button class="tab" data-view="explore">Explore</button>
-    <button class="tab" data-view="quests">Quests</button>
-    <button class="tab" data-view="saved">Saved</button>
+    <div class="tabs-main">
+      <button class="tab" data-view="today">Today</button>
+      <button class="tab" data-view="weekend">Weekend</button>
+      <button class="tab" data-view="eat">Eat</button>
+      <button class="tab" data-view="explore">Explore</button>
+      <button class="tab" data-view="away">Away</button>
+    </div>
+    <div class="tabs-util">
+      <button class="tab tab-sm" data-view="quests">Quests</button>
+      <button class="tab tab-sm" data-view="saved">Saved</button>
+    </div>
   </div>
 </nav>
 
@@ -89,6 +88,8 @@
         <button class="chip" data-flag="free">Free</button>
         <button class="chip" data-flag="cheap">Under €20</button>
         <button class="chip" data-flag="near">Under 30 min</button>
+        <button class="chip" data-flag="fortwo">For two</button>
+        <button class="chip" data-flag="hidden">Hidden gems</button>
         <button class="chip" data-flag="indoor">Indoor</button>
         <button class="chip" data-flag="outdoor">Outdoor</button>
         <button class="chip" data-flag="new">Not done yet</button>
@@ -107,6 +108,10 @@
   <div class="wrap">
     <p>Made for Ekta &amp; Kartik. Distances are estimated from the Canal Saint-Martin area — no exact address is stored in this site.</p>
     <p>Events carry a source and a verified date and expire on their own. Hours change — check the link before you travel. Ratings and progress stay in this browser.</p>
+    <p class="foot-links">
+      <button class="tab-link" data-view="quests" type="button">Quests</button>
+      <button class="tab-link" data-view="saved" type="button">Your list</button>
+    </p>
     <p id="stamp"></p>
     <p>Photographs from Wikimedia Commons under their respective licences, credited on each card.</p>
   </div>

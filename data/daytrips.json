@@ -39,7 +39,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Ch%C3%A2teau_de_Chantilly_2.jpg/500px-Ch%C3%A2teau_de_Chantilly_2.jpg",
       "imageSubject": "Château de Chantilly",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "reims-champagne",
@@ -80,7 +81,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Exterior_view_of_the_west_facade_of_Notre-Dame_Cathedral_in_Reims.jpg/500px-Exterior_view_of_the_west_facade_of_Notre-Dame_Cathedral_in_Reims.jpg",
       "imageSubject": "Cathédrale Notre-Dame de Reims",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "vaux-le-vicomte",
@@ -126,7 +128,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/0_Maincy_-_Ch%C3%A2teau_de_Vaux-le-Vicomte_%282%29.JPG/500px-0_Maincy_-_Ch%C3%A2teau_de_Vaux-le-Vicomte_%282%29.JPG",
       "imageSubject": "Château de Vaux-le-Vicomte",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "provins",
@@ -165,7 +168,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Provins_-_Mars_2025.jpg/500px-Provins_-_Mars_2025.jpg",
       "imageSubject": "Provins",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "auvers-sur-oise",
@@ -210,7 +214,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Auvers_town_hall.jpg/500px-Auvers_town_hall.jpg",
       "imageSubject": "Auvers-sur-Oise",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "fontainebleau",
@@ -254,7 +259,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Ch%C3%A2teau_de_Fontainebleau_%28Fontainebleau%29_edited_%282%29.jpg/500px-Ch%C3%A2teau_de_Fontainebleau_%28Fontainebleau%29_edited_%282%29.jpg",
       "imageSubject": "Château de Fontainebleau",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "giverny",
@@ -300,7 +306,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/DJI_0096dxopb.jpg/500px-DJI_0096dxopb.jpg",
       "imageSubject": "Giverny",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "versailles",
@@ -339,7 +346,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_083.jpg/500px-Vue_a%C3%A9rienne_du_domaine_de_Versailles_par_ToucanWings_-_Creative_Commons_By_Sa_3.0_-_083.jpg",
       "imageSubject": "Château de Versailles",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "sceaux",
@@ -384,7 +392,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Les_parterres_de_Le_N%C3%B4tre_restitu%C3%A9s_%28Domaine_de_Sceaux%29_%289761188032%29.jpg/500px-Les_parterres_de_Le_N%C3%B4tre_restitu%C3%A9s_%28Domaine_de_Sceaux%29_%289761188032%29.jpg",
       "imageSubject": "Parc de Sceaux",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "senlis",
@@ -429,7 +438,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Senlis_-_general_view_003.jpg/500px-Senlis_-_general_view_003.jpg",
       "imageSubject": "Senlis (Oise)",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "meaux",
@@ -468,7 +478,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Cath%C3%A9drale_Saint-Etienne_de_Meaux..JPG/500px-Cath%C3%A9drale_Saint-Etienne_de_Meaux..JPG",
       "imageSubject": "Cathédrale Saint-Étienne de Meaux",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "saint-germain-en-laye",
@@ -508,7 +519,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ch%C3%A2teau_de_Saint-Germain-en-Laye.jpg/500px-Ch%C3%A2teau_de_Saint-Germain-en-Laye.jpg",
       "imageSubject": "Château de Saint-Germain-en-Laye",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     },
     {
       "id": "chartres",
@@ -549,7 +561,8 @@
       "lastVerified": "2026-08-13",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Cath%C3%A9drale_Notre_Dame_-_Chartres_%28FR28%29_-_2021-03-14_-_4.jpg/500px-Cath%C3%A9drale_Notre_Dame_-_Chartres_%28FR28%29_-_2021-03-14_-_4.jpg",
       "imageSubject": "Cathédrale Notre-Dame de Chartres",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "imageKind": "subject"
     }
   ]
 }

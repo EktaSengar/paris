@@ -62,6 +62,29 @@ node scripts/images.mjs --force   # re-resolve everything
 node scripts/images.mjs --resize  # normalise widths, verifying each
 ```
 
+### The layouts
+
+One card template repeated eighty times gives no rhythm and no signal about
+what you are looking at, and it forces a photograph onto things that have no
+good photograph. So format follows content:
+
+| Content | Shape | Why |
+|---|---|---|
+| Events, exhibitions | image cards | time-bound and genuinely photogenic |
+| Food, shops, hidden gems | **text list** | no real photos; read by scanning names and distances |
+| Walks and routes | **numbered timeline** | the sequence *is* the content |
+| Day trips | **wide editorial** | few, aspirational, real photographs |
+| Weekend | **agenda** | it is a plan, not a list |
+| Neighbourhood | **dossier** | it is an article |
+
+`imageKind` on each record says whether the photograph is of the subject
+itself or only of its street. Only `subject` photos are allowed to take the
+hero slot, which is why a café never leads a page with a picture of a road.
+
+Navigation is five destinations — Today, Weekend, Eat, Explore, Away. Free,
+For two and Hidden are *filters*, not places, and live in the filter row.
+Quests and Your list are utilities, kept small.
+
 ### The ranking
 
 Nothing is shown in file order. Every candidate is scored against:

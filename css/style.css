@@ -136,17 +136,23 @@ body {
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--line);
 }
+/* Five destinations on the left; utilities kept small on the right, so the
+   bar reads as one short list rather than twelve equal choices. */
 .tabs-inner {
-  display: flex; gap: 1.35rem;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1.5rem;
   overflow-x: auto; scrollbar-width: none;
 }
 .tabs-inner::-webkit-scrollbar { display: none; }
+.tabs-main { display: flex; gap: 1.6rem; }
+.tabs-util { display: flex; gap: 1rem; }
 
 .tab {
   flex: 0 0 auto;
   background: none; border: none;
   padding: .95rem 0;
-  font-family: inherit; font-size: .89rem;
+  font-family: var(--serif);
+  font-size: 1.02rem;
   color: var(--faint);
   cursor: pointer;
   white-space: nowrap;
@@ -156,6 +162,13 @@ body {
 }
 .tab:hover { color: var(--ink); }
 .tab.on { color: var(--ink); border-bottom-color: var(--accent); }
+
+.tab-sm {
+  font-family: var(--sans);
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 
 /* ---------- bar ---------- */
 
@@ -482,4 +495,227 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+
+/* =========================================================
+   LAYOUT SYSTEMS
+
+   One template for eighty things gives no rhythm and no signal.
+   Each kind of content gets the shape that suits it:
+
+     hero      one lead item, where the photograph is genuinely good
+     list      names and distances — for food and shops, which have no
+               photographs of their own and are read by scanning
+     route     a numbered sequence, because the order is the content
+     trip      wide editorial, for the few big aspirational things
+     agenda    a plan laid out by day (.plan / .day, above)
+     dossier   an article about one neighbourhood (.hood, above)
+   ========================================================= */
+
+/* ---------- hero ---------- */
+
+.hero {
+  position: relative;
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 2.25rem;
+  background: var(--img-bg);
+  text-decoration: none;
+  color: inherit;
+}
+.hero-img { aspect-ratio: 21 / 9; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 640px) { .hero-img { aspect-ratio: 4 / 3; } }
+
+.hero-body {
+  position: absolute; inset: auto 0 0 0;
+  padding: 2.4rem 1.4rem 1.3rem;
+  /* deep enough that small type stays legible over a bright photograph */
+  background: linear-gradient(to top,
+    rgba(10,7,5,.94) 0%, rgba(10,7,5,.86) 38%, rgba(10,7,5,.46) 72%, transparent 100%);
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0,0,0,.5);
+}
+.hero-kicker {
+  font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: rgba(255,255,255,.88); margin: 0 0 .4rem;
+}
+.hero-kicker .duo { color: var(--blush); }
+.hero-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.5rem, 4.2vw, 2.15rem);
+  line-height: 1.12; margin: 0 0 .4rem; color: #fff;
+}
+.hero-why {
+  margin: 0; font-size: .92rem; line-height: 1.55;
+  color: rgba(255,255,255,.88); max-width: 56ch;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* ---------- list ---------- */
+
+.list { margin: 0 0 2rem; }
+
+.list-group { margin-bottom: 2rem; }
+.list-group > h3 {
+  font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--faint); margin: 0 0 .2rem; font-weight: 600;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: .1rem 1.25rem;
+  padding: .8rem 0;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+}
+.row:hover .row-name { color: var(--accent); }
+.row.done .row-name { color: var(--faint); }
+
+.row-name {
+  grid-column: 1;
+  font-family: var(--serif); font-size: 1.12rem; line-height: 1.3;
+  margin: 0; font-weight: 400;
+  transition: color .16s;
+}
+.row-dist {
+  grid-column: 2; grid-row: 1;
+  font-size: .74rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--faint); white-space: nowrap; padding-top: .3rem;
+}
+.row-meta {
+  grid-column: 1 / -1;
+  font-size: .78rem; color: var(--faint);
+}
+.row-why {
+  grid-column: 1 / -1;
+  margin: .25rem 0 0; font-size: .86rem; line-height: 1.5; color: var(--soft);
+  max-width: 74ch;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.row.open .row-why { -webkit-line-clamp: unset; overflow: visible; }
+.row .detail { grid-column: 1 / -1; }
+.row.open .detail { display: block; }
+
+/* ---------- route ---------- */
+
+.routes { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+@media (min-width: 800px) { .routes { grid-template-columns: 1fr 1fr; } }
+
+.route {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.4rem;
+  background: var(--card);
+}
+.route-head { margin-bottom: 1.1rem; }
+.route h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin: 0 0 .25rem; }
+.route-meta {
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint);
+}
+.route-why { font-size: .88rem; color: var(--soft); line-height: 1.6; margin: .6rem 0 0; }
+
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.steps li {
+  position: relative;
+  counter-increment: step;
+  padding: 0 0 1.05rem 2.1rem;
+  font-size: .89rem; line-height: 1.5; color: var(--soft);
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute; left: 0; top: -.1rem;
+  width: 1.45rem; height: 1.45rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-family: var(--serif); font-size: .8rem;
+  display: grid; place-items: center;
+  background: var(--card);
+}
+/* the thread between stops */
+.steps li::after {
+  content: '';
+  position: absolute; left: .72rem; top: 1.45rem; bottom: .15rem;
+  width: 1px; background: var(--line);
+}
+.steps li:last-child { padding-bottom: 0; }
+.steps li:last-child::after { display: none; }
+.steps .w { display: block; color: var(--faint); font-size: .75rem; margin-top: .1rem; }
+
+/* ---------- trip (wide editorial) ---------- */
+
+.trips { display: flex; flex-direction: column; gap: 2.25rem; }
+
+.trip {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+@media (min-width: 680px) {
+  .trip { grid-template-columns: 1.05fr 1fr; gap: 2rem; }
+  .trip:nth-child(even) .trip-img { order: 2; }
+}
+
+.trip-img {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--img-bg);
+  position: relative;
+}
+.trip-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.trip-time {
+  position: absolute; left: .7rem; bottom: .7rem;
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .28rem .6rem; border-radius: 5px; color: var(--ink);
+}
+.trip h3 { font-family: var(--serif); font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 400; margin: 0 0 .3rem; }
+/* Long transit strings in uppercase are unreadable — keep them as written. */
+.trip-meta { font-size: .82rem; color: var(--faint); margin: 0 0 .7rem; line-height: 1.5; }
+.trip-why { font-size: .93rem; line-height: 1.65; color: var(--soft); margin: 0 0 .8rem; }
+
+/* ---------- shared small bits ---------- */
+
+.strip-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  margin: 2.4rem 0 1rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+.strip-head h2 {
+  font-family: var(--serif); font-weight: 400; font-size: 1.32rem; margin: 0;
+}
+.strip-head p { margin: 0; font-size: .8rem; color: var(--faint); }
+
+.pick-label { color: var(--accent); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; }
+
+/* the utility tabs collapse first when space runs out */
+@media (max-width: 620px) {
+  .tabs-inner { gap: 1.1rem; }
+  .tabs-main { gap: 1.15rem; }
+  .tab { font-size: .96rem; }
+}
+
+/* On a narrow screen the two utility tabs push the nav into a horizontal
+   scroll, which hides them. Better to drop them out of the bar entirely
+   and surface them in the footer, where nothing is competing for room. */
+.foot-links { display: none; gap: 1.25rem; }
+.tab-link {
+  background: none; border: none; padding: 0;
+  font-family: inherit; font-size: .82rem;
+  color: var(--accent); cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.tab-link:hover { color: var(--ink); }
+
+@media (max-width: 620px) {
+  .tabs-util { display: none; }
+  .tabs-inner { justify-content: flex-start; }
+  .foot-links { display: flex; }
 }
