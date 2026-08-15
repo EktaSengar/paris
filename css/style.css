@@ -722,3 +722,18 @@ body {
 
 /* A card with no photograph gets a rule instead of an empty frame. */
 .card.nopic { border-top: 2px solid var(--accent); padding-top: .9rem; }
+
+/* With seven destinations the bar no longer fits a phone. Let it scroll, but
+   make that legible: a soft fade on the right edge so it reads as "more this
+   way" rather than as text clipped by accident. */
+@media (max-width: 720px) {
+  .tabs { position: sticky; }
+  .tabs::after {
+    content: '';
+    position: absolute; top: 0; right: 0; bottom: 1px;
+    width: 2.5rem;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, var(--bg) 82%);
+  }
+  .tabs-inner { padding-right: 2rem; }
+}

@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['events', 'places', 'nightlife', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
+  const FILES = ['events', 'places', 'nightlife', 'sports', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -120,6 +120,7 @@ const App = (() => {
       .concat(D.events.items || [])
       .concat(D.places.items || [])
       .concat(D.nightlife.items || [])
+      .concat(D.sports.items || [])
       .concat(D.itineraries.items || [])
       .concat(D.daytrips.items || [])
       .filter(i => !(i.end && i.end < TODAY_ISO));
@@ -332,6 +333,8 @@ const App = (() => {
     ? `<div class="list">${items.map(row).join('')}</div>`
     : `<p class="empty">${esc(empty || 'Nothing here right now.')}</p>`;
 
+  const hasStops = i => Array.isArray(i.stops) && i.stops.length > 0;
+
   function routeCard(item) {
     const steps = (item.stops || []).map(s =>
       `<li>${esc(s.text)}${s.walk ? `<span class="w">${esc(s.walk)}</span>` : ''}</li>`).join('');
@@ -348,7 +351,7 @@ const App = (() => {
         <p class="route-meta">${esc(meta)}</p>
         <p class="route-why">${esc(item.why || '')}</p>
       </div>
-      <ol class="steps">${steps}</ol>
+      ${steps ? `<ol class="steps">${steps}</ol>` : ''}
     </div>`;
   }
 
@@ -378,6 +381,7 @@ const App = (() => {
   const LEDE = {
     today:   'What is open, close, and worth leaving the flat for.',
     nights:  'Concerts, jazz rooms, dancing and a drink first. Doors, prices and how far from your door.',
+    sport:   'Arenas, fixtures and the Olympic pools you are allowed to swim in. Plus somewhere to run.',
     weekend: '',
     eat:     'Coffee, bread and markets. Names and walking distances — the photographs would only be of the street.',
     explore: '',
@@ -395,6 +399,7 @@ const App = (() => {
 
     if      (VIEW === 'today')   box.innerHTML = renderToday();
     else if (VIEW === 'nights')  box.innerHTML = renderNights();
+    else if (VIEW === 'sport')   box.innerHTML = renderSport();
     else if (VIEW === 'weekend') { $('#lede').textContent = weekendLede(w); box.innerHTML = renderWeekend(w); }
     else if (VIEW === 'eat')     box.innerHTML = renderEat();
     else if (VIEW === 'explore') { $('#lede').textContent = exploreLede(); box.innerHTML = renderExplore(); }
@@ -473,6 +478,46 @@ const App = (() => {
       + (routes.length
           ? stripHead('Two nights out', 'Follow the order')
             + `<div class="routes">${routes.map(routeCard).join('')}</div>`
+          : '');
+  }
+  /* ---------- sport ---------- */
+
+  const isSport = i => (i.categories || []).includes('sport');
+
+  function renderSport() {
+    const sports = D.sports.items || [];
+
+    // Fixtures read in date order — you are picking a date, not browsing.
+    const fixtures = (D.events.items || [])
+      .filter(i => isSport(i) && (!i.end || i.end >= TODAY_ISO))
+      .sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+
+    const lead = Rank.rank(fixtures, CTX, hasRealPhoto)[0];
+    const rest = fixtures.filter(f => !lead || f.id !== lead.id);
+
+    const group = (title, note, test) => {
+      const items = Rank.rank(sports, CTX, test);
+      if (!items.length) return '';
+      return stripHead(title, note) + rows(items);
+    };
+
+    // Only a route with stops earns the timeline — an empty one is just a
+    // box. The rest are ordinary rows.
+    const allRuns = Rank.rank(sports, CTX, i => i.type === 'run');
+    const runs = allRuns.filter(hasStops);
+    const plainRuns = allRuns.filter(i => !hasStops(i));
+
+    return (lead ? hero(lead) : '')
+      + (rest.length
+          ? stripHead('In the diary', 'Dated, and the good ones need booking')
+            + `<div class="grid">${rest.slice(0, 6).map(i => card(i)).join('')}</div>`
+          : '')
+      + group('Where to watch', 'Fixtures change weekly — the link goes to the club', i => i.type === 'watch')
+      + group('Get in the water, or on a wall', 'Things you do rather than watch', i => i.type === 'play')
+      + (allRuns.length
+          ? stripHead('Running', 'Starting at your door, and getting longer')
+            + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
+            + (plainRuns.length ? rows(plainRuns) : '')
           : '');
   }
   /* ---------- weekend ---------- */

@@ -135,6 +135,29 @@ const QUERIES = {
   'night-faubourg-saint-denis': 'Rue du Faubourg-Saint-Denis',
   'night-jazz-lombards': 'Rue des Lombards',
 
+  // sport
+  'paris-fc-jean-bouin': 'Stade Jean-Bouin (Paris)',
+  'psg-parc-des-princes': 'Parc des Princes',
+  'red-star-stade-bauer': 'Stade Bauer',
+  'stade-de-france': 'Stade de France',
+  'adidas-arena-basketball': 'Adidas Arena',
+  'accor-arena-bercy': 'Accor Arena',
+  'roland-garros': 'Stade Roland-Garros',
+  'hippodrome-vincennes': 'Hippodrome de Vincennes',
+  'olympic-aquatics-centre': 'Stade de France',
+  'seine-swimming': 'Seine',
+  'piscine-pontoise': 'Piscine Pontoise',
+  'arkose-climbing': 'Escalade de bloc',
+  'paris-tennis-courts': 'Court de tennis',
+  'run-canal-ourcq': 'Canal de l\'Ourcq',
+  'run-buttes-chaumont': 'Parc des Buttes-Chaumont',
+  'run-bois-de-vincennes': 'Bois de Vincennes',
+  'run-coulee-verte': 'Coulée verte René-Dumont',
+  'european-aquatics-2026': 'Pont de Bir-Hakeim',
+  'prix-arc-triomphe-2026': 'Hippodrome de Longchamp',
+  '20km-de-paris-2026': 'Tour Eiffel',
+  'rolex-paris-masters-2026': 'La Défense',
+
   // day trips
   'chantilly': 'Château de Chantilly',
   'reims-champagne': 'Cathédrale Notre-Dame de Reims',
@@ -175,10 +198,14 @@ const CONTEXT_ONLY = new Set([
   'little-red-door', 'candelaria', 'la-buvette', 'moonshiner',
   'lauryn-hill-bercy-2026', 'ayo-cigale-2026', 'yemi-alade-cigale-2026',
   'night-faubourg-saint-denis', 'night-jazz-lombards',
-  'philharmonie-paris', 'le-petit-bain'
+  'philharmonie-paris', 'le-petit-bain',
+  'seine-swimming', 'arkose-climbing', 'paris-tennis-courts', 'run-canal-ourcq',
+  'run-buttes-chaumont', 'run-bois-de-vincennes', 'run-coulee-verte',
+  '20km-de-paris-2026', 'rolex-paris-masters-2026',
+  'olympic-aquatics-centre', 'prix-arc-triomphe-2026'
 ]);
 
-const FILES = ['events.json', 'places.json', 'nightlife.json', 'itineraries.json', 'daytrips.json'];
+const FILES = ['events.json', 'places.json', 'nightlife.json', 'sports.json', 'itineraries.json', 'daytrips.json'];
 const WIKIS = ['fr', 'en'];
 const BATCH = 20;          // the API takes up to 50 titles; 20 keeps URLs sane
 const clean = u => u ? u.split('?')[0] : u;

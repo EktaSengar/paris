@@ -39,6 +39,7 @@ const FILES = {
   'events.json':        { timeSensitive: true,  required: ['id', 'title', 'why', 'url', 'lastVerified', 'source'] },
   'places.json':        { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },
   'nightlife.json':     { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },
+  'sports.json':        { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },
   'itineraries.json':   { timeSensitive: false, required: ['id', 'title', 'why', 'stops'] },
   'daytrips.json':      { timeSensitive: false, required: ['id', 'title', 'why', 'url', 'transit'] },
   'neighborhoods.json': { timeSensitive: false, required: ['arr', 'name', 'famousFor'] },

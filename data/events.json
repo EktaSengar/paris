@@ -1253,6 +1253,198 @@
       "imageSubject": "La Cigale",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "european-aquatics-2026",
+      "title": "European Aquatics Championships",
+      "emoji": "🤽",
+      "type": "event",
+      "categories": [
+        "sport",
+        "swim",
+        "free",
+        "outdoor"
+      ],
+      "arr": 15,
+      "area": "Seine at Bras de Grenelle · high diving at Port Debilly · Saint-Denis",
+      "price": 0,
+      "priceNote": "Open water and high diving free from the riverbank · pool sessions ticketed",
+      "start": "2026-07-31",
+      "end": "2026-08-16",
+      "times": "Daily — check the session timetable",
+      "durationMin": 150,
+      "minutesFromHome": 35,
+      "transit": "M6 to Bir-Hakeim for the river events",
+      "why": "This finishes tomorrow and it is free to watch the best bits. The open-water swimming happens in the Seine between Bir-Hakeim and the Île aux Cygnes, and the high diving — people falling twenty-seven metres off a platform into the river — is free from the bank at Port Debilly. If you do one thing this weekend, this is the one that will not come round again.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "free",
+        "outdoor",
+        "unusual",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "closingsoon",
+        "unusual",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "European Aquatics / Paris je t’aime",
+      "url": "https://europeanaquatics.org/paris-2026/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG/500px-P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG",
+      "imageSubject": "Pont de Bir-Hakeim",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "prix-arc-triomphe-2026",
+      "title": "Qatar Prix de l'Arc de Triomphe",
+      "emoji": "🏇",
+      "type": "event",
+      "categories": [
+        "sport",
+        "outdoor",
+        "unusual"
+      ],
+      "arr": 16,
+      "area": "Hippodrome ParisLongchamp",
+      "price": 25,
+      "priceNote": "From ~€12 in advance",
+      "start": "2026-10-03",
+      "end": "2026-10-04",
+      "times": "Two days, the main race Sunday afternoon",
+      "durationMin": 300,
+      "minutesFromHome": 50,
+      "transit": "M1 to Porte Maillot, then the free racecourse shuttle",
+      "why": "The biggest flat race in Europe, on the first weekend of October, in a park at the edge of the Bois de Boulogne. It is a proper day out: hats, picnics, sixty thousand people, and about two minutes of actual racing that everyone loses their mind over. Buy general admission in advance, take a picnic, and do not bother with the expensive stands.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "outdoor",
+        "unusual"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "weekend",
+        "outdoor",
+        "bookahead"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "France Galop / Sortiraparis",
+      "url": "https://www.parislongchamp.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Paris_Longchamp%C2%A9Dominique_Perrault_architecte_Adagp_%282%29.jpg/500px-Paris_Longchamp%C2%A9Dominique_Perrault_architecte_Adagp_%282%29.jpg",
+      "imageSubject": "Hippodrome de Longchamp",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "20km-de-paris-2026",
+      "title": "20 km de Paris",
+      "emoji": "🏃‍♀️",
+      "type": "event",
+      "categories": [
+        "sport",
+        "running",
+        "outdoor"
+      ],
+      "arr": 7,
+      "area": "Start and finish at the Eiffel Tower",
+      "price": 45,
+      "priceNote": "~€40–50 entry",
+      "start": "2026-10-11",
+      "end": "2026-10-11",
+      "days": [
+        0
+      ],
+      "times": "Sunday morning",
+      "durationMin": 240,
+      "minutesFromHome": 35,
+      "transit": "M6 to Bir-Hakeim",
+      "why": "The 48th edition, and the best mass-participation race in the city: it starts on the Pont d’Iéna under the Eiffel Tower, runs past the Trocadéro and the Arc de Triomphe, loops through the Bois de Boulogne and Roland-Garros, and finishes back at the tower. Twenty kilometres is a real but reachable target from a standing start in mid-August — eight weeks is enough if you start now. Entries close when it fills.",
+      "goodFor": [
+        "weekend",
+        "sport",
+        "morning",
+        "outdoor",
+        "couple"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "bookahead",
+        "outdoor",
+        "weekend"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "source": "20 km de Paris",
+      "url": "https://www.20kmparis.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/500px-Tour_Eiffel_Wikimedia_Commons.jpg",
+      "imageSubject": "Tour Eiffel",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "rolex-paris-masters-2026",
+      "title": "Rolex Paris Masters",
+      "emoji": "🎾",
+      "type": "event",
+      "categories": [
+        "sport",
+        "tennis"
+      ],
+      "arr": null,
+      "area": "Paris La Défense Arena, Nanterre",
+      "price": 55,
+      "priceNote": "From ~€30 early rounds",
+      "start": "2026-10-31",
+      "end": "2026-11-08",
+      "times": "Nine days, day and night sessions",
+      "durationMin": 300,
+      "minutesFromHome": 45,
+      "transit": "RER A to Nanterre-Préfecture",
+      "why": "The last Masters 1000 of the season, and its 40th edition — effectively every top-ten player in one indoor arena before the season ends. The trick is the first three days: cheap tickets, and a ground pass gets you several matches on the same day instead of one. The finals weekend costs four times as much for less tennis.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "weekend"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "FFT / Paris La Défense",
+      "url": "https://www.rolexparismasters.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/La_D%C3%A9fense_Juin_2025.jpg/500px-La_D%C3%A9fense_Juin_2025.jpg",
+      "imageSubject": "La Défense",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

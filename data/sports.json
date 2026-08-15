@@ -1,0 +1,760 @@
+{
+  "generated": "2026-08-15",
+  "note": "Places to watch sport, places to play it, and places to run. Evergreen — fixtures change weekly, so cards link to the club's own ticketing rather than pretending to know who is at home in three weeks. Dated fixtures and races live in events.json so they expire on their own.",
+  "items": [
+    {
+      "id": "paris-fc-jean-bouin",
+      "title": "Paris FC at Stade Jean-Bouin",
+      "emoji": "⚽",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "football"
+      ],
+      "arr": 16,
+      "area": "Stade Jean-Bouin, 20 avenue du Général Sarrail",
+      "price": 25,
+      "priceNote": "From ~€15–35",
+      "durationMin": 180,
+      "minutesFromHome": 40,
+      "transit": "M9 to Porte de Saint-Cloud",
+      "times": "Ligue 1, roughly every other weekend, August to May",
+      "why": "The smart way to watch top-flight football in Paris. Paris FC came back up to Ligue 1 after forty-six years away, they play in a 20,000-seat stadium rather than a 48,000-seat one, and you can actually buy a ticket the week of the match at a sane price. PSG is the famous answer; this is the one you will get into.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "socialize"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "weekend",
+        "outdoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://parisfc.fr/en/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Paris_Stade_Jean-Bouin_%28cropped%29.jpg/500px-Paris_Stade_Jean-Bouin_%28cropped%29.jpg",
+      "imageSubject": "Stade Jean-Bouin (Paris)",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "psg-parc-des-princes",
+      "title": "PSG at the Parc des Princes",
+      "emoji": "🔵",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "football"
+      ],
+      "arr": 16,
+      "area": "Parc des Princes, 24 rue du Commandant Guilbaud",
+      "price": 90,
+      "priceNote": "From ~€50, often far more",
+      "durationMin": 210,
+      "minutesFromHome": 40,
+      "transit": "M9 to Porte de Saint-Cloud",
+      "times": "Over twenty home matches through to the end of May",
+      "why": "The big one, and worth doing once for the noise from the Auteuil end alone. Two warnings: league tickets sell out to members long before general sale, and resale prices are absurd. Aim for a midweek league fixture against a small club rather than a Champions League night — same stadium, same atmosphere, a third of the price. The stadium tour is a decent consolation if the fixtures do not work.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "bookahead",
+        "outdoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.psg.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Paris_Parc_des_Princes_1.jpg/500px-Paris_Parc_des_Princes_1.jpg",
+      "imageSubject": "Parc des Princes",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "red-star-stade-bauer",
+      "title": "Red Star at Stade Bauer",
+      "emoji": "⭐",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "football",
+        "unusual"
+      ],
+      "arr": null,
+      "area": "Stade Bauer, Saint-Ouen",
+      "price": 12,
+      "priceNote": "~€10–15",
+      "durationMin": 150,
+      "minutesFromHome": 30,
+      "transit": "M13 to Garibaldi, or M14 to Saint-Ouen",
+      "times": "Home matches most other weekends in the season",
+      "why": "Founded in 1897 by the man who also founded FIFA, and the most loved small club in France — anti-fascist terrace culture, brass bands, hand-painted banners, and a ground squeezed between houses that has just been rebuilt. Tickets are about a tenner and nobody checks whether you know the offside rule. Combine it with the Saint-Ouen flea market in the morning; they are ten minutes apart.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "unusual",
+        "cheap",
+        "socialize"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "hiddengem",
+        "cheap",
+        "couple",
+        "weekend",
+        "outdoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "pairsWith": [
+        "puces-saint-ouen"
+      ],
+      "url": "https://www.redstar.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Match_Football_Red_Star_FC_x_FBBP01_-_Stade_Bauer_-_Saint-Ouen-sur-Seine_%28FR93%29_-_2022-10-12_-_16.jpg/500px-Match_Football_Red_Star_FC_x_FBBP01_-_Stade_Bauer_-_Saint-Ouen-sur-Seine_%28FR93%29_-_2022-10-12_-_16.jpg",
+      "imageSubject": "Stade Bauer",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "stade-de-france",
+      "title": "Stade de France",
+      "emoji": "🏟️",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "football",
+        "rugby"
+      ],
+      "arr": null,
+      "area": "Saint-Denis",
+      "price": 45,
+      "priceNote": "From ~€30 for rugby, more for France football",
+      "durationMin": 240,
+      "minutesFromHome": 25,
+      "transit": "Walk to Gare du Nord, then RER B or D — two stops",
+      "why": "Eighty thousand seats, and it is twenty-five minutes away because you live next to Gare du Nord. France football and rugby internationals, the Top 14 final in June, and the Six Nations in February and March, which is the one to aim for — the singing before a France–Ireland match is worth the ticket on its own. Book Six Nations months ahead.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "bookahead",
+        "outdoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.stadefrance.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/StadeFranceNationsLeague2018.jpg/500px-StadeFranceNationsLeague2018.jpg",
+      "imageSubject": "Stade de France",
+      "imageKind": "subject",
+      "imageCredit": "Darthvadrouw · CC BY-SA 4.0"
+    },
+    {
+      "id": "adidas-arena-basketball",
+      "title": "Paris Basketball at the Adidas Arena",
+      "emoji": "🏀",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "basketball"
+      ],
+      "arr": 18,
+      "area": "Adidas Arena, Porte de la Chapelle",
+      "price": 25,
+      "priceNote": "From ~€15",
+      "durationMin": 150,
+      "minutesFromHome": 25,
+      "transit": "M12 to Porte de la Chapelle",
+      "times": "EuroLeague and French league nights, autumn to spring",
+      "why": "Paris's newest arena, built for the 2024 Games and now the home of a EuroLeague basketball club that did not exist ten years ago. Eight thousand seats, so you are close to the floor, and it is twenty-five minutes from you. Basketball is the easiest live sport to walk into cold — the rules are obvious and the tickets are cheap.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "sport",
+        "cheap",
+        "socialize"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.parisbasketball.paris/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Paris_Basketball_SQBB_match.jpg/500px-Paris_Basketball_SQBB_match.jpg",
+      "imageSubject": "Adidas Arena",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "accor-arena-bercy",
+      "title": "Accor Arena, Bercy",
+      "emoji": "🥋",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "music"
+      ],
+      "arr": 12,
+      "area": "8 boulevard de Bercy",
+      "price": 40,
+      "priceNote": "Varies wildly by event",
+      "durationMin": 210,
+      "minutesFromHome": 30,
+      "transit": "M5 straight there from home, no changes",
+      "times": "Sport and concerts most weeks",
+      "why": "The sloping grass-sided pyramid by the river, and line 5 goes there directly from your street. Worth watching the calendar for two things in particular: the Paris Grand Slam judo in February, which is the best-attended judo event on earth, and the NBA Paris Games in January. Handball and gymnastics fill the gaps.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "sport"
+      ],
+      "indoor": true,
+      "labels": [
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "url": "https://www.accorarena.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Palais_Omnisports_de_Paris-Bercy_2007.jpg/500px-Palais_Omnisports_de_Paris-Bercy_2007.jpg",
+      "imageSubject": "Accor Arena",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "roland-garros",
+      "title": "Roland-Garros",
+      "emoji": "🎾",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "tennis",
+        "culture"
+      ],
+      "arr": 16,
+      "area": "2 avenue Gordon Bennett, Porte d'Auteuil",
+      "price": 35,
+      "priceNote": "Qualifying week ~€10–25 · main draw from ~€40",
+      "durationMin": 420,
+      "minutesFromHome": 45,
+      "transit": "M10 to Porte d'Auteuil",
+      "times": "Main draw late May to early June · grounds and museum year round",
+      "seasonal": [
+        "spring"
+      ],
+      "bookAhead": true,
+      "why": "The insider move is qualifying week, the week before the tournament proper: tickets are a fraction of the price, sold without a ballot, and you can stand two metres from players who will be in the top twenty within a year. The main draw runs a public ballot the previous winter — put your name in around December. Outside the season the grounds and the tennis museum are open, and Court Philippe-Chatrier is genuinely impressive empty.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "culture",
+        "weekend"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "bookahead",
+        "outdoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.rolandgarros.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/ND_DN_2006FO.jpg/500px-ND_DN_2006FO.jpg",
+      "imageSubject": "Stade Roland-Garros",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "hippodrome-vincennes",
+      "title": "Night Racing at Vincennes",
+      "emoji": "🐎",
+      "type": "watch",
+      "categories": [
+        "sport",
+        "unusual",
+        "outdoor"
+      ],
+      "arr": 12,
+      "area": "Hippodrome de Paris-Vincennes",
+      "price": 5,
+      "priceNote": "~€3–6 entry",
+      "durationMin": 180,
+      "minutesFromHome": 40,
+      "transit": "RER A to Joinville-le-Pont, then a short walk",
+      "times": "Floodlit trotting meetings on winter evenings",
+      "why": "Harness racing under floodlights on a winter night, for the price of a coffee, with a crowd of serious old men studying form sheets and almost no visitors at all. The Prix d'Amérique in late January is the biggest trotting race in the world. You do not need to bet, though a two-euro flutter makes it much more fun.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "sport",
+        "unusual",
+        "cheap"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "seasonal": [
+        "autumn",
+        "winter"
+      ],
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "unusual",
+        "couple",
+        "outdoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.letrot.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hippodrome_de_Vincennes_DSC03756.JPG/500px-Hippodrome_de_Vincennes_DSC03756.JPG",
+      "imageSubject": "Hippodrome de Vincennes",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "olympic-aquatics-centre",
+      "title": "The Olympic Aquatics Centre",
+      "emoji": "🏊",
+      "type": "play",
+      "categories": [
+        "sport",
+        "swim",
+        "olympic"
+      ],
+      "arr": null,
+      "area": "Saint-Denis, opposite the Stade de France",
+      "price": 6,
+      "priceNote": "Public swim from ~€5–8",
+      "durationMin": 120,
+      "minutesFromHome": 25,
+      "transit": "Walk to Gare du Nord, then RER B or D",
+      "times": "Open to the public daily — check session times",
+      "why": "The only permanent venue built for the 2024 Games, and since summer 2025 you can just turn up and swim in it. Two fifty-metre pools, one of them open-air, plus the diving pool, a spa, padel courts, five-a-side, three-on-three basketball and a skatepark. Twenty-five minutes from you and it costs about the same as your local municipal pool. This is the single most underused thing in this whole guide.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "cheap",
+        "weekend",
+        "unusual"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "cheap",
+        "hiddengem",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.centreaquatiqueolympique.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/StadeFranceNationsLeague2018.jpg/500px-StadeFranceNationsLeague2018.jpg",
+      "imageSubject": "Stade de France",
+      "imageKind": "context",
+      "imageCredit": "Darthvadrouw · CC BY-SA 4.0"
+    },
+    {
+      "id": "seine-swimming",
+      "title": "Swimming in the Seine",
+      "emoji": "🏊‍♀️",
+      "type": "play",
+      "categories": [
+        "sport",
+        "swim",
+        "outdoor",
+        "free"
+      ],
+      "arr": 4,
+      "area": "Bras Marie (4th), Bercy (12th), Grenelle (15th)",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 90,
+      "minutesFromHome": 20,
+      "transit": "M7 to Pont Marie for the closest site",
+      "times": "Summer only, roughly July to end of August, lifeguarded hours",
+      "seasonal": [
+        "summer"
+      ],
+      "why": "They cleaned the river and reopened it to swimmers after a hundred-year ban, and hardly anyone has quite absorbed that this is now possible. Three supervised sites, free, with changing rooms and lifeguards. Bras Marie by Île Saint-Louis is the closest to you. Water quality is tested daily and sites shut after heavy rain, so check before you set off — but on a hot August afternoon there is nothing else like it.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "outdoor",
+        "unusual",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "unusual",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.paris.fr/pages/la-baignade-dans-la-seine-27443",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Pont_au_Change_and_Palais_de_justice%2C_Paris_20_April_2021_001.jpg/500px-Pont_au_Change_and_Palais_de_justice%2C_Paris_20_April_2021_001.jpg",
+      "imageSubject": "Seine",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "piscine-pontoise",
+      "title": "Piscine Pontoise",
+      "emoji": "🌊",
+      "type": "play",
+      "categories": [
+        "sport",
+        "swim"
+      ],
+      "arr": 5,
+      "area": "19 rue de Pontoise",
+      "price": 5,
+      "priceNote": "~€5 · evening sessions a little more",
+      "durationMin": 90,
+      "minutesFromHome": 25,
+      "transit": "M10 to Maubert–Mutualité",
+      "times": "Late-night swims until around 23:45 on some weekdays",
+      "why": "A 1933 art deco pool with two tiers of little wooden changing cabins around a blue-tiled hall, and a glass roof. Krzysztof Kieślowski filmed here. The reason to know about it is the late session: swimming lengths at eleven at night under that roof, with almost nobody else in the water, is a genuinely strange and lovely thing to do on a weekday.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "sport",
+        "cheap",
+        "romantic"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "afterwork",
+        "romantic",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.paris.fr/equipements/piscine-pontoise-2918",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Piscine_Pontoise_%C3%A0_Paris_%28ext%C3%A9rieur%29_-_2026_%2802%29.jpg/500px-Piscine_Pontoise_%C3%A0_Paris_%28ext%C3%A9rieur%29_-_2026_%2802%29.jpg",
+      "imageSubject": "Piscine Pontoise",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "arkose-climbing",
+      "title": "Bouldering at Arkose",
+      "emoji": "🧗",
+      "type": "play",
+      "categories": [
+        "sport",
+        "learn"
+      ],
+      "arr": 11,
+      "area": "Several gyms — Nation, Montreuil, Massy",
+      "price": 15,
+      "priceNote": "~€13–17 including shoe hire",
+      "durationMin": 120,
+      "minutesFromHome": 25,
+      "transit": "M9 to Nation for the closest",
+      "why": "Bouldering is the easiest way into climbing — no ropes, no partner, no technique required on your first visit, just problems a few metres off a thick mat. Arkose builds its gyms into old industrial buildings with a bar and a canteen attached, so it works as an evening out rather than a training session. Very good as a pair: you take turns and talk each other up things.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "sport",
+        "learn",
+        "socialize"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "learn",
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://arkose.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Crash_pad.jpg/500px-Crash_pad.jpg",
+      "imageSubject": "Escalade de bloc",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "paris-tennis-courts",
+      "title": "Book a Municipal Tennis Court",
+      "emoji": "🎾",
+      "type": "play",
+      "categories": [
+        "sport",
+        "tennis",
+        "cheap"
+      ],
+      "arr": null,
+      "area": "Around forty sites across the city",
+      "price": 9,
+      "priceNote": "~€8–13 an hour off-peak",
+      "durationMin": 90,
+      "minutesFromHome": 15,
+      "transit": "Nearest to you: Jules Ladoumègue and Alfred Nakache",
+      "why": "The city runs about forty tennis centres and anyone can book one online for roughly the price of two coffees an hour. Almost no one who moves to Paris realises this and instead assumes tennis means a private club. Create a Paris account, book seven days ahead, and off-peak weekday courts are usually wide open.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "cheap",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://tennis.paris.fr/",
+      "lastVerified": "2026-08-15"
+    },
+    {
+      "id": "run-canal-ourcq",
+      "title": "The Canal Run",
+      "emoji": "🏃",
+      "type": "run",
+      "categories": [
+        "sport",
+        "running",
+        "outdoor",
+        "free"
+      ],
+      "arr": 10,
+      "area": "From your door up the Canal Saint-Martin",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 60,
+      "minutesFromHome": 0,
+      "startTime": "07:30",
+      "why": "The reason to run in the 10th. Flat, straight, car-free almost the whole way, and it starts at the end of your street — so there is no excuse and no warm-up commute. Out and back to Bassin de la Villette is about 6 km; carry on up the Ourcq towards Pantin and you can make it 15 km without crossing a single road. Best before eight, when it is just runners and the lock keepers.",
+      "goodFor": [
+        "morning",
+        "sport",
+        "free",
+        "outdoor",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "stops": [
+        {
+          "emoji": "🚪",
+          "text": "Start on the canal at Jemmapes",
+          "walk": "0 km"
+        },
+        {
+          "emoji": "🌉",
+          "text": "North past the locks and the iron footbridges",
+          "walk": "1.5 km"
+        },
+        {
+          "emoji": "💧",
+          "text": "Bassin de la Villette opens out — widest, flattest stretch",
+          "walk": "3 km"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Parc de la Villette, or turn here for a 6 km round trip",
+          "walk": "4.5 km"
+        },
+        {
+          "emoji": "➡️",
+          "text": "Carry on up the Canal de l'Ourcq towards Pantin for 10 km and beyond",
+          "walk": "7 km+"
+        }
+      ],
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Canal_de_l%27Ourcq_pres_de_Vignely_P1050588.JPG/500px-Canal_de_l%27Ourcq_pres_de_Vignely_P1050588.JPG",
+      "imageSubject": "Canal de l'Ourcq",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "run-buttes-chaumont",
+      "title": "Hill Reps at Buttes-Chaumont",
+      "emoji": "⛰️",
+      "type": "run",
+      "categories": [
+        "sport",
+        "running",
+        "outdoor",
+        "free"
+      ],
+      "arr": 19,
+      "area": "Parc des Buttes-Chaumont",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 60,
+      "minutesFromHome": 15,
+      "transit": "M5 to Laumière, or run there along the canal",
+      "why": "The only serious hill within reach, and the antidote to the canal being completely flat. A lap of the park is about 2 km with around 40 m of climb, and the staircases up to the temple are brutal enough that Paris running clubs use them for intervals. Three laps and you have done something. Sunday mornings it is full of people doing exactly this.",
+      "goodFor": [
+        "morning",
+        "sport",
+        "free",
+        "outdoor",
+        "couple"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "url": "https://www.paris.fr/lieux/parc-des-buttes-chaumont-1757",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/ParcDesButtesChaumont.JPG/500px-ParcDesButtesChaumont.JPG",
+      "imageSubject": "Parc des Buttes-Chaumont",
+      "imageKind": "context",
+      "imageCredit": "O.Taris · CC BY-SA 3.0"
+    },
+    {
+      "id": "run-bois-de-vincennes",
+      "title": "Long Run in the Bois de Vincennes",
+      "emoji": "🌲",
+      "type": "run",
+      "categories": [
+        "sport",
+        "running",
+        "outdoor",
+        "free"
+      ],
+      "arr": 12,
+      "area": "Bois de Vincennes",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 90,
+      "minutesFromHome": 35,
+      "transit": "M1 to Château de Vincennes",
+      "why": "When the canal is not long enough. Nine hundred hectares of woodland with soft paths, two lakes and a signed circuit around Lac Daumesnil — you can put together anything from 5 km to a full marathon distance without repeating yourself. Softer underfoot than the city, which matters if you are building up mileage. The Bois de Boulogne is the western equivalent and hosts a free timed 5 km on Saturday mornings.",
+      "goodFor": [
+        "morning",
+        "weekend",
+        "sport",
+        "free",
+        "outdoor",
+        "couple"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "outdoor",
+        "weekend",
+        "couple"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "url": "https://www.paris.fr/pages/le-bois-de-vincennes-2062",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Bois_de_Vincennes_20060816_16.jpg/500px-Bois_de_Vincennes_20060816_16.jpg",
+      "imageSubject": "Bois de Vincennes",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "run-coulee-verte",
+      "title": "The Viaduct Run",
+      "emoji": "🌿",
+      "type": "run",
+      "categories": [
+        "sport",
+        "running",
+        "outdoor",
+        "free"
+      ],
+      "arr": 12,
+      "area": "Coulée verte René-Dumont, Bastille to Vincennes",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 60,
+      "minutesFromHome": 20,
+      "transit": "M8 to Bastille, start behind the Opéra",
+      "why": "Four and a half kilometres of garden along a disused railway viaduct, four metres above the traffic, with no road crossings for the first stretch. Narrow in places, so it is a morning run rather than a Sunday-afternoon one. Run it out to the Bois de Vincennes and back and you have a comfortable 12 km with something to look at the whole way.",
+      "goodFor": [
+        "morning",
+        "sport",
+        "free",
+        "outdoor",
+        "couple"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "hiddengem",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.paris.fr/lieux/coulee-verte-rene-dumont-2726",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Promenade_plant%C3%A9e.JPG/500px-Promenade_plant%C3%A9e.JPG",
+      "imageSubject": "Coulée verte René-Dumont",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    }
+  ]
+}

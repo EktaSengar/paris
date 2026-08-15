@@ -27,6 +27,7 @@ data/
   events.json         time-sensitive; expires and is pruned automatically
   places.json         cafés, bakeries, markets, shops, museums, parks, classes
   nightlife.json      jazz rooms, live venues, clubs and bars
+  sports.json         arenas and clubs to watch, pools and walls to use, runs to do
   itineraries.json    ready-made routes — the "start here, then walk there" layer
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
@@ -102,7 +103,9 @@ good photograph. So format follows content:
 itself or only of its street. Only `subject` photos are allowed to take the
 hero slot, which is why a café never leads a page with a picture of a road.
 
-Navigation is six destinations — Today, Nights, Weekend, Eat, Explore, Away.
+Navigation is seven destinations — Today, Nights, Weekend, Eat, Sport, Explore,
+Away. On a phone the bar scrolls, with a fade on the right edge so that reads
+as "more this way" rather than as clipped text.
 Free, For two and Hidden are *filters*, not places, and live in the filter row.
 Quests and Your list are utilities, kept small.
 
