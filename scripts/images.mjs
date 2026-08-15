@@ -195,6 +195,15 @@ const QUERIES = {
   'paris-marathon-2027': 'Marathon de Paris',
   'tour-de-france-paris-2027': 'Avenue des Champs-Élysées',
 
+  // restaurants
+  'bouillon-julien': 'Bouillon Julien',
+  'urfa-durum': 'Rue du Faubourg-Saint-Denis',
+  'le-petit-cambodge': 'Rue Alibert',
+  'clamato': 'Rue de Charonne',
+  'dong-huong': 'Belleville (Paris)',
+  'le-potager-du-marais': 'Rue Rambuteau',
+  'chez-alain-miam-miam': 'Marché des Enfants-Rouges',
+
   // day trips
   'chantilly': 'Château de Chantilly',
   'reims-champagne': 'Cathédrale Notre-Dame de Reims',
@@ -242,7 +251,8 @@ const CONTEXT_ONLY = new Set([
   'olympic-aquatics-centre', 'prix-arc-triomphe-2026',
   'comedy-in-paris', 'paname-art-cafe', 'indian-shows-paris', 'la-chapelle-tamil-quarter',
   'mission-coffee-crawl', 'mission-eleventh-through-food', 'mission-perfect-saturday',
-  'mission-unknown-bread', 'padel-ladoumegue', 'padel-4padel', 'pickleball-paris',
+  'mission-unknown-bread', 'urfa-durum', 'le-petit-cambodge', 'clamato',
+  'dong-huong', 'le-potager-du-marais', 'padel-ladoumegue', 'padel-4padel', 'pickleball-paris',
   'paname-run-club', 'parkrun-paris', 'ping-pong-parks', 'velib-seine-ride',
   'yoga-outdoor-paris', 'ice-skating-winter', 'gymnastics-championships-2026',
   'tour-de-france-paris-2027',

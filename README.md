@@ -128,12 +128,20 @@ because a fixture you cannot see is just a date. That field answers "where
 should we stand?" — take the Montmartre climb rather than the Champs-Élysées
 barriers, go to a gymnastics qualification rather than the final.
 
-### Food missions
+### Food missions and subsections
 
-`food.json` holds missions, not listings: a brief, a way to judge the result,
-three candidates with what to order at each, and where to go afterwards. The
-café-and-bakery directory still exists underneath, for when you just want a
-name — but it is no longer the whole section.
+Eat opens with five prominent subsections — Missions, Coffee, Bakeries,
+Restaurants, Markets — using the same mode-switch component as Sport's
+Play/Watch. The categories are the navigation, not a footer: previously the
+only way to find a café was to scroll past every mission to the bottom.
+
+Missions is the default because a mission is more useful than a list.
+`food.json` holds them: a brief, a way to judge the result, three candidates
+with what to order at each, and where to go afterwards.
+
+Each category subsection follows the Sport of the Week shape — one editorial
+pick with a photograph, then the rest as thumbnailed rows, then the quest that
+belongs to that category.
 
 ### Quests
 

@@ -1056,3 +1056,14 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   .row.has-thumb { grid-template-columns: 3.2rem 1fr auto; }
   .row-thumb { width: 3.2rem; height: 3.2rem; }
 }
+
+/* Five subsections rather than two, so the buttons need to be narrower —
+   but they stay prominent, because they are the navigation for this
+   section rather than a footer to scroll past. */
+.mode-wide { grid-template-columns: repeat(5, 1fr); gap: .5rem; }
+.mode-wide .mode-btn { padding: .85rem .8rem; font-size: 1.05rem; }
+.mode-wide .mode-btn em { font-size: .7rem; }
+.mode-wide .mode-emoji { display: block; margin: 0 0 .15rem; font-size: 1.15rem; }
+
+@media (max-width: 900px) { .mode-wide { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 560px) { .mode-wide { grid-template-columns: repeat(2, 1fr); } }

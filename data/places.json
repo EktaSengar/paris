@@ -1793,6 +1793,382 @@
       "imageSubject": "Musée Guimet",
       "imageKind": "subject",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "bouillon-julien",
+      "title": "Bouillon Julien",
+      "emoji": "🍽️",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "french"
+      ],
+      "arr": 10,
+      "area": "16 rue du Faubourg Saint-Denis",
+      "price": 22,
+      "priceNote": "Mains €11–17 · starters from €5",
+      "durationMin": 90,
+      "minutesFromHome": 8,
+      "transit": "Walk",
+      "why": "An 1906 art nouveau dining room — peacock murals, mahogany, glass flowers — serving classic French food at prices that have not caught up with the decor. Bouillons were built to feed workers cheaply and this one still does. Eight minutes from your flat. No reservations for small tables, so go at 19:00 or after 21:30.",
+      "goodFor": [
+        "food",
+        "couple",
+        "cheap",
+        "evening",
+        "spontaneous",
+        "french"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "dontmiss",
+        "cheap",
+        "couple",
+        "foodmission"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🍸",
+          "text": "Le Syndicat is four minutes further up the street",
+          "id": "le-syndicat"
+        },
+        {
+          "emoji": "🎷",
+          "text": "New Morning, nine minutes away",
+          "id": "new-morning"
+        }
+      ],
+      "url": "https://www.bouillon-julien.com/",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Restaurant_Julien.JPG/500px-Restaurant_Julien.JPG",
+      "imageSubject": "Bouillon Julien",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "urfa-durum",
+      "title": "Urfa Dürüm",
+      "emoji": "🌯",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "international",
+        "cheap"
+      ],
+      "arr": 10,
+      "area": "58 rue du Faubourg Saint-Denis",
+      "price": 9,
+      "priceNote": "~€8–10",
+      "durationMin": 40,
+      "minutesFromHome": 8,
+      "transit": "Walk",
+      "why": "A Kurdish grill the size of a corridor where one man has been making lahmacun and dürüm over charcoal for twenty years. Bread rolled and cooked in front of you, herbs, sumac onions, no cutlery. Around nine euros and consistently one of the best things you can eat in this city at any price. Queue is normal.",
+      "goodFor": [
+        "food",
+        "cheap",
+        "spontaneous",
+        "evening",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "dontmiss",
+        "hiddengem",
+        "foodmission"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🍛",
+          "text": "Passage Brady is three minutes south",
+          "id": "passage-brady"
+        },
+        {
+          "emoji": "🍷",
+          "text": "Le Verre Volé for a glass after",
+          "id": "le-verre-vole"
+        }
+      ],
+      "url": "https://www.google.com/maps/search/Urfa+D%C3%BCr%C3%BCm+58+rue+du+Faubourg+Saint-Denis+Paris",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg/500px-Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg",
+      "imageSubject": "Rue du Faubourg-Saint-Denis",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "le-petit-cambodge",
+      "title": "Le Petit Cambodge",
+      "emoji": "🍜",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "international"
+      ],
+      "arr": 10,
+      "area": "20 rue Alibert, by the canal",
+      "price": 18,
+      "priceNote": "~€15–20",
+      "durationMin": 75,
+      "minutesFromHome": 6,
+      "transit": "Walk",
+      "why": "Cambodian bo bun and steaming bowls, six minutes away on the corner by the canal. Fresh, herby, quick, and reliably good on a night when neither of you wants to decide anything. It is also part of the neighbourhood’s memory — the terrace was attacked in 2015 and reopening it was a deliberate act. Nobody makes a thing of it; you should just know.",
+      "goodFor": [
+        "food",
+        "couple",
+        "cheap",
+        "evening",
+        "spontaneous",
+        "vegetarian"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "couple",
+        "foodmission"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🚶",
+          "text": "The canal is thirty seconds away",
+          "id": null
+        },
+        {
+          "emoji": "🎸",
+          "text": "Point Éphémère, ten minutes up the water",
+          "id": "point-ephemere"
+        }
+      ],
+      "url": "https://www.lepetitcambodge.fr/",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rue_Alibert_-_Paris.jpg/500px-Rue_Alibert_-_Paris.jpg",
+      "imageSubject": "Rue Alibert",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "clamato",
+      "title": "Clamato",
+      "emoji": "🦪",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "seafood"
+      ],
+      "arr": 11,
+      "area": "80 rue de Charonne",
+      "price": 45,
+      "priceNote": "Plates €9–22 · no reservations",
+      "durationMin": 105,
+      "minutesFromHome": 20,
+      "transit": "M8 to Charonne",
+      "why": "The seafood annexe of Septime, and the only way most people ever get to eat that kitchen’s cooking — Septime books out months ahead, Clamato takes no reservations at all. Oysters, small plates, natural wine. Turn up when it opens or eat late. Worth the wait in a way that very few no-booking places are.",
+      "goodFor": [
+        "food",
+        "couple",
+        "evening",
+        "romantic",
+        "special"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "couple",
+        "romantic",
+        "foodmission"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🍷",
+          "text": "La Buvette for one more glass after",
+          "id": "la-buvette"
+        },
+        {
+          "emoji": "🍸",
+          "text": "Moonshiner, through the pizzeria",
+          "id": "moonshiner"
+        }
+      ],
+      "url": "https://www.clamato-charonne.fr/",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/P1000852_Paris_XI_Rue_de_Charonne_reductwk.JPG/500px-P1000852_Paris_XI_Rue_de_Charonne_reductwk.JPG",
+      "imageSubject": "Rue de Charonne",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "dong-huong",
+      "title": "Dong Huong",
+      "emoji": "🍲",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "international",
+        "cheap"
+      ],
+      "arr": 11,
+      "area": "14 rue Louis Bonnet, Belleville",
+      "price": 14,
+      "priceNote": "~€10–15",
+      "durationMin": 60,
+      "minutesFromHome": 15,
+      "transit": "M2 to Belleville",
+      "why": "A Vietnamese canteen in Belleville that has been feeding the neighbourhood for decades — strip lighting, formica, enormous bowls of pho and bun bo hue for about twelve euros. No atmosphere whatsoever and that is the point. Go with the crowd at lunch, then walk up the hill to the park.",
+      "goodFor": [
+        "food",
+        "cheap",
+        "couple",
+        "spontaneous",
+        "vegetarian"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "foodmission"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🌅",
+          "text": "Parc de Belleville sunset, ten minutes uphill",
+          "id": "parc-belleville"
+        },
+        {
+          "emoji": "🍹",
+          "text": "Combat for a cocktail after",
+          "id": "combat"
+        }
+      ],
+      "url": "https://www.google.com/maps/search/Dong+Huong+14+rue+Louis+Bonnet+Paris",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG/500px-P1010851_Paris_XX_Parc_de_Belleville_reductwk.JPG",
+      "imageSubject": "Belleville (Paris)",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "le-potager-du-marais",
+      "title": "Le Potager du Marais",
+      "emoji": "🥗",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "vegetarian",
+        "french"
+      ],
+      "arr": 3,
+      "area": "24 rue Rambuteau",
+      "price": 26,
+      "priceNote": "Mains ~€18–24",
+      "durationMin": 90,
+      "minutesFromHome": 18,
+      "transit": "M11 to Rambuteau",
+      "why": "Entirely vegetarian, and — unusually for Paris — cooking actual French dishes rather than salads: bourguignon, blanquette, tartiflette, all done without meat. Tiny, about twenty covers, so book. Useful to have in your pocket, because vegetarian French food is much harder to find here than vegetarian international food.",
+      "goodFor": [
+        "food",
+        "couple",
+        "vegetarian",
+        "evening",
+        "french"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "foodmission",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🦌",
+          "text": "Musée de la Chasse is four minutes away",
+          "id": "musee-chasse-nature"
+        },
+        {
+          "emoji": "🏺",
+          "text": "Empreintes, five minutes",
+          "id": "empreintes"
+        }
+      ],
+      "url": "https://www.lepotagerdumarais.fr/",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Rue_Rambuteau_-_Paris_I_%28FR75%29_-_2023-05-07_-_2.jpg/500px-Rue_Rambuteau_-_Paris_I_%28FR75%29_-_2023-05-07_-_2.jpg",
+      "imageSubject": "Rue Rambuteau",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "chez-alain-miam-miam",
+      "title": "Chez Alain Miam Miam",
+      "emoji": "🥪",
+      "type": "restaurant",
+      "categories": [
+        "food",
+        "restaurant",
+        "market",
+        "cheap"
+      ],
+      "arr": 3,
+      "area": "Marché des Enfants Rouges",
+      "price": 12,
+      "priceNote": "~€10–13",
+      "durationMin": 60,
+      "minutesFromHome": 18,
+      "transit": "M8 to Filles du Calvaire",
+      "why": "A man in the oldest covered market in Paris making one thing — an enormous galette-wrapped sandwich, assembled slowly and theatrically while you wait, with comté, avocado, herbs and chilli. The queue is long because he refuses to hurry. Go at 11:30 before the market fills, eat it standing at the counter.",
+      "goodFor": [
+        "food",
+        "cheap",
+        "couple",
+        "morning",
+        "vegetarian"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "foodmission",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🧺",
+          "text": "You are already in the Marché des Enfants Rouges",
+          "id": "marche-enfants-rouges"
+        },
+        {
+          "emoji": "📖",
+          "text": "Ofr. for magazines, four minutes",
+          "id": "ofr-bookshop"
+        }
+      ],
+      "url": "https://www.google.com/maps/search/Chez+Alain+Miam+Miam+March%C3%A9+des+Enfants+Rouges",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/March%C3%A9_des_Enfants-Rouges%2C_Paris_May_2016.jpg/500px-March%C3%A9_des_Enfants-Rouges%2C_Paris_May_2016.jpg",
+      "imageSubject": "Marché des Enfants-Rouges",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

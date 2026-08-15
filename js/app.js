@@ -741,12 +741,13 @@ const App = (() => {
   }
 
   /* ---------- eat ----------
-     Food is the section that most easily collapses into a directory, so it
-     is built around missions instead: a small assignment, three candidates,
-     what to order, and where to go afterwards. The listings still exist,
-     below, for when you just want a name. */
+     Same idea as Sport: the subsections are the navigation, not a footer.
+     Missions is the default because a mission is more useful than a list,
+     but coffee / bakeries / restaurants / markets are one tap away rather
+     than one long scroll away. */
 
   let MOOD = null;
+  let EAT_MODE = 'missions';
 
   const MOODS = [
     ['french',        '🥐', 'Something French'],
@@ -756,6 +757,15 @@ const App = (() => {
     ['dinner',        '🍷', 'A nice dinner'],
     ['special',       '✨', 'Special'],
     ['walk',          '🚶', 'Food + a walk']
+  ];
+
+  /* Each subsection: what it is, what it holds, and the quest that goes with it. */
+  const EAT_MODES = [
+    ['missions',   '🎯', 'Missions',    'assignments, not listings', null,         null],
+    ['cafe',       '☕', 'Coffee',      'specialty and roasters',    'cafe',       'quest-coffee'],
+    ['bakery',     '🥐', 'Bakeries',    'bread and pastry',          'bakery',     'quest-croissant'],
+    ['restaurant', '🍽️', 'Restaurants', 'where to actually eat',     'restaurant', null],
+    ['market',     '🧺', 'Markets',     'food, flea and flower',     'market',     'quest-markets']
   ];
 
   function missionCard(m, lead = false) {
@@ -796,7 +806,41 @@ const App = (() => {
     </article>`;
   }
 
+  /* One editorial pick, then the rest as rows — the Sport of the Week shape,
+     applied to a category. */
+  function featured(item, kicker) {
+    if (!item) return '';
+    return `<div class="sotw">
+      <p class="sotw-kicker">${esc(kicker)}</p>
+      <div class="sotw-body">
+        ${item.image ? `<div class="sotw-img">${img(item, '(min-width: 760px) 420px, 94vw', 'loaded')}</div>` : ''}
+        <div>
+          <h3>${item.emoji || ''} ${esc(item.title)}</h3>
+          <p class="sotw-meta">${esc(item.area || '')} · ${item.minutesFromHome} min away · ${esc(item.priceNote || priceText(item))}</p>
+          <p class="sotw-why">${esc(item.why || '')}</p>
+          ${pairings(item)}
+          <div class="links">
+            ${item.url ? `<a href="${esc(item.url)}" target="_blank" rel="noopener">Look it up</a>` : ''}
+            <a href="${mapsLink(item)}" target="_blank" rel="noopener">Directions</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }
+
   function renderEat() {
+    const modeBar = `<div class="mode mode-wide" id="eat-mode">
+      ${EAT_MODES.map(([k, e, label, sub]) =>
+        `<button class="mode-btn ${EAT_MODE === k ? 'on' : ''}" data-eatmode="${k}">
+          <span class="mode-emoji">${e}</span> ${label}
+          <em>${esc(sub)}</em>
+        </button>`).join('')}
+    </div>`;
+
+    return modeBar + (EAT_MODE === 'missions' ? renderMissions() : renderEatCategory());
+  }
+
+  function renderMissions() {
     const missions = D.food.items || [];
 
     const moodBar = `<div class="moods" id="mood-row">
@@ -807,46 +851,39 @@ const App = (() => {
       </div>
     </div>`;
 
-    const matching = MOOD
-      ? missions.filter(m => (m.moods || []).includes(MOOD))
-      : missions;
-
+    const matching = MOOD ? missions.filter(m => (m.moods || []).includes(MOOD)) : missions;
     const ranked = Rank.rank(matching.length ? matching : missions, CTX);
     const lead = ranked[0];
     const others = ranked.slice(1);
-
-    /* The directory still exists — but under the missions, not instead of them. */
-    const edible = i => ['bakery', 'cafe', 'market'].includes(i.type);
-    const groups = [
-      ['Coffee',   i => i.type === 'cafe'],
-      ['Bakeries', i => i.type === 'bakery'],
-      ['Markets',  i => i.type === 'market']
-    ];
-    const taken = new Set();
-    const directory = groups.map(([name, test]) => {
-      const items = Rank.rank(ALL, CTX, i => !taken.has(i.id) && edible(i) && test(i));
-      items.forEach(i => taken.add(i.id));
-      if (!items.length) return '';
-      return `<div class="list-group"><h3>${name}</h3>${rows(items, null, true)}</div>`;
-    }).join('');
-
-    const foodQuests = (D.quests.items || []).filter(q =>
-      /croissant|cheese|patisserie|chocolat|bakeries|coffee|market/i.test(q.id));
 
     return moodBar
       + (lead ? missionCard(lead, true) : '')
       + (others.length
           ? stripHead('More missions', 'Pick one and actually do it')
             + `<div class="missions">${others.map(m => missionCard(m)).join('')}</div>`
-          : '')
-      + (foodQuests.length
-          ? stripHead('Food quests', 'Long games — progress saves in this browser')
-            + `<div class="quests">${foodQuests.map(questCard).join('')}</div>`
-          : '')
-      + stripHead('Or just the names', 'For when you do not want a project')
-      + directory;
+          : '');
   }
 
+  function renderEatCategory() {
+    const [, emoji, label, , type, questId] = EAT_MODES.find(m => m[0] === EAT_MODE);
+    const items = Rank.rank(ALL, CTX, i => i.type === type);
+    if (!items.length) return `<p class="empty">Nothing here yet.</p>`;
+
+    const lead = items.find(hasRealPhoto) || items[0];
+    const rest = items.filter(i => i.id !== lead.id);
+
+    const KICKERS = {
+      cafe:       'Start here — the one to try first',
+      bakery:     'Start here — the one to try first',
+      restaurant: 'Start here — the one to book first',
+      market:     'Start here — the one to go to first'
+    };
+
+    return featured(lead, KICKERS[EAT_MODE] || 'Start here')
+      + stripHead(`All ${label.toLowerCase()}`, `${items.length} of them, nearest first by score`)
+      + rows(rest, null, true)
+      + (questId ? questBlock(questId) : '');
+  }
   /* ---------- quests ----------
      A checklist is not an achievement. These get a progress ring, a
      completion state, and — for the arrondissements — a map, because
@@ -1251,6 +1288,14 @@ const App = (() => {
       const k = b.dataset.intent;
       if (SPORT_INTENT.has(k)) SPORT_INTENT.delete(k); else SPORT_INTENT.add(k);
       render();
+    });
+
+    // Eat: prominent subsections
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-eatmode]'); if (!b) return;
+      EAT_MODE = b.dataset.eatmode;
+      render();
+      window.scrollTo({ top: $('#main').offsetTop - 60, behavior: 'smooth' });
     });
 
     // Eat: mood chooser — clicking the active one clears it
