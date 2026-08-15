@@ -321,12 +321,16 @@ const App = (() => {
     </a>`;
   }
 
-  function row(item) {
+  function row(item, thumb = false) {
     const bits = [];
     if (item.area) bits.push(esc(item.area));
     if (item.priceNote) bits.push(esc(item.priceNote));
     else if (!item.price) bits.push('Free');
-    return `<div class="row ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
+    const pic = thumb && item.image
+      ? `<div class="row-thumb">${img(item, '96px', 'loaded')}</div>`
+      : (thumb ? `<div class="row-thumb ph"><span class="e">${item.emoji || '·'}</span></div>` : '');
+    return `<div class="row ${thumb ? 'has-thumb' : ''} ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
+      ${pic}
       <h3 class="row-name">${esc(item.title)}${isRomantic(item) ? ' <span class="duo" title="Romantic">♥</span>' : ''}</h3>
       <span class="row-dist">${item.minutesFromHome != null ? `${item.minutesFromHome} min` : ''}</span>
       <p class="row-meta">${bits.join(' · ')}</p>
@@ -335,8 +339,8 @@ const App = (() => {
     </div>`;
   }
 
-  const rows = (items, empty) => items.length
-    ? `<div class="list">${items.map(row).join('')}</div>`
+  const rows = (items, empty, thumb = false) => items.length
+    ? `<div class="list">${items.map(i => row(i, thumb)).join('')}</div>`
     : `<p class="empty">${esc(empty || 'Nothing here right now.')}</p>`;
 
   const hasStops = i => Array.isArray(i.stops) && i.stops.length > 0;
@@ -619,8 +623,11 @@ const App = (() => {
       + (allRuns.length
           ? stripHead('Run Paris', 'From your door, and getting longer')
             + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
-            + (plainRuns.length ? rows(plainRuns) : '')
-          : '');
+            + (plainRuns.length ? rows(plainRuns, null, true) : '')
+          : '')
+      + stripHead('Everything you could play', 'The whole list, with distances')
+      + rows(Rank.rank(play, CTX, i => i.type === 'play'), null, true)
+      + questBlock('quest-play');
   }
 
   function renderWatch(sports) {
@@ -658,7 +665,18 @@ const App = (() => {
             + `<div class="fixtures">${rest.map(fixtureRow).join('')}</div>`
           : '')
       + stripHead('Where sport happens', 'Fixtures change weekly — the link goes to the club')
-      + rows(Rank.rank(watch, CTX));
+      + rows(Rank.rank(watch, CTX), null, true)
+      + questBlock('quest-watch');
+  }
+
+  /* Pull one quest out of quests.json and show it where it is relevant,
+     rather than making them walk to the Quests tab to find it. */
+  function questBlock(id) {
+    const q = (D.quests.items || []).find(x => x.id === id);
+    if (!q) return '';
+    Store.seedQuest(q.id, q.preCompleted);
+    return stripHead('Keep score', 'Progress saves in this browser')
+      + `<div class="quests one">${questCard(q)}</div>`;
   }
   /* ---------- weekend ---------- */
 
@@ -809,7 +827,7 @@ const App = (() => {
       const items = Rank.rank(ALL, CTX, i => !taken.has(i.id) && edible(i) && test(i));
       items.forEach(i => taken.add(i.id));
       if (!items.length) return '';
-      return `<div class="list-group"><h3>${name}</h3>${rows(items)}</div>`;
+      return `<div class="list-group"><h3>${name}</h3>${rows(items, null, true)}</div>`;
     }).join('');
 
     const foodQuests = (D.quests.items || []).filter(q =>
@@ -829,18 +847,93 @@ const App = (() => {
       + directory;
   }
 
-  /* Shared so Eat and Quests render the same thing. */
-  function questCard(q) {
-    const done = Store.questDone(q.id);
-    const pct = Math.round(done.length / q.targets.length * 100);
-    return `<div class="quest" data-quest="${esc(q.id)}">
-      <div class="qtop"><h3>${q.emoji || ''} ${esc(q.title)}</h3><span class="qn">${done.length}/${q.targets.length}</span></div>
-      <p>${esc(q.description)}</p>
-      <div class="bar-track"><span style="width:${pct}%"></span></div>
-      <div class="targets">${q.targets.map(t =>
-        `<button type="button" class="target ${done.includes(t) ? 'on' : ''}" data-target="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+  /* ---------- quests ----------
+     A checklist is not an achievement. These get a progress ring, a
+     completion state, and — for the arrondissements — a map, because
+     Paris spirals outward from the 1st like a snail shell and watching
+     that shell fill in is a far better reward than a counter. */
+
+  /* Approximate centroids of the twenty arrondissements, normalised to a
+     100×100 box. Not survey-accurate, but the spiral is the point. */
+  const ARR_MAP = {
+    1:[47,50],  2:[46,42],  3:[54,44],  4:[54,54],  5:[50,63],
+    6:[42,59],  7:[32,55],  8:[36,40],  9:[45,34],  10:[57,34],
+    11:[65,48], 12:[72,61], 13:[56,72], 14:[42,72], 15:[28,64],
+    16:[17,50], 17:[27,30], 18:[46,22], 19:[67,25], 20:[73,40]
+  };
+  /* The middle of Paris is genuinely cramped, so push everything out from the
+     centre a little — otherwise the 1st through 4th sit on top of each other. */
+  const SPREAD = 1.3, CX = 50, CY = 52;
+  const spread = ([x, y]) => [CX + (x - CX) * SPREAD, CY + (y - CY) * SPREAD];
+
+  function progressRing(pct) {
+    const r = 15, c = 2 * Math.PI * r;
+    return `<svg class="ring" viewBox="0 0 36 36" aria-hidden="true">
+      <circle class="ring-bg" cx="18" cy="18" r="${r}"></circle>
+      <circle class="ring-fg" cx="18" cy="18" r="${r}"
+        stroke-dasharray="${c}" stroke-dashoffset="${c * (1 - pct / 100)}"></circle>
+    </svg>`;
+  }
+
+  /* The arrondissement quest gets a map instead of a list of chips. */
+  const arrLabel = (q, num) =>
+    (q.targets || []).find(t => new RegExp('^' + num + '(st|nd|rd|th)\\b').test(t)) || String(num);
+
+  /* One source of truth: an arrondissement is done if it is in Store.arrs().
+     Home counts. */
+  const arrDone = num => num === 10 || Store.hasArr(num);
+  const arrCount = () => new Set([10, ...Store.arrs()]).size;
+
+  function arrMap(q) {
+    const dots = Object.entries(ARR_MAP).map(([n, xy]) => {
+      const num = Number(n);
+      const [x, y] = spread(xy);
+      const isHome = num === 10;
+      return `<g class="arr-dot ${arrDone(num) ? 'on' : ''} ${isHome ? 'home' : ''}"
+                 data-target="${esc(arrLabel(q, num))}" data-arrnum="${num}"
+                 transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">
+        <circle r="5"></circle>
+        <text y="1.7">${num}</text>
+        <title>${esc(arrLabel(q, num))}</title>
+      </g>`;
+    }).join('');
+
+    return `<div class="arr-map-wrap">
+      <svg class="arr-map" viewBox="2 6 84 78" role="group" aria-label="Arrondissements explored">
+        <path class="seine" d="M4,58 C26,50 36,63 50,58 C64,53 76,63 92,52" />
+        ${dots}
+      </svg>
+      <p class="arr-map-note">Tap one as you do it. The 10th is home, so that one is free.</p>
     </div>`;
   }
+
+  function questCard(q) {
+    const isMap = q.id === 'quest-arrondissements';
+    const done = Store.questDone(q.id);
+    const total = q.targets.length;
+    const count = isMap ? arrCount() : done.length;
+    const pct = Math.round(count / total * 100);
+    const complete = count >= total;
+
+    return `<div class="quest ${complete ? 'complete' : ''} ${isMap ? 'is-map' : ''}" data-quest="${esc(q.id)}">
+      <div class="qtop">
+        <div class="qhead">
+          <h3><span class="e">${q.emoji || ''}</span>${esc(q.title)}</h3>
+          <p class="qdesc">${esc(q.description)}</p>
+        </div>
+        <div class="qprog" title="${count} of ${total}">
+          ${progressRing(pct)}
+          <span class="qn">${count}<span class="qn-total">/${total}</span></span>
+        </div>
+      </div>
+      ${complete ? `<p class="qdone">✦ Finished. Pick another one.</p>` : ''}
+      ${isMap
+        ? arrMap(q)
+        : `<div class="targets">${q.targets.map(t =>
+            `<button type="button" class="target ${done.includes(t) ? 'on' : ''}" data-target="${esc(t)}">${esc(t)}</button>`).join('')}</div>`}
+    </div>`;
+  }
+
   /* ---------- explore ---------- */
 
   function exploreLede() {
@@ -1020,6 +1113,18 @@ const App = (() => {
     $('#stamp').textContent = D.events.generated ? `Event data generated ${D.events.generated}.` : '';
   }
 
+  /* Finishing a quest is the only real achievement here — say so. */
+  function celebrate(qid, before, after) {
+    const q = (D.quests.items || []).find(x => x.id === qid);
+    if (!q) return;
+    if (after === q.targets.length && before < after) {
+      toast(`✦ ${q.title} complete — all ${q.targets.length} done`);
+    } else if (after > before) {
+      const left = q.targets.length - after;
+      toast(left ? `${after} of ${q.targets.length} · ${left} to go` : 'Done');
+    }
+  }
+
   /* ---------- toast ---------- */
 
   let tt;
@@ -1180,7 +1285,23 @@ const App = (() => {
     // quests
     document.addEventListener('click', e => {
       const t = e.target.closest('.target'); if (!t) return;
-      Store.toggleQuest(t.closest('[data-quest]').dataset.quest, t.dataset.target);
+      const qid = t.closest('[data-quest]').dataset.quest;
+      const before = Store.questDone(qid).length;
+      const after = Store.toggleQuest(qid, t.dataset.target).length;
+      celebrate(qid, before, after);
+      render();
+    });
+
+    // the arrondissement map — one tap marks it in the quest and in Explore
+    document.addEventListener('click', e => {
+      const g = e.target.closest('.arr-dot'); if (!g) return;
+      const n = Number(g.dataset.arrnum);
+      if (n === 10) { toast('The 10th is home. That one is free.'); return; }
+      const before = arrCount();
+      Store.toggleArr(n);
+      const after = arrCount();
+      celebrate(g.closest('[data-quest]').dataset.quest, before, after);
+      buildContext();
       render();
     });
 

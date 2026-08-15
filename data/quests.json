@@ -277,6 +277,42 @@
         "Table tennis",
         "Outdoor yoga"
       ]
+    },
+    {
+      "id": "quest-play",
+      "title": "Play Quest",
+      "emoji": "🏃",
+      "kind": "play",
+      "description": "Ten sports played, not watched. One a month and you are done by next summer.",
+      "targets": [
+        "Padel",
+        "Pickleball",
+        "Bouldering",
+        "Kayak on the canal",
+        "parkrun 5K",
+        "Swim in the Seine",
+        "Olympic Aquatics Centre",
+        "Municipal tennis",
+        "Table tennis in a park",
+        "Ice skating"
+      ]
+    },
+    {
+      "id": "quest-watch",
+      "title": "Watch Quest",
+      "emoji": "🏟️",
+      "kind": "watch",
+      "description": "Eight different sports seen live. The unusual ones count double, morally.",
+      "targets": [
+        "Football at Red Star",
+        "Ligue 1 at Paris FC",
+        "Rugby at Stade de France",
+        "Basketball at the Adidas Arena",
+        "Tennis at Roland-Garros",
+        "Horse racing at Vincennes",
+        "Gymnastics at Bercy",
+        "A road race from the pavement"
+      ]
     }
   ]
 }

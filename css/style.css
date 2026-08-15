@@ -949,3 +949,110 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
 
 /* Emoji sit tight against following text in most system fonts. */
 .e { margin-right: .38em; }
+
+/* =========================================================
+   QUESTS — progress you can see
+
+   A checklist is not an achievement. Ring, count, completion
+   state, and a map for the arrondissements, because Paris
+   spirals outward from the 1st and watching that fill in beats
+   watching a number go up.
+   ========================================================= */
+
+.quests.one { grid-template-columns: 1fr; }
+
+.quest { position: relative; }
+.qtop { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.2rem; }
+.qhead { flex: 1; min-width: 0; }
+.qdesc { font-size: .84rem; color: var(--faint); margin: .25rem 0 .9rem; }
+
+.qprog { position: relative; flex: 0 0 auto; width: 3.1rem; height: 3.1rem; display: grid; place-items: center; }
+.ring { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring-bg, .ring-fg { fill: none; stroke-width: 2.6; }
+.ring-bg { stroke: var(--line); }
+.ring-fg {
+  stroke: var(--accent); stroke-linecap: round;
+  transition: stroke-dashoffset .5s cubic-bezier(.3,.8,.3,1);
+}
+.qn { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); line-height: 1; }
+.qn-total { font-size: .68rem; color: var(--faint); }
+
+.quest.complete { border-color: var(--accent); }
+.quest.complete .ring-fg { stroke: var(--accent); }
+.qdone {
+  margin: 0 0 .8rem; font-size: .8rem; letter-spacing: .06em;
+  color: var(--accent); font-weight: 600;
+}
+
+.target.on {
+  border-color: var(--accent); color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  text-decoration: none; opacity: 1;
+}
+.target.on::before { content: '✓ '; }
+
+/* ---------- the arrondissement map ---------- */
+
+.quest.is-map { grid-column: 1 / -1; }
+.arr-map-wrap { margin-top: .4rem; }
+.arr-map {
+  width: 100%; max-width: 30rem; height: auto; display: block; margin: 0 auto;
+  overflow: visible;
+}
+.seine {
+  fill: none;
+  stroke: color-mix(in srgb, var(--blue, #35566e) 45%, transparent);
+  stroke-width: 2.4; stroke-linecap: round;
+  opacity: .5;
+}
+.arr-dot { cursor: pointer; }
+.arr-dot circle {
+  fill: var(--card); stroke: var(--line); stroke-width: .9;
+  transition: fill .25s, stroke .25s, transform .25s;
+}
+.arr-dot text {
+  font-family: var(--sans); font-size: 4.4px; font-weight: 600;
+  text-anchor: middle; fill: var(--faint);
+  transition: fill .25s; pointer-events: none;
+}
+.arr-dot:hover circle { stroke: var(--accent); }
+.arr-dot.on circle { fill: var(--accent); stroke: var(--accent); }
+.arr-dot.on text { fill: var(--bg); }
+.arr-dot.home circle { fill: var(--gold); stroke: var(--gold); }
+.arr-dot.home text { fill: var(--bg); }
+.arr-map-note {
+  text-align: center; margin: .9rem 0 0;
+  font-size: .76rem; color: var(--faint);
+}
+
+/* =========================================================
+   ROW THUMBNAILS
+   Cafés have no photograph of their own, but they do have a
+   street — and at 64px a street reads as texture rather than
+   as a claim about the shopfront.
+   ========================================================= */
+
+.row.has-thumb {
+  grid-template-columns: 4rem 1fr auto;
+  gap: .1rem .95rem;
+  align-items: start;
+}
+.row-thumb {
+  grid-row: 1 / span 3;
+  width: 4rem; height: 4rem;
+  border-radius: 8px; overflow: hidden;
+  background: var(--img-bg);
+  display: grid; place-items: center;
+}
+.row-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.row-thumb.ph .e { font-size: 1.3rem; opacity: .45; margin: 0; }
+.row.has-thumb .row-name  { grid-column: 2; }
+.row.has-thumb .row-dist  { grid-column: 3; grid-row: 1; }
+.row.has-thumb .row-meta  { grid-column: 2 / -1; }
+.row.has-thumb .row-why   { grid-column: 2 / -1; }
+.row.has-thumb .detail    { grid-column: 1 / -1; }
+
+@media (max-width: 560px) {
+  .row.has-thumb { grid-template-columns: 3.2rem 1fr auto; }
+  .row-thumb { width: 3.2rem; height: 3.2rem; }
+}

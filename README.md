@@ -135,6 +135,20 @@ three candidates with what to order at each, and where to go afterwards. The
 café-and-bakery directory still exists underneath, for when you just want a
 name — but it is no longer the whole section.
 
+### Quests
+
+A checklist is not an achievement, so quests carry a progress ring, a
+completion state, and — for the arrondissements — a map. Paris spirals
+outward from the 1st like a snail shell, so the twenty dots are laid out on
+their real relative positions (spread 30% from the centre, or the 1st through
+4th sit on top of each other) with the Seine drawn through. Tapping a dot
+marks it, and because progress for that quest is derived from `Store.arrs()`
+rather than a separate list, the map, the ring and the Explore tab can never
+disagree.
+
+Play and Watch each have their own quest, surfaced inside the Sport section
+rather than buried in the Quests tab.
+
 ### Pairings
 
 Every card can carry `pairings` — the "what could we do before and after
