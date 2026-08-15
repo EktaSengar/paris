@@ -1021,6 +1021,238 @@
       "imageSubject": "Paris Expo Porte de Versailles",
       "imageCredit": "Wikimedia Commons",
       "imageKind": "context"
+    },
+    {
+      "id": "jazz-a-la-villette-2026",
+      "title": "Jazz à la Villette",
+      "emoji": "🎺",
+      "type": "event",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "culture"
+      ],
+      "arr": 19,
+      "area": "Parc de la Villette · Philharmonie, Trabendo, Grande Halle",
+      "price": 30,
+      "priceNote": "Most concerts €20–40 · some free",
+      "start": "2026-08-28",
+      "end": "2026-09-06",
+      "times": "Evenings, most starting 20:00",
+      "durationMin": 180,
+      "minutesFromHome": 22,
+      "transit": "M5 to Porte de Pantin — twenty minutes, no changes",
+      "why": "The best thing in this whole guide for the next fortnight, and it happens to be twenty minutes up line 5. Ten days of jazz, soul, funk and hip-hop across the Villette venues. This year: Snarky Puppy with the Metropole Orkest, GoGo Penguin, Selah Sue, Cymande, Kokoroko, Emma-Jean Thackray, and Roberto Fonseca with Vincent Segal. Book now — the Philharmonie nights go first, and the cheap upper tiers there are genuinely good seats.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "culture",
+        "weekend"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "couple",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "La Villette / Jazz à la Villette",
+      "url": "https://jazzalavillette.com/en/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg/500px-Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg",
+      "imageSubject": "Grande halle de la Villette",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "techno-parade-2026",
+      "title": "Techno Parade",
+      "emoji": "🔊",
+      "type": "event",
+      "categories": [
+        "nightlife",
+        "music",
+        "dance",
+        "free",
+        "outdoor"
+      ],
+      "arr": null,
+      "area": "Through the streets of Paris",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2026-09-19",
+      "end": "2026-09-19",
+      "days": [
+        6
+      ],
+      "times": "Floats leave around midday, finishes ~19:00–20:00",
+      "durationMin": 300,
+      "minutesFromHome": 15,
+      "transit": "Walk to the route — it usually passes close to République",
+      "why": "A dozen sound systems on lorries and several hundred thousand people dancing through the middle of Paris on a Saturday afternoon, for free. It is not subtle and it is not for everyone, but it is one of the few days the city gives its streets over completely. The route generally comes near République, so you can join for an hour and walk home. Note it clashes with the heritage weekend.",
+      "goodFor": [
+        "weekend",
+        "music",
+        "dance",
+        "free",
+        "outdoor",
+        "unusual",
+        "socialize"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "outdoor",
+        "unusual",
+        "weekend"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "source": "Technopol",
+      "url": "https://www.technoparade.fr/",
+      "lastVerified": "2026-08-15"
+    },
+    {
+      "id": "lauryn-hill-bercy-2026",
+      "title": "Lauryn Hill — Accor Arena",
+      "emoji": "🎤",
+      "type": "event",
+      "categories": [
+        "nightlife",
+        "music"
+      ],
+      "arr": 12,
+      "area": "Accor Arena, Bercy",
+      "price": 70,
+      "priceNote": "From ~€55",
+      "start": "2026-09-02",
+      "end": "2026-09-02",
+      "times": "Doors 19:00",
+      "durationMin": 210,
+      "minutesFromHome": 30,
+      "transit": "M5 direct to Bercy — no changes from home",
+      "why": "Ms Lauryn Hill at Bercy, with YG Marley and Zion Marley supporting. She tours rarely and cancels sometimes, so this is a real one. Line 5 goes straight there from your street, which makes the trip home after an arena show far less grim than usual.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "couple",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "source": "Sortiraparis / Accor Arena",
+      "url": "https://www.accorarena.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Palais_Omnisports_de_Paris-Bercy_2007.jpg/500px-Palais_Omnisports_de_Paris-Bercy_2007.jpg",
+      "imageSubject": "Accor Arena",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "ayo-cigale-2026",
+      "title": "Ayo — La Cigale",
+      "emoji": "🎸",
+      "type": "event",
+      "categories": [
+        "nightlife",
+        "music"
+      ],
+      "arr": 18,
+      "area": "La Cigale, boulevard de Rochechouart",
+      "price": 40,
+      "priceNote": "~€35–45",
+      "start": "2026-09-14",
+      "end": "2026-09-14",
+      "times": "Doors 19:30",
+      "durationMin": 150,
+      "minutesFromHome": 20,
+      "transit": "M2 to Pigalle or Anvers",
+      "why": "Soul and folk in the loveliest mid-size hall in Paris — La Cigale is an 1887 theatre with a balcony, and it is small enough that the balcony is worth having. Twenty minutes from home and the sort of evening where you can walk down through Pigalle for a drink afterwards.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "romantic"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "romantic",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "source": "Sortiraparis / La Cigale",
+      "url": "https://www.lacigale.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
+      "imageSubject": "La Cigale",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "yemi-alade-cigale-2026",
+      "title": "Yemi Alade — La Cigale",
+      "emoji": "🪘",
+      "type": "event",
+      "categories": [
+        "nightlife",
+        "music",
+        "dance"
+      ],
+      "arr": 18,
+      "area": "La Cigale, boulevard de Rochechouart",
+      "price": 40,
+      "priceNote": "~€35–45",
+      "start": "2026-09-26",
+      "end": "2026-09-26",
+      "times": "Doors 19:30",
+      "durationMin": 150,
+      "minutesFromHome": 20,
+      "transit": "M2 to Pigalle or Anvers",
+      "why": "One of the biggest Afrobeats voices in the world, in a room that holds barely a thousand. Nobody sits down. If you want a night that is pure dancing without going to a club at midnight, this is it.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "dance",
+        "socialize"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "source": "Sortiraparis / La Cigale",
+      "url": "https://www.lacigale.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
+      "imageSubject": "La Cigale",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

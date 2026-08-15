@@ -104,6 +104,37 @@ const QUERIES = {
   'marais-design-crawl': 'Le Marais',
   'vanves-flea-sunday': 'Vanves',
 
+  // nightlife
+  'new-morning': '10e arrondissement de Paris',
+  'point-ephemere': 'Point Éphémère',
+  'duc-des-lombards': 'Rue des Lombards',
+  'caveau-huchette': 'Caveau de la Huchette',
+  'cafe-universel': 'Rue Saint-Jacques (Paris)',
+  'supersonic': 'Place de la Bastille',
+  'la-maroquinerie': 'La Maroquinerie',
+  'la-bellevilloise': 'La Bellevilloise',
+  'philharmonie-paris': 'Parc de la Villette',
+  'la-java': 'Rue du Faubourg-du-Temple',
+  'rex-club': 'Boulevard Poissonnière',
+  'la-machine-moulin-rouge': 'Moulin Rouge',
+  'le-verre-vole': 'Rue de Lancry',
+  'le-syndicat': 'Rue du Faubourg-Saint-Denis',
+  'combat': 'Rue de Belleville',
+  'little-red-door': 'Rue Charlot',
+  'candelaria': 'Rue de Saintonge',
+  'la-buvette': 'Rue Saint-Maur',
+  'moonshiner': 'Rue Sedaine',
+  'le-petit-bain': 'Quai de la Gare',
+
+  // night events and routes
+  'jazz-a-la-villette-2026': 'Grande halle de la Villette',
+  'techno-parade-2026': 'Techno Parade',
+  'lauryn-hill-bercy-2026': 'Accor Arena',
+  'ayo-cigale-2026': 'La Cigale',
+  'yemi-alade-cigale-2026': 'La Cigale',
+  'night-faubourg-saint-denis': 'Rue du Faubourg-Saint-Denis',
+  'night-jazz-lombards': 'Rue des Lombards',
+
   // day trips
   'chantilly': 'Château de Chantilly',
   'reims-champagne': 'Cathédrale Notre-Dame de Reims',
@@ -138,10 +169,16 @@ const CONTEXT_ONLY = new Set([
   'nuits-des-etoiles-parks-2026', 'marcounet-guinguette-2026', 'journees-du-patrimoine-2026',
   'canal-saturday-morning', 'rainy-day-passages', 'sunday-aligre-coulee-verte',
   'sunset-belleville', 'explore-the-13th', 'villette-full-day', 'buttes-mouzaia',
-  'marais-design-crawl', 'esports-world-cup-paris-2026', 'grand-palais-hilma-af-klint-2026'
+  'marais-design-crawl', 'esports-world-cup-paris-2026', 'grand-palais-hilma-af-klint-2026',
+  'new-morning', 'duc-des-lombards', 'cafe-universel', 'supersonic', 'la-java',
+  'rex-club', 'la-machine-moulin-rouge', 'le-verre-vole', 'le-syndicat', 'combat',
+  'little-red-door', 'candelaria', 'la-buvette', 'moonshiner',
+  'lauryn-hill-bercy-2026', 'ayo-cigale-2026', 'yemi-alade-cigale-2026',
+  'night-faubourg-saint-denis', 'night-jazz-lombards',
+  'philharmonie-paris', 'le-petit-bain'
 ]);
 
-const FILES = ['events.json', 'places.json', 'itineraries.json', 'daytrips.json'];
+const FILES = ['events.json', 'places.json', 'nightlife.json', 'itineraries.json', 'daytrips.json'];
 const WIKIS = ['fr', 'en'];
 const BATCH = 20;          // the API takes up to 50 titles; 20 keeps URLs sane
 const clean = u => u ? u.split('?')[0] : u;

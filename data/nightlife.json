@@ -1,0 +1,876 @@
+{
+  "generated": "2026-08-15",
+  "note": "Evergreen night places — jazz rooms, live venues, clubs and bars. These do not expire, but programmes change nightly: the link goes to the venue's own calendar. Dated concerts live in events.json instead, so nothing here can go stale.",
+  "items": [
+    {
+      "id": "new-morning",
+      "title": "New Morning",
+      "emoji": "🎷",
+      "type": "jazz",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "culture"
+      ],
+      "arr": 10,
+      "area": "7–9 rue des Petites Écuries",
+      "price": 25,
+      "priceNote": "€20–35 depending on the act",
+      "durationMin": 180,
+      "minutesFromHome": 9,
+      "transit": "Walk — it is your local, which is absurd",
+      "times": "Doors ~20:00, music ~21:00, most nights",
+      "why": "One of the great jazz rooms in Europe and it is a nine-minute walk from your flat. Chet Baker, Nina Simone and Prince have all played this scruffy converted printworks. No table service, no dress code, no reverence — you stand or grab a plastic chair. Look at what is on before you look anywhere else; the booking is consistently better than the room deserves.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "culture",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.newmorning.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Paris_gare_du_nord_4_bis.JPG/500px-Paris_gare_du_nord_4_bis.JPG",
+      "imageSubject": "10e arrondissement de Paris",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "point-ephemere",
+      "title": "Point Éphémère",
+      "emoji": "🎸",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music",
+        "art"
+      ],
+      "arr": 10,
+      "area": "200 quai de Valmy, on the canal",
+      "price": 12,
+      "priceNote": "Concerts €10–20 · bar and terrace free",
+      "durationMin": 180,
+      "minutesFromHome": 10,
+      "transit": "Walk up the canal",
+      "times": "Bar from midday, concerts most evenings",
+      "why": "A concrete canal-side warehouse that is a bar, a gallery, artists' studios and a small concert hall at once. The terrace on the water is the reason to go in summer even if you never make it inside for the music. Ten minutes from home and full of people who live here rather than people visiting.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "spontaneous",
+        "outdoor"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "cheap"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://pointephemere.org/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Point_Eph%C3%A9m%C3%A8re_2009.jpg/500px-Point_Eph%C3%A9m%C3%A8re_2009.jpg",
+      "imageSubject": "Point Éphémère",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "duc-des-lombards",
+      "title": "Duc des Lombards",
+      "emoji": "🎺",
+      "type": "jazz",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "culture"
+      ],
+      "arr": 1,
+      "area": "42 rue des Lombards",
+      "price": 30,
+      "priceNote": "€25–40 · dinner sets cost more",
+      "durationMin": 150,
+      "minutesFromHome": 20,
+      "transit": "M4 to Châtelet",
+      "times": "Two sets a night, usually 19:30 and 21:30",
+      "why": "The most serious jazz club in Paris — small, red, properly mic'd, and the musicians can hear themselves, which is rarer than it should be. Book the late set and ask for a seat at the front; the room only holds about a hundred. Rue des Lombards has three good clubs on one short street, so if this one is sold out you have not wasted the trip.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "culture",
+        "romantic"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "romantic",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.ducdeslombards.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg/500px-Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg",
+      "imageSubject": "Rue des Lombards",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "caveau-huchette",
+      "title": "Caveau de la Huchette",
+      "emoji": "💃",
+      "type": "jazz",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "dance",
+        "unusual"
+      ],
+      "arr": 5,
+      "area": "5 rue de la Huchette",
+      "price": 16,
+      "priceNote": "~€14–18 entry",
+      "durationMin": 180,
+      "minutesFromHome": 25,
+      "transit": "M4 to Saint-Michel",
+      "times": "Nightly from 21:00, later at weekends",
+      "why": "A medieval cellar — genuinely 16th-century, once a revolutionary tribunal — where a swing band plays every single night and the floor fills with people who can really dance. Nobody minds if you cannot; half the room is learning. It is the club from the end of La La Land. Go late, go on a weeknight when it is locals rather than a queue.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "dance",
+        "unusual",
+        "romantic"
+      ],
+      "indoor": true,
+      "labels": [
+        "romantic",
+        "couple",
+        "afterwork",
+        "unusual",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.caveaudelahuchette.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Le_Caveau_de_la_Huchette.jpg/500px-Le_Caveau_de_la_Huchette.jpg",
+      "imageSubject": "Caveau de la Huchette",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "cafe-universel",
+      "title": "Café Universel",
+      "emoji": "🎹",
+      "type": "jazz",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "free"
+      ],
+      "arr": 5,
+      "area": "267 rue Saint-Jacques",
+      "price": 0,
+      "priceNote": "Free entry · you buy a drink",
+      "durationMin": 150,
+      "minutesFromHome": 28,
+      "transit": "RER B to Luxembourg",
+      "times": "Live music most nights from ~21:00, closed Sundays",
+      "why": "Live jazz every night for the price of a beer, in a student-quarter bar with no attitude whatsoever. The playing is often students and young professionals from the conservatoires, which means it is uneven and occasionally extraordinary. The best free night out in Paris if you do not mind standing.",
+      "goodFor": [
+        "evening",
+        "music",
+        "free",
+        "cheap",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [
+        "free",
+        "hiddengem",
+        "afterwork",
+        "cheap",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.cafeuniversel.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Paris_75005_Rue_Saint-Jacques_La_Sorbonne_facade_01c.jpg/500px-Paris_75005_Rue_Saint-Jacques_La_Sorbonne_facade_01c.jpg",
+      "imageSubject": "Rue Saint-Jacques (Paris)",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "supersonic",
+      "title": "Supersonic",
+      "emoji": "🤘",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music",
+        "free"
+      ],
+      "arr": 12,
+      "area": "9 rue Biscornet, behind Bastille",
+      "price": 0,
+      "priceNote": "Free entry, every night",
+      "durationMin": 180,
+      "minutesFromHome": 22,
+      "transit": "M1/M5/M8 to Bastille",
+      "times": "Concerts nightly, then DJs until 05:00 at weekends",
+      "why": "Free live music every single night, and then it turns into a club until five. Rock, garage, indie, occasionally very loud. You will not know any of the bands and that is the point — turn up at 21:00, stay if the second one is good. It costs nothing, so a bad night costs you nothing either.",
+      "goodFor": [
+        "evening",
+        "music",
+        "free",
+        "spontaneous",
+        "socialize"
+      ],
+      "indoor": true,
+      "days": [
+        3,
+        4,
+        5,
+        6,
+        0,
+        1,
+        2
+      ],
+      "labels": [
+        "free",
+        "afterwork",
+        "hiddengem",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.supersonic-club.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Place_de_la_Bastille%2C_Paris_25_April_2020.jpg/500px-Place_de_la_Bastille%2C_Paris_25_April_2020.jpg",
+      "imageSubject": "Place de la Bastille",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-maroquinerie",
+      "title": "La Maroquinerie",
+      "emoji": "🎤",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music"
+      ],
+      "arr": 20,
+      "area": "23 rue Boyer, Ménilmontant",
+      "price": 22,
+      "priceNote": "€18–28",
+      "durationMin": 180,
+      "minutesFromHome": 22,
+      "transit": "M3 to Gambetta",
+      "times": "Doors 19:30, most nights",
+      "why": "The best-sounding mid-size room in Paris and the one where bands play the year before they sell out the Cigale. Five hundred people, a brick vault, and a leafy terrace where everyone spills out between sets. Worth going on the strength of the venue alone — check the listing and buy blind.",
+      "goodFor": [
+        "evening",
+        "music",
+        "couple",
+        "socialize"
+      ],
+      "indoor": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.lamaroquinerie.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TARLD_%C3%A0_La_Maroquinerie_de_Paris_le_10_mars_2015.jpg/500px-TARLD_%C3%A0_La_Maroquinerie_de_Paris_le_10_mars_2015.jpg",
+      "imageSubject": "La Maroquinerie",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-bellevilloise",
+      "title": "La Bellevilloise",
+      "emoji": "🥂",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music",
+        "food"
+      ],
+      "arr": 20,
+      "area": "19–21 rue Boyer",
+      "price": 18,
+      "priceNote": "Concerts €15–30 · jazz brunch ~€30",
+      "durationMin": 180,
+      "minutesFromHome": 22,
+      "transit": "M3 to Gambetta",
+      "times": "Concerts most evenings · jazz brunch Sat & Sun",
+      "why": "A former workers' cooperative from 1877, now three floors of concerts, club nights and exhibitions. The thing to know: the weekend jazz brunch under the olive trees in the glass-roofed Halle aux Oliviers is one of the nicest late mornings in Paris, and it is a completely different experience from the same building at midnight. Book the brunch.",
+      "goodFor": [
+        "evening",
+        "music",
+        "couple",
+        "food",
+        "weekend",
+        "socialize"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.labellevilloise.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/La_Bellevilloise.jpg/500px-La_Bellevilloise.jpg",
+      "imageSubject": "La Bellevilloise",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "philharmonie-paris",
+      "title": "Philharmonie de Paris",
+      "emoji": "🎻",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music",
+        "classical",
+        "culture"
+      ],
+      "arr": 19,
+      "area": "221 avenue Jean-Jaurès, Parc de la Villette",
+      "price": 25,
+      "priceNote": "From ~€10 in the upper tiers",
+      "durationMin": 150,
+      "minutesFromHome": 22,
+      "transit": "M5 to Porte de Pantin",
+      "times": "Most evenings, usually 20:00",
+      "why": "A world-class concert hall twenty minutes up line 5, and the cheap seats behind and above the orchestra are the best-value classical tickets in Europe — often €10–15, and acoustically the hall was designed so they are genuinely good rather than merely tolerable. Under-28s get further reductions. Do not be put off by the price of the stalls.",
+      "goodFor": [
+        "evening",
+        "music",
+        "culture",
+        "couple",
+        "cheap"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "cheap",
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://philharmoniedeparis.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/500px-Parc_de_la_Villette%2C_Paris_2010.jpg",
+      "imageSubject": "Parc de la Villette",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-java",
+      "title": "La Java",
+      "emoji": "🪩",
+      "type": "club",
+      "categories": [
+        "nightlife",
+        "music",
+        "dance"
+      ],
+      "arr": 10,
+      "area": "105 rue du Faubourg du Temple",
+      "price": 12,
+      "priceNote": "€8–15",
+      "durationMin": 240,
+      "minutesFromHome": 12,
+      "transit": "Walk, or M11 to Goncourt",
+      "times": "Concerts and club nights, Thu–Sat",
+      "why": "A 1920s dance hall in a cellar under the Belleville market where Piaf and Django Reinhardt both played, now doing cumbia, Balkan brass, disco and everything else. Sweaty, cheap, and one of the very few proper dancing rooms genuinely walkable from your flat. Thursday nights are the local ones.",
+      "goodFor": [
+        "evening",
+        "music",
+        "dance",
+        "cheap",
+        "socialize",
+        "couple"
+      ],
+      "indoor": true,
+      "days": [
+        4,
+        5,
+        6
+      ],
+      "labels": [
+        "cheap",
+        "afterwork",
+        "hiddengem",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.la-java.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/P1040626_Paris_X-XI_rue_du_Faubourg-du-Temple_rwk.jpg/500px-P1040626_Paris_X-XI_rue_du_Faubourg-du-Temple_rwk.jpg",
+      "imageSubject": "Rue du Faubourg-du-Temple",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "rex-club",
+      "title": "Rex Club",
+      "emoji": "🔊",
+      "type": "club",
+      "categories": [
+        "nightlife",
+        "music",
+        "dance"
+      ],
+      "arr": 2,
+      "area": "5 boulevard Poissonnière",
+      "price": 18,
+      "priceNote": "€12–20",
+      "durationMin": 300,
+      "minutesFromHome": 13,
+      "transit": "M8/M9 to Bonne Nouvelle",
+      "times": "Thu–Sat, midnight until 06:00",
+      "why": "The techno club, open since 1988, with a sound system people fly in for. Low ceiling, no photographs, nobody looking at their phone. It is thirteen minutes from home, which means you can leave when you have had enough instead of committing to a night. Doors at midnight — going at 23:00 is a beginner's error.",
+      "goodFor": [
+        "evening",
+        "music",
+        "dance",
+        "socialize"
+      ],
+      "indoor": true,
+      "days": [
+        4,
+        5,
+        6
+      ],
+      "labels": [
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://rexclub.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Grands_Boulevards_P1060155.JPG/500px-Grands_Boulevards_P1060155.JPG",
+      "imageSubject": "Boulevard Poissonnière",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-machine-moulin-rouge",
+      "title": "La Machine du Moulin Rouge",
+      "emoji": "🎛️",
+      "type": "club",
+      "categories": [
+        "nightlife",
+        "music",
+        "dance"
+      ],
+      "arr": 18,
+      "area": "90 boulevard de Clichy",
+      "price": 18,
+      "priceNote": "€12–22",
+      "durationMin": 300,
+      "minutesFromHome": 22,
+      "transit": "M2 to Blanche",
+      "times": "Fri & Sat, late",
+      "why": "Three rooms and a rooftop terrace in the building next door to the actual Moulin Rouge — house and techno downstairs, concerts in the Central, and a bar upstairs to recover in. Bigger and less purist than the Rex, and easier if you want a night where you can also sit down and talk.",
+      "goodFor": [
+        "evening",
+        "music",
+        "dance",
+        "socialize"
+      ],
+      "indoor": true,
+      "days": [
+        5,
+        6
+      ],
+      "labels": [
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "url": "https://www.lamachinedumoulinrouge.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Paris%2C_Moulin_Rouge_--_2014_--_1220.jpg/500px-Paris%2C_Moulin_Rouge_--_2014_--_1220.jpg",
+      "imageSubject": "Moulin Rouge",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "le-verre-vole",
+      "title": "Le Verre Volé",
+      "emoji": "🍷",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "food",
+        "wine"
+      ],
+      "arr": 10,
+      "area": "67 rue de Lancry",
+      "price": 30,
+      "priceNote": "Glasses from €6 · plates €12–20",
+      "durationMin": 120,
+      "minutesFromHome": 6,
+      "transit": "Walk",
+      "why": "The natural wine bar that taught Paris to drink natural wine, and it is six minutes away. A dozen seats, a wall of bottles you can buy to take home at shop prices, and charcuterie that is better than it needs to be. Book, or turn up at 19:00 sharp. This is the one to take people to when they visit.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "food",
+        "spontaneous",
+        "romantic"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "couple",
+        "romantic",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.leverrevole.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Rue_Lancry_-_Paris_X_%28FR75%29_-_2021-06-23_-_1.jpg/500px-Rue_Lancry_-_Paris_X_%28FR75%29_-_2021-06-23_-_1.jpg",
+      "imageSubject": "Rue de Lancry",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "le-syndicat",
+      "title": "Le Syndicat",
+      "emoji": "🍸",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "cocktails"
+      ],
+      "arr": 10,
+      "area": "51 rue du Faubourg Saint-Denis",
+      "price": 14,
+      "priceNote": "Cocktails ~€13–15",
+      "durationMin": 120,
+      "minutesFromHome": 8,
+      "transit": "Walk",
+      "why": "Looks like a derelict shopfront plastered with fly-posters — that is deliberate, and the door is real. Inside, every single spirit is French: cognac, calvados, chartreuse, armagnac, things you have never seen. Regularly on the world's-best-bars lists and still eight minutes from your door. Go early; it fills after 22:00.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "spontaneous",
+        "unusual",
+        "romantic"
+      ],
+      "indoor": true,
+      "labels": [
+        "hiddengem",
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://syndicatcocktailclub.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg/500px-Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg",
+      "imageSubject": "Rue du Faubourg-Saint-Denis",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "combat",
+      "title": "Combat",
+      "emoji": "🍹",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "cocktails"
+      ],
+      "arr": 19,
+      "area": "63 rue de Belleville",
+      "price": 13,
+      "priceNote": "Cocktails ~€12–14",
+      "durationMin": 120,
+      "minutesFromHome": 16,
+      "transit": "M11 to Pyrénées",
+      "why": "A women-founded cocktail bar in Belleville, bright and unstuffy, with a short menu that changes constantly and none of the speakeasy theatre. The name is the old name of the quarter. Good as a first stop before the hill and the sunset at Parc de Belleville, which is ten minutes uphill.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "spontaneous",
+        "socialize"
+      ],
+      "indoor": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "hiddengem",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "pairsWith": [
+        "parc-belleville"
+      ],
+      "url": "https://www.combatparis.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Rue_de_Belleville_June_2010.jpg/500px-Rue_de_Belleville_June_2010.jpg",
+      "imageSubject": "Rue de Belleville",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "little-red-door",
+      "title": "Little Red Door",
+      "emoji": "🚪",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "cocktails"
+      ],
+      "arr": 3,
+      "area": "60 rue Charlot, Haut Marais",
+      "price": 16,
+      "priceNote": "Cocktails ~€15–17",
+      "durationMin": 120,
+      "minutesFromHome": 15,
+      "transit": "M8 to Filles du Calvaire",
+      "why": "Perennially in the world's fifty best bars, and unusually for that list it is neither pompous nor impossible to get into on a weeknight. The menus are built around a concept each year — ingredients traced to single producers, illustrated cards instead of a list. Dark, small, very good. Reserve for a weekend.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "romantic"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "romantic",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.lrdparis.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paris_rue_charlot.jpg/500px-Paris_rue_charlot.jpg",
+      "imageSubject": "Rue Charlot",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "candelaria",
+      "title": "Candelaria",
+      "emoji": "🌮",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "cocktails",
+        "food"
+      ],
+      "arr": 3,
+      "area": "52 rue de Saintonge",
+      "price": 14,
+      "priceNote": "Tacos ~€5 · cocktails ~€13",
+      "durationMin": 120,
+      "minutesFromHome": 15,
+      "transit": "M8 to Filles du Calvaire",
+      "why": "A tiny taqueria with four stools — and a plain white door at the back that opens into one of the best cocktail bars in the city. Eat the tacos standing up first, then go through. The joke has been running since 2011 and it still works.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "food",
+        "unusual",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "hiddengem",
+        "afterwork",
+        "couple",
+        "unusual",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.quixoticprojects.com/venue/candelaria",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Paris_rue_de_saintonge.jpg/500px-Paris_rue_de_saintonge.jpg",
+      "imageSubject": "Rue de Saintonge",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-buvette",
+      "title": "La Buvette",
+      "emoji": "🧀",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "food",
+        "wine"
+      ],
+      "arr": 11,
+      "area": "67 rue Saint-Maur",
+      "price": 25,
+      "priceNote": "Glasses €5–9 · small plates €6–14",
+      "durationMin": 105,
+      "minutesFromHome": 14,
+      "transit": "M3 to Rue Saint-Maur",
+      "why": "A former dairy the size of a living room, white-tiled, run by one person, with about fifteen seats and no kitchen to speak of — just extraordinary cheese, beans in olive oil, and natural wine chosen with real conviction. It should not work and it is one of the loveliest hours in Paris. Two people, early, no plan.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "food",
+        "romantic",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "hiddengem",
+        "romantic",
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.labuvette.paris/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Rue_Saint_Maur_-_Paris_XI_%28FR75%29_-_2021-06-08_-_2.jpg/500px-Rue_Saint_Maur_-_Paris_XI_%28FR75%29_-_2021-06-08_-_2.jpg",
+      "imageSubject": "Rue Saint-Maur",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "moonshiner",
+      "title": "Moonshiner",
+      "emoji": "🍕",
+      "type": "bar",
+      "categories": [
+        "nightlife",
+        "cocktails",
+        "unusual"
+      ],
+      "arr": 11,
+      "area": "5 rue Sedaine",
+      "price": 13,
+      "priceNote": "Cocktails ~€12–14",
+      "durationMin": 120,
+      "minutesFromHome": 18,
+      "transit": "M5 to Bréguet-Sabin",
+      "why": "Walk into an ordinary pizzeria, past the ovens, through the walk-in fridge door at the back, and you are in a 1920s speakeasy with a proper whisky list. The pizza is genuinely good too, which is not the usual arrangement with this trick. No reservations.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "unusual",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "hiddengem",
+        "afterwork",
+        "couple",
+        "unusual",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.facebook.com/moonshinerparis/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/P1040024_Paris_XI_rue_Sedaine_rwk.JPG/500px-P1040024_Paris_XI_rue_Sedaine_rwk.JPG",
+      "imageSubject": "Rue Sedaine",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "le-petit-bain",
+      "title": "Petit Bain",
+      "emoji": "🚢",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music",
+        "food"
+      ],
+      "arr": 13,
+      "area": "7 port de la Gare, on the Seine",
+      "price": 15,
+      "priceNote": "Concerts €10–25 · rooftop free",
+      "durationMin": 210,
+      "minutesFromHome": 30,
+      "transit": "M6 to Quai de la Gare",
+      "times": "Concerts most nights · rooftop bar in summer",
+      "why": "A concert hall that floats — built on a barge below the Bibliothèque nationale, with a vegetable garden and a bar on the roof. The music is eclectic and cheap, but the real draw between June and September is sitting on the roof over the river as it gets dark. Go for the terrace, stay if the band is good.",
+      "goodFor": [
+        "evening",
+        "music",
+        "couple",
+        "outdoor",
+        "socialize"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "labels": [
+        "afterwork",
+        "couple",
+        "outdoor",
+        "cheap"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.petitbain.org/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/P2110189_Paris_XIII_Quai_de_la_Gare_reduct01.JPG/500px-P2110189_Paris_XIII_Quai_de_la_Gare_reduct01.JPG",
+      "imageSubject": "Quai de la Gare",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    }
+  ]
+}

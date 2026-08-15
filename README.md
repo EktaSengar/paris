@@ -26,6 +26,7 @@ js/
 data/
   events.json         time-sensitive; expires and is pruned automatically
   places.json         cafés, bakeries, markets, shops, museums, parks, classes
+  nightlife.json      jazz rooms, live venues, clubs and bars
   itineraries.json    ready-made routes — the "start here, then walk there" layer
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
@@ -101,9 +102,17 @@ good photograph. So format follows content:
 itself or only of its street. Only `subject` photos are allowed to take the
 hero slot, which is why a café never leads a page with a picture of a road.
 
-Navigation is five destinations — Today, Weekend, Eat, Explore, Away. Free,
-For two and Hidden are *filters*, not places, and live in the filter row.
+Navigation is six destinations — Today, Nights, Weekend, Eat, Explore, Away.
+Free, For two and Hidden are *filters*, not places, and live in the filter row.
 Quests and Your list are utilities, kept small.
+
+### Nightlife
+
+Dated concerts live in `events.json`, so they expire on their own. Venues live
+in `nightlife.json` and never expire — a jazz club's programme changes nightly,
+so the card links to its own calendar rather than pretending to know what is on
+in three weeks. That split is why nothing here can go stale: **a date is only
+ever written down when it is actually known.**
 
 ### The ranking
 

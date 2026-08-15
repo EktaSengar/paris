@@ -697,9 +697,9 @@ body {
 
 /* the utility tabs collapse first when space runs out */
 @media (max-width: 620px) {
-  .tabs-inner { gap: 1.1rem; }
-  .tabs-main { gap: 1.15rem; }
-  .tab { font-size: .96rem; }
+  .tabs-inner { gap: 1rem; }
+  .tabs-main { gap: .9rem; }
+  .tab { font-size: .94rem; }
 }
 
 /* On a narrow screen the two utility tabs push the nav into a horizontal
@@ -719,3 +719,6 @@ body {
   .tabs-inner { justify-content: flex-start; }
   .foot-links { display: flex; }
 }
+
+/* A card with no photograph gets a rule instead of an empty frame. */
+.card.nopic { border-top: 2px solid var(--accent); padding-top: .9rem; }

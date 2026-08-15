@@ -634,6 +634,145 @@
       "imageSubject": "Vanves",
       "imageCredit": "Wikimedia Commons",
       "imageKind": "context"
+    },
+    {
+      "id": "night-faubourg-saint-denis",
+      "title": "A Night Out Without Leaving the 10th",
+      "emoji": "🌙",
+      "type": "itinerary",
+      "categories": [
+        "nightlife",
+        "food",
+        "music",
+        "evening"
+      ],
+      "arr": 10,
+      "price": 45,
+      "priceNote": "~€45 each, all in",
+      "durationMin": 300,
+      "minutesFromHome": 0,
+      "startTime": "19:00",
+      "why": "The whole night is within a fifteen-minute walk of your door, which means no last-Metro maths and no taxi. Faubourg Saint-Denis is the best drinking street in Paris and almost nobody outside the neighbourhood has worked that out yet.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "food",
+        "music",
+        "socialize",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "foodmission",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "stops": [
+        {
+          "emoji": "🍷",
+          "text": "Start with a glass at Le Verre Volé, rue de Lancry",
+          "walk": "6 min from home"
+        },
+        {
+          "emoji": "🍛",
+          "text": "Eat early and cheap in Passage Brady, or on rue du Faubourg Saint-Denis",
+          "walk": "8 min"
+        },
+        {
+          "emoji": "🍸",
+          "text": "Cocktails at Le Syndicat — everything French, behind the fly-posted door",
+          "walk": "4 min"
+        },
+        {
+          "emoji": "🎷",
+          "text": "Whatever is on at New Morning, five minutes away",
+          "walk": "5 min"
+        },
+        {
+          "emoji": "🪩",
+          "text": "If it is Thursday to Saturday and you are still going: La Java",
+          "walk": "12 min"
+        },
+        {
+          "emoji": "🚶",
+          "text": "Walk home along the canal",
+          "walk": "10 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg/500px-Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg",
+      "imageSubject": "Rue du Faubourg-Saint-Denis",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "night-jazz-lombards",
+      "title": "One Street, Three Jazz Clubs",
+      "emoji": "🎺",
+      "type": "itinerary",
+      "categories": [
+        "nightlife",
+        "music",
+        "jazz",
+        "evening"
+      ],
+      "arr": 1,
+      "price": 45,
+      "priceNote": "~€30 a set, plus drinks",
+      "durationMin": 240,
+      "minutesFromHome": 20,
+      "startTime": "19:00",
+      "why": "Rue des Lombards has three serious jazz clubs within eighty metres of each other, which makes it the one place in Paris where you can turn up without a booking and still hear something excellent. Sets run twice a night, so you can do two clubs in one evening.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "culture",
+        "romantic"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "afterwork",
+        "couple",
+        "romantic",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "stops": [
+        {
+          "emoji": "🚇",
+          "text": "M4 to Châtelet",
+          "walk": "20 min from home"
+        },
+        {
+          "emoji": "🍽️",
+          "text": "Early dinner in the Montorgueil streets, ten minutes north",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🎺",
+          "text": "First set at Duc des Lombards, 19:30 — the serious one",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🎹",
+          "text": "Second set next door at Sunset/Sunside or Le Baiser Salé, 21:30",
+          "walk": "1 min"
+        },
+        {
+          "emoji": "💃",
+          "text": "If you want to dance, Caveau de la Huchette is fifteen minutes across the river and runs till 02:00",
+          "walk": "15 min"
+        }
+      ],
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg/500px-Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg",
+      "imageSubject": "Rue des Lombards",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

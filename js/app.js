@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['events', 'places', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
+  const FILES = ['events', 'places', 'nightlife', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -119,6 +119,7 @@ const App = (() => {
     ALL = []
       .concat(D.events.items || [])
       .concat(D.places.items || [])
+      .concat(D.nightlife.items || [])
       .concat(D.itineraries.items || [])
       .concat(D.daytrips.items || [])
       .filter(i => !(i.end && i.end < TODAY_ISO));
@@ -216,7 +217,9 @@ const App = (() => {
   const CARD_SIZES = '(min-width: 940px) 320px, (min-width: 620px) 45vw, 92vw';
 
   function shot(item) {
-    if (!item.image) return `<div class="shot">${badge(item)}</div>`;
+    // No photograph? Show no frame at all. An empty grey box is worse than
+    // a card that is simply typographic.
+    if (!item.image) return '';
     return `<div class="shot">${img(item, CARD_SIZES)}${badge(item)}</div>`;
   }
 
@@ -271,7 +274,7 @@ const App = (() => {
   }
 
   function card(item, cls = '', overline = '') {
-    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${cls}" data-id="${esc(item.id)}">
+    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${item.image ? '' : 'nopic'} ${cls}" data-id="${esc(item.id)}">
       ${shot(item)}
       <p class="kicker">${overline ? `<b>${esc(overline)}</b> · ` : ''}${kicker(item)}</p>
       <h2 class="card-title">${esc(item.title)}</h2>
@@ -374,6 +377,7 @@ const App = (() => {
 
   const LEDE = {
     today:   'What is open, close, and worth leaving the flat for.',
+    nights:  'Concerts, jazz rooms, dancing and a drink first. Doors, prices and how far from your door.',
     weekend: '',
     eat:     'Coffee, bread and markets. Names and walking distances — the photographs would only be of the street.',
     explore: '',
@@ -390,6 +394,7 @@ const App = (() => {
     $('#lede').textContent = LEDE[VIEW] || '';
 
     if      (VIEW === 'today')   box.innerHTML = renderToday();
+    else if (VIEW === 'nights')  box.innerHTML = renderNights();
     else if (VIEW === 'weekend') { $('#lede').textContent = weekendLede(w); box.innerHTML = renderWeekend(w); }
     else if (VIEW === 'eat')     box.innerHTML = renderEat();
     else if (VIEW === 'explore') { $('#lede').textContent = exploreLede(); box.innerHTML = renderExplore(); }
@@ -430,6 +435,46 @@ const App = (() => {
           : '');
   }
 
+  /* ---------- nights ---------- */
+
+  const isNight = i => (i.categories || []).includes('nightlife');
+
+  function renderNights() {
+    const nightlife = D.nightlife.items || [];
+
+    /* Dated gigs read better in date order than in score order — you are
+       choosing a night, not browsing. Score decides the hero; the calendar
+       decides the rest. */
+    const gigs = (D.events.items || [])
+      .filter(i => isNight(i) && (!i.end || i.end >= TODAY_ISO))
+      .sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+
+    const lead = Rank.rank(gigs, CTX, hasRealPhoto)[0];
+    const rest = gigs.filter(g => !lead || g.id !== lead.id);
+
+    const group = (title, note, test) => {
+      const items = Rank.rank(nightlife, CTX, test);
+      if (!items.length) return '';
+      return stripHead(title, note) + rows(items);
+    };
+
+    const routes = Rank.rank(
+      (D.itineraries.items || []).filter(i => isNight(i)), CTX);
+
+    return (lead ? hero(lead) : '')
+      + (rest.length
+          ? stripHead('On sale now', 'Dated, and they sell out in this order')
+            + `<div class="grid">${rest.slice(0, 6).map(i => card(i)).join('')}</div>`
+          : '')
+      + group('Jazz rooms', 'Two sets a night, most nights', i => i.type === 'jazz')
+      + group('Live music', 'Check the listing, then buy blind', i => i.type === 'venue')
+      + group('Late', 'Doors at midnight — earlier is a beginner’s error', i => i.type === 'club')
+      + group('A drink first', 'Wine, cocktails, and one taqueria with a secret door', i => i.type === 'bar')
+      + (routes.length
+          ? stripHead('Two nights out', 'Follow the order')
+            + `<div class="routes">${routes.map(routeCard).join('')}</div>`
+          : '');
+  }
   /* ---------- weekend ---------- */
 
   function weekendLede(w) {
