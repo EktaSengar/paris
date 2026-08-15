@@ -169,6 +169,32 @@ const QUERIES = {
   'musee-guimet': 'Musée Guimet',
   'fete-de-ganesh-2026': 'Rue Pajol',
 
+  // food missions
+  'mission-croissant': 'Croissant',
+  'mission-baguette': 'Baguette',
+  'mission-coffee-crawl': 'Café (établissement)',
+  'mission-cheese': 'Fromage',
+  'mission-unknown-bread': 'Pain (aliment)',
+  'mission-eleventh-through-food': 'Rue Oberkampf',
+  'mission-perfect-saturday': 'Canal Saint-Martin',
+
+  // play + new fixtures
+  'padel-ladoumegue': 'Padel (sport)',
+  'padel-4padel': 'Padel (sport)',
+  'pickleball-paris': 'Pickleball',
+  'paname-run-club': 'Course à pied',
+  'parkrun-paris': 'Parc Montsouris',
+  'kayak-bassin-villette': 'Bassin de la Villette',
+  'ping-pong-parks': 'Tennis de table',
+  'velib-seine-ride': 'Vélib\' Métropole',
+  'skating-republique': 'Place de la République (Paris)',
+  'fontainebleau-bouldering': 'Forêt de Fontainebleau',
+  'yoga-outdoor-paris': 'Yoga',
+  'ice-skating-winter': 'Patinoire',
+  'gymnastics-championships-2026': 'Gymnastique artistique',
+  'paris-marathon-2027': 'Marathon de Paris',
+  'tour-de-france-paris-2027': 'Avenue des Champs-Élysées',
+
   // day trips
   'chantilly': 'Château de Chantilly',
   'reims-champagne': 'Cathédrale Notre-Dame de Reims',
@@ -215,10 +241,15 @@ const CONTEXT_ONLY = new Set([
   '20km-de-paris-2026', 'rolex-paris-masters-2026',
   'olympic-aquatics-centre', 'prix-arc-triomphe-2026',
   'comedy-in-paris', 'paname-art-cafe', 'indian-shows-paris', 'la-chapelle-tamil-quarter',
+  'mission-coffee-crawl', 'mission-eleventh-through-food', 'mission-perfect-saturday',
+  'mission-unknown-bread', 'padel-ladoumegue', 'padel-4padel', 'pickleball-paris',
+  'paname-run-club', 'parkrun-paris', 'ping-pong-parks', 'velib-seine-ride',
+  'yoga-outdoor-paris', 'ice-skating-winter', 'gymnastics-championships-2026',
+  'tour-de-france-paris-2027',
   'fete-de-ganesh-2026'
 ]);
 
-const FILES = ['events.json', 'places.json', 'nightlife.json', 'sports.json', 'itineraries.json', 'daytrips.json'];
+const FILES = ['events.json', 'places.json', 'nightlife.json', 'sports.json', 'food.json', 'itineraries.json', 'daytrips.json'];
 const WIKIS = ['fr', 'en'];
 const BATCH = 20;          // the API takes up to 50 titles; 20 keeps URLs sane
 const clean = u => u ? u.split('?')[0] : u;

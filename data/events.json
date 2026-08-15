@@ -1499,6 +1499,200 @@
       "imageSubject": "Rue Pajol",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "gymnastics-championships-2026",
+      "title": "French International Gymnastics Championships",
+      "emoji": "🤸",
+      "type": "event",
+      "categories": [
+        "sport",
+        "gymnastics"
+      ],
+      "intent": [
+        "watch"
+      ],
+      "arr": 12,
+      "area": "Accor Arena, Bercy",
+      "price": 30,
+      "priceNote": "From ~€20",
+      "start": "2026-09-24",
+      "end": "2026-09-27",
+      "times": "Late September — confirm the exact days on the venue site",
+      "durationMin": 180,
+      "minutesFromHome": 30,
+      "transit": "M5 straight there from your street",
+      "why": "Gymnastics is the best live sport nobody thinks to buy tickets for: six things happen at once, the crowd gasps in unison, and a €20 seat at Bercy is closer to the floor than a €90 football ticket is to the pitch. Line 5 goes directly there. Sit high rather than ringside — you want to see all the apparatus at the same time, which is the whole pleasure of it.",
+      "spectator": "Go for a qualification session rather than the final: half the price, twice the length, and all four apparatus running simultaneously.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "evening"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "trynew",
+        "couple",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🌳",
+          "text": "Parc de Bercy before, 5 min",
+          "id": null
+        },
+        {
+          "emoji": "🍷",
+          "text": "Bercy Village for a drink after",
+          "id": null
+        }
+      ],
+      "source": "Ville de Paris sporting calendar",
+      "url": "https://www.accorarena.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gymnastics_%28artistic%29_pictogram.svg/500px-Gymnastics_%28artistic%29_pictogram.svg.png",
+      "imageSubject": "Gymnastique artistique",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "paris-marathon-2027",
+      "title": "Paris Marathon — 50th Edition",
+      "emoji": "🏅",
+      "type": "event",
+      "categories": [
+        "sport",
+        "running"
+      ],
+      "intent": [
+        "watch",
+        "compete"
+      ],
+      "arr": 8,
+      "area": "Champs-Élysées start · Avenue Foch finish",
+      "price": 0,
+      "priceNote": "Free to watch · ~€120 to run",
+      "start": "2027-04-11",
+      "end": "2027-04-11",
+      "days": [
+        0
+      ],
+      "times": "Sunday morning, first wave ~08:00",
+      "durationMin": 240,
+      "minutesFromHome": 25,
+      "transit": "M1 along most of the route",
+      "why": "The 50th edition, and 60,000 people run it. Two ways in: enter it, in which case sign up the moment registration opens because it fills months ahead, or watch it, which is free and criminally underrated. The route runs down rue de Rivoli, along the Seine and through both Bois — so you can see the leaders at 10 km, walk twenty minutes, and catch the same runners again at 30 km.",
+      "spectator": "Stand near Châtelet around 09:00 for the elite runners, then cut south to the quais to see them again. The last 5 km on Avenue Foch is where it gets emotional.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "free",
+        "morning",
+        "outdoor"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "bookAhead": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "bookahead",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🥐",
+          "text": "Bakeries open early along rue de Rivoli",
+          "id": null
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee at Châtelet while you wait for the leaders",
+          "id": null
+        }
+      ],
+      "source": "Ville de Paris sporting calendar",
+      "url": "https://www.schneiderelectricparismarathon.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Paris_Marathon_Logo_2013.png/500px-Paris_Marathon_Logo_2013.png",
+      "imageSubject": "Marathon de Paris",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "tour-de-france-paris-2027",
+      "title": "Tour de France — Paris Finish",
+      "emoji": "🚴",
+      "type": "event",
+      "categories": [
+        "sport",
+        "cycling",
+        "free",
+        "outdoor"
+      ],
+      "intent": [
+        "watch"
+      ],
+      "arr": 1,
+      "area": "Champs-Élysées and the Montmartre climb",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2027-07-25",
+      "end": "2027-07-25",
+      "days": [
+        0
+      ],
+      "times": "Riders arrive late afternoon, finish early evening",
+      "durationMin": 300,
+      "minutesFromHome": 25,
+      "transit": "M1 to Concorde — go early, the Metro fills",
+      "why": "The one everyone means to see and then watches on television. It is free, it is a Sunday, and the peloton does several laps of a closed circuit, so you get eight or nine chances to see them rather than one blurred second. Since 2025 the finale climbs Montmartre, which is the best free vantage point in the race — steep enough that the riders slow down and you can actually see faces.",
+      "spectator": "Do not stand on the Champs-Élysées barriers from noon. Take a spot on the Montmartre climb instead: the riders are slower, the crowd is better, and you can leave for a drink between laps.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "sport",
+        "free",
+        "outdoor"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Coffee on rue des Abbesses before the crowds",
+          "id": null
+        },
+        {
+          "emoji": "🍷",
+          "text": "Wine bars on rue Lepic once the caravan has passed",
+          "id": null
+        }
+      ],
+      "source": "Ville de Paris sporting calendar",
+      "url": "https://www.letour.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Avenue_des_Champs-%C3%89lys%C3%A9es%2C_Paris_3_October_2010.jpg/500px-Avenue_des_Champs-%C3%89lys%C3%A9es%2C_Paris_3_October_2010.jpg",
+      "imageSubject": "Avenue des Champs-Élysées",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

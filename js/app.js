@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['events', 'places', 'nightlife', 'sports', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
+  const FILES = ['events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -121,6 +121,7 @@ const App = (() => {
       .concat(D.places.items || [])
       .concat(D.nightlife.items || [])
       .concat(D.sports.items || [])
+      .concat(D.food.items || [])
       .concat(D.itineraries.items || [])
       .concat(D.daytrips.items || [])
       .filter(i => !(i.end && i.end < TODAY_ISO));
@@ -262,6 +263,8 @@ const App = (() => {
       ${prog ? `<div class="prog">${prog}</div>` : ''}
       ${stops ? `<ul class="stops">${stops}</ul>` : ''}
       ${near ? `<div class="near">${near}</div>` : ''}
+      ${pairings(item)}
+      ${item.spectator ? `<p class="fx-spec"><b>Where to stand.</b> ${esc(item.spectator)}</p>` : ''}
       <div class="links">
         ${item.url ? `<a href="${esc(item.url)}" target="_blank" rel="noopener">Official site</a>` : ''}
         <a href="${mapsLink(item)}" target="_blank" rel="noopener">Directions</a>
@@ -384,9 +387,9 @@ const App = (() => {
   const LEDE = {
     today:   'What is open, close, and worth leaving the flat for.',
     nights:  'Concerts, jazz rooms, dancing and a drink first. Doors, prices and how far from your door.',
-    sport:   'Arenas, fixtures and the Olympic pools you are allowed to swim in. Plus somewhere to run.',
+    sport:   'Two halves: things we can play, and things we can go and watch.',
     weekend: '',
-    eat:     'Coffee, bread and markets. Names and walking distances — the photographs would only be of the street.',
+    eat:     'Missions rather than listings. Pick one, do it properly, rate it.',
     explore: '',
     away:    'You live between Gare du Nord and Gare de l’Est. Some of these are closer than the other side of Paris.',
     quests:  'Long games. Progress is saved in this browser.',
@@ -395,6 +398,8 @@ const App = (() => {
 
   function render() {
     $$('.tab').forEach(t => t.classList.toggle('on', t.dataset.view === VIEW));
+    // Each section gets its own accent; the CSS keys off this.
+    document.body.setAttribute('data-view', VIEW);
     const box = $('#view');
     const w = weekend();
 
@@ -484,45 +489,176 @@ const App = (() => {
             + `<div class="routes">${routes.map(routeCard).join('')}</div>`
           : '');
   }
+  /* ---------- pairings ----------
+     The "what could we do before and after this?" layer. A recommendation
+     on its own is a listing; a recommendation with a coffee after it is a
+     plan, which is the whole difference this site is trying to make. */
+
+  function pairings(item) {
+    const list = item.pairings || item.then || [];
+    if (!list.length) return '';
+    return `<div class="pairs">
+      <span class="pairs-label">Then</span>
+      <div class="pairs-row">${list.map(x =>
+        `<span class="pair"><span class="e">${x.emoji || '·'}</span>${esc(x.text)}</span>`).join('')}</div>
+    </div>`;
+  }
+
   /* ---------- sport ---------- */
 
   const isSport = i => (i.categories || []).includes('sport');
+  let SPORT_MODE = 'play';
+  const SPORT_INTENT = new Set();
+
+  const INTENTS = [
+    ['try',     'Try something new'],
+    ['casual',  'Exercise casually'],
+    ['group',   'Join a group'],
+    ['compete', 'Compete'],
+    ['learn',   'Learn']
+  ];
+
+  /* Sport of the week — deterministic by ISO week, so it changes on Mondays
+     and stays put in between. Skips anything already rated. */
+  function sportOfTheWeek(pool) {
+    const week = Math.floor((TODAY - new Date(TODAY.getFullYear(), 0, 1)) / 604800000);
+    const candidates = pool.filter(i =>
+      (i.intent || []).includes('try') && !Store.isDone(i.id));
+    if (!candidates.length) return null;
+    const ranked = Rank.rank(candidates, CTX);
+    return ranked[Math.floor(week) % ranked.length] || ranked[0];
+  }
+
+  /* A week you would actually keep, built from time budgets rather than
+     from a training plan. */
+  const WEEK_SLOTS = [
+    ['Monday evening',   30,  i => (i.durationMin ?? 60) <= 60 && (i.minutesFromHome ?? 99) <= 15],
+    ['Wednesday',        60,  i => (i.intent || []).includes('try') || (i.intent || []).includes('learn')],
+    ['Saturday morning', 120, i => (i.goodFor || []).includes('morning') || (i.goodFor || []).includes('weekend')],
+    ['Sunday',           240, i => (i.durationMin ?? 60) >= 90]
+  ];
+
+  function weekPlan(pool) {
+    const used = new Set();
+    const rows = WEEK_SLOTS.map(([when, mins, test]) => {
+      const it = Rank.rank(pool, CTX, i => !used.has(i.id) && test(i))[0];
+      if (!it) return '';
+      used.add(it.id);
+      const pair = (it.pairings || [])[0];
+      return `<div class="slot" data-id="${esc(it.id)}">
+        <div class="t">${esc(when)}</div>
+        <div class="s"><b><span class="e">${it.emoji || ''}</span>${esc(it.title)}</b>
+          ${durText(it.durationMin) || mins + ' min'} · ${esc(priceText(it))}
+          ${pair ? ` · then ${pair.emoji} ${esc(pair.text)}` : ''}</div>
+      </div>`;
+    }).join('');
+    return rows ? `<div class="day week-plan">${rows}</div>` : '';
+  }
 
   function renderSport() {
     const sports = D.sports.items || [];
+    const play = sports.filter(i => i.type === 'play' || i.type === 'run');
 
-    // Fixtures read in date order — you are picking a date, not browsing.
+    const modeBar = `<div class="mode" id="sport-mode">
+      <button class="mode-btn ${SPORT_MODE === 'play' ? 'on' : ''}" data-mode="play">
+        <span class="mode-emoji">🏃</span> Play
+        <em>things we can do</em>
+      </button>
+      <button class="mode-btn ${SPORT_MODE === 'watch' ? 'on' : ''}" data-mode="watch">
+        <span class="mode-emoji">🏟️</span> Watch
+        <em>things we can go and see</em>
+      </button>
+    </div>`;
+
+    return modeBar + (SPORT_MODE === 'play' ? renderPlay(play) : renderWatch(sports));
+  }
+
+  function renderPlay(play) {
+    const featured = sportOfTheWeek(play);
+
+    const chips = `<div class="chips sport-chips" id="sport-intent">
+      ${INTENTS.map(([k, label]) =>
+        `<button class="chip ${SPORT_INTENT.has(k) ? 'on' : ''}" data-intent="${k}">${label}</button>`).join('')}
+    </div>`;
+
+    const matches = i => !SPORT_INTENT.size ||
+      [...SPORT_INTENT].some(k => (i.intent || []).includes(k));
+
+    const allRuns = Rank.rank(play, CTX, i => i.type === 'run' && matches(i));
+    const runs = allRuns.filter(hasStops);
+    const plainRuns = allRuns.filter(i => !hasStops(i));
+    const activities = Rank.rank(play, CTX, i =>
+      i.type === 'play' && matches(i) && (!featured || i.id !== featured.id));
+
+    const feature = featured ? `
+      <div class="sotw">
+        <p class="sotw-kicker">This week — try something you haven’t</p>
+        <div class="sotw-body">
+          ${featured.image ? `<div class="sotw-img">${img(featured, '(min-width: 760px) 420px, 94vw', 'loaded')}</div>` : ''}
+          <div>
+            <h3>${featured.emoji || ''} ${esc(featured.title)}</h3>
+            <p class="sotw-meta">${esc(featured.area || '')} · ${featured.minutesFromHome} min away · ${esc(priceText(featured))}${featured.difficulty ? ` · ${featured.difficulty}` : ''}</p>
+            <p class="sotw-why">${esc(featured.why || '')}</p>
+            ${pairings(featured)}
+            <div class="links">
+              ${featured.url ? `<a href="${esc(featured.url)}" target="_blank" rel="noopener">Book or check</a>` : ''}
+              <a href="${mapsLink(featured)}" target="_blank" rel="noopener">Directions</a>
+            </div>
+          </div>
+        </div>
+      </div>` : '';
+
+    return feature
+      + stripHead('Add sport to the week', 'Four slots you would actually keep')
+      + weekPlan(play)
+      + stripHead('What do you want out of it?')
+      + chips
+      + (activities.length
+          ? `<div class="grid play-grid">${activities.map(i => card(i)).join('')}</div>`
+          : `<p class="empty">Nothing matches that. Try another intent.</p>`)
+      + (allRuns.length
+          ? stripHead('Run Paris', 'From your door, and getting longer')
+            + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
+            + (plainRuns.length ? rows(plainRuns) : '')
+          : '');
+  }
+
+  function renderWatch(sports) {
+    const watch = sports.filter(i => i.type === 'watch');
+
     const fixtures = (D.events.items || [])
       .filter(i => isSport(i) && (!i.end || i.end >= TODAY_ISO))
       .sort((a, b) => (a.start || '').localeCompare(b.start || ''));
 
-    const lead = Rank.rank(fixtures, CTX, hasRealPhoto)[0];
-    const rest = fixtures.filter(f => !lead || f.id !== lead.id);
+    const big = Rank.rank(fixtures, CTX, hasRealPhoto)[0];
+    const rest = fixtures.filter(f => !big || f.id !== big.id);
 
-    const group = (title, note, test) => {
-      const items = Rank.rank(sports, CTX, test);
-      if (!items.length) return '';
-      return stripHead(title, note) + rows(items);
-    };
+    /* A fixture is only useful if you know where to stand. */
+    const fixtureRow = it => `<div class="fixture" data-id="${esc(it.id)}">
+      <div class="fx-date">
+        <span class="fx-day">${new Date(it.start + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric' })}</span>
+        <span class="fx-mon">${new Date(it.start + 'T12:00:00').toLocaleDateString('en-GB', { month: 'short' })}</span>
+      </div>
+      <div class="fx-body">
+        <h3>${it.emoji || ''} ${esc(it.title)}</h3>
+        <p class="fx-meta">${esc(it.area || '')} · ${it.minutesFromHome} min · ${esc(priceText(it))}</p>
+        <p class="fx-why">${esc(it.why || '')}</p>
+        ${it.spectator ? `<p class="fx-spec"><b>Where to stand.</b> ${esc(it.spectator)}</p>` : ''}
+        ${pairings(it)}
+        <div class="links">
+          ${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener">Tickets & info</a>` : ''}
+          <a href="${mapsLink(it)}" target="_blank" rel="noopener">Directions</a>
+        </div>
+      </div>
+    </div>`;
 
-    // Only a route with stops earns the timeline — an empty one is just a
-    // box. The rest are ordinary rows.
-    const allRuns = Rank.rank(sports, CTX, i => i.type === 'run');
-    const runs = allRuns.filter(hasStops);
-    const plainRuns = allRuns.filter(i => !hasStops(i));
-
-    return (lead ? hero(lead) : '')
+    return (big ? hero(big) : '')
       + (rest.length
-          ? stripHead('In the diary', 'Dated, and the good ones need booking')
-            + `<div class="grid">${rest.slice(0, 6).map(i => card(i)).join('')}</div>`
+          ? stripHead('The calendar', 'Dated — and the good ones need booking')
+            + `<div class="fixtures">${rest.map(fixtureRow).join('')}</div>`
           : '')
-      + group('Where to watch', 'Fixtures change weekly — the link goes to the club', i => i.type === 'watch')
-      + group('Get in the water, or on a wall', 'Things you do rather than watch', i => i.type === 'play')
-      + (allRuns.length
-          ? stripHead('Running', 'Starting at your door, and getting longer')
-            + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
-            + (plainRuns.length ? rows(plainRuns) : '')
-          : '');
+      + stripHead('Where sport happens', 'Fixtures change weekly — the link goes to the club')
+      + rows(Rank.rank(watch, CTX));
   }
   /* ---------- weekend ---------- */
 
@@ -586,29 +722,125 @@ const App = (() => {
         }).join('')}</div>`;
   }
 
-  /* ---------- eat ---------- */
+  /* ---------- eat ----------
+     Food is the section that most easily collapses into a directory, so it
+     is built around missions instead: a small assignment, three candidates,
+     what to order, and where to go afterwards. The listings still exist,
+     below, for when you just want a name. */
+
+  let MOOD = null;
+
+  const MOODS = [
+    ['french',        '🥐', 'Something French'],
+    ['coffee',        '☕', 'Coffee + pastry'],
+    ['cheap',         '💸', 'Cheap & good'],
+    ['international', '🍜', 'International'],
+    ['dinner',        '🍷', 'A nice dinner'],
+    ['special',       '✨', 'Special'],
+    ['walk',          '🚶', 'Food + a walk']
+  ];
+
+  function missionCard(m, lead = false) {
+    const cands = (m.candidates || []).map((c, n) => `
+      <li>
+        <span class="cand-n">${n + 1}</span>
+        <span class="cand-body">
+          <b><span class="e">${c.emoji || ''}</span>${esc(c.name)}</b>
+          <span class="cand-order">Order: ${esc(c.order || '')}</span>
+          ${c.note ? `<span class="cand-note">${esc(c.note)}</span>` : ''}
+        </span>
+        ${c.walk ? `<span class="cand-walk">${esc(c.walk)}</span>` : ''}
+      </li>`).join('');
+
+    const sched = (m.schedule || []).map(s => `
+      <li><span class="sch-time">${esc(s.time)}</span>
+        <span class="cand-body"><b><span class="e">${s.emoji || ''}</span>${esc(s.text)}</b></span></li>`).join('');
+
+    return `<article class="mission ${lead ? 'lead' : ''}" data-id="${esc(m.id)}">
+      ${m.image ? `<div class="mission-img">${img(m, lead ? '(min-width: 1040px) 1000px, 96vw' : '(min-width: 760px) 480px, 94vw', 'loaded')}</div>` : ''}
+      <div class="mission-body">
+        <p class="mission-kicker">${lead ? 'Today’s food mission' : 'Food mission'} · ${durText(m.durationMin)} · ${esc(m.priceNote || priceText(m))}</p>
+        <h3 class="mission-title">${m.emoji || ''} ${esc(m.title)}</h3>
+        <p class="mission-brief">${esc(m.brief || m.why || '')}</p>
+        ${m.test ? `<p class="mission-test"><b>How to judge it.</b> ${esc(m.test)}</p>` : ''}
+        ${cands ? `<ol class="cands">${cands}</ol>` : ''}
+        ${sched ? `<ol class="cands sched">${sched}</ol>` : ''}
+        ${pairings(m)}
+        <div class="mission-foot">
+          <div class="rate" role="group" aria-label="Rate ${esc(m.title)}">
+            ${RATINGS.map(([v, e, t]) =>
+              `<button type="button" data-rate="${v}" title="${t}" aria-label="${t}"
+                class="${Store.rating(m.id) === v ? 'on' : ''}">${e}</button>`).join('')}
+          </div>
+          <span class="mission-why">${esc((m.why || '').split('. ')[0])}.</span>
+        </div>
+      </div>
+    </article>`;
+  }
 
   function renderEat() {
-    const groups = [
-      ['Coffee',    i => i.type === 'cafe'],
-      ['Bakeries',  i => i.type === 'bakery'],
-      ['Markets',   i => i.type === 'market'],
-      ['Missions',  i => i.type === 'itinerary' && (i.labels || []).includes('foodmission')],
-      ['And also',  i => !['cafe', 'bakery', 'market'].includes(i.type) && i.type !== 'itinerary' &&
-                         ((i.categories || []).includes('food') || (i.labels || []).includes('foodmission'))]
-    ];
+    const missions = D.food.items || [];
 
+    const moodBar = `<div class="moods" id="mood-row">
+      <span class="moods-label">What are you in the mood for?</span>
+      <div class="chips">
+        ${MOODS.map(([k, e, label]) =>
+          `<button class="chip mood ${MOOD === k ? 'on' : ''}" data-mood2="${k}"><span class="e">${e}</span>${label}</button>`).join('')}
+      </div>
+    </div>`;
+
+    const matching = MOOD
+      ? missions.filter(m => (m.moods || []).includes(MOOD))
+      : missions;
+
+    const ranked = Rank.rank(matching.length ? matching : missions, CTX);
+    const lead = ranked[0];
+    const others = ranked.slice(1);
+
+    /* The directory still exists — but under the missions, not instead of them. */
+    const edible = i => ['bakery', 'cafe', 'market'].includes(i.type);
+    const groups = [
+      ['Coffee',   i => i.type === 'cafe'],
+      ['Bakeries', i => i.type === 'bakery'],
+      ['Markets',  i => i.type === 'market']
+    ];
     const taken = new Set();
-    const out = groups.map(([name, test]) => {
-      const items = Rank.rank(ALL, CTX, i => !taken.has(i.id) && test(i));
+    const directory = groups.map(([name, test]) => {
+      const items = Rank.rank(ALL, CTX, i => !taken.has(i.id) && edible(i) && test(i));
       items.forEach(i => taken.add(i.id));
       if (!items.length) return '';
       return `<div class="list-group"><h3>${name}</h3>${rows(items)}</div>`;
     }).join('');
 
-    return out || `<p class="empty">Nothing to eat. Unlikely.</p>`;
+    const foodQuests = (D.quests.items || []).filter(q =>
+      /croissant|cheese|patisserie|chocolat|bakeries|coffee|market/i.test(q.id));
+
+    return moodBar
+      + (lead ? missionCard(lead, true) : '')
+      + (others.length
+          ? stripHead('More missions', 'Pick one and actually do it')
+            + `<div class="missions">${others.map(m => missionCard(m)).join('')}</div>`
+          : '')
+      + (foodQuests.length
+          ? stripHead('Food quests', 'Long games — progress saves in this browser')
+            + `<div class="quests">${foodQuests.map(questCard).join('')}</div>`
+          : '')
+      + stripHead('Or just the names', 'For when you do not want a project')
+      + directory;
   }
 
+  /* Shared so Eat and Quests render the same thing. */
+  function questCard(q) {
+    const done = Store.questDone(q.id);
+    const pct = Math.round(done.length / q.targets.length * 100);
+    return `<div class="quest" data-quest="${esc(q.id)}">
+      <div class="qtop"><h3>${q.emoji || ''} ${esc(q.title)}</h3><span class="qn">${done.length}/${q.targets.length}</span></div>
+      <p>${esc(q.description)}</p>
+      <div class="bar-track"><span style="width:${pct}%"></span></div>
+      <div class="targets">${q.targets.map(t =>
+        `<button type="button" class="target ${done.includes(t) ? 'on' : ''}" data-target="${esc(t)}">${esc(t)}</button>`).join('')}</div>
+    </div>`;
+  }
   /* ---------- explore ---------- */
 
   function exploreLede() {
@@ -680,17 +912,7 @@ const App = (() => {
   function renderQuests() {
     const quests = D.quests.items || [];
     quests.forEach(q => Store.seedQuest(q.id, q.preCompleted));
-    return `<div class="quests">${quests.map(q => {
-      const done = Store.questDone(q.id);
-      const pct = Math.round(done.length / q.targets.length * 100);
-      return `<div class="quest" data-quest="${esc(q.id)}">
-        <div class="qtop"><h3>${esc(q.title)}</h3><span class="qn">${done.length}/${q.targets.length}</span></div>
-        <p>${esc(q.description)}</p>
-        <div class="bar-track"><span style="width:${pct}%"></span></div>
-        <div class="targets">${q.targets.map(t =>
-          `<button type="button" class="target ${done.includes(t) ? 'on' : ''}" data-target="${esc(t)}">${esc(t)}</button>`).join('')}</div>
-      </div>`;
-    }).join('')}</div>`;
+    return `<div class="quests">${quests.map(questCard).join('')}</div>`;
   }
 
   /* ---------- saved ---------- */
@@ -909,6 +1131,28 @@ const App = (() => {
       const c = b.closest('.card');
       const open = c.classList.toggle('open');
       b.textContent = open ? 'Less' : 'Details';
+    });
+
+    // Sport: Play vs Watch
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-mode]'); if (!b) return;
+      SPORT_MODE = b.dataset.mode;
+      render();
+    });
+
+    // Sport: what do you want out of it
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-intent]'); if (!b) return;
+      const k = b.dataset.intent;
+      if (SPORT_INTENT.has(k)) SPORT_INTENT.delete(k); else SPORT_INTENT.add(k);
+      render();
+    });
+
+    // Eat: mood chooser — clicking the active one clears it
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-mood2]'); if (!b) return;
+      MOOD = (MOOD === b.dataset.mood2) ? null : b.dataset.mood2;
+      render();
     });
 
     // a list row opens on click — but not when the click was meant for a

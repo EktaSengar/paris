@@ -1,0 +1,622 @@
+{
+  "generated": "2026-08-15",
+  "note": "Food as missions rather than listings. Each mission is a small assignment with candidates, what to order, and where to go afterwards. Moods map to missions in js/app.js.",
+  "items": [
+    {
+      "id": "mission-croissant",
+      "title": "Find Your Croissant",
+      "emoji": "🥐",
+      "type": "mission",
+      "categories": [
+        "food",
+        "bakery",
+        "mission"
+      ],
+      "moods": [
+        "french",
+        "coffee",
+        "cheap"
+      ],
+      "arr": 10,
+      "area": "Three bakeries, all within a 15-minute walk of each other",
+      "price": 12,
+      "priceNote": "~€12 for the whole thing, for two",
+      "durationMin": 90,
+      "minutesFromHome": 8,
+      "brief": "Everyone has a favourite croissant and almost nobody has actually compared them. Buy one plain croissant at each — plain, not almond, or the test means nothing — and eat them within an hour.",
+      "test": "Judge on three things: does it shatter when you tear it, is the inside honeycombed rather than bready, and does it taste of butter after you swallow.",
+      "candidates": [
+        {
+          "emoji": "🥐",
+          "name": "Du Pain et des Idées",
+          "id": "du-pain-et-des-idees",
+          "order": "Croissant + the pistachio-chocolate escargot",
+          "note": "The benchmark. Closed weekends — this is a weekday mission.",
+          "walk": "6 min from home"
+        },
+        {
+          "emoji": "🥖",
+          "name": "Boulangerie Utopie",
+          "id": "boulangerie-utopie",
+          "order": "Plain croissant, then whatever is strange that week",
+          "note": "The experimental one. Squid-ink baguettes, matcha everything.",
+          "walk": "12 min on"
+        },
+        {
+          "emoji": "🍞",
+          "name": "Mamiche",
+          "id": "mamiche",
+          "order": "Croissant, and a chocolate babka for later",
+          "note": "Loud, cheerful, the opposite of hushed pâtisserie reverence.",
+          "walk": "8 min back towards home"
+        }
+      ],
+      "then": [
+        {
+          "emoji": "☕",
+          "text": "Coffee at Ten Belles to reset your palate",
+          "id": "ten-belles"
+        },
+        {
+          "emoji": "🌻",
+          "text": "Eat the winner on a bench in Jardin Villemin",
+          "id": "jardin-villemin"
+        }
+      ],
+      "why": "The most useful hour you will spend on French food. By the end you will know which bakery is yours, which is a genuinely different thing from knowing which bakery is best.",
+      "goodFor": [
+        "food",
+        "morning",
+        "couple",
+        "cheap",
+        "walk"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "dontmiss",
+        "cheap",
+        "foodmission",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://dupainetdesidees.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Croissant-Petr_Kratochvil.jpg/500px-Croissant-Petr_Kratochvil.jpg",
+      "imageSubject": "Croissant",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "mission-baguette",
+      "title": "The Baguette Test",
+      "emoji": "🥖",
+      "type": "mission",
+      "categories": [
+        "food",
+        "bakery",
+        "mission"
+      ],
+      "moods": [
+        "french",
+        "cheap"
+      ],
+      "arr": 10,
+      "area": "Your own neighbourhood",
+      "price": 5,
+      "priceNote": "About €5 total",
+      "durationMin": 45,
+      "minutesFromHome": 4,
+      "brief": "Ask for a baguette de tradition, not a baguette ordinaire — different flour rules, no additives, and about thirty cents more. Buy two from different bakeries on the same morning.",
+      "test": "A good one has an irregular open crumb, a crust that crackles audibly as it cools, and a slightly cream-coloured interior rather than white. It should be noticeably better at 11:00 than at 17:00.",
+      "candidates": [
+        {
+          "emoji": "🥖",
+          "name": "Du Pain et des Idées",
+          "id": "du-pain-et-des-idees",
+          "order": "Pain des amis — technically not a baguette, and better than one",
+          "note": "Weekdays only.",
+          "walk": "6 min"
+        },
+        {
+          "emoji": "🍞",
+          "name": "Liberté, rue des Vinaigriers",
+          "order": "Baguette de tradition",
+          "note": "Open bakery — you watch them shape it.",
+          "walk": "5 min"
+        },
+        {
+          "emoji": "🥐",
+          "name": "Your nearest boulangerie",
+          "order": "Baguette de tradition",
+          "note": "The point of the test: the ordinary one near you might win.",
+          "walk": "2 min"
+        }
+      ],
+      "then": [
+        {
+          "emoji": "🧀",
+          "text": "Cheese from Marché Saint-Quentin to eat it with",
+          "id": "marche-saint-quentin"
+        },
+        {
+          "emoji": "🍷",
+          "text": "A bottle from Le Verre Volé, six minutes away",
+          "id": "le-verre-vole"
+        }
+      ],
+      "why": "Paris runs an annual competition for the best baguette in the city and the winner supplies the Élysée for a year. This is the same test, done by you, in one morning, for five euros.",
+      "goodFor": [
+        "food",
+        "morning",
+        "couple",
+        "cheap",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "foodmission",
+        "couple",
+        "trynew"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Baguettes%2C_Paris%2C_France_-_panoramio.jpg/500px-Baguettes%2C_Paris%2C_France_-_panoramio.jpg",
+      "imageSubject": "Baguette",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "mission-coffee-crawl",
+      "title": "Saturday Coffee Crawl",
+      "emoji": "☕",
+      "type": "mission",
+      "categories": [
+        "food",
+        "coffee",
+        "mission",
+        "walk"
+      ],
+      "moods": [
+        "coffee",
+        "walk"
+      ],
+      "arr": 11,
+      "area": "Three cafés, one neighbourhood, two hours",
+      "price": 18,
+      "priceNote": "~€18 for two, all in",
+      "durationMin": 120,
+      "minutesFromHome": 12,
+      "brief": "Three stops, in order, no more than one drink each. Specialty first while your palate is clean, food in the middle, beautiful last.",
+      "test": "Order the same thing at each — a flat white or a filter — so you are comparing the roast rather than the barista's latte art.",
+      "candidates": [
+        {
+          "emoji": "☕",
+          "name": "Café Oberkampf",
+          "id": "cafe-oberkampf",
+          "order": "Filter coffee and the shakshuka if you are hungry",
+          "note": "Start here. Small, sunny, vegetarian-friendly.",
+          "walk": "15 min from home"
+        },
+        {
+          "emoji": "🥐",
+          "name": "Boulangerie Utopie",
+          "id": "boulangerie-utopie",
+          "order": "Whatever is seasonal and strange",
+          "note": "The pastry stop, three minutes away.",
+          "walk": "5 min on"
+        },
+        {
+          "emoji": "🚪",
+          "name": "Boot Café",
+          "id": "boot-cafe",
+          "order": "Espresso, standing up",
+          "note": "A former cobbler's the size of a shed. Three seats.",
+          "walk": "12 min into the Marais"
+        }
+      ],
+      "then": [
+        {
+          "emoji": "📖",
+          "text": "Ofr. for art books and magazines",
+          "id": "ofr-bookshop"
+        },
+        {
+          "emoji": "🏺",
+          "text": "Empreintes — four floors of French craft, free",
+          "id": "empreintes"
+        }
+      ],
+      "why": "Paris took a decade longer than London to take coffee seriously and then did it properly. This is the two-hour version of that story, walked rather than read.",
+      "goodFor": [
+        "food",
+        "morning",
+        "weekend",
+        "couple",
+        "walk"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "foodmission",
+        "couple",
+        "weekend"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.cafeoberkampf.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Caf%C3%A9_de_Flore.jpg/500px-Caf%C3%A9_de_Flore.jpg",
+      "imageSubject": "Café (établissement)",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "mission-cheese",
+      "title": "Buy Cheese Like You Mean It",
+      "emoji": "🧀",
+      "type": "mission",
+      "categories": [
+        "food",
+        "market",
+        "mission",
+        "learn"
+      ],
+      "moods": [
+        "french",
+        "special",
+        "walk"
+      ],
+      "arr": 10,
+      "area": "Marché Saint-Quentin, then anywhere with a view",
+      "price": 20,
+      "priceNote": "~€20 buys an embarrassing amount",
+      "durationMin": 75,
+      "minutesFromHome": 10,
+      "brief": "Go to a fromager, not a supermarket, and say: trois fromages, un doux, un fort, un de chèvre — s'il vous plaît. Then let them choose. Ask for it à point, meaning ready to eat today.",
+      "test": "They will ask when you plan to eat it. That question is the whole difference between a cheese shop and a shelf.",
+      "candidates": [
+        {
+          "emoji": "🥬",
+          "name": "Marché Saint-Quentin",
+          "id": "marche-saint-quentin",
+          "order": "Comté aged 24 months, a Saint-Nectaire, a small crottin",
+          "note": "Your own 1866 iron market hall. Ten minutes away.",
+          "walk": "10 min"
+        },
+        {
+          "emoji": "🧺",
+          "name": "Marché d'Aligre",
+          "id": "marche-aligre",
+          "order": "Whatever the counter is proudest of that week",
+          "note": "The better market if you are making a morning of it.",
+          "walk": "22 min"
+        },
+        {
+          "emoji": "🍷",
+          "name": "Le Verre Volé",
+          "id": "le-verre-vole",
+          "order": "A bottle to go with it, at shop price",
+          "note": "Six minutes from home, and they will match the wine to the cheese.",
+          "walk": "6 min"
+        }
+      ],
+      "then": [
+        {
+          "emoji": "🥖",
+          "text": "Baguette de tradition on the way home"
+        },
+        {
+          "emoji": "🌳",
+          "text": "Buttes-Chaumont, if the weather is behaving",
+          "id": "buttes-chaumont"
+        }
+      ],
+      "why": "France has something like 1,200 cheeses and most people living here rotate through four. One conversation with a fromager fixes that permanently.",
+      "goodFor": [
+        "food",
+        "couple",
+        "learn",
+        "weekend",
+        "morning"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "foodmission",
+        "couple",
+        "learn"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.paris.fr/lieux/marche-couvert-saint-quentin-5490",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Ch%C3%A8vre_affin%C3%A9_cr%C3%A9meux.jpg/500px-Ch%C3%A8vre_affin%C3%A9_cr%C3%A9meux.jpg",
+      "imageSubject": "Fromage",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "mission-unknown-bread",
+      "title": "Order a Bread You Cannot Pronounce",
+      "emoji": "🍞",
+      "type": "mission",
+      "categories": [
+        "food",
+        "bakery",
+        "mission",
+        "learn"
+      ],
+      "moods": [
+        "french",
+        "cheap",
+        "special"
+      ],
+      "arr": 10,
+      "area": "Any decent boulangerie",
+      "price": 6,
+      "priceNote": "€3–6",
+      "durationMin": 30,
+      "minutesFromHome": 6,
+      "brief": "Walk in and buy the thing on the shelf you have never bought. Then look it up afterwards rather than before.",
+      "test": "A short list worth working through, none of which is a baguette.",
+      "candidates": [
+        {
+          "emoji": "🌰",
+          "name": "Pain aux céréales / pain de seigle",
+          "order": "Ask for it coupé — sliced",
+          "note": "Rye and multigrain. The bread the French actually eat with oysters."
+        },
+        {
+          "emoji": "🥨",
+          "name": "Fougasse",
+          "order": "Fougasse aux olives",
+          "note": "Flat, leaf-shaped, from Provence. Lunch on its own."
+        },
+        {
+          "emoji": "🍇",
+          "name": "Pain aux noix or pain aux figues",
+          "order": "A small one — it is dense",
+          "note": "Walnut or fig bread. Made for a cheese board."
+        },
+        {
+          "emoji": "🥐",
+          "name": "Chouquette",
+          "order": "Ask for a hundred grams",
+          "note": "Choux puffs with pearl sugar, sold by weight, absurdly cheap. The thing French children are given after school."
+        }
+      ],
+      "then": [
+        {
+          "emoji": "🧀",
+          "text": "The cheese mission pairs directly with this",
+          "id": "mission-cheese"
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee at Ten Belles to sit down with it",
+          "id": "ten-belles"
+        }
+      ],
+      "why": "Living somewhere and understanding it are different, and the gap is usually made of small things you never got round to asking about. This one costs three euros to close.",
+      "goodFor": [
+        "food",
+        "cheap",
+        "learn",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "foodmission",
+        "learn",
+        "trynew"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15"
+    },
+    {
+      "id": "mission-eleventh-through-food",
+      "title": "Eat Your Way Through the 11th",
+      "emoji": "🇫🇷",
+      "type": "mission",
+      "categories": [
+        "food",
+        "walk",
+        "mission",
+        "explore"
+      ],
+      "moods": [
+        "walk",
+        "dinner",
+        "international"
+      ],
+      "arr": 11,
+      "area": "Oberkampf down to Charonne",
+      "price": 45,
+      "priceNote": "~€45 each for the full day",
+      "durationMin": 360,
+      "minutesFromHome": 12,
+      "brief": "One arrondissement, six stops, from morning coffee to a glass of wine. The 11th has the best eating in Paris right now and it is twelve minutes from your door.",
+      "test": "Do it in order and do not skip the cheese shop because you are full. That is the point of the walking between.",
+      "candidates": [
+        {
+          "emoji": "☕",
+          "name": "Café Oberkampf",
+          "id": "cafe-oberkampf",
+          "order": "Shakshuka and a filter",
+          "note": "09:30. Get there before the queue.",
+          "walk": "start"
+        },
+        {
+          "emoji": "🥖",
+          "name": "Boulangerie Utopie",
+          "id": "boulangerie-utopie",
+          "order": "Something you cannot identify",
+          "note": "11:00.",
+          "walk": "5 min"
+        },
+        {
+          "emoji": "🧀",
+          "name": "La Buvette",
+          "id": "la-buvette",
+          "order": "Beans in olive oil, and whatever cheese is out",
+          "note": "13:00. Fifteen seats in a former dairy.",
+          "walk": "8 min"
+        },
+        {
+          "emoji": "🍽️",
+          "name": "Rue Paul Bert",
+          "order": "Book one of the four bistros on the street",
+          "note": "20:00. Four good ones within thirty metres.",
+          "walk": "15 min"
+        }
+      ],
+      "then": [
+        {
+          "emoji": "🎸",
+          "text": "La Maroquinerie if there is a gig on",
+          "id": "la-maroquinerie"
+        },
+        {
+          "emoji": "🍸",
+          "text": "Moonshiner, through the pizzeria fridge door",
+          "id": "moonshiner"
+        }
+      ],
+      "why": "This is how you stop being someone who lives in Paris and becomes someone who lives in a neighbourhood. Pick the 11th first because it rewards it fastest.",
+      "goodFor": [
+        "food",
+        "weekend",
+        "couple",
+        "walk",
+        "explore"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "dontmiss",
+        "foodmission",
+        "couple",
+        "weekend",
+        "explorenew"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg/500px-Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg",
+      "imageSubject": "Rue Oberkampf",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "mission-perfect-saturday",
+      "title": "One Perfect Saturday — Canal Saint-Martin",
+      "emoji": "☀️",
+      "type": "mission",
+      "categories": [
+        "food",
+        "walk",
+        "mission",
+        "explore"
+      ],
+      "moods": [
+        "walk",
+        "coffee",
+        "special"
+      ],
+      "arr": 10,
+      "area": "Your own canal, done properly",
+      "price": 55,
+      "priceNote": "~€55 each for the whole day",
+      "durationMin": 540,
+      "minutesFromHome": 0,
+      "startTime": "09:30",
+      "brief": "The whole day, on your doorstep, in order. Nothing here needs a Metro ticket.",
+      "test": "The discipline is doing it in sequence and not going home in between. That is what turns errands into a day out.",
+      "schedule": [
+        {
+          "time": "09:30",
+          "emoji": "☕",
+          "text": "Coffee at Ten Belles, taken outside to the water",
+          "id": "ten-belles"
+        },
+        {
+          "time": "10:15",
+          "emoji": "🍞",
+          "text": "Babka and a croissant from Mamiche",
+          "id": "mamiche"
+        },
+        {
+          "time": "11:00",
+          "emoji": "🚶",
+          "text": "Walk the canal north through the locks"
+        },
+        {
+          "time": "12:00",
+          "emoji": "🏠",
+          "text": "La Trésorerie and Artazart for the flat",
+          "id": "la-tresorerie"
+        },
+        {
+          "time": "13:00",
+          "emoji": "🍛",
+          "text": "Lunch in Passage Brady, under the glass roof",
+          "id": "passage-brady"
+        },
+        {
+          "time": "15:00",
+          "emoji": "🌳",
+          "text": "Bassin de la Villette — swim, kayak, or do nothing",
+          "id": "kayak-bassin-villette"
+        },
+        {
+          "time": "18:00",
+          "emoji": "🍷",
+          "text": "Le Verre Volé, and buy a bottle to take home",
+          "id": "le-verre-vole"
+        },
+        {
+          "time": "21:00",
+          "emoji": "🎷",
+          "text": "Whatever is on at New Morning, nine minutes away",
+          "id": "new-morning"
+        }
+      ],
+      "then": [],
+      "why": "Most people who live somewhere good never do the thing visitors do — spend a whole day on it deliberately. This is that day, and it starts at the end of your street.",
+      "goodFor": [
+        "food",
+        "weekend",
+        "couple",
+        "walk",
+        "romantic"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "dontmiss",
+        "foodmission",
+        "couple",
+        "weekend",
+        "romantic"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg/500px-2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg",
+      "imageSubject": "Canal Saint-Martin",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    }
+  ]
+}

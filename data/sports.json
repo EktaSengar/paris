@@ -41,7 +41,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Paris_Stade_Jean-Bouin_%28cropped%29.jpg/500px-Paris_Stade_Jean-Bouin_%28cropped%29.jpg",
       "imageSubject": "Stade Jean-Bouin (Paris)",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🍺",
+          "text": "Pre-match beer on rue du Commandant Guilbaud",
+          "id": null
+        },
+        {
+          "emoji": "🌳",
+          "text": "Bois de Boulogne, 15 min west",
+          "id": null
+        }
+      ]
     },
     {
       "id": "psg-parc-des-princes",
@@ -81,7 +96,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Paris_Parc_des_Princes_1.jpg/500px-Paris_Parc_des_Princes_1.jpg",
       "imageSubject": "Parc des Princes",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🍺",
+          "text": "Bars around Porte de Saint-Cloud fill 2h before",
+          "id": null
+        },
+        {
+          "emoji": "🌳",
+          "text": "Parc des Princes to the Bois is a 20-min walk",
+          "id": null
+        }
+      ]
     },
     {
       "id": "red-star-stade-bauer",
@@ -129,7 +159,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Match_Football_Red_Star_FC_x_FBBP01_-_Stade_Bauer_-_Saint-Ouen-sur-Seine_%28FR93%29_-_2022-10-12_-_16.jpg/500px-Match_Football_Red_Star_FC_x_FBBP01_-_Stade_Bauer_-_Saint-Ouen-sur-Seine_%28FR93%29_-_2022-10-12_-_16.jpg",
       "imageSubject": "Stade Bauer",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🛍️",
+          "text": "Puces de Saint-Ouen in the morning — 10 min away",
+          "id": "puces-saint-ouen"
+        },
+        {
+          "emoji": "🍷",
+          "text": "Marché Paul Bert has wine bars in the aisles",
+          "id": null
+        }
+      ]
     },
     {
       "id": "stade-de-france",
@@ -169,7 +214,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/StadeFranceNationsLeague2018.jpg/500px-StadeFranceNationsLeague2018.jpg",
       "imageSubject": "Stade de France",
       "imageKind": "subject",
-      "imageCredit": "Darthvadrouw · CC BY-SA 4.0"
+      "imageCredit": "Darthvadrouw · CC BY-SA 4.0",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🏊",
+          "text": "The Olympic Aquatics Centre is directly opposite",
+          "id": "olympic-aquatics-centre"
+        },
+        {
+          "emoji": "🚉",
+          "text": "Two stops back to Gare du Nord after",
+          "id": null
+        }
+      ]
     },
     {
       "id": "adidas-arena-basketball",
@@ -210,7 +270,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Paris_Basketball_SQBB_match.jpg/500px-Paris_Basketball_SQBB_match.jpg",
       "imageSubject": "Adidas Arena",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🛹",
+          "text": "Skatepark under the arena, free",
+          "id": null
+        },
+        {
+          "emoji": "🍛",
+          "text": "Tamil quarter is 10 min east",
+          "id": "la-chapelle-tamil-quarter"
+        }
+      ]
     },
     {
       "id": "accor-arena-bercy",
@@ -248,7 +323,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Palais_Omnisports_de_Paris-Bercy_2007.jpg/500px-Palais_Omnisports_de_Paris-Bercy_2007.jpg",
       "imageSubject": "Accor Arena",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🌳",
+          "text": "Parc de Bercy next door",
+          "id": null
+        },
+        {
+          "emoji": "🍷",
+          "text": "Bercy Village for a drink after",
+          "id": null
+        }
+      ]
     },
     {
       "id": "roland-garros",
@@ -294,7 +384,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/ND_DN_2006FO.jpg/500px-ND_DN_2006FO.jpg",
       "imageSubject": "Stade Roland-Garros",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🌳",
+          "text": "Serres d’Auteuil glasshouses, next door and free",
+          "id": null
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee in Auteuil village before the gates open",
+          "id": null
+        }
+      ]
     },
     {
       "id": "hippodrome-vincennes",
@@ -342,7 +447,22 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Hippodrome_de_Vincennes_DSC03756.JPG/500px-Hippodrome_de_Vincennes_DSC03756.JPG",
       "imageSubject": "Hippodrome de Vincennes",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "watch"
+      ],
+      "pairings": [
+        {
+          "emoji": "🌲",
+          "text": "Bois de Vincennes before the floodlights come on",
+          "id": null
+        },
+        {
+          "emoji": "🍲",
+          "text": "Dinner back at Nation",
+          "id": null
+        }
+      ]
     },
     {
       "id": "olympic-aquatics-centre",
@@ -385,7 +505,24 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/StadeFranceNationsLeague2018.jpg/500px-StadeFranceNationsLeague2018.jpg",
       "imageSubject": "Stade de France",
       "imageKind": "context",
-      "imageCredit": "Darthvadrouw · CC BY-SA 4.0"
+      "imageCredit": "Darthvadrouw · CC BY-SA 4.0",
+      "intent": [
+        "play",
+        "try"
+      ],
+      "difficulty": "beginner",
+      "pairings": [
+        {
+          "emoji": "🏟️",
+          "text": "Stade de France is across the footbridge",
+          "id": null
+        },
+        {
+          "emoji": "🥐",
+          "text": "Bakeries on rue de la République, Saint-Denis",
+          "id": null
+        }
+      ]
     },
     {
       "id": "seine-swimming",
@@ -434,7 +571,25 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Pont_au_Change_and_Palais_de_justice%2C_Paris_20_April_2021_001.jpg/500px-Pont_au_Change_and_Palais_de_justice%2C_Paris_20_April_2021_001.jpg",
       "imageSubject": "Seine",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "try",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "pairings": [
+        {
+          "emoji": "🍦",
+          "text": "Berthillon on Île Saint-Louis, 5 min",
+          "id": null
+        },
+        {
+          "emoji": "🌳",
+          "text": "Square Barye at the island’s tip",
+          "id": null
+        }
+      ]
     },
     {
       "id": "piscine-pontoise",
@@ -477,7 +632,24 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Piscine_Pontoise_%C3%A0_Paris_%28ext%C3%A9rieur%29_-_2026_%2802%29.jpg/500px-Piscine_Pontoise_%C3%A0_Paris_%28ext%C3%A9rieur%29_-_2026_%2802%29.jpg",
       "imageSubject": "Piscine Pontoise",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "pairings": [
+        {
+          "emoji": "🍺",
+          "text": "Late drink on rue Mouffetard",
+          "id": null
+        },
+        {
+          "emoji": "🥐",
+          "text": "Circus Bakery cinnamon buns in the morning",
+          "id": null
+        }
+      ]
     },
     {
       "id": "arkose-climbing",
@@ -518,7 +690,26 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Crash_pad.jpg/500px-Crash_pad.jpg",
       "imageSubject": "Escalade de bloc",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "try",
+        "learn",
+        "group"
+      ],
+      "difficulty": "beginner",
+      "pairings": [
+        {
+          "emoji": "🍔",
+          "text": "Arkose has its own canteen and bar",
+          "id": null
+        },
+        {
+          "emoji": "🎭",
+          "text": "Paname Art Café for comedy after",
+          "id": "paname-art-cafe"
+        }
+      ]
     },
     {
       "id": "paris-tennis-courts",
@@ -554,7 +745,24 @@
       "uniqueness": 4,
       "quality": 4,
       "url": "https://tennis.paris.fr/",
-      "lastVerified": "2026-08-15"
+      "lastVerified": "2026-08-15",
+      "intent": [
+        "play",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Coffee wherever you booked — every centre has one nearby",
+          "id": null
+        },
+        {
+          "emoji": "🌳",
+          "text": "Most municipal courts sit inside a park",
+          "id": null
+        }
+      ]
     },
     {
       "id": "run-canal-ourcq",
@@ -625,7 +833,25 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Canal_de_l%27Ourcq_pres_de_Vignely_P1050588.JPG/500px-Canal_de_l%27Ourcq_pres_de_Vignely_P1050588.JPG",
       "imageSubject": "Canal de l'Ourcq",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "distanceKm": 6,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Ten Belles at the turnaround",
+          "id": "ten-belles"
+        },
+        {
+          "emoji": "🥐",
+          "text": "Du Pain et des Idées, weekdays only",
+          "id": "du-pain-et-des-idees"
+        }
+      ]
     },
     {
       "id": "run-buttes-chaumont",
@@ -667,7 +893,25 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/ParcDesButtesChaumont.JPG/500px-ParcDesButtesChaumont.JPG",
       "imageSubject": "Parc des Buttes-Chaumont",
       "imageKind": "context",
-      "imageCredit": "O.Taris · CC BY-SA 3.0"
+      "imageCredit": "O.Taris · CC BY-SA 3.0",
+      "intent": [
+        "play",
+        "compete"
+      ],
+      "difficulty": "intermediate",
+      "distanceKm": 6,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Brûlerie de Belleville after",
+          "id": "belleville-brulerie"
+        },
+        {
+          "emoji": "🌅",
+          "text": "Temple viewpoint for the cooldown",
+          "id": null
+        }
+      ]
     },
     {
       "id": "run-bois-de-vincennes",
@@ -711,7 +955,25 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Bois_de_Vincennes_20060816_16.jpg/500px-Bois_de_Vincennes_20060816_16.jpg",
       "imageSubject": "Bois de Vincennes",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "compete"
+      ],
+      "difficulty": "intermediate",
+      "distanceKm": 12,
+      "pairings": [
+        {
+          "emoji": "🎷",
+          "text": "Parc Floral jazz on summer weekends",
+          "id": "paris-jazz-festival-2026"
+        },
+        {
+          "emoji": "🏰",
+          "text": "Château de Vincennes at the gate",
+          "id": null
+        }
+      ]
     },
     {
       "id": "run-coulee-verte",
@@ -753,6 +1015,786 @@
       "lastVerified": "2026-08-15",
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Promenade_plant%C3%A9e.JPG/500px-Promenade_plant%C3%A9e.JPG",
       "imageSubject": "Coulée verte René-Dumont",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons",
+      "intent": [
+        "play",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "distanceKm": 9,
+      "pairings": [
+        {
+          "emoji": "🧺",
+          "text": "Marché d’Aligre at the start",
+          "id": "marche-aligre"
+        },
+        {
+          "emoji": "🥐",
+          "text": "Blé Sucré madeleines, rue Antoine Vollon",
+          "id": null
+        }
+      ]
+    },
+    {
+      "id": "padel-ladoumegue",
+      "title": "Padel at Jules Ladoumègue",
+      "emoji": "🎾",
+      "type": "play",
+      "categories": [
+        "sport",
+        "padel",
+        "racket"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": 19,
+      "area": "Stade Jules Ladoumègue, Porte de Pantin",
+      "price": 5,
+      "priceNote": "~€5 per player per hour — municipal rate",
+      "durationMin": 90,
+      "minutesFromHome": 20,
+      "transit": "M5 to Porte de Pantin",
+      "why": "Padel is the fastest-growing sport in France and the single easiest racket sport to be immediately bad at together — the walls keep the ball in play, so rallies happen from the first minute even if neither of you can play. Paris has eight clubs now, but this is the municipal one: about five euros each an hour instead of the thirty you would pay privately. Book through the city tennis site. Twenty minutes on line 5.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "cheap",
+        "try",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "dontmiss",
+        "couple",
+        "trynew"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🌳",
+          "text": "Parc de la Villette is next door",
+          "id": "villette-open-air-cinema-2026"
+        },
+        {
+          "emoji": "☕",
+          "text": "Coffee at Ourcq on the canal walk home",
+          "id": null
+        }
+      ],
+      "url": "https://tennis.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sanchez-Casal_Paddle_Tennis_Game.jpg/500px-Sanchez-Casal_Paddle_Tennis_Game.jpg",
+      "imageSubject": "Padel (sport)",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "padel-4padel",
+      "title": "4Padel — Outdoor Courts & Sports Bar",
+      "emoji": "🟨",
+      "type": "play",
+      "categories": [
+        "sport",
+        "padel",
+        "racket",
+        "social"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "group"
+      ],
+      "difficulty": "beginner",
+      "arr": null,
+      "area": "Eastern Paris — five outdoor courts plus three for pickleball",
+      "price": 20,
+      "priceNote": "~€15–25 a discovery session · first one often free",
+      "durationMin": 120,
+      "minutesFromHome": 30,
+      "transit": "M9 or M1 east",
+      "why": "The bigger, livelier option: five outdoor padel courts, three pickleball courts and a sports bar that stays open on summer evenings, so it works as a night out rather than a training session. Most Paris clubs run discovery sessions at €15–25 and many make the first one free. Use Playtomic to find two other players at your level if you want a proper doubles game.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "try",
+        "socialize",
+        "evening"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "trynew",
+        "couple",
+        "afterwork"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🍺",
+          "text": "The bar is on site — that is the point",
+          "id": null
+        },
+        {
+          "emoji": "🏓",
+          "text": "Pickleball courts next to the padel ones",
+          "id": null
+        }
+      ],
+      "url": "https://www.4padel.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sanchez-Casal_Paddle_Tennis_Game.jpg/500px-Sanchez-Casal_Paddle_Tennis_Game.jpg",
+      "imageSubject": "Padel (sport)",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "pickleball-paris",
+      "title": "Pickleball — Paris’s First Dedicated Club",
+      "emoji": "🏓",
+      "type": "play",
+      "categories": [
+        "sport",
+        "pickleball",
+        "racket"
+      ],
+      "intent": [
+        "play",
+        "try"
+      ],
+      "difficulty": "beginner",
+      "arr": 15,
+      "area": "Paris Expo, Porte de Versailles · also Mathis (19th) and Croix-Nivert (15th)",
+      "price": 9,
+      "priceNote": "From ~€8.50",
+      "durationMin": 90,
+      "minutesFromHome": 35,
+      "transit": "M12 to Porte de Versailles",
+      "why": "You have almost certainly never played this, which is the reason to. Six indoor courts opened at Porte de Versailles at the end of 2025 — France’s first all-pickleball club — open seven days a week from 07:30 to 22:30. The rules take about four minutes to learn and the rallies are long, so it is unusually good for two people of different fitness. The municipal centre at Mathis in the 19th is closer if you just want to try it.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "try",
+        "cheap",
+        "indoor"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "trynew",
+        "cheap",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🌳",
+          "text": "Parc Georges-Brassens and its Sunday book market",
+          "id": null
+        },
+        {
+          "emoji": "🥐",
+          "text": "Rue du Commerce for lunch after",
+          "id": null
+        }
+      ],
+      "url": "https://www.sortiraparis.com/en/what-to-do-in-paris/sport-wellness/articles/316171-sport-pickleball-in-paris-where-to-practice-this-sport-activity",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pickleball_game.webm/500px--Pickleball_game.webm.jpg",
+      "imageSubject": "Pickleball",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "paname-run-club",
+      "title": "Paname Run Club — Mardisco & Coffee Runs",
+      "emoji": "🏃‍♂️",
+      "type": "play",
+      "categories": [
+        "sport",
+        "running",
+        "social",
+        "free"
+      ],
+      "intent": [
+        "play",
+        "group",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": null,
+      "area": "Meeting points move — central Paris",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 75,
+      "minutesFromHome": 15,
+      "transit": "Varies weekly — check Instagram",
+      "why": "No-drop, free, and the best way to meet people in this city without going to a party. Two things to know: Tuesday is Mardisco, where a DJ plays as you run, and the weekend Coffee Run deliberately ends at a café. No-drop means nobody gets left behind, which is the only thing that matters if one of you is faster than the other.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "socialize",
+        "group",
+        "evening",
+        "morning"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "trynew",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "The Coffee Run ends at one — that is the whole design",
+          "id": null
+        },
+        {
+          "emoji": "🥐",
+          "text": "Weekend runs finish near a bakery more often than not",
+          "id": null
+        }
+      ],
+      "url": "https://www.instagram.com/panamerunclub/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Ossiloopstart.JPG/500px-Ossiloopstart.JPG",
+      "imageSubject": "Course à pied",
+      "imageKind": "context",
+      "imageCredit": "Temmo Bosse · CC BY-SA 3.0"
+    },
+    {
+      "id": "parkrun-paris",
+      "title": "parkrun — Free Timed 5K, Saturdays",
+      "emoji": "⏱️",
+      "type": "play",
+      "categories": [
+        "sport",
+        "running",
+        "free",
+        "social"
+      ],
+      "intent": [
+        "play",
+        "group",
+        "compete",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": 14,
+      "area": "Bois de Boulogne and Parc Montsouris",
+      "price": 0,
+      "priceNote": "Free, forever",
+      "durationMin": 75,
+      "minutesFromHome": 35,
+      "transit": "RER B to Cité Universitaire for Montsouris",
+      "days": [
+        6
+      ],
+      "times": "Saturdays, 09:00 sharp",
+      "why": "Five kilometres, timed, free, every Saturday at nine, with a barcode you register once and keep for life. It is the least intimidating race in existence — people walk it — and it gives you a number to beat next week, which is a surprisingly effective way to make running a habit rather than a resolution. Montsouris is the prettier of the two.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "morning",
+        "weekend",
+        "group",
+        "compete"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "couple",
+        "weekend"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Coffee at the Cité Universitaire gates",
+          "id": null
+        },
+        {
+          "emoji": "🌳",
+          "text": "Parc Montsouris itself, once you have stopped wheezing",
+          "id": null
+        }
+      ],
+      "url": "https://www.parkrun.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/P1110707_Paris_XIV_parc_de_Montsouris_rwk.JPG/500px-P1110707_Paris_XIV_parc_de_Montsouris_rwk.JPG",
+      "imageSubject": "Parc Montsouris",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "kayak-bassin-villette",
+      "title": "Kayak & Paddle on the Bassin de la Villette",
+      "emoji": "🛶",
+      "type": "play",
+      "categories": [
+        "sport",
+        "water",
+        "outdoor"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": 19,
+      "area": "Bassin de la Villette, quai de la Loire",
+      "price": 12,
+      "priceNote": "~€10–15 an hour",
+      "durationMin": 90,
+      "minutesFromHome": 12,
+      "transit": "M5 to Stalingrad, or walk up the canal",
+      "seasonal": [
+        "spring",
+        "summer",
+        "autumn"
+      ],
+      "why": "You can hire a kayak or a paddleboard on the widest stretch of the canal, twelve minutes from your flat, and spend an hour on water you walk past every week. Seeing the Rotonde and the lift bridge from the surface rather than the towpath genuinely changes the neighbourhood. Cheap, easy, and nobody expects you to be able to do it.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "try",
+        "outdoor",
+        "cheap",
+        "spontaneous"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "trynew",
+        "cheap",
+        "couple",
+        "outdoor",
+        "hiddengem"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🏖️",
+          "text": "Paris Plages is on the same quay in summer",
+          "id": "paris-plages-2026"
+        },
+        {
+          "emoji": "🎬",
+          "text": "Open-air cinema up at La Villette after",
+          "id": null
+        }
+      ],
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bassin_villette.jpg/500px-Bassin_villette.jpg",
+      "imageSubject": "Bassin de la Villette",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "ping-pong-parks",
+      "title": "Free Outdoor Ping-Pong",
+      "emoji": "🏓",
+      "type": "play",
+      "categories": [
+        "sport",
+        "free",
+        "outdoor",
+        "casual"
+      ],
+      "intent": [
+        "play",
+        "casual",
+        "try"
+      ],
+      "difficulty": "beginner",
+      "arr": 10,
+      "area": "Concrete tables in parks all over the city",
+      "price": 0,
+      "priceNote": "Free — bring bats and a ball",
+      "durationMin": 45,
+      "minutesFromHome": 5,
+      "transit": "Walk — Jardin Villemin has tables",
+      "why": "There are permanent concrete tables in parks across Paris, including Jardin Villemin four minutes from your door, and they cost nothing. Keep two bats and a ball by the door and this becomes the easiest twenty minutes of sport in your week — the sort of thing you actually do, as opposed to the gym membership you mean to use.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "outdoor",
+        "spontaneous",
+        "casual"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "couple",
+        "outdoor",
+        "hiddengem"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🌻",
+          "text": "Jardin Villemin is the table nearest you",
+          "id": "jardin-villemin"
+        },
+        {
+          "emoji": "🍷",
+          "text": "Canal for a drink after, two minutes away",
+          "id": null
+        }
+      ],
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Table_tennis_pictogram.svg/500px-Table_tennis_pictogram.svg.png",
+      "imageSubject": "Tennis de table",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "velib-seine-ride",
+      "title": "Vélib’ Along the Car-Free Seine",
+      "emoji": "🚲",
+      "type": "play",
+      "categories": [
+        "sport",
+        "cycling",
+        "outdoor",
+        "cheap"
+      ],
+      "intent": [
+        "play",
+        "casual",
+        "try"
+      ],
+      "difficulty": "beginner",
+      "arr": 4,
+      "area": "Voie Georges-Pompidou, right bank",
+      "price": 3,
+      "priceNote": "~€3 on a Vélib’ day pass",
+      "durationMin": 90,
+      "minutesFromHome": 15,
+      "transit": "Pick up a bike at the end of your street",
+      "why": "The lower right bank of the Seine has been closed to cars since 2016 and most people still think of it as a road. Take a Vélib’ from your street down to the river and ride it end to end — Bastille to the Louvre and back is about an hour, entirely traffic-free, past the Île Saint-Louis at water level. Best at eight in the morning or an hour before sunset.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "cheap",
+        "outdoor",
+        "spontaneous",
+        "romantic"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "couple",
+        "outdoor",
+        "romantic"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🍦",
+          "text": "Berthillon on Île Saint-Louis, mid-ride",
+          "id": null
+        },
+        {
+          "emoji": "🌅",
+          "text": "Square du Vert-Galant at the island’s tip for sunset",
+          "id": null
+        }
+      ],
+      "url": "https://www.velib-metropole.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/V%C3%A9lib-M%C3%A9tropole-Logo.png/500px-V%C3%A9lib-M%C3%A9tropole-Logo.png",
+      "imageSubject": "Vélib' Métropole",
+      "imageKind": "context",
+      "imageCredit": "Vélib' · Public domain"
+    },
+    {
+      "id": "skating-republique",
+      "title": "Skate & Roll at République",
+      "emoji": "🛹",
+      "type": "play",
+      "categories": [
+        "sport",
+        "free",
+        "outdoor",
+        "unusual"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": 10,
+      "area": "Place de la République",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 60,
+      "minutesFromHome": 6,
+      "transit": "Walk",
+      "why": "The pedestrianised half of République has been an informal skate spot for years and is six minutes from your door — beginners at one end, people doing things that look impossible at the other, most evenings. Even if you never step on a board it is a good place to sit with a drink and watch. Paris also has a Friday-night mass roller skate that takes over the streets; look up Pari Roller if that appeals.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "outdoor",
+        "evening",
+        "spontaneous",
+        "unusual"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "couple",
+        "outdoor",
+        "afterwork",
+        "hiddengem"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "🍸",
+          "text": "Le Syndicat is eight minutes away",
+          "id": "le-syndicat"
+        },
+        {
+          "emoji": "🍕",
+          "text": "Late pizza around rue du Faubourg-du-Temple",
+          "id": null
+        }
+      ],
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Paris_-_2017-12-01_-_Place_de_la_R%C3%A9publique_-_5517.jpg/500px-Paris_-_2017-12-01_-_Place_de_la_R%C3%A9publique_-_5517.jpg",
+      "imageSubject": "Place de la République (Paris)",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "fontainebleau-bouldering",
+      "title": "Bouldering in the Fontainebleau Forest",
+      "emoji": "🪨",
+      "type": "play",
+      "categories": [
+        "sport",
+        "climbing",
+        "outdoor",
+        "daytrip"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "learn"
+      ],
+      "difficulty": "intermediate",
+      "arr": null,
+      "area": "Forest of Fontainebleau — Bas Cuvier, Trois Pignons",
+      "price": 25,
+      "priceNote": "~€20 return train · mats hire extra",
+      "durationMin": 420,
+      "minutesFromHome": 65,
+      "transit": "Gare de Lyon to Fontainebleau-Avon, then bus",
+      "seasonal": [
+        "spring",
+        "autumn",
+        "winter"
+      ],
+      "why": "One of the birthplaces of the sport, an hour from Paris: thousands of sandstone boulders in a forest, with colour-coded circuits so you can follow a graded line rather than guess. The easiest circuits are genuinely doable by beginners. Autumn is the season — cold rock, dry sand, no crowds. Pair it with the château if you want the day to have two halves.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "outdoor",
+        "try",
+        "weekend",
+        "daytrip"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "trynew",
+        "couple",
+        "outdoor",
+        "weekend"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "🏰",
+          "text": "Château de Fontainebleau in the morning",
+          "id": "fontainebleau"
+        },
+        {
+          "emoji": "🌲",
+          "text": "The forest walks if arms give out first",
+          "id": null
+        }
+      ],
+      "url": "https://www.fontainebleau-tourisme.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Rochers_en_for%C3%AAt_de_Fontainebleau11.JPG/500px-Rochers_en_for%C3%AAt_de_Fontainebleau11.JPG",
+      "imageSubject": "Forêt de Fontainebleau",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "yoga-outdoor-paris",
+      "title": "Free Outdoor Yoga & Park Fitness",
+      "emoji": "🧘",
+      "type": "play",
+      "categories": [
+        "sport",
+        "yoga",
+        "free",
+        "outdoor"
+      ],
+      "intent": [
+        "play",
+        "casual",
+        "group"
+      ],
+      "difficulty": "beginner",
+      "arr": 19,
+      "area": "Parks across the city — Buttes-Chaumont, Villette, Bercy",
+      "price": 0,
+      "priceNote": "Free",
+      "durationMin": 60,
+      "minutesFromHome": 15,
+      "transit": "M5 to Laumière for Buttes-Chaumont",
+      "seasonal": [
+        "spring",
+        "summer"
+      ],
+      "why": "The city runs free open-air sport sessions in the parks from spring to autumn — yoga, stretching, circuit training, most of them turn-up-and-join. There are also permanent outdoor fitness installations dotted through the bigger parks. It is the cheapest possible way to find out whether you actually like something before paying a studio forty euros to discover you do not.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "free",
+        "outdoor",
+        "morning",
+        "group",
+        "casual"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "couple",
+        "outdoor"
+      ],
+      "uniqueness": 3,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Rosa Bonheur in the park for a drink after",
+          "id": null
+        },
+        {
+          "emoji": "🥐",
+          "text": "Bakeries on rue de Meaux on the way home",
+          "id": null
+        }
+      ],
+      "url": "https://www.paris.fr/pages/sport-en-plein-air-2895",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/A_yogi_seated_in_a_garden.jpg/500px-A_yogi_seated_in_a_garden.jpg",
+      "imageSubject": "Yoga",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "ice-skating-winter",
+      "title": "Winter Ice Rinks",
+      "emoji": "⛸️",
+      "type": "play",
+      "categories": [
+        "sport",
+        "seasonal",
+        "unusual"
+      ],
+      "intent": [
+        "play",
+        "try",
+        "casual"
+      ],
+      "difficulty": "beginner",
+      "arr": null,
+      "area": "Pop-up rinks — Hôtel de Ville and around the city",
+      "price": 8,
+      "priceNote": "~€5–10 including skate hire",
+      "durationMin": 75,
+      "minutesFromHome": 20,
+      "transit": "M1 to Hôtel de Ville",
+      "seasonal": [
+        "winter"
+      ],
+      "why": "From December the city puts temporary rinks up in front of the Hôtel de Ville and elsewhere, and they are cheap, chaotic and much more fun than they sound. Worth putting in the calendar now, because they appear and vanish within about six weeks and it is easy to look up in February and realise you missed it.",
+      "goodFor": [
+        "couple",
+        "sport",
+        "try",
+        "cheap",
+        "romantic",
+        "unusual"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "cheap",
+        "romantic",
+        "couple",
+        "trynew"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Hot chocolate at Angelina or a Marais café",
+          "id": null
+        },
+        {
+          "emoji": "✨",
+          "text": "Christmas lights on rue de Rivoli",
+          "id": null
+        }
+      ],
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Outdoor_ice_rink_-_Aerial_view_%281%29.jpg/500px-Outdoor_ice_rink_-_Aerial_view_%281%29.jpg",
+      "imageSubject": "Patinoire",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
     }

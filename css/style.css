@@ -751,3 +751,201 @@ body {
   }
   .tabs-inner { padding-right: 2rem; }
 }
+
+/* =========================================================
+   SECTION PERSONALITIES
+
+   Same components, different temperature. Sport runs warm and
+   energetic, Eat is appetite-warm, Explore and Away stay cool and
+   editorial. Only the accent moves — the structure is shared, so
+   this reads as one publication rather than six microsites.
+   ========================================================= */
+
+body[data-view="sport"]   { --accent: #b04a2f; --blush: #d8a07a; }
+body[data-view="eat"]     { --accent: #a4472e; --blush: #d9a15f; }
+body[data-view="nights"]  { --accent: #7d4a86; --blush: #b98fc4; }
+body[data-view="explore"] { --accent: #4a6b5c; --blush: #9dbd93; }
+body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
+
+:root[data-theme="dark"] body[data-view="sport"]   { --accent: #e79878; }
+:root[data-theme="dark"] body[data-view="eat"]     { --accent: #e29a72; }
+:root[data-theme="dark"] body[data-view="nights"]  { --accent: #c9a2d4; }
+:root[data-theme="dark"] body[data-view="explore"] { --accent: #a3c79a; }
+:root[data-theme="dark"] body[data-view="away"]    { --accent: #9dbbd8; }
+
+/* ---------- play / watch mode switch ---------- */
+
+.mode {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .6rem;
+  margin-bottom: 2rem;
+}
+.mode-btn {
+  text-align: left;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-family: var(--serif); font-size: 1.25rem;
+  color: var(--faint);
+  cursor: pointer;
+  transition: all .18s;
+}
+.mode-btn em {
+  display: block;
+  font-family: var(--sans); font-style: normal;
+  font-size: .76rem; letter-spacing: .04em;
+  color: var(--faint); margin-top: .2rem;
+}
+.mode-btn .mode-emoji { font-size: 1.1rem; margin-right: .3rem; }
+.mode-btn:hover { border-color: var(--soft); color: var(--ink); }
+.mode-btn.on {
+  border-color: var(--accent);
+  color: var(--ink);
+  background: color-mix(in srgb, var(--accent) 7%, transparent);
+}
+.mode-btn.on em { color: var(--accent); }
+
+.sport-chips { margin-bottom: 1.4rem; }
+
+/* ---------- sport of the week ---------- */
+
+.sotw {
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.3rem 1.35rem;
+  margin-bottom: 1rem;
+  background: color-mix(in srgb, var(--accent) 5%, transparent);
+}
+.sotw-kicker {
+  margin: 0 0 .8rem;
+  font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600;
+}
+.sotw-body { display: grid; grid-template-columns: 1fr; gap: 1.1rem; }
+@media (min-width: 760px) { .sotw-body { grid-template-columns: 420px 1fr; } }
+.sotw-img { aspect-ratio: 4/3; border-radius: 10px; overflow: hidden; background: var(--img-bg); }
+.sotw-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sotw h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin: 0 0 .25rem; }
+.sotw-meta { margin: 0 0 .7rem; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--faint); }
+.sotw-why { margin: 0 0 .9rem; font-size: .93rem; line-height: 1.65; color: var(--soft); }
+
+/* ---------- the week plan ---------- */
+
+.week-plan .slot .t { flex: 0 0 8.5rem; }
+.week-plan .slot .s b { display: block; margin-bottom: .1rem; }
+@media (max-width: 560px) { .week-plan .slot { flex-direction: column; gap: .1rem; } .week-plan .slot .t { flex: none; } }
+
+/* ---------- pairings ---------- */
+
+.pairs { display: flex; gap: .6rem; align-items: baseline; flex-wrap: wrap; margin: .7rem 0 .2rem; }
+.pairs-label {
+  font-size: .64rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--faint); flex: 0 0 auto;
+}
+.pairs-row { display: flex; gap: .4rem; flex-wrap: wrap; }
+.pair {
+  font-size: .78rem;
+  padding: .2rem .6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 9%, transparent);
+  color: var(--soft);
+}
+
+/* ---------- fixtures (watch calendar) ---------- */
+
+.fixtures { display: flex; flex-direction: column; }
+.fixture {
+  display: grid; grid-template-columns: 3.4rem 1fr; gap: 1.1rem;
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+}
+.fx-date {
+  text-align: center; padding-top: .2rem;
+  border-right: 1px solid var(--line);
+  padding-right: .6rem;
+}
+.fx-day { display: block; font-family: var(--serif); font-size: 1.6rem; line-height: 1; color: var(--accent); }
+.fx-mon { display: block; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin-top: .2rem; }
+.fx-body h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; margin: 0 0 .2rem; }
+.fx-meta { margin: 0 0 .5rem; font-size: .76rem; letter-spacing: .05em; text-transform: uppercase; color: var(--faint); }
+.fx-why { margin: 0 0 .6rem; font-size: .89rem; line-height: 1.6; color: var(--soft); }
+.fx-spec {
+  margin: 0 0 .5rem; font-size: .86rem; line-height: 1.6; color: var(--soft);
+  border-left: 2px solid var(--accent); padding-left: .8rem;
+}
+.fx-spec b { color: var(--ink); font-weight: 600; }
+
+/* ---------- eat: moods + missions ---------- */
+
+.moods { margin-bottom: 1.8rem; }
+.moods-label {
+  display: block; margin-bottom: .6rem;
+  font-family: var(--serif); font-style: italic; font-size: 1.05rem; color: var(--soft);
+}
+.chip.mood { font-size: .84rem; padding: .38rem .85rem; }
+
+.missions { display: grid; grid-template-columns: 1fr; gap: 1.6rem; }
+@media (min-width: 900px) { .missions { grid-template-columns: 1fr 1fr; } }
+
+.mission {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--card);
+  display: flex; flex-direction: column;
+}
+.mission.lead { border-color: var(--accent); margin-bottom: 1rem; }
+.mission-img { aspect-ratio: 16/9; background: var(--img-bg); overflow: hidden; }
+.mission.lead .mission-img { aspect-ratio: 21/9; }
+.mission-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.mission-body { padding: 1.2rem 1.3rem 1.3rem; }
+.mission-kicker {
+  margin: 0 0 .35rem;
+  font-size: .66rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 600;
+}
+.mission-title {
+  font-family: var(--serif); font-weight: 400;
+  font-size: clamp(1.35rem, 3.2vw, 1.9rem);
+  margin: 0 0 .5rem; line-height: 1.15;
+}
+.mission.lead .mission-title { font-size: clamp(1.6rem, 4.5vw, 2.3rem); }
+.mission-brief { margin: 0 0 .7rem; font-size: .95rem; line-height: 1.65; color: var(--soft); }
+.mission-test {
+  margin: 0 0 1rem; font-size: .86rem; line-height: 1.6; color: var(--soft);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+  padding: .6rem .8rem; border-radius: 8px;
+}
+.mission-test b { color: var(--ink); font-weight: 600; }
+
+.cands { list-style: none; margin: 0 0 .6rem; padding: 0; counter-reset: c; }
+.cands li {
+  display: grid; grid-template-columns: 1.7rem 1fr auto; gap: .1rem .7rem;
+  align-items: baseline;
+  padding: .6rem 0; border-top: 1px solid var(--line);
+}
+.cand-n {
+  font-family: var(--serif); font-size: .95rem; color: var(--accent);
+}
+.sch-time {
+  font-size: .72rem; letter-spacing: .06em; color: var(--accent); font-weight: 600;
+}
+.cand-body { font-size: .88rem; color: var(--soft); }
+.cand-body b { display: block; color: var(--ink); font-weight: 600; font-size: .95rem; }
+.cand-order { display: block; margin-top: .12rem; }
+.cand-note { display: block; color: var(--faint); font-size: .82rem; margin-top: .1rem; }
+.cand-walk { font-size: .72rem; color: var(--faint); white-space: nowrap; }
+
+.mission-foot {
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  flex-wrap: wrap; margin-top: .9rem; padding-top: .8rem; border-top: 1px solid var(--line);
+}
+.mission-why { font-size: .78rem; color: var(--faint); font-style: italic; flex: 1; min-width: 12rem; }
+
+@media (max-width: 560px) {
+  .mode { grid-template-columns: 1fr; }
+  .cands li { grid-template-columns: 1.7rem 1fr; }
+  .cand-walk { grid-column: 2; }
+}
+
+/* Emoji sit tight against following text in most system fonts. */
+.e { margin-right: .38em; }

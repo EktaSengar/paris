@@ -27,7 +27,8 @@ data/
   events.json         time-sensitive; expires and is pruned automatically
   places.json         cafés, bakeries, markets, shops, museums, parks, classes
   nightlife.json      jazz rooms, live venues, clubs and bars
-  sports.json         arenas and clubs to watch, pools and walls to use, runs to do
+  sports.json         play vs watch — activities, venues, running routes
+  food.json           food missions: a brief, three candidates, what to order
   itineraries.json    ready-made routes — the "start here, then walk there" layer
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
@@ -113,6 +114,33 @@ Away. On a phone the bar scrolls, with a fade on the right edge so that reads
 as "more this way" rather than as clipped text.
 Free, For two and Hidden are *filters*, not places, and live in the filter row.
 Quests and Your list are utilities, kept small.
+
+### Sport: play vs watch
+
+Two different questions, so two different interfaces. **Play** leads with a
+Sport of the Week (deterministic by ISO week, skips anything already rated),
+then "add sport to the week" — four time-budgeted slots rather than a training
+plan — then activities filtered by what you actually want out of it (try
+something new / casual / group / compete / learn), then running routes.
+
+**Watch** is a dated calendar with a `spectator` field on each fixture,
+because a fixture you cannot see is just a date. That field answers "where
+should we stand?" — take the Montmartre climb rather than the Champs-Élysées
+barriers, go to a gymnastics qualification rather than the final.
+
+### Food missions
+
+`food.json` holds missions, not listings: a brief, a way to judge the result,
+three candidates with what to order at each, and where to go afterwards. The
+café-and-bakery directory still exists underneath, for when you just want a
+name — but it is no longer the whole section.
+
+### Pairings
+
+Every card can carry `pairings` — the "what could we do before and after
+this?" layer. A recommendation on its own is a listing; a recommendation with
+a coffee after it is a plan, which is most of the difference this site is
+trying to make.
 
 ### Nightlife
 
