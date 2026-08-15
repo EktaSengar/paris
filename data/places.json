@@ -1709,6 +1709,90 @@
       "imageSubject": "Tour de potier",
       "imageCredit": "Wikimedia Commons",
       "imageKind": "context"
+    },
+    {
+      "id": "la-chapelle-tamil-quarter",
+      "title": "The Tamil Quarter, La Chapelle",
+      "emoji": "🛕",
+      "type": "walk",
+      "categories": [
+        "food",
+        "walk",
+        "culture",
+        "indian"
+      ],
+      "arr": 18,
+      "area": "Rue Cail, rue Perdonnet, rue Louis-Blanc",
+      "price": 12,
+      "priceNote": "Lunch €8–15",
+      "durationMin": 120,
+      "minutesFromHome": 12,
+      "transit": "Walk, or M2 to La Chapelle",
+      "why": "Twelve minutes from your flat is the largest South Asian quarter in France — Tamil and Sri Lankan grocers, sari shops, sweet counters and some of the best and cheapest food in Paris. Rue Cail is the spine of it. At the top is Sri Manicka Vinayakar Alayam, the biggest Hindu temple in the country, tucked into a side street off rue Pajol. Worth knowing simply because it is close, and because most guides to Paris behave as if it does not exist.",
+      "goodFor": [
+        "food",
+        "walk",
+        "cheap",
+        "spontaneous",
+        "couple",
+        "vegetarian"
+      ],
+      "indoor": false,
+      "labels": [
+        "cheap",
+        "hiddengem",
+        "foodmission",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.paris.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Rue_Cail_%28Paris%29%2C_depuis_la_place_T10_01.jpg/500px-Rue_Cail_%28Paris%29%2C_depuis_la_place_T10_01.jpg",
+      "imageSubject": "Rue Cail",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "musee-guimet",
+      "title": "Musée Guimet",
+      "emoji": "🪷",
+      "type": "museum",
+      "categories": [
+        "culture",
+        "art",
+        "indoor",
+        "indian"
+      ],
+      "arr": 16,
+      "area": "6 place d’Iéna",
+      "price": 13,
+      "priceNote": "~€13 · free on the first Sunday of the month",
+      "durationMin": 120,
+      "minutesFromHome": 30,
+      "transit": "M9 to Iéna",
+      "why": "The national museum of Asian art, and its Indian and Himalayan collections are among the best outside Asia — Gandhara sculpture, Chola bronzes, a rotunda library that looks like a film set. It also programmes Indian classical music and dance in its auditorium through the season, which is the most reliable place in Paris to hear a proper sitar or Bharatanatyam performance. Check the auditorium listings, not just the galleries.",
+      "goodFor": [
+        "culture",
+        "couple",
+        "indoor",
+        "learn"
+      ],
+      "indoor": true,
+      "rainyDayPick": true,
+      "labels": [
+        "couple",
+        "indoor",
+        "hiddengem"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.guimet.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Le_mus%C3%A9e_Guimet_November_20%2C_2011.jpg/500px-Le_mus%C3%A9e_Guimet_November_20%2C_2011.jpg",
+      "imageSubject": "Musée Guimet",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

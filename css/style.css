@@ -720,8 +720,22 @@ body {
   .foot-links { display: flex; }
 }
 
-/* A card with no photograph gets a rule instead of an empty frame. */
-.card.nopic { border-top: 2px solid var(--accent); padding-top: .9rem; }
+/* Placeholder tile for the handful of things with no freely licensed
+   photograph. Same aspect ratio as a real one so the grid stays aligned,
+   but visibly a tile rather than a picture — no pretending. */
+.shot.ph {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(120% 100% at 30% 0%, color-mix(in srgb, var(--blush) 22%, transparent), transparent 70%),
+    linear-gradient(150deg, var(--bg-2), var(--img-bg));
+}
+.ph-mark {
+  font-size: 2.9rem;
+  opacity: .45;
+  filter: saturate(.7);
+  line-height: 1;
+}
 
 /* With seven destinations the bar no longer fits a phone. Let it scroll, but
    make that legible: a soft fade on the right edge so it reads as "more this

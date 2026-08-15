@@ -103,6 +103,11 @@ good photograph. So format follows content:
 itself or only of its street. Only `subject` photos are allowed to take the
 hero slot, which is why a café never leads a page with a picture of a road.
 
+A few things have no freely licensed photograph at all. Those get a tinted
+placeholder tile at the same aspect ratio, so the grid stays aligned and the
+card is visibly a tile rather than a picture — the alternative, inventing a
+stock photo, would be worse than admitting there isn't one.
+
 Navigation is seven destinations — Today, Nights, Weekend, Eat, Sport, Explore,
 Away. On a phone the bar scrolls, with a fade on the right edge so that reads
 as "more this way" rather than as clipped text.

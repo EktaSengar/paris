@@ -158,6 +158,17 @@ const QUERIES = {
   '20km-de-paris-2026': 'Tour Eiffel',
   'rolex-paris-masters-2026': 'La Défense',
 
+  // comedy, halls and Indian Paris
+  'sogymnase-english-comedy': 'Théâtre du Gymnase Marie-Bell',
+  'comedy-in-paris': 'Boulevard de Bonne-Nouvelle',
+  'paname-art-cafe': 'Rue de la Fontaine-au-Roi',
+  'olympia': 'Olympia (Paris)',
+  'la-cigale-venue': 'La Cigale',
+  'indian-shows-paris': 'Quartier de la Chapelle',
+  'la-chapelle-tamil-quarter': 'Rue Cail',
+  'musee-guimet': 'Musée Guimet',
+  'fete-de-ganesh-2026': 'Rue Pajol',
+
   // day trips
   'chantilly': 'Château de Chantilly',
   'reims-champagne': 'Cathédrale Notre-Dame de Reims',
@@ -202,7 +213,9 @@ const CONTEXT_ONLY = new Set([
   'seine-swimming', 'arkose-climbing', 'paris-tennis-courts', 'run-canal-ourcq',
   'run-buttes-chaumont', 'run-bois-de-vincennes', 'run-coulee-verte',
   '20km-de-paris-2026', 'rolex-paris-masters-2026',
-  'olympic-aquatics-centre', 'prix-arc-triomphe-2026'
+  'olympic-aquatics-centre', 'prix-arc-triomphe-2026',
+  'comedy-in-paris', 'paname-art-cafe', 'indian-shows-paris', 'la-chapelle-tamil-quarter',
+  'fete-de-ganesh-2026'
 ]);
 
 const FILES = ['events.json', 'places.json', 'nightlife.json', 'sports.json', 'itineraries.json', 'daytrips.json'];

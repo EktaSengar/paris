@@ -1445,6 +1445,60 @@
       "imageSubject": "La Défense",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "fete-de-ganesh-2026",
+      "title": "Fête de Ganesh",
+      "emoji": "🐘",
+      "type": "event",
+      "categories": [
+        "culture",
+        "indian",
+        "free",
+        "outdoor",
+        "music"
+      ],
+      "arr": 18,
+      "area": "Temple Sri Manicka Vinayakar Alayam, 17 rue Pajol",
+      "price": 0,
+      "priceNote": "Free",
+      "start": "2026-08-30",
+      "end": "2026-08-30",
+      "days": [
+        0
+      ],
+      "times": "Ceremonies from 09:00 · procession leaves 10:30 · ends ~15:00",
+      "durationMin": 240,
+      "minutesFromHome": 15,
+      "transit": "M12 to Marx Dormoy, or a 20-minute walk",
+      "why": "The Tamil community of Paris has processed Ganesh through the streets of La Chapelle every year since 1995, and it is fifteen minutes from your door. Nageshvaram players and drummers lead, then dancers carrying kavadi arches of peacock feathers and pots of burning camphor, then Ganesh himself on a decorated float with his brother Muruga behind. Twenty-five thousand people, coconuts smashed on the road, free food afterwards. Arrive by 10:00 for the procession leaving the temple.",
+      "goodFor": [
+        "weekend",
+        "couple",
+        "free",
+        "culture",
+        "outdoor",
+        "unusual",
+        "morning"
+      ],
+      "indoor": false,
+      "weatherSensitive": true,
+      "labels": [
+        "free",
+        "dontmiss",
+        "unusual",
+        "outdoor",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "source": "Ville de Paris / Sortiraparis",
+      "url": "https://www.paris.fr/evenements/fete-de-ganesh-a-paris-25089",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/P1060179_Paris_XVIII_rue_Pajol_rwk.jpg/500px-P1060179_Paris_XVIII_rue_Pajol_rwk.jpg",
+      "imageSubject": "Rue Pajol",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

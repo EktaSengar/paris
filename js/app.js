@@ -218,9 +218,12 @@ const App = (() => {
   const CARD_SIZES = '(min-width: 940px) 320px, (min-width: 620px) 45vw, 92vw';
 
   function shot(item) {
-    // No photograph? Show no frame at all. An empty grey box is worse than
-    // a card that is simply typographic.
-    if (!item.image) return '';
+    // No free photograph exists for some things. Rather than invent one or
+    // drop the frame (which breaks the grid's rhythm), draw a tinted tile at
+    // the same aspect ratio. It is clearly not a photograph, which is the point.
+    if (!item.image) {
+      return `<div class="shot ph"><span class="ph-mark">${item.emoji || '·'}</span>${badge(item)}</div>`;
+    }
     return `<div class="shot">${img(item, CARD_SIZES)}${badge(item)}</div>`;
   }
 
@@ -275,7 +278,7 @@ const App = (() => {
   }
 
   function card(item, cls = '', overline = '') {
-    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${item.image ? '' : 'nopic'} ${cls}" data-id="${esc(item.id)}">
+    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${cls}" data-id="${esc(item.id)}">
       ${shot(item)}
       <p class="kicker">${overline ? `<b>${esc(overline)}</b> · ` : ''}${kicker(item)}</p>
       <h2 class="card-title">${esc(item.title)}</h2>
@@ -471,6 +474,7 @@ const App = (() => {
           ? stripHead('On sale now', 'Dated, and they sell out in this order')
             + `<div class="grid">${rest.slice(0, 6).map(i => card(i)).join('')}</div>`
           : '')
+      + group('Comedy', 'English, French, and who to follow for Hindi', i => i.type === 'comedy')
       + group('Jazz rooms', 'Two sets a night, most nights', i => i.type === 'jazz')
       + group('Live music', 'Check the listing, then buy blind', i => i.type === 'venue')
       + group('Late', 'Doors at midnight — earlier is a beginner’s error', i => i.type === 'club')

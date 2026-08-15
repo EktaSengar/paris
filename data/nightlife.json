@@ -871,6 +871,254 @@
       "imageSubject": "Quai de la Gare",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "sogymnase-english-comedy",
+      "title": "SoGymnase — English Stand-Up",
+      "emoji": "🎙️",
+      "type": "comedy",
+      "categories": [
+        "nightlife",
+        "comedy",
+        "english"
+      ],
+      "arr": 10,
+      "area": "38 boulevard de Bonne Nouvelle",
+      "price": 20,
+      "priceNote": "~€15–25",
+      "durationMin": 120,
+      "minutesFromHome": 10,
+      "transit": "Walk, or M8/M9 to Bonne Nouvelle",
+      "times": "English shows most Thursdays to Saturdays",
+      "why": "The centre of English-language comedy in Paris, and it is a ten-minute walk from your flat. The small room under the Théâtre du Gymnase hosts Sebastian Marx’s long-running New York Comedy Night plus touring acts who have done Netflix and Comedy Central specials. Entirely in English, so it is the easy answer on a night when French is too much like hard work.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "socialize",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "url": "https://www.sogymnase.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Adolph_Menzel_-_Th%C3%A9%C3%A2tre_du_Gymnase_in_Paris_-_Google_Art_Project.jpg/500px-Adolph_Menzel_-_Th%C3%A9%C3%A2tre_du_Gymnase_in_Paris_-_Google_Art_Project.jpg",
+      "imageSubject": "Théâtre du Gymnase Marie-Bell",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "comedy-in-paris",
+      "title": "Comedy in Paris & Coucou Comedy",
+      "emoji": "😂",
+      "type": "comedy",
+      "categories": [
+        "nightlife",
+        "comedy",
+        "english"
+      ],
+      "arr": 2,
+      "area": "Rotating rooms across the 2nd, 10th and 11th",
+      "price": 18,
+      "priceNote": "~€12–22 · open mics often free",
+      "durationMin": 105,
+      "minutesFromHome": 15,
+      "transit": "Varies by room — most are central",
+      "times": "Several nights a week, year round",
+      "why": "Two long-running English-language outfits that between them put on a show most nights somewhere central. Coucou Comedy and Green Mic run the weekly rooms; comedyinparis.com is the place to look because it lists everyone rather than one club. Open-mic nights are cheap or free and are where you see people trying material for the first time, which is either the best or the worst of it.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "cheap",
+        "socialize",
+        "spontaneous"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "afterwork",
+        "couple",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://www.comedyinparis.com/shows",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Boulevard_Bonne_Nouvelle_-_Paris_II_%28FR75%29_-_2021-06-12_-_1.jpg/500px-Boulevard_Bonne_Nouvelle_-_Paris_II_%28FR75%29_-_2021-06-12_-_1.jpg",
+      "imageSubject": "Boulevard de Bonne-Nouvelle",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "paname-art-cafe",
+      "title": "Paname Art Café",
+      "emoji": "🎭",
+      "type": "comedy",
+      "categories": [
+        "nightlife",
+        "comedy",
+        "learn"
+      ],
+      "arr": 11,
+      "area": "14 rue de la Fontaine au Roi",
+      "price": 12,
+      "priceNote": "~€10–15",
+      "durationMin": 105,
+      "minutesFromHome": 12,
+      "transit": "Walk, or M11 to Goncourt",
+      "times": "Stand-up most nights from ~20:00",
+      "why": "French-language stand-up in a small room twelve minutes from home, and one of the rooms where the current generation of French comics came up. Worth going once your French is up to it — comedy is the hardest listening there is, and also the fastest way to find out how much you have actually learned. Go with low expectations of understanding everything.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "cheap",
+        "learn",
+        "socialize"
+      ],
+      "indoor": true,
+      "labels": [
+        "cheap",
+        "afterwork",
+        "learn",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 4,
+      "url": "https://panameartcafe.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/P1160866_Paris_XI_rue_de_la_Fontaine-au-Roi_rwk.jpg/500px-P1160866_Paris_XI_rue_de_la_Fontaine-au-Roi_rwk.jpg",
+      "imageSubject": "Rue de la Fontaine-au-Roi",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "olympia",
+      "title": "L'Olympia",
+      "emoji": "🎼",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music"
+      ],
+      "arr": 9,
+      "area": "28 boulevard des Capucines",
+      "price": 55,
+      "priceNote": "~€35–80",
+      "durationMin": 180,
+      "minutesFromHome": 20,
+      "transit": "M8 to Opéra, or M3 to Havre–Caumartin",
+      "times": "Most nights, year round",
+      "why": "The most famous hall in France — Piaf, Bowie, the Beatles — and still only two thousand seats, which for the size of act it attracts is remarkably small. Anglophone touring artists almost always play here rather than an arena. Worth checking the calendar every few weeks rather than waiting to hear about something; the good nights go quietly.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "afterwork",
+        "bookahead",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.olympiahall.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/L%27Olympia_%28Paris%29_en_2010.JPG/500px-L%27Olympia_%28Paris%29_en_2010.JPG",
+      "imageSubject": "Olympia (Paris)",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "la-cigale-venue",
+      "title": "La Cigale",
+      "emoji": "🎫",
+      "type": "venue",
+      "categories": [
+        "nightlife",
+        "music"
+      ],
+      "arr": 18,
+      "area": "120 boulevard de Rochechouart",
+      "price": 40,
+      "priceNote": "~€25–50",
+      "durationMin": 165,
+      "minutesFromHome": 20,
+      "transit": "M2 to Pigalle or Anvers",
+      "times": "Most nights, autumn to spring especially",
+      "why": "An 1887 theatre with a horseshoe balcony, a thousand-odd capacity, and the best booking in Paris for international acts who are too big for a club and too interesting for an arena — a lot of English-language, African and Latin touring artists land here. The balcony is worth the extra few euros. Walk down through Pigalle for a drink afterwards.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "couple",
+        "afterwork",
+        "indoor"
+      ],
+      "uniqueness": 4,
+      "quality": 5,
+      "url": "https://www.lacigale.fr/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
+      "imageSubject": "La Cigale",
+      "imageKind": "subject",
+      "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "indian-shows-paris",
+      "title": "Indian Comedy, Music & Bollywood Nights",
+      "emoji": "🇮🇳",
+      "type": "comedy",
+      "categories": [
+        "nightlife",
+        "comedy",
+        "music",
+        "indian",
+        "dance"
+      ],
+      "arr": null,
+      "area": "Promoter-led — venues change with the act",
+      "price": 45,
+      "priceNote": "~€35–70 depending on the act",
+      "durationMin": 150,
+      "minutesFromHome": 30,
+      "transit": "Varies — most are central or eastern Paris",
+      "times": "A few times a year, announced late",
+      "why": "Paris has a small circuit for this and it runs on promoters rather than venues, so the trick is following the right accounts. NSD Events Paris is the main one — they bring Indian stand-ups, singers, DJs and Bollywood names to France, and their shows are announced on Instagram before they appear anywhere else. Indian Events in Paris (IEP) covers the rest. Bolly Deewani runs Bolly Bazaar, a free Indian festival with dance, a market and a concert, each June in the 12th. For the big touring comics — Zakir Khan, Anubhav Singh Bassi, Kenny Sebastian, Vir Das — Paris usually gets one date wedged between London and Amsterdam, announced four to six weeks out and gone in days, so an alert beats a plan. BookMyShow International and Sulekha carry most diaspora shows; for Indian classical, watch the Musée Guimet auditorium and the Philharmonie.",
+      "goodFor": [
+        "evening",
+        "couple",
+        "music",
+        "socialize"
+      ],
+      "indoor": true,
+      "bookAhead": true,
+      "labels": [
+        "bookahead",
+        "couple",
+        "indoor",
+        "hiddengem"
+      ],
+      "uniqueness": 5,
+      "quality": 4,
+      "url": "https://nsdeventsparis.com/",
+      "lastVerified": "2026-08-15",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Rue_Marx_Dormoy_%28regardant_vers_le_nord%29_01.jpg/500px-Rue_Marx_Dormoy_%28regardant_vers_le_nord%29_01.jpg",
+      "imageSubject": "Quartier de la Chapelle",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }
