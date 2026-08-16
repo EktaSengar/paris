@@ -273,9 +273,23 @@ Paris proper (day trips, Saint-Denis) has no arrondissement and is deliberately
 left alone, because its journey depends on which station you are now nearest —
 exactly the thing that changes when you move.
 
-`data/home.json` also drives the footer and the weather lookup, so the forecast
-follows the new address. Coordinates are rounded to two decimal places — about
-a kilometre — in both the file and the request.
+`data/home.json` drives the footer, the weather lookup, the home dot on the
+arrondissement map, and the "somewhere you have not been" bonus in the ranking
+— nothing hard-codes the 10th any more.
+
+**What relocation cannot do.** Recomputing distances re-ranks the catalogue; it
+does not re-curate it. This dataset was built for someone in the 10th and it
+shows: nine of twenty food entries are in the 10th, and there are **13 food
+places within 15 minutes of the Canal Saint-Martin but only 1 within 15 minutes
+of the rue Mouffetard**. Move the home and the site correctly tells you
+everything is now twenty minutes away — which is true, and not very useful.
+
+So a real relocation is three jobs, in order of how much of it is a machine's:
+
+1. `relocate.mjs` — distances and the home arrondissement. Automated.
+2. `--audit` — the sixty-one sentences naming the old home. Human, but listed.
+3. Re-curation — finding the bakeries, bars and runs of the new
+   neighbourhood. Research, and the reason the guide is worth anything.
 
 ## Privacy
 

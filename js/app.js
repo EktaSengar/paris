@@ -134,7 +134,8 @@ const App = (() => {
       today: TODAY_ISO,
       weatherMode: WX ? WX.mode : null,
       taste: Store.tasteWeights(ALL),
-      exploredArrs: Store.arrs()
+      exploredArrs: Store.arrs(),
+      homeArr: HOME.arr ?? null
     };
   }
 
@@ -920,14 +921,14 @@ const App = (() => {
 
   /* One source of truth: an arrondissement is done if it is in Store.arrs().
      Home counts. */
-  const arrDone = num => num === 10 || Store.hasArr(num);
-  const arrCount = () => new Set([10, ...Store.arrs()]).size;
+  const arrDone = num => num === HOME.arr || Store.hasArr(num);
+  const arrCount = () => new Set([HOME.arr, ...Store.arrs()].filter(n => n != null)).size;
 
   function arrMap(q) {
     const dots = Object.entries(ARR_MAP).map(([n, xy]) => {
       const num = Number(n);
       const [x, y] = spread(xy);
-      const isHome = num === 10;
+      const isHome = num === HOME.arr;
       return `<g class="arr-dot ${arrDone(num) ? 'on' : ''} ${isHome ? 'home' : ''}"
                  data-target="${esc(arrLabel(q, num))}" data-arrnum="${num}"
                  transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">
@@ -942,7 +943,7 @@ const App = (() => {
         <path class="seine" d="M4,58 C26,50 36,63 50,58 C64,53 76,63 92,52" />
         ${dots}
       </svg>
-      <p class="arr-map-note">Tap one as you do it. The 10th is home, so that one is free.</p>
+      <p class="arr-map-note">Tap one as you do it. The ${HOME.arr}<sup>e</sup> is home, so that one is free.</p>
     </div>`;
   }
 
@@ -1347,7 +1348,7 @@ const App = (() => {
     document.addEventListener('click', e => {
       const g = e.target.closest('.arr-dot'); if (!g) return;
       const n = Number(g.dataset.arrnum);
-      if (n === 10) { toast('The 10th is home. That one is free.'); return; }
+      if (n === HOME.arr) { toast(`The ${n}th is home. That one is free.`); return; }
       const before = arrCount();
       Store.toggleArr(n);
       const after = arrCount();
@@ -1360,7 +1361,7 @@ const App = (() => {
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-arr]'); if (!b) return;
       const n = Number(b.dataset.arr);
-      if (n === 10) return;
+      if (n === HOME.arr) return;
       Store.toggleArr(n);
       buildContext();
       render();

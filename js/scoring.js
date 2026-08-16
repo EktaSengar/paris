@@ -117,7 +117,7 @@ const Rank = (() => {
   /* --- the main event --- */
 
   function score(item, ctx) {
-    const { today, weatherMode, taste = {}, exploredArrs = [] } = ctx;
+    const { today, weatherMode, taste = {}, exploredArrs = [], homeArr = null } = ctx;
 
     const rating = Store.rating(item.id);
     if (rating === 'never') return -Infinity;          // hard exclude
@@ -151,8 +151,8 @@ const Rank = (() => {
     // suits a couple
     if ((item.goodFor || []).includes('couple')) s += 2;
 
-    // somewhere you have not been
-    if (item.arr && !exploredArrs.includes(item.arr) && item.arr !== 10) s += 3;
+    // somewhere you have not been — your own arrondissement is not "new"
+    if (item.arr && !exploredArrs.includes(item.arr) && item.arr !== homeArr) s += 3;
 
     // learned taste
     let tasteBump = 0;
