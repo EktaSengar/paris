@@ -2169,6 +2169,59 @@
       "imageSubject": "Marché des Enfants-Rouges",
       "imageKind": "subject",
       "imageCredit": "Wikimedia Commons"
+    },
+    {
+      "id": "gonfle",
+      "title": "Gonflé",
+      "emoji": "🥐",
+      "type": "bakery",
+      "categories": [
+        "food",
+        "bakery"
+      ],
+      "arr": 10,
+      "area": "6 rue de Belzunce",
+      "price": 6,
+      "priceNote": "€2–8",
+      "durationMin": 20,
+      "minutesFromHome": 10,
+      "transit": "Walk — behind Saint-Vincent-de-Paul, near Gare du Nord",
+      "times": "Tuesday to Sunday, 07:00–20:00 · closed Mondays",
+      "why": "Timothy Breton cooked at the Plaza Athénée and Le Bristol and then opened a bakery on a quiet street behind Saint-Vincent-de-Paul, which tells you most of what you need to know about how the pastry is made. The charcoal croissant filled with vanilla cream is the one everyone photographs; the kouign-amann is the one to actually order. Ten minutes from home and worth the detour past the closer options.",
+      "goodFor": [
+        "food",
+        "cheap",
+        "morning",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [
+        "dontmiss",
+        "cheap",
+        "foodmission",
+        "couple"
+      ],
+      "uniqueness": 5,
+      "quality": 5,
+      "pairings": [
+        {
+          "emoji": "☕",
+          "text": "Coffee at Ten Belles, ten minutes back down",
+          "id": "ten-belles"
+        },
+        {
+          "emoji": "🌻",
+          "text": "Eat it in Square Cavaillé-Coll opposite the church",
+          "id": null
+        }
+      ],
+      "url": "https://www.sortiraparis.com/en/lieux/78628-gonfle-bakery-and-pastry-shop-in-paris",
+      "lastVerified": "2026-08-16",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/P1290724_Paris_X_rue_de_Belzunce_rwk.jpg/500px-P1290724_Paris_X_rue_de_Belzunce_rwk.jpg",
+      "imageSubject": "Rue de Belzunce",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   ]
 }

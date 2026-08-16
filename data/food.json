@@ -23,7 +23,7 @@
       "priceNote": "~€12 for the whole thing, for two",
       "durationMin": 90,
       "minutesFromHome": 8,
-      "brief": "Everyone has a favourite croissant and almost nobody has actually compared them. Buy one plain croissant at each — plain, not almond, or the test means nothing — and eat them within an hour.",
+      "brief": "Everyone has a favourite croissant and almost nobody has actually compared them. Buy one plain croissant at each of the first three — plain, not almond, or the test means nothing — and eat them within an hour.",
       "test": "Judge on three things: does it shatter when you tear it, is the inside honeycombed rather than bready, and does it taste of butter after you swallow.",
       "candidates": [
         {
@@ -49,6 +49,14 @@
           "order": "Croissant, and a chocolate babka for later",
           "note": "Loud, cheerful, the opposite of hushed pâtisserie reverence.",
           "walk": "8 min back towards home"
+        },
+        {
+          "emoji": "🥐",
+          "name": "Gonflé",
+          "id": "gonfle",
+          "order": "Charcoal croissant with vanilla cream, and the kouign-amann",
+          "note": "Ex-Plaza Athénée pastry chef, on a quiet street behind Gare du Nord.",
+          "walk": "10 min"
         }
       ],
       "then": [

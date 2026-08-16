@@ -195,6 +195,8 @@ const QUERIES = {
   'paris-marathon-2027': 'Marathon de Paris',
   'tour-de-france-paris-2027': 'Avenue des Champs-Élysées',
 
+  'gonfle': 'Rue de Belzunce',
+
   // restaurants
   'bouillon-julien': 'Bouillon Julien',
   'urfa-durum': 'Rue du Faubourg-Saint-Denis',
@@ -251,7 +253,7 @@ const CONTEXT_ONLY = new Set([
   'olympic-aquatics-centre', 'prix-arc-triomphe-2026',
   'comedy-in-paris', 'paname-art-cafe', 'indian-shows-paris', 'la-chapelle-tamil-quarter',
   'mission-coffee-crawl', 'mission-eleventh-through-food', 'mission-perfect-saturday',
-  'mission-unknown-bread', 'urfa-durum', 'le-petit-cambodge', 'clamato',
+  'mission-unknown-bread', 'gonfle', 'urfa-durum', 'le-petit-cambodge', 'clamato',
   'dong-huong', 'le-potager-du-marais', 'padel-ladoumegue', 'padel-4padel', 'pickleball-paris',
   'paname-run-club', 'parkrun-paris', 'ping-pong-parks', 'velib-seine-ride',
   'yoga-outdoor-paris', 'ice-skating-winter', 'gymnastics-championships-2026',

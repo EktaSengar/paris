@@ -5,8 +5,10 @@
    --------------------------------------------------------- */
 
 const Weather = (() => {
-  const LAT = 48.87, LON = 2.36;
-  const URL = `https://api.open-meteo.com/v1/forecast`
+  /* Defaults to the Canal Saint-Martin area; Weather.setHome() overrides it
+     from data/home.json so the forecast follows whoever lives here. */
+  let LAT = 48.87, LON = 2.36;
+  const url = () => `https://api.open-meteo.com/v1/forecast`
     + `?latitude=${LAT}&longitude=${LON}`
     + `&current=temperature_2m,weather_code,precipitation`
     + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max`
@@ -45,7 +47,7 @@ const Weather = (() => {
   };
 
   async function load() {
-    const res = await fetch(URL, { cache: 'no-store' });
+    const res = await fetch(url(), { cache: 'no-store' });
     if (!res.ok) throw new Error('weather ' + res.status);
     const d = await res.json();
 
@@ -72,5 +74,14 @@ const Weather = (() => {
     };
   }
 
-  return { load, ADVICE };
+  /* Round to two decimals — roughly a kilometre — so no exact address
+     is ever sent to the weather service. */
+  function setHome(lat, lon) {
+    if (typeof lat === 'number' && typeof lon === 'number') {
+      LAT = Math.round(lat * 100) / 100;
+      LON = Math.round(lon * 100) / 100;
+    }
+  }
+
+  return { load, setHome, ADVICE };
 })();

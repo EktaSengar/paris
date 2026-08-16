@@ -33,7 +33,9 @@ data/
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
   quests.json         long-running exploration goals
+  home.json           the home base — everything is measured from here
 scripts/
+  relocate.mjs  move the guide to a different home base
   refresh.mjs   prune + validate; run daily by CI
   images.mjs    resolve one openly-licensed photo per card
   version.mjs   content-hash the CSS/JS URLs so caches cannot go stale
@@ -244,6 +246,36 @@ Paris.fr publishes an open events feed at `opendata.paris.fr`, which is the
 city's own data and needs no key.
 
 ---
+
+## Moving house
+
+The whole guide is measured from one flat — "six minutes from your door",
+"twenty minutes up line 5". Two different things encode that, and only one of
+them can be automated:
+
+- **Numbers.** `minutesFromHome` on every record. Computed, and `relocate.mjs`
+  recomputes all of them from the new coordinates.
+- **Prose.** Sentences like *"nine minutes from your flat"* written into `why`,
+  `transit` and `pairings`. Not computable — but the script finds every one and
+  prints the list, so a human rewrites the sixty that matter rather than
+  re-reading two hundred records.
+
+```bash
+node scripts/relocate.mjs --audit                        # list the prose only
+node scripts/relocate.mjs --where "Rue Oberkampf, Paris" --dry   # preview
+node scripts/relocate.mjs --where "Rue Oberkampf, Paris"         # do it
+```
+
+Geocoding is OpenStreetMap's Nominatim — no key, no account, one request.
+Travel times are estimated from arrondissement centroids with a walk-or-Metro
+model, so they are honest approximations rather than routing: anything outside
+Paris proper (day trips, Saint-Denis) has no arrondissement and is deliberately
+left alone, because its journey depends on which station you are now nearest —
+exactly the thing that changes when you move.
+
+`data/home.json` also drives the footer and the weather lookup, so the forecast
+follows the new address. Coordinates are rounded to two decimal places — about
+a kilometre — in both the file and the request.
 
 ## Privacy
 

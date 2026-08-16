@@ -5,12 +5,13 @@
 
 const App = (() => {
 
-  const FILES = ['events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
+  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
   const D = {};
   let ALL = [];
   let CTX = {};
   let WX = null;
   let VIEW = 'today';
+  let HOME = { label: 'Paris', blurb: 'Paris' };   // replaced by data/home.json
 
   const $  = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
@@ -115,6 +116,7 @@ const App = (() => {
       }
     }));
     results.forEach(([name, payload]) => { D[name] = payload; });
+    HOME = D.home && D.home.label ? D.home : { label: 'Paris', blurb: 'Paris' };
 
     ALL = []
       .concat(D.events.items || [])
@@ -1129,6 +1131,10 @@ const App = (() => {
   function renderHeader() {
     $('#dateline').textContent = fmtLong(TODAY);
     $('#epigraph').textContent = epigraph();
+    const hb = $('#home-blurb');
+    if (hb) hb.textContent = HOME.blurb || HOME.label;
+    const hf = $('#home-foot');
+    if (hf) hf.textContent = HOME.label;
 
     const bits = [];
     if (WX) {
@@ -1367,6 +1373,7 @@ const App = (() => {
   async function init() {
     initTheme();
     await load();
+    Weather.setHome(HOME.lat, HOME.lon);
     try { WX = await Weather.load(); } catch (e) { console.warn('weather failed', e); }
     buildContext();
     renderHeader();

@@ -1,0 +1,10 @@
+{
+  "label": "Canal Saint-Martin",
+  "city": "Paris",
+  "arr": 10,
+  "lat": 48.8709,
+  "lon": 2.3635,
+  "blurb": "10ᵉ · Canal Saint-Martin",
+  "stations": ["Gare du Nord", "Gare de l'Est", "République", "Jacques Bonsergent"],
+  "note": "Coordinates are deliberately rounded to the neighbourhood, not the flat. Change this file with scripts/relocate.mjs rather than by hand — it recomputes every travel time at the same time."
+}
