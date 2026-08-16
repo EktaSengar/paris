@@ -903,6 +903,11 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   margin: 0 0 .35rem;
   font-size: .66rem; letter-spacing: .15em; text-transform: uppercase; color: var(--accent); font-weight: 600;
 }
+/* Where the mission actually happens, when that is not where you are. */
+.mission-where {
+  margin: -.1rem 0 .5rem;
+  font-size: .8rem; color: var(--muted);
+}
 .mission-title {
   font-family: var(--serif); font-weight: 400;
   font-size: clamp(1.35rem, 3.2vw, 1.9rem);

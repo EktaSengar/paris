@@ -952,6 +952,21 @@ const App = (() => {
     ['market',     '🧺', 'Markets',     'food, flea and flower',     'market',     'quest-markets']
   ];
 
+  /* A mission happens in a particular neighbourhood — the bakeries are where
+     they are. Say so when that is not where you are, otherwise "8 min on"
+     reads as eight minutes from your door. */
+  function missionWhere(m) {
+    const mins = m.minutesFromHome;
+    const here = Loc.active()?.arr ?? null;
+    if (m.arr && m.arr === here) return `in the ${ordinal(m.arr)}, where you are`;
+    if (mins == null) return '';
+    const place = m.arr ? `in the ${ordinal(m.arr)}` : 'across town';
+    return mins <= 12 ? `${place} · ~${mins} min to the first stop`
+                      : `${place} · ~${mins} min to get there`;
+  }
+
+  const ordinal = n => `${n}${n === 1 ? 'er' : 'e'}`;
+
   function missionCard(m, lead = false) {
     const cands = (m.candidates || []).map((c, n) => `
       <li>
@@ -972,6 +987,7 @@ const App = (() => {
       ${m.image ? `<div class="mission-img">${img(m, lead ? '(min-width: 1040px) 1000px, 96vw' : '(min-width: 760px) 480px, 94vw', 'loaded')}</div>` : ''}
       <div class="mission-body">
         <p class="mission-kicker">${lead ? 'Today’s food mission' : 'Food mission'} · ${durText(m.durationMin)} · ${esc(m.priceNote || priceText(m))}</p>
+        ${missionWhere(m) ? `<p class="mission-where">📍 ${esc(missionWhere(m))}</p>` : ''}
         <h3 class="mission-title">${m.emoji || ''} ${esc(m.title)}</h3>
         <p class="mission-brief">${esc(m.brief || m.why || '')}</p>
         ${m.test ? `<p class="mission-test"><b>How to judge it.</b> ${esc(m.test)}</p>` : ''}
@@ -1396,6 +1412,7 @@ const App = (() => {
     renderLocation();
     renderHeader();
     render();
+    renderDebug();          // a panel that reports the old location is worse than none
     toast(`Now exploring from ${Loc.displayName(Loc.active())}`);
   }
 
@@ -1658,7 +1675,7 @@ const App = (() => {
     if (!/[?&]debug=1/.test(location.search)) return;
     const a = Loc.active();
     const near = n => [...ALL, ...DISCOVERED].filter(i => (i.minutesFromHome ?? 999) <= n).length;
-    const el = document.createElement('pre');
+    const el = document.querySelector('.debug') || document.createElement('pre');
     el.className = 'debug';
     el.textContent = [
       `location    ${Loc.displayName(a)}${Loc.isExploring() ? '  (exploring)' : '  (home)'}`,

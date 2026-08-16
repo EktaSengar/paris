@@ -32,7 +32,7 @@
           "id": "du-pain-et-des-idees",
           "order": "Croissant + the pistachio-chocolate escargot",
           "note": "The benchmark. Closed weekends — this is a weekday mission.",
-          "walk": "6 min from home"
+          "walk": "first stop"
         },
         {
           "emoji": "🥖",
@@ -48,7 +48,7 @@
           "id": "mamiche",
           "order": "Croissant, and a chocolate babka for later",
           "note": "Loud, cheerful, the opposite of hushed pâtisserie reverence.",
-          "walk": "8 min back towards home"
+          "walk": "8 min on"
         },
         {
           "emoji": "🥐",
@@ -218,7 +218,7 @@
           "id": "cafe-oberkampf",
           "order": "Filter coffee and the shakshuka if you are hungry",
           "note": "Start here. Small, sunny, vegetarian-friendly.",
-          "walk": "15 min from home"
+          "walk": "first stop"
         },
         {
           "emoji": "🥐",
