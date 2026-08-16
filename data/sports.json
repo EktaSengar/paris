@@ -56,7 +56,12 @@
           "text": "Bois de Boulogne, 15 min west",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.84332,
+        2.25296
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "psg-parc-des-princes",
@@ -111,7 +116,12 @@
           "text": "Parc des Princes to the Bois is a 20-min walk",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.84136,
+        2.25307
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "red-star-stade-bauer",
@@ -285,7 +295,12 @@
           "text": "Tamil quarter is 10 min east",
           "id": "la-chapelle-tamil-quarter"
         }
-      ]
+      ],
+      "coords": [
+        48.8925,
+        2.3444
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "accor-arena-bercy",
@@ -338,7 +353,12 @@
           "text": "Bercy Village for a drink after",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.83776,
+        2.37876
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "roland-garros",
@@ -399,7 +419,12 @@
           "text": "Coffee in Auteuil village before the gates open",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.8637,
+        2.2769
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "hippodrome-vincennes",
@@ -462,7 +487,12 @@
           "text": "Dinner back at Nation",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "olympic-aquatics-centre",
@@ -589,7 +619,12 @@
           "text": "Square Barye at the island’s tip",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.8546,
+        2.3572
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "piscine-pontoise",
@@ -649,7 +684,12 @@
           "text": "Circus Bakery cinnamon buns in the morning",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.84906,
+        2.35173
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "arkose-climbing",
@@ -709,7 +749,12 @@
           "text": "Paname Art Café for comedy after",
           "id": "paname-art-cafe"
         }
-      ]
+      ],
+      "coords": [
+        48.8578,
+        2.3792
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paris-tennis-courts",
@@ -851,7 +896,12 @@
           "text": "Du Pain et des Idées, weekdays only",
           "id": "du-pain-et-des-idees"
         }
-      ]
+      ],
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "run-buttes-chaumont",
@@ -911,7 +961,12 @@
           "text": "Temple viewpoint for the cooldown",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.87956,
+        2.3821
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "run-bois-de-vincennes",
@@ -973,7 +1028,12 @@
           "text": "Château de Vincennes at the gate",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "run-coulee-verte",
@@ -1034,7 +1094,12 @@
           "text": "Blé Sucré madeleines, rue Antoine Vollon",
           "id": null
         }
-      ]
+      ],
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "padel-ladoumegue",
@@ -1094,7 +1159,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Sanchez-Casal_Paddle_Tennis_Game.jpg/500px-Sanchez-Casal_Paddle_Tennis_Game.jpg",
       "imageSubject": "Padel (sport)",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "padel-4padel",
@@ -1213,7 +1283,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Pickleball_game.webm/500px--Pickleball_game.webm.jpg",
       "imageSubject": "Pickleball",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8412,
+        2.3
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paname-run-club",
@@ -1344,7 +1419,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/P1110707_Paris_XIV_parc_de_Montsouris_rwk.JPG/500px-P1110707_Paris_XIV_parc_de_Montsouris_rwk.JPG",
       "imageSubject": "Parc Montsouris",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8331,
+        2.3264
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "kayak-bassin-villette",
@@ -1411,7 +1491,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bassin_villette.jpg/500px-Bassin_villette.jpg",
       "imageSubject": "Bassin de la Villette",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.88566,
+        2.37458
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "ping-pong-parks",
@@ -1473,7 +1558,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Table_tennis_pictogram.svg/500px-Table_tennis_pictogram.svg.png",
       "imageSubject": "Tennis de table",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "velib-seine-ride",
@@ -1535,7 +1625,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/V%C3%A9lib-M%C3%A9tropole-Logo.png/500px-V%C3%A9lib-M%C3%A9tropole-Logo.png",
       "imageSubject": "Vélib' Métropole",
       "imageKind": "context",
-      "imageCredit": "Vélib' · Public domain"
+      "imageCredit": "Vélib' · Public domain",
+      "coords": [
+        48.8546,
+        2.3572
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "skating-republique",
@@ -1599,7 +1694,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Paris_-_2017-12-01_-_Place_de_la_R%C3%A9publique_-_5517.jpg/500px-Paris_-_2017-12-01_-_Place_de_la_R%C3%A9publique_-_5517.jpg",
       "imageSubject": "Place de la République (Paris)",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86754,
+        2.36396
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "fontainebleau-bouldering",
@@ -1732,7 +1832,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/A_yogi_seated_in_a_garden.jpg/500px-A_yogi_seated_in_a_garden.jpg",
       "imageSubject": "Yoga",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "ice-skating-winter",

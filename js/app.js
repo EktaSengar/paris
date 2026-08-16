@@ -5,13 +5,14 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests'];
+  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered'];
   const D = {};
   let ALL = [];
   let CTX = {};
   let WX = null;
   let VIEW = 'today';
-  let HOME = { label: 'Paris', blurb: 'Paris' };   // replaced by data/home.json
+  let HOME = { label: 'Paris' };        // replaced by the location engine
+  let DISCOVERED = [];                  // OpenStreetMap layer, positions only
 
   const $  = s => document.querySelector(s);
   const $$ = s => Array.from(document.querySelectorAll(s));
@@ -116,7 +117,43 @@ const App = (() => {
       }
     }));
     results.forEach(([name, payload]) => { D[name] = payload; });
-    HOME = D.home && D.home.label ? D.home : { label: 'Paris', blurb: 'Paris' };
+
+    /* home.json is only the *default* — the location engine owns the
+       answer from here, because it may be overridden by a saved home or
+       a temporary "exploring from". */
+    const fallback = (D.home && D.home.lat)
+      ? { lat: D.home.lat, lon: D.home.lon, arr: D.home.arr, area: D.home.label, label: D.home.label }
+      : Loc.fromArr(1);
+    Loc.boot(fallback);
+    HOME = Loc.active();
+
+    /* Discovered places become first-class items so they can be ranked and
+       rendered like anything else — but they carry no `why`, and the
+       interface marks them as found rather than recommended. */
+    /* The same shop often exists in both layers. Ours wins — it has a
+       reason attached — so the OSM copy is dropped rather than competing
+       with itself under the same name. */
+    const curatedNames = new Set(
+      [].concat(D.events.items||[], D.places.items||[], D.nightlife.items||[],
+                D.sports.items||[], D.food.items||[])
+        .map(i => (i.title||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()));
+
+    DISCOVERED = (D.discovered?.items || [])
+      .filter(p => !curatedNames.has((p.n||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()))
+      .map((p, n) => ({
+      id: 'osm-' + n,
+      title: p.n,
+      type: p.c,
+      arr: p.a,
+      coords: [p.lat, p.lon],
+      area: p.s || null,
+      url: p.w || null,
+      cuisine: p.k || null,
+      discovered: true,
+      quality: 3, uniqueness: 2,
+      categories: [p.c === 'cafe' || p.c === 'bakery' || p.c === 'restaurant' || p.c === 'market' || p.c === 'deli' ? 'food' : p.c],
+      goodFor: [], labels: []
+    }));
 
     ALL = []
       .concat(D.events.items || [])
@@ -129,13 +166,33 @@ const App = (() => {
       .filter(i => !(i.end && i.end < TODAY_ISO));
   }
 
+  /* Distance is a property of *where you are*, not of the record. Stamping
+     it once per location change keeps every existing call site correct
+     without teaching each of them about the location engine. */
+  function applyLocation() {
+    HOME = Loc.active();
+    [...ALL, ...DISCOVERED].forEach(i => {
+      const m = Loc.minutesTo(i);
+      if (m != null) i.minutesFromHome = m;
+    });
+    // Neighbourhood profiles carry their own distance, and "which
+    // arrondissement should we do next" is meaningless if it is measured
+    // from somewhere you no longer are.
+    const here = Loc.active()?.arr ?? null;
+    (D.neighborhoods?.items || []).forEach(h => {
+      const c = Loc.arrCoords(h.arr);
+      if (c) h.minutesFromHome = (h.arr === here) ? 0 : Loc.minutes(c);
+      h.isHome = h.arr === here;
+    });
+  }
+
   function buildContext() {
     CTX = {
       today: TODAY_ISO,
       weatherMode: WX ? WX.mode : null,
       taste: Store.tasteWeights(ALL),
       exploredArrs: Store.arrs(),
-      homeArr: HOME.arr ?? null
+      homeArr: Loc.active()?.arr ?? null
     };
   }
 
@@ -426,6 +483,101 @@ const App = (() => {
     settleImages($('#view'));
   }
 
+  /* ---------- around you ----------
+     The heart of making location matter. Curated records lead because
+     somebody had a reason to write them down; the OpenStreetMap layer
+     fills the gaps so that a neighbourhood the catalogue has never heard
+     of is still a neighbourhood with a bakery in it. */
+
+  const NEAR_MIN = 15, WIDER_MIN = 30;
+
+  const AROUND = [
+    ['bakery',     '🥐', 'Bakery'],
+    ['cafe',       '☕', 'Coffee'],
+    ['restaurant', '🍽️', 'Somewhere to eat'],
+    ['market',     '🧺', 'Market'],
+    ['park',       '🌳', 'Green space'],
+    ['museum',     '🏛️', 'Culture'],
+    ['sport',      '🏃', 'Something active'],
+    ['nightlife',  '🍸', 'A drink']
+  ];
+
+  /* Best candidate of a kind within reach: curated first, then discovered. */
+  function nearestOfKind(cat, maxMin) {
+    const matches = i => i.type === cat ||
+      (cat === 'museum' && (i.type === 'gallery' || i.type === 'culture')) ||
+      (cat === 'sport' && ['play', 'run'].includes(i.type)) ||
+      (cat === 'nightlife' && ['bar', 'jazz', 'venue', 'club'].includes(i.type));
+
+    const within = i => (i.minutesFromHome ?? 999) <= maxMin;
+    /* Nearest, not best-scoring: this section answers "what is around me",
+       and a score that folds in weather and urgency answers a different
+       question. Ties break towards the better-regarded place. */
+    const curated = ALL
+      .filter(i => matches(i) && within(i) && !Store.isDone(i.id) && Store.rating(i.id) !== 'never')
+      .sort((a, b) => (a.minutesFromHome - b.minutesFromHome) ||
+                      ((b.quality||0) + (b.uniqueness||0) - (a.quality||0) - (a.uniqueness||0)))[0];
+    const found = DISCOVERED.filter(i => matches(i) && within(i))
+      .sort((a, b) => a.minutesFromHome - b.minutesFromHome)[0];
+
+    if (!curated) return found || null;
+    if (!found) return curated;
+
+    /* "Around you" means around you. A place somebody wrote about is worth
+       a few extra minutes of walking, but not a different neighbourhood —
+       otherwise every location keeps recommending the 10th, which is the
+       whole problem this is meant to fix. */
+    const CURATED_GRACE = 6;
+    return (curated.minutesFromHome <= found.minutesFromHome + CURATED_GRACE) ? curated : found;
+  }
+
+  function aroundYouCard(item, label, emoji) {
+    const mins = item.minutesFromHome;
+    const line = item.discovered
+      ? [item.area, item.cuisine].filter(Boolean).join(' · ')
+      : (item.why || '').split('. ')[0] + '.';
+    return `<div class="near-card ${item.discovered ? 'found' : ''}" data-id="${esc(item.id)}">
+      <p class="near-label"><span class="e">${emoji}</span>${esc(label)}</p>
+      <h4 class="near-name">${esc(item.title)}</h4>
+      <p class="near-meta">~${mins} min${item.arr ? ` · ${item.arr}<sup>e</sup>` : ''}${item.discovered ? ' · found nearby' : ''}</p>
+      <p class="near-why">${esc(line)}</p>
+      <a class="near-link" href="${item.url ? esc(item.url) : mapsLink(item)}" target="_blank" rel="noopener">
+        ${item.url ? 'Look it up' : 'Directions'}</a>
+    </div>`;
+  }
+
+  function renderAroundYou() {
+    const loc = Loc.active();
+    const picks = [];
+    const used = new Set();
+
+    for (const [cat, emoji, label] of AROUND) {
+      let it = nearestOfKind(cat, NEAR_MIN);
+      if (it && used.has(it.id)) it = null;
+      if (!it) it = nearestOfKind(cat, WIDER_MIN);
+      if (!it || used.has(it.id)) continue;
+      used.add(it.id);
+      picks.push(aroundYouCard(it, label, emoji));
+      if (picks.length >= 6) break;
+    }
+
+    if (!picks.length) return '';
+    return stripHead(`Around ${Loc.displayName(loc)}`,
+                     `Within about ${NEAR_MIN} minutes`)
+      + `<div class="near-grid">${picks.join('')}</div>`;
+  }
+
+  /* The counterweight: things good enough that distance is not the point. */
+  function worthGoingFurther() {
+    const far = Rank.rank(ALL, CTX, i =>
+      (i.minutesFromHome ?? 0) > WIDER_MIN &&
+      (i.uniqueness || 0) >= 5 && (i.quality || 0) >= 5 &&
+      !Store.isDone(i.id)).slice(0, 3);
+    if (!far.length) return '';
+    return stripHead('Worth going further for', 'Good enough that the journey is not the point')
+      + `<div class="grid">${far.map(i => card(i)).join('')}</div>`;
+  }
+
   /* ---------- today ---------- */
 
   function renderToday() {
@@ -448,7 +600,9 @@ const App = (() => {
     const also = ranked.filter(i => !used.has(i.id)).slice(0, 6);
 
     return hero(lead)
+      + renderAroundYou()
       + (also.length ? stripHead('Also today') + rows(also) : '')
+      + worthGoingFurther()
       + (evening.length
           ? stripHead('This evening', 'Short trips, late openings')
             + `<div class="grid">${evening.map(i => card(i)).join('')}</div>`
@@ -630,7 +784,26 @@ const App = (() => {
           : '')
       + stripHead('Everything you could play', 'The whole list, with distances')
       + rows(Rank.rank(play, CTX, i => i.type === 'play'), null, true)
+      + (() => {
+          const local = DISCOVERED
+            .filter(i => i.type === 'sport' && (i.minutesFromHome ?? 999) <= NEAR_MIN)
+            .sort((a, b) => a.minutesFromHome - b.minutesFromHome).slice(0, 10);
+          return local.length
+            ? stripHead(`Pools, courts and gyms near ${Loc.displayName(Loc.active())}`,
+                        'Found on the map — check their own hours')
+              + rows(local, null, false)
+            : '';
+        })()
       + questBlock('quest-play');
+  }
+
+  /* Events are not like places: an exceptional thing an hour away still
+     belongs on the page. Three tiers rather than one distance sort. */
+  function eventTier(item) {
+    const m = item.minutesFromHome ?? 99;
+    if (m <= WIDER_MIN) return 'near';
+    if ((item.uniqueness || 0) >= 5 && (item.quality || 0) >= 5) return 'worth';
+    return 'around';
   }
 
   function renderWatch(sports) {
@@ -662,11 +835,19 @@ const App = (() => {
       </div>
     </div>`;
 
+    const tiers = [
+      ['near',  `Near ${Loc.displayName(Loc.active())}`, `Within about ${WIDER_MIN} minutes`],
+      ['worth', 'Worth crossing Paris for', 'Distance is not the point'],
+      ['around','Elsewhere in Paris', 'Further out, still worth knowing']
+    ];
+
     return (big ? hero(big) : '')
-      + (rest.length
-          ? stripHead('The calendar', 'Dated — and the good ones need booking')
-            + `<div class="fixtures">${rest.map(fixtureRow).join('')}</div>`
-          : '')
+      + tiers.map(([k, title, note]) => {
+          const inTier = rest.filter(f => eventTier(f) === k);
+          return inTier.length
+            ? stripHead(title, note) + `<div class="fixtures">${inTier.map(fixtureRow).join('')}</div>`
+            : '';
+        }).join('')
       + stripHead('Where sport happens', 'Fixtures change weekly — the link goes to the club')
       + rows(Rank.rank(watch, CTX), null, true)
       + questBlock('quest-watch');
@@ -869,8 +1050,22 @@ const App = (() => {
 
   function renderEatCategory() {
     const [, emoji, label, , type, questId] = EAT_MODES.find(m => m[0] === EAT_MODE);
-    const items = Rank.rank(ALL, CTX, i => i.type === type);
-    if (!items.length) return `<p class="empty">Nothing here yet.</p>`;
+    const curated = Rank.rank(ALL, CTX, i => i.type === type);
+
+    /* The catalogue was written from one neighbourhood. Wherever you are
+       now, fill the section out with what is actually around you. */
+    const local = DISCOVERED
+      .filter(i => i.type === type && (i.minutesFromHome ?? 999) <= NEAR_MIN)
+      .sort((a, b) => a.minutesFromHome - b.minutesFromHome)
+      .slice(0, 12);
+
+    const items = curated;
+    if (!items.length && !local.length) return `<p class="empty">Nothing here yet.</p>`;
+    if (!items.length) {
+      return stripHead(`${label} near ${Loc.displayName(Loc.active())}`,
+                       'Found nearby — names and distances only')
+        + rows(local, null, false);
+    }
 
     const lead = items.find(hasRealPhoto) || items[0];
     const rest = items.filter(i => i.id !== lead.id);
@@ -883,8 +1078,13 @@ const App = (() => {
     };
 
     return featured(lead, KICKERS[EAT_MODE] || 'Start here')
-      + stripHead(`All ${label.toLowerCase()}`, `${items.length} of them, nearest first by score`)
+      + stripHead(`All ${label.toLowerCase()}`, `${items.length} written about, nearest first by score`)
       + rows(rest, null, true)
+      + (local.length
+          ? stripHead(`Also near ${Loc.displayName(Loc.active())}`,
+                      'Found on the map — no opinion attached')
+            + rows(local, null, false)
+          : '')
       + (questId ? questBlock(questId) : '');
   }
   /* ---------- quests ----------
@@ -921,14 +1121,14 @@ const App = (() => {
 
   /* One source of truth: an arrondissement is done if it is in Store.arrs().
      Home counts. */
-  const arrDone = num => num === HOME.arr || Store.hasArr(num);
-  const arrCount = () => new Set([HOME.arr, ...Store.arrs()].filter(n => n != null)).size;
+  const arrDone = num => num === Loc.active()?.arr || Store.hasArr(num);
+  const arrCount = () => new Set([Loc.active()?.arr, ...Store.arrs()].filter(n => n != null)).size;
 
   function arrMap(q) {
     const dots = Object.entries(ARR_MAP).map(([n, xy]) => {
       const num = Number(n);
       const [x, y] = spread(xy);
-      const isHome = num === HOME.arr;
+      const isHome = num === Loc.active()?.arr;
       return `<g class="arr-dot ${arrDone(num) ? 'on' : ''} ${isHome ? 'home' : ''}"
                  data-target="${esc(arrLabel(q, num))}" data-arrnum="${num}"
                  transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">
@@ -943,7 +1143,7 @@ const App = (() => {
         <path class="seine" d="M4,58 C26,50 36,63 50,58 C64,53 76,63 92,52" />
         ${dots}
       </svg>
-      <p class="arr-map-note">Tap one as you do it. The ${HOME.arr}<sup>e</sup> is home, so that one is free.</p>
+      <p class="arr-map-note">Tap one as you do it. You are in the ${Loc.active()?.arr ?? '—'}<sup>e</sup>, so that one is free.</p>
     </div>`;
   }
 
@@ -1132,10 +1332,8 @@ const App = (() => {
   function renderHeader() {
     $('#dateline').textContent = fmtLong(TODAY);
     $('#epigraph').textContent = epigraph();
-    const hb = $('#home-blurb');
-    if (hb) hb.textContent = HOME.blurb || HOME.label;
     const hf = $('#home-foot');
-    if (hf) hf.textContent = HOME.label;
+    if (hf) hf.textContent = Loc.displayName(Loc.active());
 
     const bits = [];
     if (WX) {
@@ -1167,6 +1365,38 @@ const App = (() => {
       const left = q.targets.length - after;
       toast(left ? `${after} of ${q.targets.length} · ${left} to go` : 'Done');
     }
+  }
+
+  /* ---------- location ---------- */
+
+  function renderLocation() {
+    const a = Loc.active();
+    $('#loc-name').textContent = Loc.displayName(a);
+    $('#loc-kicker').textContent = Loc.isExploring() ? 'Exploring from' : 'Home';
+    $('#loc-reset').hidden = !Loc.isExploring();
+
+    const arrs = $('#loc-arrs');
+    if (arrs && !arrs.children.length) {
+      arrs.innerHTML = Loc.presets().map(p =>
+        `<button class="chip" data-arr-pick="${p.arr}" title="${esc(p.name)}">${p.arr}${p.arr === 1 ? 'er' : 'e'}</button>`).join('');
+    }
+    const rec = Loc.recents();
+    $('#loc-recent-wrap').hidden = !rec.length;
+    $('#loc-recent').innerHTML = rec.map((r, i) =>
+      `<button class="chip" data-recent="${i}">${esc(Loc.displayName(r))}</button>`).join('');
+  }
+
+  /* Everything that depends on where you are, re-derived in one place. */
+  async function moveTo(loc, { asHome = false } = {}) {
+    if (asHome) Loc.setHome(loc); else Loc.explore(loc);
+    applyLocation();
+    buildContext();
+    Weather.setHome(Loc.active().lat, Loc.active().lon);
+    try { WX = await Weather.load(); } catch (e) {}
+    renderLocation();
+    renderHeader();
+    render();
+    toast(`Now exploring from ${Loc.displayName(Loc.active())}`);
   }
 
   /* ---------- toast ---------- */
@@ -1226,6 +1456,58 @@ const App = (() => {
   }
 
   function wire() {
+    const panel = $('#locpanel'), err = $('#loc-err');
+    const fail = m => { err.textContent = m; err.hidden = false; };
+
+    $('#loc-open').addEventListener('click', e => {
+      const open = panel.hidden;
+      panel.hidden = !open;
+      e.currentTarget.setAttribute('aria-expanded', String(open));
+      if (open) $('#loc-input').focus();
+    });
+
+    $('#loc-reset').addEventListener('click', async () => {
+      Loc.resetToHome();
+      await moveTo(Loc.home(), { asHome: true });
+    });
+
+    const doSearch = async () => {
+      const q = $('#loc-input').value.trim();
+      if (!q) return;
+      err.hidden = true;
+      $('#loc-go').textContent = '…';
+      try {
+        const loc = await Loc.search(q);
+        panel.hidden = true;
+        $('#loc-open').setAttribute('aria-expanded', 'false');
+        await moveTo(loc);
+      } catch (e) { fail(e.message); }
+      $('#loc-go').textContent = 'Go';
+    };
+    $('#loc-go').addEventListener('click', doSearch);
+    $('#loc-input').addEventListener('keydown', e => { if (e.key === 'Enter') doSearch(); });
+
+    $('#loc-here').addEventListener('click', async () => {
+      err.hidden = true;
+      try {
+        const loc = await Loc.locate();
+        panel.hidden = true;
+        await moveTo(loc);
+      } catch (e) { fail(e.message); }
+    });
+
+    $('#loc-sethome').addEventListener('click', async () => {
+      await moveTo(Loc.active(), { asHome: true });
+      toast('Saved as home.');
+    });
+
+    document.addEventListener('click', async e => {
+      const a = e.target.closest('[data-arr-pick]');
+      if (a) { panel.hidden = true; await moveTo(Loc.fromArr(Number(a.dataset.arrPick))); return; }
+      const r = e.target.closest('[data-recent]');
+      if (r) { panel.hidden = true; await moveTo(Loc.recents()[Number(r.dataset.recent)]); }
+    });
+
     $('#theme').addEventListener('click', () => {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
       const next = dark ? 'light' : 'dark';
@@ -1348,7 +1630,7 @@ const App = (() => {
     document.addEventListener('click', e => {
       const g = e.target.closest('.arr-dot'); if (!g) return;
       const n = Number(g.dataset.arrnum);
-      if (n === HOME.arr) { toast(`The ${n}th is home. That one is free.`); return; }
+      if (n === Loc.active()?.arr) { toast(`You are in the ${n}${n===1?'er':'e'} — that one is free.`); return; }
       const before = arrCount();
       Store.toggleArr(n);
       const after = arrCount();
@@ -1361,7 +1643,7 @@ const App = (() => {
     document.addEventListener('click', e => {
       const b = e.target.closest('[data-arr]'); if (!b) return;
       const n = Number(b.dataset.arr);
-      if (n === HOME.arr) return;
+      if (n === Loc.active()?.arr) return;
       Store.toggleArr(n);
       buildContext();
       render();
@@ -1369,17 +1651,43 @@ const App = (() => {
     });
   }
 
+  /* ---------- debug ----------
+     Hidden unless ?debug=1. Exists because "did the location actually
+     change anything?" is otherwise a question you answer by squinting. */
+  function renderDebug() {
+    if (!/[?&]debug=1/.test(location.search)) return;
+    const a = Loc.active();
+    const near = n => [...ALL, ...DISCOVERED].filter(i => (i.minutesFromHome ?? 999) <= n).length;
+    const el = document.createElement('pre');
+    el.className = 'debug';
+    el.textContent = [
+      `location    ${Loc.displayName(a)}${Loc.isExploring() ? '  (exploring)' : '  (home)'}`,
+      `raw label   ${a.label || '—'}`,
+      `lat / lon   ${a.lat}, ${a.lon}`,
+      `arr         ${a.arr ?? 'unknown'}`,
+      `curated     ${ALL.length}`,
+      `discovered  ${DISCOVERED.length}`,
+      `≤15 min     ${near(15)}`,
+      `≤30 min     ${near(30)}`,
+      `home        ${Loc.displayName(Loc.home())}`
+    ].join('\n');
+    document.querySelector('.foot .wrap').prepend(el);
+  }
+
   /* ---------- boot ---------- */
 
   async function init() {
     initTheme();
     await load();
+    applyLocation();
     Weather.setHome(HOME.lat, HOME.lon);
     try { WX = await Weather.load(); } catch (e) { console.warn('weather failed', e); }
     buildContext();
+    renderLocation();
     renderHeader();
     render();
     wire();
+    renderDebug();
   }
 
   return { init };

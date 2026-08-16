@@ -43,7 +43,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Paris_gare_du_nord_4_bis.JPG/500px-Paris_gare_du_nord_4_bis.JPG",
       "imageSubject": "10e arrondissement de Paris",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.873,
+        2.35348
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "point-ephemere",
@@ -85,7 +90,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Point_Eph%C3%A9m%C3%A8re_2009.jpg/500px-Point_Eph%C3%A9m%C3%A8re_2009.jpg",
       "imageSubject": "Point Éphémère",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "duc-des-lombards",
@@ -130,7 +140,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg/500px-Rue_Lombards_-_Paris_IV_%28FR75%29_-_2021-06-12_-_1.jpg",
       "imageSubject": "Rue des Lombards",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.85966,
+        2.34858
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "caveau-huchette",
@@ -176,7 +191,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Le_Caveau_de_la_Huchette.jpg/500px-Le_Caveau_de_la_Huchette.jpg",
       "imageSubject": "Caveau de la Huchette",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.85279,
+        2.3463
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "cafe-universel",
@@ -221,7 +241,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Paris_75005_Rue_Saint-Jacques_La_Sorbonne_facade_01c.jpg/500px-Paris_75005_Rue_Saint-Jacques_La_Sorbonne_facade_01c.jpg",
       "imageSubject": "Rue Saint-Jacques (Paris)",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.84171,
+        2.34134
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "supersonic",
@@ -272,7 +297,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Place_de_la_Bastille%2C_Paris_25_April_2020.jpg/500px-Place_de_la_Bastille%2C_Paris_25_April_2020.jpg",
       "imageSubject": "Place de la Bastille",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.85014,
+        2.36971
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "la-maroquinerie",
@@ -311,7 +341,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TARLD_%C3%A0_La_Maroquinerie_de_Paris_le_10_mars_2015.jpg/500px-TARLD_%C3%A0_La_Maroquinerie_de_Paris_le_10_mars_2015.jpg",
       "imageSubject": "La Maroquinerie",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86853,
+        2.39206
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "la-bellevilloise",
@@ -354,7 +389,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/La_Bellevilloise.jpg/500px-La_Bellevilloise.jpg",
       "imageSubject": "La Bellevilloise",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86797,
+        2.39244
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "philharmonie-paris",
@@ -398,7 +438,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/500px-Parc_de_la_Villette%2C_Paris_2010.jpg",
       "imageSubject": "Parc de la Villette",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "la-java",
@@ -446,7 +491,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/P1040626_Paris_X-XI_rue_du_Faubourg-du-Temple_rwk.jpg/500px-P1040626_Paris_X-XI_rue_du_Faubourg-du-Temple_rwk.jpg",
       "imageSubject": "Rue du Faubourg-du-Temple",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.87131,
+        2.37362
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "rex-club",
@@ -490,7 +540,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Grands_Boulevards_P1060155.JPG/500px-Grands_Boulevards_P1060155.JPG",
       "imageSubject": "Boulevard Poissonnière",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.87058,
+        2.34734
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "la-machine-moulin-rouge",
@@ -533,7 +588,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Paris%2C_Moulin_Rouge_--_2014_--_1220.jpg/500px-Paris%2C_Moulin_Rouge_--_2014_--_1220.jpg",
       "imageSubject": "Moulin Rouge",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.88415,
+        2.3322
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "le-verre-vole",
@@ -576,7 +636,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Rue_Lancry_-_Paris_X_%28FR75%29_-_2021-06-23_-_1.jpg/500px-Rue_Lancry_-_Paris_X_%28FR75%29_-_2021-06-23_-_1.jpg",
       "imageSubject": "Rue de Lancry",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.87286,
+        2.36353
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "le-syndicat",
@@ -616,7 +681,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg/500px-Paris_75010_Rue_du_Faubourg-Saint-Denis_towards_Porte_Saint-Denis.jpg",
       "imageSubject": "Rue du Faubourg-Saint-Denis",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8718,
+        2.35362
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "combat",
@@ -658,7 +728,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Rue_de_Belleville_June_2010.jpg/500px-Rue_de_Belleville_June_2010.jpg",
       "imageSubject": "Rue de Belleville",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8734,
+        2.38223
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "little-red-door",
@@ -697,7 +772,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Paris_rue_charlot.jpg/500px-Paris_rue_charlot.jpg",
       "imageSubject": "Rue Charlot",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86366,
+        2.36359
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "candelaria",
@@ -739,7 +819,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Paris_rue_de_saintonge.jpg/500px-Paris_rue_de_saintonge.jpg",
       "imageSubject": "Rue de Saintonge",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86299,
+        2.36402
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "la-buvette",
@@ -781,7 +866,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Rue_Saint_Maur_-_Paris_XI_%28FR75%29_-_2021-06-08_-_2.jpg/500px-Rue_Saint_Maur_-_Paris_XI_%28FR75%29_-_2021-06-08_-_2.jpg",
       "imageSubject": "Rue Saint-Maur",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86293,
+        2.37925
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "moonshiner",
@@ -822,7 +912,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/P1040024_Paris_XI_rue_Sedaine_rwk.JPG/500px-P1040024_Paris_XI_rue_Sedaine_rwk.JPG",
       "imageSubject": "Rue Sedaine",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.85566,
+        2.37115
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "le-petit-bain",
@@ -870,7 +965,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/P2110189_Paris_XIII_Quai_de_la_Gare_reduct01.JPG/500px-P2110189_Paris_XIII_Quai_de_la_Gare_reduct01.JPG",
       "imageSubject": "Quai de la Gare",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.83556,
+        2.37658
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "sogymnase-english-comedy",
@@ -911,7 +1011,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Adolph_Menzel_-_Th%C3%A9%C3%A2tre_du_Gymnase_in_Paris_-_Google_Art_Project.jpg/500px-Adolph_Menzel_-_Th%C3%A9%C3%A2tre_du_Gymnase_in_Paris_-_Google_Art_Project.jpg",
       "imageSubject": "Théâtre du Gymnase Marie-Bell",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.87073,
+        2.34898
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "comedy-in-paris",
@@ -953,7 +1058,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Boulevard_Bonne_Nouvelle_-_Paris_II_%28FR75%29_-_2021-06-12_-_1.jpg/500px-Boulevard_Bonne_Nouvelle_-_Paris_II_%28FR75%29_-_2021-06-12_-_1.jpg",
       "imageSubject": "Boulevard de Bonne-Nouvelle",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8683,
+        2.3413
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paname-art-cafe",
@@ -995,7 +1105,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/P1160866_Paris_XI_rue_de_la_Fontaine-au-Roi_rwk.jpg/500px-P1160866_Paris_XI_rue_de_la_Fontaine-au-Roi_rwk.jpg",
       "imageSubject": "Rue de la Fontaine-au-Roi",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.86834,
+        2.36998
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "olympia",
@@ -1035,7 +1150,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/L%27Olympia_%28Paris%29_en_2010.JPG/500px-L%27Olympia_%28Paris%29_en_2010.JPG",
       "imageSubject": "Olympia (Paris)",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.87024,
+        2.32836
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "la-cigale-venue",
@@ -1074,7 +1194,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
       "imageSubject": "La Cigale",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.88248,
+        2.34013
+      ],
+      "coordsFrom": "osm-match"
     },
     {
       "id": "indian-shows-paris",

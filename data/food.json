@@ -94,7 +94,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Croissant-Petr_Kratochvil.jpg/500px-Croissant-Petr_Kratochvil.jpg",
       "imageSubject": "Croissant",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-baguette",
@@ -176,7 +181,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Baguettes%2C_Paris%2C_France_-_panoramio.jpg/500px-Baguettes%2C_Paris%2C_France_-_panoramio.jpg",
       "imageSubject": "Baguette",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-coffee-crawl",
@@ -261,7 +271,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Caf%C3%A9_de_Flore.jpg/500px-Caf%C3%A9_de_Flore.jpg",
       "imageSubject": "Café (établissement)",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8578,
+        2.3792
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-cheese",
@@ -346,7 +361,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Ch%C3%A8vre_affin%C3%A9_cr%C3%A9meux.jpg/500px-Ch%C3%A8vre_affin%C3%A9_cr%C3%A9meux.jpg",
       "imageSubject": "Fromage",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-unknown-bread",
@@ -428,7 +448,12 @@
       "uniqueness": 5,
       "quality": 4,
       "url": "https://www.paris.fr/",
-      "lastVerified": "2026-08-15"
+      "lastVerified": "2026-08-15",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-eleventh-through-food",
@@ -523,7 +548,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg/500px-Paris_-_Rue_Oberkampf_-_panoramio_%2836%29.jpg",
       "imageSubject": "Rue Oberkampf",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8578,
+        2.3792
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "mission-perfect-saturday",
@@ -624,7 +654,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg/500px-2022-04-14-Passerelle_de_la_Grange-aux-Belles-8583.jpg",
       "imageSubject": "Canal Saint-Martin",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.876,
+        2.3595
+      ],
+      "coordsFrom": "arr-centroid"
     }
   ]
 }

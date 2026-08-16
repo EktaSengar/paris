@@ -91,7 +91,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/500px-Parc_de_la_Villette%2C_Paris_2010.jpg",
       "imageSubject": "Parc de la Villette",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paris-plages-2026",
@@ -152,7 +157,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bassin_villette.jpg/500px-Bassin_villette.jpg",
       "imageSubject": "Bassin de la Villette",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "olympic-cauldron-2026",
@@ -214,7 +224,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg/500px-Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg",
       "imageSubject": "Jardin des Tuileries",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8626,
+        2.3363
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paris-jazz-festival-2026",
@@ -281,7 +296,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Parc_Floral_de_Paris.jpg/500px-Parc_Floral_de_Paris.jpg",
       "imageSubject": "Parc floral de Paris",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "classique-au-vert-2026",
@@ -334,7 +354,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Parc_Floral_de_Paris.jpg/500px-Parc_Floral_de_Paris.jpg",
       "imageSubject": "Parc floral de Paris",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "nuits-des-etoiles-parks-2026",
@@ -446,7 +471,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pont_Marie.jpg/500px-Pont_Marie.jpg",
       "imageSubject": "Pont Marie",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "context"
+      "imageKind": "context",
+      "coords": [
+        48.8546,
+        2.3572
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "fete-des-tuileries-2026",
@@ -490,7 +520,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg/500px-Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg",
       "imageSubject": "Jardin des Tuileries",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8626,
+        2.3363
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "javelle-guinguette-2026",
@@ -538,7 +573,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg/500px-Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg",
       "imageSubject": "Parc de Bercy",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "grand-palais-leandro-erlich-2026",
@@ -581,7 +621,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg/500px-France-000296_-_Paris%27_Grand_Palais_%2814525102530%29.jpg",
       "imageSubject": "Grand Palais",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8726,
+        2.312
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "grand-palais-hilma-af-klint-2026",
@@ -623,7 +668,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hilma-af-Klint-uncropped.jpg/500px-Hilma-af-Klint-uncropped.jpg",
       "imageSubject": "Hilma af Klint",
       "imageCredit": "AnonymousUnknown author · Public domain",
-      "imageKind": "context"
+      "imageKind": "context",
+      "coords": [
+        48.8726,
+        2.312
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "beyond-the-streets-villette-2026",
@@ -668,7 +718,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg/500px-Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg",
       "imageSubject": "Grande halle de la Villette",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "jeu-de-paume-photo-2026",
@@ -713,7 +768,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Le_Jeu_de_Paume%2C_1_place_de_la_Concorde_%C3%A0_Paris%2C_juillet_2021.jpg/500px-Le_Jeu_de_Paume%2C_1_place_de_la_Concorde_%C3%A0_Paris%2C_juillet_2021.jpg",
       "imageSubject": "Galerie nationale du Jeu de Paume",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8626,
+        2.3363
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "musee-maillol-versace-2026",
@@ -755,7 +815,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Mus%C3%A9e_Maillol_Paris_7e_001.jpg/500px-Mus%C3%A9e_Maillol_Paris_7e_001.jpg",
       "imageSubject": "Musée Maillol",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8565,
+        2.312
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "quai-branly-esprit-du-temps-2026",
@@ -797,7 +862,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Mus%C3%A9e_du_quai_Branly_-_20150801_16h07_%2810629%29.jpg/500px-Mus%C3%A9e_du_quai_Branly_-_20150801_16h07_%2810629%29.jpg",
       "imageSubject": "Musée du quai Branly - Jacques-Chirac",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.86099,
+        2.29797
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "palais-tokyo-nocturnes-2026",
@@ -844,7 +914,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Palais_de_Tokyo_20030101w.JPG/500px-Palais_de_Tokyo_20030101w.JPG",
       "imageSubject": "Palais de Tokyo",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8637,
+        2.2769
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "theatre-verdure-shakespeare-2026",
@@ -889,7 +964,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/GOUDEAU%26VIDAL_-_Vacherie_du_Pr%C3%A9-Catelan.jpg/500px-GOUDEAU%26VIDAL_-_Vacherie_du_Pr%C3%A9-Catelan.jpg",
       "imageSubject": "Pré Catelan",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
+      "imageKind": "subject",
+      "coords": [
+        48.8637,
+        2.2769
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "rock-en-seine-2026",
@@ -1020,7 +1100,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG/500px-P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG",
       "imageSubject": "Paris Expo Porte de Versailles",
       "imageCredit": "Wikimedia Commons",
-      "imageKind": "context"
+      "imageKind": "context",
+      "coords": [
+        48.8412,
+        2.3
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "jazz-a-la-villette-2026",
@@ -1068,7 +1153,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg/500px-Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg",
       "imageSubject": "Grande halle de la Villette",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8871,
+        2.3828
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "techno-parade-2026",
@@ -1161,7 +1251,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Palais_Omnisports_de_Paris-Bercy_2007.jpg/500px-Palais_Omnisports_de_Paris-Bercy_2007.jpg",
       "imageSubject": "Accor Arena",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "ayo-cigale-2026",
@@ -1206,7 +1301,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
       "imageSubject": "La Cigale",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.88248,
+        2.34013
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "yemi-alade-cigale-2026",
@@ -1252,7 +1352,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/La_Cigale_Paris.jpg/500px-La_Cigale_Paris.jpg",
       "imageSubject": "La Cigale",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.88248,
+        2.34013
+      ],
+      "coordsFrom": "nominatim"
     },
     {
       "id": "european-aquatics-2026",
@@ -1303,7 +1408,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG/500px-P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG",
       "imageSubject": "Pont de Bir-Hakeim",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8412,
+        2.3
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "prix-arc-triomphe-2026",
@@ -1351,7 +1461,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Paris_Longchamp%C2%A9Dominique_Perrault_architecte_Adagp_%282%29.jpg/500px-Paris_Longchamp%C2%A9Dominique_Perrault_architecte_Adagp_%282%29.jpg",
       "imageSubject": "Hippodrome de Longchamp",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8637,
+        2.2769
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "20km-de-paris-2026",
@@ -1401,7 +1516,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Tour_Eiffel_Wikimedia_Commons.jpg/500px-Tour_Eiffel_Wikimedia_Commons.jpg",
       "imageSubject": "Tour Eiffel",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8565,
+        2.312
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "rolex-paris-masters-2026",
@@ -1498,7 +1618,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/P1060179_Paris_XVIII_rue_Pajol_rwk.jpg/500px-P1060179_Paris_XVIII_rue_Pajol_rwk.jpg",
       "imageSubject": "Rue Pajol",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8925,
+        2.3444
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "gymnastics-championships-2026",
@@ -1558,7 +1683,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gymnastics_%28artistic%29_pictogram.svg/500px-Gymnastics_%28artistic%29_pictogram.svg.png",
       "imageSubject": "Gymnastique artistique",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8351,
+        2.4212
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "paris-marathon-2027",
@@ -1626,7 +1756,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Paris_Marathon_Logo_2013.png/500px-Paris_Marathon_Logo_2013.png",
       "imageSubject": "Marathon de Paris",
       "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8726,
+        2.312
+      ],
+      "coordsFrom": "arr-centroid"
     },
     {
       "id": "tour-de-france-paris-2027",
@@ -1692,7 +1827,12 @@
       "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Avenue_des_Champs-%C3%89lys%C3%A9es%2C_Paris_3_October_2010.jpg/500px-Avenue_des_Champs-%C3%89lys%C3%A9es%2C_Paris_3_October_2010.jpg",
       "imageSubject": "Avenue des Champs-Élysées",
       "imageKind": "context",
-      "imageCredit": "Wikimedia Commons"
+      "imageCredit": "Wikimedia Commons",
+      "coords": [
+        48.8626,
+        2.3363
+      ],
+      "coordsFrom": "arr-centroid"
     }
   ]
 }

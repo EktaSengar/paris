@@ -1067,3 +1067,101 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
 
 @media (max-width: 900px) { .mode-wide { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 560px) { .mode-wide { grid-template-columns: repeat(2, 1fr); } }
+
+/* =========================================================
+   LOCATION
+   Where you are exploring from is the first thing the site
+   needs to know, so it sits under the wordmark rather than
+   in a settings screen.
+   ========================================================= */
+
+.locbar { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; margin: 0 0 1rem; }
+
+.locbtn {
+  display: flex; align-items: center; gap: .7rem;
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: .45rem 1rem .45rem .8rem;
+  cursor: pointer; font-family: inherit;
+  transition: border-color .18s;
+}
+.locbtn:hover { border-color: var(--accent); }
+.loc-pin { font-size: .95rem; }
+.loc-text { text-align: left; line-height: 1.25; }
+.loc-kicker {
+  display: block; font-size: .6rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--faint);
+}
+.loc-name { display: block; font-family: var(--serif); font-size: 1rem; color: var(--ink); }
+.loc-change {
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--accent); border-left: 1px solid var(--line); padding-left: .7rem;
+}
+.locreset {
+  background: none; border: none; padding: 0;
+  font-family: inherit; font-size: .78rem; color: var(--faint);
+  text-decoration: underline; cursor: pointer;
+}
+.locreset:hover { color: var(--accent); }
+
+.locpanel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.15rem;
+  margin: 0 0 1.2rem;
+  background: var(--card);
+}
+.locrow { display: flex; gap: .5rem; margin-bottom: .7rem; }
+.locrow input {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: .5rem 1rem; font-family: inherit; font-size: .9rem;
+  background: var(--bg); color: var(--ink);
+}
+.locrow input:focus { outline: none; border-color: var(--accent); }
+.locactions { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .9rem; }
+.locgroup { margin-bottom: .8rem; }
+.loclabel {
+  display: block; margin-bottom: .35rem;
+  font-size: .64rem; letter-spacing: .16em; text-transform: uppercase; color: var(--faint);
+}
+.locerr {
+  margin: 0 0 .7rem; font-size: .82rem; color: var(--accent);
+  border-left: 2px solid var(--accent); padding-left: .7rem;
+}
+.locnote { margin: .3rem 0 0; font-size: .72rem; color: var(--faint); line-height: 1.5; }
+
+/* ---------- around you ---------- */
+
+.near-grid { display: grid; grid-template-columns: 1fr; gap: .85rem; }
+@media (min-width: 620px) { .near-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 940px) { .near-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.near-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: .9rem 1rem 1rem;
+  background: var(--card);
+}
+.near-card.found { border-style: dashed; }
+.near-label {
+  margin: 0 0 .3rem;
+  font-size: .64rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--accent); font-weight: 600;
+}
+.near-name { font-family: var(--serif); font-size: 1.08rem; font-weight: 400; margin: 0 0 .2rem; line-height: 1.25; }
+.near-meta { margin: 0 0 .4rem; font-size: .73rem; color: var(--faint); }
+.near-why {
+  margin: 0 0 .6rem; font-size: .85rem; line-height: 1.5; color: var(--soft);
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.near-link { font-size: .78rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); }
+
+.debug {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .72rem; line-height: 1.6;
+  background: var(--bg-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: .8rem 1rem; margin: 0 0 1.2rem;
+  white-space: pre; overflow-x: auto; color: var(--soft);
+}

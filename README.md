@@ -33,9 +33,13 @@ data/
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
   quests.json         long-running exploration goals
-  home.json           the home base — everything is measured from here
+  home.json           the default location, on first visit only
+  discovered.json     ~14k Paris places from OpenStreetMap — coverage, not opinion
+js/location.js  where you are exploring from — the engine everything reads
 scripts/
-  relocate.mjs  move the guide to a different home base
+  discover.mjs  build the Paris-wide index from OpenStreetMap
+  geocode.mjs   give every curated record real coordinates
+  relocate.mjs  (legacy) rewrite stored distances for a new home
   refresh.mjs   prune + validate; run daily by CI
   images.mjs    resolve one openly-licensed photo per card
   version.mjs   content-hash the CSS/JS URLs so caches cannot go stale
@@ -247,7 +251,54 @@ city's own data and needs no key.
 
 ---
 
-## Moving house
+## Location is an input, not an assumption
+
+The site used to be *about* the 10th. Now it starts there and goes wherever
+you point it — a different arrondissement, an address, a hotel, or the
+browser's own idea of where you are.
+
+**Two layers, deliberately different in kind.**
+
+| | | |
+|---|---|---|
+| **Curated** | ~180 records | A reason to care, photographs, pairings. The voice. |
+| **Discovered** | ~14,000 places | Name, category, position, from OpenStreetMap. No opinion, and the interface never pretends otherwise — cards say *found nearby* and are drawn with a dashed border. |
+
+Curated wins wherever it exists. Discovered fills the gaps, which is what
+makes a neighbourhood the catalogue has never visited still have a bakery in
+it. Places present in both are de-duplicated by name so the OSM copy never
+shadows the one somebody wrote about.
+
+**Distance is computed, not stored.** Every record carries coordinates and
+the browser works out the travel time from wherever you currently are. That
+one change is what lets the same catalogue serve any location: a stored
+distance is only true from one flat.
+
+**Around You vs worth going further.** Proximity decides the first; quality
+decides the second. Events get three tiers, because an exceptional thing an
+hour away still belongs on the page while an ordinary one does not.
+
+**Privacy.** Type a street address and the site says *5ᵉ · Latin Quarter*.
+The precise coordinates stay in this browser for the arithmetic, the weather
+lookup is rounded to ~1 km, and the exact address is never rendered.
+
+**Debug.** Append `?debug=1` for the current location, coordinates, detected
+arrondissement, and how many curated and discovered candidates fall inside
+each radius.
+
+```bash
+node scripts/discover.mjs                    # rebuild the Paris-wide index
+node scripts/discover.mjs --only restaurant  # one category
+node scripts/geocode.mjs                     # place the curated records
+```
+
+Two things worth knowing before touching the discovery script: `overpass.osm.ch`
+looks like a mirror and is a **Switzerland-only** extract that answers 200 with
+zero elements, and Overpass returns **429** under load — the first version of
+this read both as "Paris has no restaurants". Empty answers are now retried
+rather than believed.
+
+## Moving house (legacy)
 
 The whole guide is measured from one flat — "six minutes from your door",
 "twenty minutes up line 5". Two different things encode that, and only one of

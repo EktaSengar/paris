@@ -6,7 +6,7 @@
 <title>Paris for You</title>
 <meta name="description" content="A personal Paris guide for Ekta &amp; Kartik — what's worth doing today, tonight and this weekend, from the 10th.">
 <meta name="theme-color" content="#fdfaf5">
-<link rel="stylesheet" href="css/style.css?v=f907b0d0">
+<link rel="stylesheet" href="css/style.css?v=345a8232">
 <script>
   /* Set the theme before first paint so a saved dark preference never flashes light. */
   try {
@@ -28,6 +28,41 @@
       <button id="theme" class="theme" type="button" title="Switch to dark" aria-label="Switch to dark">☾</button>
     </div>
     <hr class="rule">
+
+    <div class="locbar">
+      <button id="loc-open" class="locbtn" type="button" aria-expanded="false">
+        <span class="loc-pin">📍</span>
+        <span class="loc-text">
+          <span class="loc-kicker" id="loc-kicker">Exploring from</span>
+          <span class="loc-name" id="loc-name">…</span>
+        </span>
+        <span class="loc-change">Change</span>
+      </button>
+      <button id="loc-reset" class="locreset" type="button" hidden>Reset to home</button>
+    </div>
+
+    <div class="locpanel" id="locpanel" hidden>
+      <div class="locrow">
+        <input id="loc-input" type="search" placeholder="Rue Mouffetard · 5th arrondissement · Gare du Nord · a hotel name"
+               autocomplete="off" aria-label="Search for a place">
+        <button id="loc-go" class="ghost accent" type="button">Go</button>
+      </div>
+      <div class="locactions">
+        <button id="loc-here" class="chip" type="button">📍 Use my current location</button>
+        <button id="loc-sethome" class="chip" type="button">🏠 Save this as home</button>
+      </div>
+      <p class="locerr" id="loc-err" hidden></p>
+      <div class="locgroup" id="loc-recent-wrap" hidden>
+        <span class="loclabel">Recent</span>
+        <div class="chips" id="loc-recent"></div>
+      </div>
+      <div class="locgroup">
+        <span class="loclabel">Arrondissement</span>
+        <div class="chips" id="loc-arrs"></div>
+      </div>
+      <p class="locnote">Your exact address is never shown or stored on the page — only the arrondissement. Coordinates stay in this browser.</p>
+    </div>
+
     <p class="epigraph" id="epigraph"></p>
     <p class="meta-line" id="conditions"></p>
     <div id="notice"></div>
@@ -108,7 +143,7 @@
 
 <footer class="foot">
   <div class="wrap">
-    <p>Made for Ekta &amp; Kartik. Distances are estimated from the <span id="home-foot">Canal Saint-Martin</span> area — no exact address is stored in this site.</p>
+    <p>Made for Ekta &amp; Kartik. Travel times are estimated from <span id="home-foot">where you are exploring from</span> — your exact address is never shown here or sent anywhere.</p>
     <p>Events carry a source and a verified date and expire on their own. Hours change — check the link before you travel. Ratings and progress stay in this browser.</p>
     <p class="foot-links">
       <button class="tab-link" data-view="quests" type="button">Quests</button>
@@ -121,9 +156,10 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+<script src="js/location.js?v=4f8c1f3d"></script>
 <script src="js/state.js?v=c5c186fb"></script>
 <script src="js/weather.js?v=ef258e4e"></script>
-<script src="js/scoring.js?v=cd4a0565"></script>
-<script src="js/app.js?v=27b43638"></script>
+<script src="js/scoring.js?v=b4307b53"></script>
+<script src="js/app.js?v=6fe3cd7f"></script>
 </body>
 </html>

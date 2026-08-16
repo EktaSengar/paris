@@ -128,7 +128,12 @@ const Rank = (() => {
     s += (item.quality    || 3) * 2.2;
     s += (item.uniqueness || 3) * 2.0;
 
-    // proximity — a great thing 15 minutes away beats a great thing an hour away
+    // A discovered place has a name and a position but nobody vouched for
+    // it, so it should never outrank something written about on purpose.
+    if (item.discovered) s -= 6;
+
+    // proximity — a great thing 15 minutes away beats a great thing an hour
+    // away. minutesFromHome is stamped from the *current* location on load.
     const mins = item.minutesFromHome ?? 30;
     s += Math.max(0, Math.min(10, (70 - mins) / 6));
 

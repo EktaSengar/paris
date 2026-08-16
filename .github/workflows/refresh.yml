@@ -43,6 +43,18 @@ jobs:
         if: github.event_name != 'pull_request'
         run: node scripts/refresh.mjs
 
+      # OpenStreetMap does not change fast enough to justify a daily crawl,
+      # and Overpass throttles hard. Mondays only.
+      - name: Refresh the discovery index (weekly)
+        if: github.event_name == 'schedule'
+        run: |
+          if [ "$(date -u +%u)" = "1" ]; then
+            node scripts/discover.mjs || echo "discovery skipped — Overpass unavailable"
+            node scripts/geocode.mjs  || echo "geocoding skipped"
+          else
+            echo "not Monday — discovery index left alone"
+          fi
+
       # Pages serves assets with max-age=600, so without content-hashed URLs a
       # returning browser can pair new HTML with ten-minute-old CSS and JS.
       - name: Stamp asset URLs
