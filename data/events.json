@@ -1,103 +1,11 @@
 {
-  "generated": "2026-08-16",
+  "generated": "2026-08-17",
   "window": {
     "from": "2026-08-13",
     "to": "2026-10-31"
   },
   "note": "Time-sensitive entries. Anything past its `end` date is pruned automatically by scripts/refresh.mjs. Verify prices and times at the official URL before travelling.",
   "items": [
-    {
-      "id": "villette-open-air-cinema-2026",
-      "title": "Open-Air Cinema at La Villette",
-      "emoji": "🎬",
-      "type": "event",
-      "categories": [
-        "film",
-        "outdoor",
-        "culture"
-      ],
-      "arr": 19,
-      "area": "Parc de la Villette · Prairie du Triangle",
-      "address": "211 av. Jean-Jaurès, 75019",
-      "price": 0,
-      "priceNote": "Free · deckchair + blanket €6",
-      "start": "2026-07-22",
-      "end": "2026-08-16",
-      "days": [
-        3,
-        4,
-        5,
-        6,
-        0
-      ],
-      "times": "Lawn opens 17:00 · screenings 18:00 (family) & 21:00 (adults)",
-      "durationMin": 150,
-      "minutesFromHome": 22,
-      "transit": "M5 to Porte de Pantin — or walk the canal from home in ~40 min",
-      "why": "The 35th edition, and it ends this Sunday. This year's theme is the forest. Bring a bottle and a blanket, get there by 20:15 for the 21:00 film. The canal walk up from Jaurès at dusk is half the pleasure — it is genuinely one of the best free nights in Paris and it is basically in your neighbourhood.",
-      "goodFor": [
-        "couple",
-        "evening",
-        "outdoor",
-        "free",
-        "spontaneous"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "dontmiss",
-        "afterwork",
-        "outdoor",
-        "couple"
-      ],
-      "uniqueness": 4,
-      "quality": 5,
-      "programme": [
-        {
-          "date": "2026-08-13",
-          "text": "18:00 Peter and the Wolf (shorts) · 21:00 Winter's Bone"
-        },
-        {
-          "date": "2026-08-14",
-          "text": "18:00 Kirikou and the Sorceress · 21:00 Stand by Me"
-        },
-        {
-          "date": "2026-08-15",
-          "text": "18:00 Wolfwalkers · 21:00 Cast Away"
-        },
-        {
-          "date": "2026-08-16",
-          "text": "18:00 Mia and the Migoo · 21:00 Moonrise Kingdom"
-        }
-      ],
-      "nearby": [
-        {
-          "emoji": "☕",
-          "text": "Café Bonjour Madame, Ourcq → 10 min"
-        },
-        {
-          "emoji": "🍺",
-          "text": "Canal-side bars at Jaurès → 12 min"
-        },
-        {
-          "emoji": "🌳",
-          "text": "Parc des Buttes-Chaumont → 15 min"
-        }
-      ],
-      "source": "Sortiraparis / La Villette",
-      "url": "https://lavillette.com/programmation/cinema-en-plein-air_e1054",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Parc_de_la_Villette%2C_Paris_2010.jpg/500px-Parc_de_la_Villette%2C_Paris_2010.jpg",
-      "imageSubject": "Parc de la Villette",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8871,
-        2.3828
-      ],
-      "coordsFrom": "arr-centroid"
-    },
     {
       "id": "paris-plages-2026",
       "title": "Paris Plages",
@@ -1358,62 +1266,6 @@
         2.34013
       ],
       "coordsFrom": "nominatim"
-    },
-    {
-      "id": "european-aquatics-2026",
-      "title": "European Aquatics Championships",
-      "emoji": "🤽",
-      "type": "event",
-      "categories": [
-        "sport",
-        "swim",
-        "free",
-        "outdoor"
-      ],
-      "arr": 15,
-      "area": "Seine at Bras de Grenelle · high diving at Port Debilly · Saint-Denis",
-      "price": 0,
-      "priceNote": "Open water and high diving free from the riverbank · pool sessions ticketed",
-      "start": "2026-07-31",
-      "end": "2026-08-16",
-      "times": "Daily — check the session timetable",
-      "durationMin": 150,
-      "minutesFromHome": 35,
-      "transit": "M6 to Bir-Hakeim for the river events",
-      "why": "This finishes tomorrow and it is free to watch the best bits. The open-water swimming happens in the Seine between Bir-Hakeim and the Île aux Cygnes, and the high diving — people falling twenty-seven metres off a platform into the river — is free from the bank at Port Debilly. If you do one thing this weekend, this is the one that will not come round again.",
-      "goodFor": [
-        "weekend",
-        "couple",
-        "sport",
-        "free",
-        "outdoor",
-        "unusual",
-        "spontaneous"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "dontmiss",
-        "closingsoon",
-        "unusual",
-        "outdoor",
-        "couple"
-      ],
-      "uniqueness": 5,
-      "quality": 5,
-      "source": "European Aquatics / Paris je t’aime",
-      "url": "https://europeanaquatics.org/paris-2026/",
-      "lastVerified": "2026-08-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG/500px-P1080370_Paris_VII-XV-XVI_pont_de_Bir_Hakeim_rwk.JPG",
-      "imageSubject": "Pont de Bir-Hakeim",
-      "imageKind": "subject",
-      "imageCredit": "Wikimedia Commons",
-      "coords": [
-        48.8412,
-        2.3
-      ],
-      "coordsFrom": "arr-centroid"
     },
     {
       "id": "prix-arc-triomphe-2026",
