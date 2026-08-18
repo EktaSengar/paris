@@ -574,6 +574,12 @@ body {
 .row:hover .row-name { color: var(--accent); }
 .row.done .row-name { color: var(--faint); }
 
+/* A record from the map layer, sitting in the same list as one somebody
+   wrote about. The dashed rule is the same signal the Around You cards
+   use: this is a name and a position, not a recommendation. */
+.row.found { border-top-style: dashed; }
+.row.found .row-name { font-family: var(--sans); font-size: 1.02rem; }
+
 .row-name {
   grid-column: 1;
   font-family: var(--serif); font-size: 1.12rem; line-height: 1.3;
@@ -1150,6 +1156,7 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   background: var(--card);
 }
 .near-card.found { border-style: dashed; }
+.card.found .shot.ph { border-style: dashed; }
 .near-label {
   margin: 0 0 .3rem;
   font-size: .64rem; letter-spacing: .15em; text-transform: uppercase;

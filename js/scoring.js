@@ -3,9 +3,13 @@
 
    The point of this file is that the site does not simply list
    everything. Each candidate is scored against today's date,
-   today's weather, how far it is from the 10th, what it costs,
-   how soon it disappears, and what you have already told the
-   site you like. The sections then take the top of that ranking.
+   today's weather, how far it is from wherever you currently are,
+   what it costs, how soon it disappears, and what you have already
+   told the site you like. The sections then take the top of that ranking.
+
+   This answers "is this good today". It is not the same question as
+   "what is around me" — that one lives in nearby.js, which decides
+   *which* candidates reach this ranking in the first place.
    --------------------------------------------------------- */
 
 const Rank = (() => {
@@ -134,8 +138,15 @@ const Rank = (() => {
 
     // proximity — a great thing 15 minutes away beats a great thing an hour
     // away. minutesFromHome is stamped from the *current* location on load.
-    const mins = item.minutesFromHome ?? 30;
-    s += Math.max(0, Math.min(10, (70 - mins) / 6));
+    //
+    // This used to be a straight line that flattened out below ten minutes
+    // and was worth at most ten points against a merit term worth twenty.
+    // Two consequences, both wrong: nothing separated a place on your street
+    // from one three Metro stops away, and no amount of distance could stop
+    // an excellent thing across the city outranking a good thing nearby.
+    // Near.reach is the same curve the retrieval layer uses, so the two
+    // agree about what "close" means.
+    s += 14 * Near.reach(item.minutesFromHome ?? 30);
 
     // price
     const p = item.price ?? 0;

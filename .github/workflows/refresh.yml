@@ -55,6 +55,14 @@ jobs:
             echo "not Monday — discovery index left alone"
           fi
 
+      # The site can look completely healthy while location silently fails to
+      # reach the retrieval layer — the whole page renders, every distance is
+      # right, and the recommendations are somebody else's neighbourhood. This
+      # catches that, and runs after any discovery refresh so it also notices
+      # a rebuilt index that has quietly lost coverage somewhere.
+      - name: Check that location changes the recommendations
+        run: node scripts/check-location.mjs
+
       # Pages serves assets with max-age=600, so without content-hashed URLs a
       # returning browser can pair new HTML with ten-minute-old CSS and JS.
       - name: Stamp asset URLs

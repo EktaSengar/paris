@@ -17,6 +17,11 @@
                  position. No opinion, and the interface never pretends
                  otherwise — they fill in the map, they do not review it.
 
+   What this file must NOT become: a second curated catalogue. It carries
+   the weak signals OSM actually has (a website, a brand tag, a Wikidata
+   id) and nothing invented. Deciding which of these to show is
+   js/nearby.js's job, not this script's.
+
    Queried at BUILD time, not in the browser: Overpass rate-limits and
    times out under load, and a static site should not depend on a third
    party being awake. The daily Action refreshes it.
@@ -156,7 +161,15 @@ async function run() {
         a: near(lat, lon),
         ...(t['addr:street'] ? { s: clean(t['addr:street']) } : {}),
         ...(t.website || t['contact:website'] ? { w: (t.website || t['contact:website']).slice(0, 120) } : {}),
-        ...(t.cuisine ? { k: t.cuisine.split(';')[0].slice(0, 24) } : {})
+        ...(t.cuisine ? { k: t.cuisine.split(';')[0].slice(0, 24) } : {}),
+        /* Two weak signals the ranking can use, both cheap to carry.
+           `b` says OSM knows this is a branch of something — the retrieval
+           layer already infers chains from repeated names, and this is the
+           same fact stated outright. `d` says the place has a Wikidata
+           entry, which for a bakery or a theatre means somebody thought it
+           worth recording beyond its existence. */
+        ...(t.brand || t['brand:wikidata'] ? { b: 1 } : {}),
+        ...(t.wikidata || t.wikipedia ? { d: 1 } : {})
       });
       kept++;
     }

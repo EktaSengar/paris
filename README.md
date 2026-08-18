@@ -1,27 +1,29 @@
 # Paris for You
 
-A personal Paris exploration guide for Ekta & Kartik, living in the 10th.
+A personal Paris exploration guide for Ekta & Kartik.
 
 **Live at → https://ektasengar.github.io/paris/**
 
 It answers one question every time you open it: *what is something interesting
 we could do next?* Not an events listing — a ranked, weather-aware, date-aware
-set of suggestions built around one home base in the 10th.
+set of suggestions built around wherever you happen to be standing.
 
 ---
 
 ## How it works
 
 Static site. No build step, no framework, no backend, no API keys, no accounts.
-Three JavaScript files and some JSON.
+A handful of JavaScript files and some JSON.
 
 ```
 index.html
 css/style.css
 js/
+  location.js   where you are exploring from — position, not stored distances
+  nearby.js     retrieval: which places exist within reach of that position
   state.js      what the site remembers about you (localStorage only)
   weather.js    Open-Meteo — no key, no account, coordinates rounded to the neighbourhood
-  scoring.js    the ranking engine
+  scoring.js    the ranking engine — is this good today
   app.js        loading and rendering
 data/
   events.json         time-sensitive; expires and is pruned automatically
@@ -35,7 +37,6 @@ data/
   quests.json         long-running exploration goals
   home.json           the default location, on first visit only
   discovered.json     ~14k Paris places from OpenStreetMap — coverage, not opinion
-js/location.js  where you are exploring from — the engine everything reads
 scripts/
   discover.mjs  build the Paris-wide index from OpenStreetMap
   geocode.mjs   give every curated record real coordinates
@@ -182,8 +183,9 @@ ever written down when it is actually known.**
 
 Nothing is shown in file order. Every candidate is scored against:
 
-- how far it is from the 10th (a good thing 15 minutes away beats a good
-  thing an hour away)
+- how far it is from where you currently are (a good thing 15 minutes away
+  beats a good thing an hour away) — on the same decay curve the retrieval
+  layer uses, so "close" means one thing across the whole site
 - price, with free and cheap weighted up
 - how soon it disappears — things ending within a week get pushed forward
 - **today's actual weather**, per day: rain promotes covered passages,
@@ -274,6 +276,43 @@ the browser works out the travel time from wherever you currently are. That
 one change is what lets the same catalogue serve any location: a stored
 distance is only true from one flat.
 
+**Retrieval, not re-sorting.** This is the part that took two goes to get
+right, so it is worth stating as an order of operations:
+
+```
+where you are  →  how far is worth reaching  →  which places exist in
+that reach  →  which of those are any good  →  the section
+```
+
+The first version did the second half only: it took the whole catalogue,
+recomputed every distance, and re-sorted. That cannot work, and the reason is
+almost too simple to see — **re-sorting a list cannot change what is in the
+list.** Point the site at the 5th and it still recommended the 10th's cafés,
+correctly labelled with their new travel times. Distance was an input to the
+ranking when it needed to be an input to the *retrieval*.
+
+`js/nearby.js` is that missing step. Every section that means "near me" asks
+it for candidates rather than filtering the catalogue itself, so there is one
+definition of what counts as near and one place to change it.
+
+- **The radius is chosen by what is out there**, not by a constant. A ring
+  widens (10 → 18 → 30 minutes for everyday things, 25 → 40 → 60 for a night
+  out) until it holds enough to be worth printing. A dense quarter answers
+  close in; a quiet one has to reach further, and the heading says which
+  radius the answer came from.
+- **Both layers compete inside the ring.** Merit is the same scale the main
+  ranking uses; being written about is worth a fixed premium on top. That
+  premium is multiplied by the same distance decay as everything else, which
+  is the whole trick: *being written about makes a place worth more, it does
+  not make it closer.*
+- **Chains are demoted from the data itself.** OSM records the fortieth branch
+  of a coffee chain as enthusiastically as the one good café on the street. A
+  name that appears all over the city is a chain — derivable from the shipped
+  file, so there is no hand-maintained list to rot.
+- **Nothing is lost to the radius.** What falls outside it and is genuinely
+  excellent moves to *Worth the trip*, which is where the 10th's classics go
+  when you are standing in the 15th.
+
 **Around You vs worth going further.** Proximity decides the first; quality
 decides the second. Events get three tiers, because an exceptional thing an
 hour away still belongs on the page while an ordinary one does not.
@@ -283,8 +322,10 @@ The precise coordinates stay in this browser for the arithmetic, the weather
 lookup is rounded to ~1 km, and the exact address is never rendered.
 
 **Debug.** Append `?debug=1` for the current location, coordinates, detected
-arrondissement, and how many curated and discovered candidates fall inside
-each radius.
+arrondissement, how many candidates fall inside each radius, and — the part
+worth having — the names the retrieval layer actually returns per category
+with the radius it settled on. Two locations that produce the same three names
+have not really moved, whatever the distances say.
 
 ```bash
 node scripts/discover.mjs                    # rebuild the Paris-wide index
@@ -329,18 +370,30 @@ arrondissement map, and the "somewhere you have not been" bonus in the ranking
 — nothing hard-codes the 10th any more.
 
 **What relocation cannot do.** Recomputing distances re-ranks the catalogue; it
-does not re-curate it. This dataset was built for someone in the 10th and it
-shows: nine of twenty food entries are in the 10th, and there are **13 food
-places within 15 minutes of the Canal Saint-Martin but only 1 within 15 minutes
-of the rue Mouffetard**. Move the home and the site correctly tells you
-everything is now twenty minutes away — which is true, and not very useful.
+does not re-curate it. This script predates `nearby.js` and only ever solved
+the arithmetic — it is kept for permanently moving house, where the stored
+numbers and the prose both genuinely need rewriting. Temporarily exploring from
+somewhere else does not go through it at all: the retrieval layer handles that
+in the browser, without touching the data files.
+
+The curated dataset is still 10th-heavy, and always will be, because it is a
+record of where two people have actually been. What changed is that this no
+longer determines what the site recommends:
+
+| | before | after |
+|---|---|---|
+| Curated cafés within 15 min of the rue Mouffetard | 1 | 1 |
+| Cafés the Eat tab offers there | 5, all of them in the 10th/11th/3rd | 24, in the 5th |
+
+The second row is the fix. The first row is why the discovered layer exists.
 
 So a real relocation is three jobs, in order of how much of it is a machine's:
 
 1. `relocate.mjs` — distances and the home arrondissement. Automated.
 2. `--audit` — the sixty-one sentences naming the old home. Human, but listed.
 3. Re-curation — finding the bakeries, bars and runs of the new
-   neighbourhood. Research, and the reason the guide is worth anything.
+   neighbourhood. Research, and still the reason the guide is worth anything —
+   but no longer the difference between the site working and not working.
 
 ## Privacy
 
