@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'notes'];
+  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'civic', 'notable', 'editorial', 'notes'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -103,6 +103,78 @@ const App = (() => {
     return best;
   }
 
+  /* ---------- the generated layers ----------
+
+     Three files arrive in the same compact shape — the OpenStreetMap
+     index, the city's own facilities, and the places that are a matter
+     of record. Compact because there are fourteen thousand of them and
+     every byte ships to the browser; one shape because to everything
+     downstream they are the same kind of thing. */
+
+  const flatten = s => (s || '').toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').trim();
+
+  /* The id has to survive the weekly rebuild. An array position does not
+     — places come and go and everything after them shifts, which would
+     quietly repoint a saved rating, or a handwritten note, at a
+     different shop. A name and a position do survive.
+
+     scripts/draft.mjs computes this too. If it changes here it changes
+     there, and every existing note id changes with it. */
+  const compactId = p => 'osm-' + flatten(p.n)
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
+    + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000);
+
+  const FOOD = ['cafe', 'bakery', 'restaurant', 'market', 'deli'];
+
+  function fromCompact(p) {
+    return {
+      id: compactId(p),
+      title: p.n,
+      type: p.c,
+      arr: p.a,
+      coords: [p.lat, p.lon],
+      area: p.s || null,
+      url: p.w || null,
+      cuisine: p.k || null,
+      emoji: p.emoji || null,
+      discovered: true,
+      /* A record with a factual line has something to say; one without is
+         a name and a position, and the interface says so. */
+      why: p.why || p.x || '',
+      days: p.days || undefined,
+      branded: !!p.b, noted: !!p.d,
+      heritage: !!p.h, artisan: !!p.r, organic: !!p.o, since: p.y || null,
+      /* Anything the generating script did not rate stays at the floor.
+         What separates those is distance and the weak signals nearby.js
+         reads off the record — never a number invented here. */
+      quality: p.q ?? 3,
+      uniqueness: p.u ?? 2,
+      categories: [FOOD.includes(p.c) ? 'food' : p.c],
+      goodFor: [], labels: []
+    };
+  }
+
+  /* One place, listed by two sources, is still one place. Matched on name
+     and position rather than id, because the three files round their
+     coordinates from different originals and so disagree in the last
+     decimal. 250 m is wide enough to catch a market that moved down the
+     street and narrow enough not to merge two branches of a chain. */
+  function dropDuplicates(pool, winners) {
+    if (!winners.length) return pool;
+    const claimed = new Map();
+    winners.forEach(w => {
+      const k = flatten(w.title);
+      if (!claimed.has(k)) claimed.set(k, []);
+      claimed.get(k).push(w.coords);
+    });
+    return pool.filter(p => {
+      const near = claimed.get(flatten(p.title));
+      if (!near) return true;
+      return !near.some(c => c && p.coords && Loc.km(c, p.coords) < 0.25);
+    });
+  }
+
   /* ---------- load ---------- */
 
   async function load() {
@@ -136,39 +208,43 @@ const App = (() => {
     const curatedNames = new Set(
       [].concat(D.events.items||[], D.places.items||[], D.nightlife.items||[],
                 D.sports.items||[], D.food.items||[])
-        .map(i => (i.title||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()));
-
-    /* The id has to survive the weekly rebuild of the discovery index.
-       An array position does not — places come and go and everything
-       after them shifts, which would quietly repoint a saved rating at a
-       different shop. Name and position do survive. */
-    const osmId = p => 'osm-' + (p.n || '').toLowerCase().normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '').slice(0, 32)
-      + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000);
+        .map(i => flatten(i.title)));
 
     DISCOVERED = (D.discovered?.items || [])
-      .filter(p => !curatedNames.has((p.n||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim()))
-      .map(p => ({
-      id: osmId(p),
-      title: p.n,
-      type: p.c,
-      arr: p.a,
-      coords: [p.lat, p.lon],
-      area: p.s || null,
-      url: p.w || null,
-      cuisine: p.k || null,
-      discovered: true,
-      branded: !!p.b, noted: !!p.d,
-      /* Everything found on the map starts equal. What separates them is
-         distance, and the weak signals nearby.js reads off the record —
-         never a number invented here. */
-      quality: 3, uniqueness: 2,
-      categories: [p.c === 'cafe' || p.c === 'bakery' || p.c === 'restaurant' || p.c === 'market' || p.c === 'deli' ? 'food' : p.c],
-      goodFor: [], labels: []
-    }));
+      .filter(p => !curatedNames.has(flatten(p.n)))
+      .map(fromCompact);
+
+    /* The middle tier: what the city and the record say. Two files, one
+       shape, because to everything downstream they are the same kind of
+       thing — a real place with a factual line and a source behind it. */
+    const SOURCED = []
+      .concat((D.civic?.items || []).map(p => Object.assign(fromCompact(p), {
+        provenance: 'sourced',
+        source: 'Ville de Paris — opendata.paris.fr',
+        lastVerified: D.civic.generated || null
+      })))
+      .concat((D.notable?.items || []).map(p => Object.assign(fromCompact(p), {
+        provenance: 'sourced',
+        source: p.src || 'Wikipedia',
+        lastVerified: D.notable.generated || null,
+        touristy: !!p.landmark
+      })));
+
+    /* Editorial records are written in full rather than compacted — they
+       are prose, and there are only a couple of hundred of them. */
+    const WRITTEN = (D.editorial?.items || []).map(i =>
+      Object.assign({ provenance: 'editorial' }, i));
+
+    /* Where a place exists in more than one layer, the one that knows most
+       about it wins and the others are dropped — otherwise Marché Monge
+       appears three times, once per source, which reads as a bug because
+       it is one. */
+    DISCOVERED = dropDuplicates(DISCOVERED, SOURCED.concat(WRITTEN));
+
+    DISCOVERED = SOURCED.concat(DISCOVERED);
 
     ALL = []
+      .concat(WRITTEN)
       .concat(D.events.items || [])
       .concat(D.places.items || [])
       .concat(D.nightlife.items || [])
@@ -298,6 +374,16 @@ const App = (() => {
   };
 
   const tier     = i => TIER[Near.tierOf(i)] || TIER.found;
+
+  /* Spelled out where the reader has stopped to look properly. The short
+     label on the card is a hint; this is the actual claim being made. */
+  const PROVENANCE = {
+    personal:  'Written from a visit.',
+    editorial: 'Researched and recommended, but nobody here has been — so treat it as a good lead rather than a promise.',
+    sourced:   'A matter of record rather than a recommendation. The facts are checked; the opinion is yours to form.',
+    found:     'Found on the map. Nothing here vouches for it beyond the fact that it exists.'
+  };
+  const provenanceLine = i => `<b>${esc(PROVENANCE[Near.tierOf(i)] || PROVENANCE.found)}</b><br>`;
   const tierCls  = i => tier(i).cls;
   const tierMark = i => tier(i).mark;
 
@@ -428,7 +514,8 @@ const App = (() => {
           `<button type="button" data-rate="${v}" title="${t}" aria-label="${t}" class="${r === v ? 'on' : ''}">${e}</button>`).join('')}
       </div>
       <p class="credit">
-        ${item.source ? `Source: ${esc(item.source)}${item.lastVerified ? ` · verified ${item.lastVerified}` : ''}<br>` : ''}
+        ${provenanceLine(item)}
+        ${item.source ? `Source: ${esc(item.source)}${item.lastVerified ? ` · checked ${item.lastVerified}` : ''}<br>` : ''}
         ${item.image ? `Photo: ${esc(item.imageSubject || '')} — ${esc(item.imageCredit || 'Wikimedia Commons')}` : ''}
       </p>
     </div>`;
@@ -1964,10 +2051,20 @@ const App = (() => {
     const a = Loc.active();
     const near = n => [...ALL, ...DISCOVERED].filter(i => (i.minutesFromHome ?? 999) <= n).length;
 
+    const MARK = { personal: '★', editorial: '◆', sourced: '◇', found: '·' };
     const probe = kind => {
       const r = Near.pick(Near.KIND[kind], { rings: Near.RINGS.walk, want: 6, limit: 3 });
-      const names = r.items.map(i => `${i.discovered ? '·' : '★'}${i.title}`).join(', ');
+      const names = r.items.map(i => `${MARK[Near.tierOf(i)]}${i.title}`).join(', ');
       return `${kind.padEnd(11)} ≤${String(r.radius ?? '∞').padStart(2)}m  ${names || '—'}`;
+    };
+
+    /* How much the site actually knows about where you are standing —
+       the number that says whether this quarter has been done properly. */
+    const tiers = () => {
+      const within = [...ALL, ...DISCOVERED].filter(i => (i.minutesFromHome ?? 999) <= 15);
+      const n = t => within.filter(i => Near.tierOf(i) === t).length;
+      return `personal ${n('personal')}   editorial ${n('editorial')}   `
+           + `sourced ${n('sourced')}   found ${n('found')}`;
     };
 
     const el = document.querySelector('.debug') || document.createElement('pre');
@@ -1982,9 +2079,12 @@ const App = (() => {
       `curated     ${ALL.length}      discovered  ${DISCOVERED.length}`,
       `≤15 min     ${near(15)}      ≤30 min     ${near(30)}`,
       ``,
-      `what comes back  (★ written about · found on the map)`,
+      `within 15 min, by tier`,
+      `  ${tiers()}`,
+      ``,
+      `what comes back  (★ visited  ◆ researched  ◇ on record  · on the map)`,
       probe('bakery'), probe('cafe'), probe('restaurant'), probe('market'),
-      probe('books'), probe('park')
+      probe('books'), probe('park'), probe('sport')
     ].join('\n');
     document.querySelector('.foot .wrap').prepend(el);
   }

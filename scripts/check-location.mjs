@@ -50,6 +50,8 @@ function load(file, name, extra = {}) {
 const Loc  = load('location.js', 'Loc');
 const Near = load('nearby.js',   'Near');
 
+const readOpt = f => { try { return read(f); } catch { return { items: [] }; } };
+
 /* ---------- the two layers, built the way app.js builds them ---------- */
 
 const D = {};
@@ -61,18 +63,60 @@ const curatedNames = new Set([].concat(
   D.events.items, D.places.items, D.nightlife.items, D.sports.items, D.food.items
 ).map(i => norm(i.title)));
 
-const DISCOVERED = D.discovered.items
-  .filter(p => !curatedNames.has(norm(p.n)))
-  .map(p => ({
-    id: 'osm-' + norm(p.n).replace(/[^a-z0-9]+/g, '-') + '-' + Math.round(p.lat * 2000),
-    title: p.n, type: p.c, arr: p.a, coords: [p.lat, p.lon], area: p.s || null,
-    url: p.w || null, cuisine: p.k || null, discovered: true,
-    branded: !!p.b, noted: !!p.d, quality: 3, uniqueness: 2, categories: [p.c],
-    goodFor: [], labels: []
-  }));
+/* Mirrors fromCompact() in js/app.js. The three generated files share
+   one shape, so one mapper reads all of them. */
+const fromCompact = p => ({
+  id: 'osm-' + norm(p.n).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
+      + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000),
+  title: p.n, type: p.c, arr: p.a, coords: [p.lat, p.lon], area: p.s || null,
+  url: p.w || null, cuisine: p.k || null, discovered: true, why: p.why || p.x || '',
+  branded: !!p.b, noted: !!p.d, heritage: !!p.h,
+  quality: p.q ?? 3, uniqueness: p.u ?? 2, categories: [p.c], goodFor: [], labels: []
+});
 
-const ALL = [].concat(D.events.items, D.places.items, D.nightlife.items,
+const civic    = readOpt('civic');
+const notable  = readOpt('notable');
+const editorial = readOpt('editorial');
+const notes    = readOpt('notes');
+
+const SOURCED = []
+  .concat((civic.items || []).map(p => ({ ...fromCompact(p), provenance: 'sourced' })))
+  .concat((notable.items || []).map(p => ({ ...fromCompact(p), provenance: 'sourced',
+                                            touristy: !!p.landmark })));
+const WRITTEN = (editorial.items || []).map(i => ({ provenance: 'editorial', ...i }));
+
+const km = (a, b) => Loc.km(a, b);
+const claimed = new Map();
+SOURCED.concat(WRITTEN).forEach(w => {
+  const k = norm(w.title);
+  if (!claimed.has(k)) claimed.set(k, []);
+  claimed.get(k).push(w.coords);
+});
+
+const FOUND = D.discovered.items
+  .filter(p => !curatedNames.has(norm(p.n)))
+  .map(fromCompact)
+  .filter(p => {
+    const near = claimed.get(norm(p.title));
+    return !near || !near.some(c => c && p.coords && km(c, p.coords) < 0.25);
+  });
+
+const DISCOVERED = SOURCED.concat(FOUND);
+
+const ALL = [].concat(WRITTEN, D.events.items, D.places.items, D.nightlife.items,
                       D.sports.items, D.food.items, D.itineraries.items, D.daytrips.items);
+
+ALL.forEach(i => { if (!i.provenance) i.provenance = 'personal'; });
+DISCOVERED.forEach(i => { if (!i.provenance) i.provenance = 'found'; });
+
+/* Handwritten notes win, exactly as they do in the browser. */
+const byId = new Map([...ALL, ...DISCOVERED].map(i => [i.id, i]));
+for (const [id, note] of Object.entries(notes.items || {})) {
+  const it = byId.get(id);
+  if (!it) { console.warn(`  ! note for a place that is not here: ${id}`); continue; }
+  Object.assign(it, note);
+  if (note.why) it.provenance = 'personal';
+}
 
 Loc.boot(Loc.fromArr(1));
 Near.use(ALL, DISCOVERED);
@@ -146,6 +190,56 @@ if (VERBOSE) {
     console.log(`\n${arr}e`);
     for (const [kind] of KINDS) console.log(`  ${kind.padEnd(11)} ${top[arr][kind].join(', ')}`);
   }
+}
+
+/* ---------- are they any good? ----------
+
+   The difference test above only proves the lists moved. It passed
+   perfectly while the 5th was being handed the nearest café in walking
+   order, which is not a recommendation — so this second test asks
+   whether the site knows anything about what it is suggesting.
+
+   Two above `found` in the top five is a low bar on purpose. It is the
+   difference between a guide and a phone book, not a standard of
+   excellence, and it should hold in every arrondissement rather than
+   only the one the catalogue was written in. */
+
+const NEED_KNOWN = 2;
+const EVERYDAY = [['cafe', 'walk'], ['bakery', 'walk'], ['restaurant', 'walk'], ['market', 'walk']];
+const ALL_ARRS = Array.from({ length: 20 }, (_, i) => i + 1);
+
+console.log('\nHow much is known about the top 5, per arrondissement');
+console.log('(★ visited · ◆ researched · ◇ on record · · on the map)\n');
+console.log('arr    ' + EVERYDAY.map(([k]) => k.slice(0, 6).padStart(7)).join('') + '     worst');
+
+const MARK = { personal: '★', editorial: '◆', sourced: '◇', found: '·' };
+const beyondByArr = {};
+
+for (const arr of ALL_ARRS) {
+  at(arr);
+  const cells = [];
+  let worst = 9;
+  for (const [kind, ringSet] of EVERYDAY) {
+    const top = Near.pick(Near.KIND[kind], { rings: Near.RINGS[ringSet], want: 6, limit: 5 }).items;
+    const known = top.filter(i => Near.tierOf(i) !== 'found').length;
+    worst = Math.min(worst, known);
+    cells.push(top.map(i => MARK[Near.tierOf(i)]).join('').padStart(7));
+    if (known < NEED_KNOWN)
+      failures.push(`${arr}e ${kind}: only ${known} of the top 5 is more than a name on a map (need ${NEED_KNOWN})`);
+  }
+  beyondByArr[arr] = Near.beyond(Near.KIND.cafe, 10).map(i => ({ title: i.title, arr: i.arr }));
+  console.log(String(arr).padStart(3) + 'e   ' + cells.join('') + '   ' + String(worst).padStart(5));
+}
+
+/* "Worth the trip" is allowed to repeat itself between locations — the
+   best café in Paris is the same café wherever you set out from, and
+   demanding otherwise would be demanding a lie. What it must not do is
+   what it used to: return three places from one arrondissement, which is
+   how "the 10th again" survived the first fix. */
+for (const arr of ALL_ARRS) {
+  const spread = beyondByArr[arr];
+  if (spread.length >= 2 && new Set(spread.map(x => x.arr)).size < 2)
+    failures.push(`${arr}e worth-the-trip: all ${spread.length} suggestions are in the same arrondissement`);
 }
 
 /* The specific regression: the names from the original report must not be

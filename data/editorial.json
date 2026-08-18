@@ -1,0 +1,11 @@
+{
+  "generated": null,
+  "note": "Researched recommendations, written in the site's voice but by somebody who has not been. Opinionated on purpose — a list of facts is not a guide — but every card says plainly that it was researched rather than visited, and a handwritten note in notes.json overrules any of it.",
+  "rules": [
+    "Every record needs a source and a lastVerified date. If it cannot be checked, it does not go in.",
+    "Say what to order and when to go. 'Lovely atmosphere' helps nobody.",
+    "Set touristy: true for anywhere that is a sight rather than a local habit — it stays eligible for Culture and Worth the trip, and drops out of the everyday sections.",
+    "quality and uniqueness cap at 4 here. 5 is reserved for somewhere one of you actually loved."
+  ],
+  "items": []
+}

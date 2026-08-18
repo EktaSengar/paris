@@ -169,7 +169,16 @@ async function run() {
            entry, which for a bakery or a theatre means somebody thought it
            worth recording beyond its existence. */
         ...(t.brand || t['brand:wikidata'] ? { b: 1 } : {}),
-        ...(t.wikidata || t.wikipedia ? { d: 1 } : {})
+        ...(t.wikidata || t.wikipedia ? { d: 1 } : {}),
+        /* Distinctions OSM occasionally records and the ranking can use.
+           Sparse — about two percent of places carry any of them — but
+           where they exist they are the difference between a shop and a
+           shop worth crossing the road for. */
+        ...(t.heritage || t['ref:mhs'] || t.historic ? { h: 1 } : {}),
+        ...(t.craft ? { r: 1 } : {}),
+        ...(t.organic === 'yes' || t.organic === 'only' ? { o: 1 } : {}),
+        ...(/^\d{4}/.test(t.start_date || '') ? { y: Number(String(t.start_date).slice(0, 4)) } : {}),
+        ...(t.description && t.description.length <= 160 ? { x: clean(t.description).slice(0, 160) } : {})
       });
       kept++;
     }
