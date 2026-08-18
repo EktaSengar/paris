@@ -1,6 +1,9 @@
 {
   "generated": "2026-08-13",
-  "home": { "arr": 10, "label": "Canal Saint-Martin / République / Goncourt" },
+  "home": {
+    "arr": 10,
+    "label": "Canal Saint-Martin / République / Goncourt"
+  },
   "note": "One profile per arrondissement. `minutesFromHome` is an estimate from République. Mark them explored on the site as you go.",
   "items": [
     {
@@ -8,7 +11,11 @@
       "name": "Louvre · Palais-Royal",
       "minutesFromHome": 20,
       "famousFor": "The Louvre, the Palais-Royal gardens, and the oldest part of the city",
-      "streets": ["Rue Saint-Honoré", "Rue Montorgueil", "Galerie Véro-Dodat"],
+      "streets": [
+        "Rue Saint-Honoré",
+        "Rue Montorgueil",
+        "Galerie Véro-Dodat"
+      ],
       "cafe": "Telescope, rue Villedo — small, serious, no laptops",
       "bakery": "Maison Plisson or the Montorgueil bakeries",
       "culture": "59 Rivoli artist squat — free, six floors of working studios",
@@ -23,7 +30,11 @@
       "name": "Bourse · Sentier",
       "minutesFromHome": 15,
       "famousFor": "The covered passages and the old textile district",
-      "streets": ["Passage des Panoramas", "Rue Montorgueil", "Rue Saint-Marc"],
+      "streets": [
+        "Passage des Panoramas",
+        "Rue Montorgueil",
+        "Rue Saint-Marc"
+      ],
       "cafe": "The wine bars of Passage des Panoramas at aperitif hour",
       "bakery": "Maison Landemaine",
       "culture": "Bibliothèque Richelieu — the oval reading room is free to walk into and stunning",
@@ -38,7 +49,11 @@
       "name": "Haut Marais",
       "minutesFromHome": 15,
       "famousFor": "Design shops, small museums and the best independent retail in Paris",
-      "streets": ["Rue de Bretagne", "Rue Charlot", "Rue de Poitou"],
+      "streets": [
+        "Rue de Bretagne",
+        "Rue Charlot",
+        "Rue de Poitou"
+      ],
       "cafe": "Boot Café — a three-seat former cobbler's shop",
       "bakery": "Bontemps, rue de Bretagne, for sablés",
       "culture": "Musée de la Chasse et de la Nature — the strangest good museum in the city",
@@ -53,7 +68,11 @@
       "name": "Marais · Île Saint-Louis",
       "minutesFromHome": 20,
       "famousFor": "Place des Vosges, the Jewish quarter, and the islands",
-      "streets": ["Rue des Rosiers", "Rue Saint-Louis-en-l'Île", "Village Saint-Paul"],
+      "streets": [
+        "Rue des Rosiers",
+        "Rue Saint-Louis-en-l'Île",
+        "Village Saint-Paul"
+      ],
       "cafe": "Le Peloton Café, rue du Pont Louis-Philippe",
       "bakery": "Miznon and the falafel counters of rue des Rosiers for something other than bread",
       "culture": "Maison de Victor Hugo on Place des Vosges — free permanent collection",
@@ -68,7 +87,11 @@
       "name": "Latin Quarter",
       "minutesFromHome": 25,
       "famousFor": "The Sorbonne, bookshops and the oldest streets in the city",
-      "streets": ["Rue Mouffetard", "Rue Galande", "Rue de la Bûcherie"],
+      "streets": [
+        "Rue Mouffetard",
+        "Rue Galande",
+        "Rue de la Bûcherie"
+      ],
       "cafe": "Circus Bakery, rue Galande — cinnamon buns, queue down the street",
       "bakery": "Circus Bakery again, honestly",
       "culture": "Musée de Cluny for the medieval collection and the Lady and the Unicorn",
@@ -83,7 +106,11 @@
       "name": "Saint-Germain-des-Prés",
       "minutesFromHome": 28,
       "famousFor": "Literary cafés, galleries and the Luxembourg gardens",
-      "streets": ["Rue de Buci", "Rue Jacob", "Rue de Seine"],
+      "streets": [
+        "Rue de Buci",
+        "Rue Jacob",
+        "Rue de Seine"
+      ],
       "cafe": "Café de Flore if you want the cliché done properly; better coffee at Coutume",
       "bakery": "Poilâne, rue du Cherche-Midi — the sourdough loaf that made the name",
       "culture": "Musée Zadkine — a sculptor's house and garden, free permanent collection",
@@ -98,7 +125,11 @@
       "name": "Invalides · Eiffel",
       "minutesFromHome": 32,
       "famousFor": "The Eiffel Tower, Musée d'Orsay and Rodin",
-      "streets": ["Rue Cler", "Rue de Grenelle", "Rue Saint-Dominique"],
+      "streets": [
+        "Rue Cler",
+        "Rue de Grenelle",
+        "Rue Saint-Dominique"
+      ],
       "cafe": "The cafés around rue Cler are pleasant if touristy",
       "bakery": "Des Gâteaux et du Pain",
       "culture": "Musée Rodin — go for the sculpture garden rather than the house",
@@ -113,7 +144,10 @@
       "name": "Champs-Élysées · Monceau",
       "minutesFromHome": 28,
       "famousFor": "Grand and Petit Palais, luxury shopping, grand boulevards",
-      "streets": ["Avenue Montaigne", "Rue du Faubourg Saint-Honoré"],
+      "streets": [
+        "Avenue Montaigne",
+        "Rue du Faubourg Saint-Honoré"
+      ],
       "cafe": "The garden café inside the Petit Palais, one of the best-value sit-downs in central Paris",
       "bakery": "Maison Landemaine",
       "culture": "Petit Palais — free permanent collection, Courbet and Monet, almost empty",
@@ -128,7 +162,11 @@
       "name": "SoPi · Pigalle",
       "minutesFromHome": 18,
       "famousFor": "Nightlife, the Grands Boulevards theatres, and the romantic quarter",
-      "streets": ["Rue des Martyrs", "Rue Victor Massé", "Avenue Trudaine"],
+      "streets": [
+        "Rue des Martyrs",
+        "Rue Victor Massé",
+        "Avenue Trudaine"
+      ],
       "cafe": "KB CaféShop, avenue Trudaine",
       "bakery": "Mamiche, rue Condorcet — the babka",
       "culture": "Musée de la Vie Romantique — free, with the best garden café in Paris",
@@ -144,7 +182,12 @@
       "minutesFromHome": 0,
       "isHome": true,
       "famousFor": "This is home — the canal, the two great train stations, Little India",
-      "streets": ["Rue de Marseille", "Rue Beaurepaire", "Rue du Faubourg Saint-Denis", "Quai de Valmy"],
+      "streets": [
+        "Rue de Marseille",
+        "Rue Beaurepaire",
+        "Rue du Faubourg Saint-Denis",
+        "Quai de Valmy"
+      ],
       "cafe": "Ten Belles, rue de la Grange aux Belles",
       "bakery": "Du Pain et des Idées, rue Yves Toudic — closed weekends",
       "culture": "Point Éphémère, a converted canal-side warehouse with concerts and exhibitions",
@@ -152,14 +195,18 @@
       "unusual": "Passage Brady — a glass-roofed arcade that has been Little India since the 1970s",
       "food": "Marché Saint-Quentin, an 1866 iron market hall most locals never enter",
       "walk": "The canal locks from République up to Bassin de la Villette at dusk",
-      "hidden": "You live on top of the best day-trip infrastructure in France: Gare du Nord and Gare de l'Est are both yours. Chantilly in 25 minutes, Reims and champagne in 45."
+      "hidden": "It sits on top of the best day-trip infrastructure in France: Gare du Nord and Gare de l'Est are both inside it. Chantilly in 25 minutes, Reims and champagne in 45."
     },
     {
       "arr": 11,
       "name": "Oberkampf · Bastille",
       "minutesFromHome": 12,
       "famousFor": "The best eating and drinking in Paris right now",
-      "streets": ["Rue Jean-Pierre Timbaud", "Rue de Charonne", "Rue Paul Bert"],
+      "streets": [
+        "Rue Jean-Pierre Timbaud",
+        "Rue de Charonne",
+        "Rue Paul Bert"
+      ],
       "cafe": "Café Oberkampf for the shakshuka, Dreamin' Man for the coffee",
       "bakery": "Boulangerie Utopie, rue Jean-Pierre Timbaud",
       "culture": "La Bellevilloise and small independent galleries",
@@ -174,7 +221,11 @@
       "name": "Bastille · Bercy",
       "minutesFromHome": 22,
       "famousFor": "The Coulée verte, Aligre market and the Bois de Vincennes",
-      "streets": ["Rue Crémieux", "Rue d'Aligre", "Cour Saint-Émilion"],
+      "streets": [
+        "Rue Crémieux",
+        "Rue d'Aligre",
+        "Cour Saint-Émilion"
+      ],
       "cafe": "The cafés around place d'Aligre after the market",
       "bakery": "Blé Sucré, rue Antoine Vollon — the madeleines",
       "culture": "Paris Jazz Festival and Classique au Vert at the Parc Floral, both nearly free",
@@ -189,7 +240,11 @@
       "name": "Butte-aux-Cailles · Chinatown",
       "minutesFromHome": 30,
       "famousFor": "Street art, the biggest Asian quarter in Paris, and a hilltop village",
-      "streets": ["Rue de la Butte-aux-Cailles", "Avenue d'Ivry", "Rue Daviel"],
+      "streets": [
+        "Rue de la Butte-aux-Cailles",
+        "Avenue d'Ivry",
+        "Rue Daviel"
+      ],
       "cafe": "The bars along rue de la Butte-aux-Cailles, cheap and busy",
       "bakery": "Local boulangeries plus the Asian patisseries on avenue de Choisy",
       "culture": "The open-air street art circuit — thirteen-storey murals commissioned by the mairie",
@@ -204,7 +259,11 @@
       "name": "Montparnasse · Denfert",
       "minutesFromHome": 30,
       "famousFor": "The catacombs, artists' studios and the Vanves flea market",
-      "streets": ["Rue Daguerre", "Rue de la Gaîté", "Villa Seurat"],
+      "streets": [
+        "Rue Daguerre",
+        "Rue de la Gaîté",
+        "Villa Seurat"
+      ],
       "cafe": "Hexagone Café, rue du Château",
       "bakery": "The bakeries of the rue Daguerre market street",
       "culture": "Fondation Cartier — contemporary art in a glass Jean Nouvel building",
@@ -219,7 +278,10 @@
       "name": "Vaugirard · Beaugrenelle",
       "minutesFromHome": 35,
       "famousFor": "Being the biggest arrondissement and the one visitors never see",
-      "streets": ["Rue du Commerce", "Rue Saint-Charles"],
+      "streets": [
+        "Rue du Commerce",
+        "Rue Saint-Charles"
+      ],
       "cafe": "Neighbourhood cafés around rue du Commerce — this is residential Paris",
       "bakery": "Excellent unremarkable local boulangeries, which is the point",
       "culture": "Musée Bourdelle — the sculptor's own studio and garden, free permanent collection",
@@ -234,7 +296,11 @@
       "name": "Passy · Trocadéro",
       "minutesFromHome": 32,
       "famousFor": "Grand residential streets, museums and modernist architecture",
-      "streets": ["Rue de Passy", "Rue Mallet-Stevens", "Villa La Roche"],
+      "streets": [
+        "Rue de Passy",
+        "Rue Mallet-Stevens",
+        "Villa La Roche"
+      ],
       "cafe": "Substance, rue de Longchamp",
       "bakery": "Local haute-bourgeoise pâtisseries",
       "culture": "Palais de Tokyo, open till midnight, free on summer nocturne evenings",
@@ -249,7 +315,11 @@
       "name": "Batignolles",
       "minutesFromHome": 22,
       "famousFor": "A village square, a new park, and the quiet good life",
-      "streets": ["Rue des Batignolles", "Rue Legendre", "Rue de Lévis"],
+      "streets": [
+        "Rue des Batignolles",
+        "Rue Legendre",
+        "Rue de Lévis"
+      ],
       "cafe": "The independent cafés around Square des Batignolles",
       "bakery": "Local bakeries on rue de Lévis",
       "culture": "The Cité Judiciaire tower by Renzo Piano, if modern architecture interests you",
@@ -264,7 +334,11 @@
       "name": "Montmartre · Barbès",
       "minutesFromHome": 20,
       "famousFor": "Sacré-Cœur, the last vineyard in Paris, and a very mixed north",
-      "streets": ["Rue des Abbesses", "Rue Lepic", "Rue Ravignan"],
+      "streets": [
+        "Rue des Abbesses",
+        "Rue Lepic",
+        "Rue Ravignan"
+      ],
       "cafe": "Lomi, rue Marcadet — a roastery well away from the tourist streets",
       "bakery": "The rue des Abbesses bakeries, early",
       "culture": "Musée de Montmartre, in the house where Renoir and Utrillo had studios",
@@ -279,14 +353,18 @@
       "name": "Buttes-Chaumont · La Villette",
       "minutesFromHome": 15,
       "famousFor": "Your best neighbouring arrondissement — parks, canals and cheap culture",
-      "streets": ["Rue de Mouzaïa", "Quai de la Loire", "Rue de Meaux"],
+      "streets": [
+        "Rue de Mouzaïa",
+        "Quai de la Loire",
+        "Rue de Meaux"
+      ],
       "cafe": "Brûlerie de Belleville, a working roastery open for public tastings",
       "bakery": "The bakeries around rue de Meaux",
       "culture": "Philharmonie de Paris and the Cité des Sciences at La Villette",
       "park": "Parc des Buttes-Chaumont — cliffs, a lake, a temple and the best lawns in Paris",
       "unusual": "The Mouzaïa quarter, cobbled lanes of rose-covered cottages built over old gypsum mines",
       "food": "The canal-side terraces along Bassin de la Villette",
-      "walk": "Canal from home → Bassin de la Villette → Parc de la Villette, about 40 minutes",
+      "walk": "Up the canal from République → Bassin de la Villette → Parc de la Villette, about 40 minutes",
       "hidden": "Rue de Mouzaïa's private villas — Villa de Bellevue, Villa des Lilas — open to walk through"
     },
     {
@@ -294,7 +372,11 @@
       "name": "Belleville · Ménilmontant",
       "minutesFromHome": 18,
       "famousFor": "Street art, immigrant food, artists' studios and the best sunset in Paris",
-      "streets": ["Rue Denoyez", "Rue de Ménilmontant", "Rue des Cascades"],
+      "streets": [
+        "Rue Denoyez",
+        "Rue de Ménilmontant",
+        "Rue des Cascades"
+      ],
       "cafe": "The cafés along rue de Belleville, cheap and unpretentious",
       "bakery": "Chinese and North African bakeries alongside French ones on rue de Belleville",
       "culture": "Ateliers d'artistes de Belleville — studios open to the public in the spring",

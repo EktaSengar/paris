@@ -52,8 +52,19 @@ const ARR = {
 const FILES = ['events.json','places.json','nightlife.json','sports.json',
                'food.json','itineraries.json','daytrips.json','neighborhoods.json'];
 
-/* Anything that hard-codes the current home in words. */
-const PROSE = /\b(from (your|the) (door|flat|street)|from home|minutes? from you|your own|your local|your street|walk from home|Gare du Nord|Gare de l'Est|Canal Saint-Martin|the 10th|10e|line 5 (?:goes )?(?:straight|direct))/i;
+/* Prose that measures from a doorstep rather than describing a place.
+   "Six minutes from your door" is true of one flat; "Gare de l'Est → Reims,
+   46 min" is true of the trip no matter where you sleep, so station and line
+   names are deliberately NOT flagged — only the possessive framing is. */
+const PROSE = new RegExp([
+  'from (your|the) (door|flat|street|place)',
+  'from home', '(minutes?|min) from you\\b', 'walk from home',
+  // "your own market" is a home assumption; "build your own terrarium" is not
+  'your own (flat|street|door|market|passage|canal|neighbourhood|corner|local)',
+  'your (local|street|flat|door|neighbourhood|canal|corner|doorstep)',
+  'at the end of your street', 'because you live', 'people (in|from) the 10th',
+  'it is your local', 'near(by| you)? because it is close'
+].join('|'), 'i');
 
 const km = (a, b) => {
   const R = 6371, toRad = d => d * Math.PI / 180;

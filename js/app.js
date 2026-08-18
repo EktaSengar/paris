@@ -241,7 +241,7 @@ const App = (() => {
     if (!m) return '';
     if (m >= 480) return 'a full day';
     if (m >= 300) return 'half a day';
-    if (m >= 60) return `about ${Math.round(m / 60)} hours`;
+    if (m >= 60) { const h = Math.round(m / 60); return `about ${h} hour${h === 1 ? '' : 's'}`; }
     return `about ${m} minutes`;
   }
 
@@ -307,8 +307,10 @@ const App = (() => {
         return `<div class="${today ? 'now' : ''}">${today ? 'Tonight' : d.toLocaleDateString('en-GB', { weekday: 'short' })} — ${esc(p.text)}</div>`;
       }).join('');
 
-    const stops = (item.stops || []).map(s =>
-      `<li>${esc(s.text)}${s.walk ? ` <span class="w">· ${esc(s.walk)}</span>` : ''}</li>`).join('');
+    const stops = (item.stops || []).map((s, n) => {
+      const w = stopWalk(item, s, n);
+      return `<li>${esc(s.text)}${w ? ` <span class="w">· ${esc(w)}</span>` : ''}</li>`;
+    }).join('');
 
     const near = (item.nearby || []).map(n => `<div>${n.emoji} ${esc(n.text)}</div>`).join('');
 
@@ -405,9 +407,22 @@ const App = (() => {
 
   const hasStops = i => Array.isArray(i.stops) && i.stops.length > 0;
 
+  /* Every stop after the first is measured from the stop before it, which is
+     true wherever you live. The first is measured from *you*, so it is
+     computed rather than stored — whatever line the data names is kept. */
+  function stopWalk(item, s, n) {
+    const stored = (s.walk || '').trim();
+    if (n > 0) return stored;
+    const mins = item.minutesFromHome;
+    if (mins == null) return stored;
+    return stored ? `${stored} · ~${mins} min to get there` : `~${mins} min to get there`;
+  }
+
   function routeCard(item) {
-    const steps = (item.stops || []).map(s =>
-      `<li>${esc(s.text)}${s.walk ? `<span class="w">${esc(s.walk)}</span>` : ''}</li>`).join('');
+    const steps = (item.stops || []).map((s, n) => {
+      const w = stopWalk(item, s, n);
+      return `<li>${esc(s.text)}${w ? `<span class="w">${esc(w)}</span>` : ''}</li>`;
+    }).join('');
     const meta = [
       item.arr ? `${item.arr}e` : null,
       item.startTime ? `from ${item.startTime}` : null,
@@ -450,12 +465,12 @@ const App = (() => {
 
   const LEDE = {
     today:   'What is open, close, and worth leaving the flat for.',
-    nights:  'Concerts, jazz rooms, dancing and a drink first. Doors, prices and how far from your door.',
+    nights:  'Concerts, jazz rooms, dancing and a drink first. Doors, prices and how far each one is from where you are.',
     sport:   'Two halves: things we can play, and things we can go and watch.',
     weekend: '',
     eat:     'Missions rather than listings. Pick one, do it properly, rate it.',
     explore: '',
-    away:    'You live between Gare du Nord and Gare de l’Est. Some of these are closer than the other side of Paris.',
+    away:    'Six mainline stations, and most of them reach somewhere worth a whole day. Some of these are closer than the other side of Paris.',
     quests:  'Long games. Progress is saved in this browser.',
     saved:   'What you have marked, and what you have already done.'
   };
@@ -778,7 +793,7 @@ const App = (() => {
           ? `<div class="grid play-grid">${activities.map(i => card(i)).join('')}</div>`
           : `<p class="empty">Nothing matches that. Try another intent.</p>`)
       + (allRuns.length
-          ? stripHead('Run Paris', 'From your door, and getting longer')
+          ? stripHead('Run Paris', 'Nearest first, and getting longer')
             + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
             + (plainRuns.length ? rows(plainRuns, null, true) : '')
           : '')

@@ -116,7 +116,7 @@
         "cheap"
       ],
       "arr": 10,
-      "area": "Your own neighbourhood",
+      "area": "Two named bakeries, plus your nearest",
       "price": 5,
       "priceNote": "About €5 total",
       "durationMin": 45,
@@ -308,7 +308,7 @@
           "name": "Marché Saint-Quentin",
           "id": "marche-saint-quentin",
           "order": "Comté aged 24 months, a Saint-Nectaire, a small crottin",
-          "note": "Your own 1866 iron market hall. Ten minutes away.",
+          "note": "An 1866 iron market hall with a very good cheese counter.",
           "walk": "10 min"
         },
         {
@@ -324,7 +324,7 @@
           "name": "Le Verre Volé",
           "id": "le-verre-vole",
           "order": "A bottle to go with it, at shop price",
-          "note": "Six minutes from home, and they will match the wine to the cheese.",
+          "note": "A natural-wine shop that will match the bottle to the cheese.",
           "walk": "6 min"
         }
       ],
@@ -477,7 +477,7 @@
       "priceNote": "~€45 each for the full day",
       "durationMin": 360,
       "minutesFromHome": 12,
-      "brief": "One arrondissement, six stops, from morning coffee to a glass of wine. The 11th has the best eating in Paris right now and it is twelve minutes from your door.",
+      "brief": "One arrondissement, six stops, from morning coffee to a glass of wine. The 11th has the best eating in Paris right now.",
       "test": "Do it in order and do not skip the cheese shop because you are full. That is the point of the walking between.",
       "candidates": [
         {
@@ -572,13 +572,13 @@
         "special"
       ],
       "arr": 10,
-      "area": "Your own canal, done properly",
+      "area": "The canal, done properly",
       "price": 55,
       "priceNote": "~€55 each for the whole day",
       "durationMin": 540,
       "minutesFromHome": 0,
       "startTime": "09:30",
-      "brief": "The whole day, on your doorstep, in order. Nothing here needs a Metro ticket.",
+      "brief": "The whole day, in order, and all of it inside one walk. Nothing here needs a Metro ticket once you arrive.",
       "test": "The discipline is doing it in sequence and not going home in between. That is what turns errands into a day out.",
       "schedule": [
         {
@@ -630,7 +630,7 @@
         }
       ],
       "then": [],
-      "why": "Most people who live somewhere good never do the thing visitors do — spend a whole day on it deliberately. This is that day, and it starts at the end of your street.",
+      "why": "Most people who live somewhere good never do the thing visitors do — spend a whole day on it deliberately. This is that day, spent end to end along the Canal Saint-Martin.",
       "goodFor": [
         "food",
         "weekend",

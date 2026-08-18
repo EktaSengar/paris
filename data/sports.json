@@ -202,8 +202,8 @@
       "priceNote": "From ~€30 for rugby, more for France football",
       "durationMin": 240,
       "minutesFromHome": 25,
-      "transit": "Walk to Gare du Nord, then RER B or D — two stops",
-      "why": "Eighty thousand seats, and it is twenty-five minutes away because you live next to Gare du Nord. France football and rugby internationals, the Top 14 final in June, and the Six Nations in February and March, which is the one to aim for — the singing before a France–Ireland match is worth the ticket on its own. Book Six Nations months ahead.",
+      "transit": "RER B to La Plaine–Stade de France, or RER D to Stade de France–Saint-Denis",
+      "why": "Eighty thousand seats, and both the RER B and the RER D stop at the door. France football and rugby internationals, the Top 14 final in June, and the Six Nations in February and March, which is the one to aim for — the singing before a France–Ireland match is worth the ticket on its own. Book Six Nations months ahead.",
       "goodFor": [
         "weekend",
         "couple",
@@ -236,7 +236,7 @@
         },
         {
           "emoji": "🚉",
-          "text": "Two stops back to Gare du Nord after",
+          "text": "Two stops back into central Paris after",
           "id": null
         }
       ]
@@ -258,7 +258,7 @@
       "minutesFromHome": 25,
       "transit": "M12 to Porte de la Chapelle",
       "times": "EuroLeague and French league nights, autumn to spring",
-      "why": "Paris's newest arena, built for the 2024 Games and now the home of a EuroLeague basketball club that did not exist ten years ago. Eight thousand seats, so you are close to the floor, and it is twenty-five minutes from you. Basketball is the easiest live sport to walk into cold — the rules are obvious and the tickets are cheap.",
+      "why": "Paris's newest arena, built for the 2024 Games and now the home of a EuroLeague basketball club that did not exist ten years ago. Eight thousand seats, so you are close to the floor wherever you sit. Basketball is the easiest live sport to walk into cold — the rules are obvious and the tickets are cheap.",
       "goodFor": [
         "evening",
         "couple",
@@ -317,9 +317,9 @@
       "priceNote": "Varies wildly by event",
       "durationMin": 210,
       "minutesFromHome": 30,
-      "transit": "M5 straight there from home, no changes",
+      "transit": "M5 or M14 to Bercy",
       "times": "Sport and concerts most weeks",
-      "why": "The sloping grass-sided pyramid by the river, and line 5 goes there directly from your street. Worth watching the calendar for two things in particular: the Paris Grand Slam judo in February, which is the best-attended judo event on earth, and the NBA Paris Games in January. Handball and gymnastics fill the gaps.",
+      "why": "The sloping grass-sided pyramid by the river, on line 5 and line 14. Worth watching the calendar for two things in particular: the Paris Grand Slam judo in February, which is the best-attended judo event on earth, and the NBA Paris Games in January. Handball and gymnastics fill the gaps.",
       "goodFor": [
         "evening",
         "couple",
@@ -510,9 +510,9 @@
       "priceNote": "Public swim from ~€5–8",
       "durationMin": 120,
       "minutesFromHome": 25,
-      "transit": "Walk to Gare du Nord, then RER B or D",
+      "transit": "RER B or D to Stade de France, then about ten minutes on foot",
       "times": "Open to the public daily — check session times",
-      "why": "The only permanent venue built for the 2024 Games, and since summer 2025 you can just turn up and swim in it. Two fifty-metre pools, one of them open-air, plus the diving pool, a spa, padel courts, five-a-side, three-on-three basketball and a skatepark. Twenty-five minutes from you and it costs about the same as your local municipal pool. This is the single most underused thing in this whole guide.",
+      "why": "The only permanent venue built for the 2024 Games, and since summer 2025 you can just turn up and swim in it. Two fifty-metre pools, one of them open-air, plus the diving pool, a spa, padel courts, five-a-side, three-on-three basketball and a skatepark. It costs about the same as an ordinary municipal pool. This is the single most underused thing in this whole guide.",
       "goodFor": [
         "couple",
         "sport",
@@ -821,13 +821,13 @@
         "free"
       ],
       "arr": 10,
-      "area": "From your door up the Canal Saint-Martin",
+      "area": "Canal Saint-Martin, then up the Ourcq",
       "price": 0,
       "priceNote": "Free",
       "durationMin": 60,
       "minutesFromHome": 0,
       "startTime": "07:30",
-      "why": "The reason to run in the 10th. Flat, straight, car-free almost the whole way, and it starts at the end of your street — so there is no excuse and no warm-up commute. Out and back to Bassin de la Villette is about 6 km; carry on up the Ourcq towards Pantin and you can make it 15 km without crossing a single road. Best before eight, when it is just runners and the lock keepers.",
+      "why": "The flattest, straightest, most car-free run in Paris. Start where the Canal Saint-Martin comes out of the ground at République and follow the water north — out and back to the Bassin de la Villette is about 6 km; carry on up the Ourcq towards Pantin and you can make it 15 km without crossing a single road. Best before eight, when it is just runners and the lock keepers.",
       "goodFor": [
         "morning",
         "sport",
@@ -1454,7 +1454,7 @@
         "summer",
         "autumn"
       ],
-      "why": "You can hire a kayak or a paddleboard on the widest stretch of the canal, twelve minutes from your flat, and spend an hour on water you walk past every week. Seeing the Rotonde and the lift bridge from the surface rather than the towpath genuinely changes the neighbourhood. Cheap, easy, and nobody expects you to be able to do it.",
+      "why": "You can hire a kayak or a paddleboard on the widest stretch of the canal, and spend an hour on water most people only ever walk beside. Seeing the Rotonde and the lift bridge from the surface rather than the towpath genuinely changes the neighbourhood. Cheap, easy, and nobody expects you to be able to do it.",
       "goodFor": [
         "couple",
         "sport",
@@ -1521,8 +1521,8 @@
       "priceNote": "Free — bring bats and a ball",
       "durationMin": 45,
       "minutesFromHome": 5,
-      "transit": "Walk — Jardin Villemin has tables",
-      "why": "There are permanent concrete tables in parks across Paris, including Jardin Villemin four minutes from your door, and they cost nothing. Keep two bats and a ball by the door and this becomes the easiest twenty minutes of sport in your week — the sort of thing you actually do, as opposed to the gym membership you mean to use.",
+      "transit": "Jardin Villemin has tables — M5 to Jacques Bonsergent",
+      "why": "There are permanent concrete tables in parks across Paris, including Jardin Villemin beside the canal, and they cost nothing. Keep two bats and a ball by the door and this becomes the easiest twenty minutes of sport in your week — the sort of thing you actually do, as opposed to the gym membership you mean to use.",
       "goodFor": [
         "couple",
         "sport",
@@ -1588,8 +1588,8 @@
       "priceNote": "~€3 on a Vélib’ day pass",
       "durationMin": 90,
       "minutesFromHome": 15,
-      "transit": "Pick up a bike at the end of your street",
-      "why": "The lower right bank of the Seine has been closed to cars since 2016 and most people still think of it as a road. Take a Vélib’ from your street down to the river and ride it end to end — Bastille to the Louvre and back is about an hour, entirely traffic-free, past the Île Saint-Louis at water level. Best at eight in the morning or an hour before sunset.",
+      "transit": "Any Vélib’ station — join the river at Bastille or the Louvre",
+      "why": "The lower right bank of the Seine has been closed to cars since 2016 and most people still think of it as a road. Take a Vélib’ down to the water and ride it end to end — Bastille to the Louvre and back is about an hour, entirely traffic-free, past the Île Saint-Louis at water level. Best at eight in the morning or an hour before sunset.",
       "goodFor": [
         "couple",
         "sport",
@@ -1655,8 +1655,8 @@
       "priceNote": "Free",
       "durationMin": 60,
       "minutesFromHome": 6,
-      "transit": "Walk",
-      "why": "The pedestrianised half of République has been an informal skate spot for years and is six minutes from your door — beginners at one end, people doing things that look impossible at the other, most evenings. Even if you never step on a board it is a good place to sit with a drink and watch. Paris also has a Friday-night mass roller skate that takes over the streets; look up Pari Roller if that appeals.",
+      "transit": "M3/M5/M8/M9/M11 to République",
+      "why": "The pedestrianised half of République has been an informal skate spot for years — beginners at one end, people doing things that look impossible at the other, most evenings. Even if you never step on a board it is a good place to sit with a drink and watch. Paris also has a Friday-night mass roller skate that takes over the streets; look up Pari Roller if that appeals.",
       "goodFor": [
         "couple",
         "sport",

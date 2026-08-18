@@ -17,8 +17,8 @@
       "priceNote": "€2–7",
       "durationMin": 20,
       "minutesFromHome": 6,
-      "transit": "Walk — it is essentially your local",
-      "why": "One of the two or three best bakeries in Paris and it is a six-minute walk from your door. Get the pain des amis and the escargot pistache-chocolat. Critical detail: it is closed at weekends, so this is a weekday-morning mission, not a Saturday one. The 1889 painted-glass ceiling is worth looking up at while you queue.",
+      "transit": "Rue Yves Toudic, by the canal — M5 Jacques Bonsergent",
+      "why": "One of the two or three best bakeries in Paris. Get the pain des amis and the escargot pistache-chocolat. Critical detail: it is closed at weekends, so this is a weekday-morning mission, not a Saturday one. The 1889 painted-glass ceiling is worth looking up at while you queue.",
       "goodFor": [
         "food",
         "cheap",
@@ -61,8 +61,8 @@
       "priceNote": "€3–6",
       "durationMin": 45,
       "minutesFromHome": 8,
-      "transit": "Walk",
-      "why": "The café that started Paris's specialty coffee scene, still one of the best, and it is around the corner from you. Tiny inside — get your cup and take it to the canal, which is 90 seconds away. Their sister bakery Ten Belles Bread in the 11th does excellent sourdough.",
+      "transit": "M5 to Jacques Bonsergent",
+      "why": "The café that started Paris's specialty coffee scene, and still one of the best. Tiny inside — get your cup and take it to the canal, which is 90 seconds away. Their sister bakery Ten Belles Bread in the 11th does excellent sourdough.",
       "goodFor": [
         "food",
         "cheap",
@@ -105,7 +105,7 @@
       "priceNote": "€12–22",
       "durationMin": 75,
       "minutesFromHome": 7,
-      "transit": "Walk",
+      "transit": "M5 to Jacques Bonsergent",
       "why": "The pancakes-with-a-fried-egg breakfast that made rue Lucien Sampaix a destination. No reservations, so go at opening or expect to queue — which, since it is a seven-minute walk, is a much smaller problem for you than for everyone else in the queue.",
       "goodFor": [
         "food",
@@ -147,7 +147,7 @@
       "priceNote": "€2–8",
       "durationMin": 20,
       "minutesFromHome": 12,
-      "transit": "Walk, or M5 to Oberkampf",
+      "transit": "M5 or M9 to Oberkampf",
       "why": "Award-winning bakers who cannot leave well enough alone — squid-ink baguettes, matcha croissants, seasonal pastries that change constantly. Where Du Pain et des Idées is classical perfection, this is the experimental one. Worth doing both in a single Saturday morning and comparing.",
       "goodFor": [
         "food",
@@ -189,7 +189,7 @@
       "priceNote": "€2–8",
       "durationMin": 20,
       "minutesFromHome": 8,
-      "transit": "Walk",
+      "transit": "M4 to Château d'Eau",
       "why": "Come for the babka. Two women running a loud, cheerful bakery that is the opposite of the hushed reverence of French pâtisserie. Their chocolate babka sells out — go before noon on a weekend.",
       "goodFor": [
         "food",
@@ -475,7 +475,7 @@
       "priceNote": "Free to browse",
       "durationMin": 60,
       "minutesFromHome": 10,
-      "transit": "Walk, or M4/M5 to Gare de l'Est",
+      "transit": "M4, M5 or M7 to Gare de l'Est",
       "days": [
         2,
         3,
@@ -485,7 +485,7 @@
         0
       ],
       "times": "Tue–Sat + Sunday morning, closed Monday",
-      "why": "Your own covered market — a big 1866 iron-and-glass hall ten minutes away that most people in the 10th walk past without going in. Excellent fishmonger, a very good Italian counter, and a bar in the middle where you can have a glass of wine at 11am with no judgement whatsoever.",
+      "why": "A big 1866 iron-and-glass hall that most people walk straight past without ever going in. Excellent fishmonger, a very good Italian counter, and a bar in the middle where you can have a glass of wine at 11am with no judgement whatsoever.",
       "goodFor": [
         "food",
         "cheap",
@@ -629,8 +629,8 @@
       "priceNote": "Free to browse",
       "durationMin": 60,
       "minutesFromHome": 8,
-      "transit": "Walk",
-      "why": "If you want to make your flat nicer, start here — it is a ten-minute walk away and it is the best homewares shop in Paris. A former treasury building filled with well-made European household objects: enamel, linen, brooms, kitchen tools, paint. There is a Scandinavian café inside. Go on a Saturday morning, then walk to Mamiche.",
+      "transit": "M5 to République, or M4 to Château d'Eau",
+      "why": "If you want to make a flat nicer, start here: the best homewares shop in Paris. A former treasury building filled with well-made European household objects: enamel, linen, brooms, kitchen tools, paint. There is a Scandinavian café inside. Go on a Saturday morning, then walk to Mamiche.",
       "goodFor": [
         "shop",
         "weekend",
@@ -765,8 +765,8 @@
       "priceNote": "Free to browse",
       "durationMin": 40,
       "minutesFromHome": 5,
-      "transit": "Walk — it is on the canal",
-      "why": "A design and photography bookshop sitting directly on the Canal Saint-Martin, five minutes from you. Orange shopfront. Excellent for graphic design, architecture and photobooks, and a very good place to find a present. Combine with a coffee and a walk along the water.",
+      "transit": "On the quai de Valmy — M5 to Jacques Bonsergent",
+      "why": "A design and photography bookshop sitting directly on the Canal Saint-Martin. Orange shopfront. Excellent for graphic design, architecture and photobooks, and a very good place to find a present. Combine with a coffee and a walk along the water.",
       "goodFor": [
         "shop",
         "spontaneous",
@@ -855,7 +855,7 @@
       "priceNote": "Free to browse · terrariums from ~€40",
       "durationMin": 40,
       "minutesFromHome": 12,
-      "transit": "Walk, or M3 to Temple",
+      "transit": "M3 to Temple",
       "why": "Plant shop specialising in closed terrariums — sealed glass ecosystems that water themselves and last for years. They run workshops where you build your own, which is a genuinely good two-person activity for a rainy Saturday and you leave with something for the flat.",
       "goodFor": [
         "shop",
@@ -1232,7 +1232,7 @@
       "durationMin": 120,
       "minutesFromHome": 15,
       "transit": "M5 to Laumière, or M7bis to Buttes-Chaumont",
-      "why": "The best park in Paris and it is fifteen minutes from you. Built on an old gypsum quarry, so instead of the flat symmetry of French gardens you get cliffs, a suspension bridge, a lake and a temple on a rock with a view over the whole north of the city. Sunday afternoons the lawns fill with people doing nothing. Rosa Bonheur inside is a good open-air bar.",
+      "why": "The best park in Paris. Built on an old gypsum quarry, so instead of the flat symmetry of French gardens you get cliffs, a suspension bridge, a lake and a temple on a rock with a view over the whole north of the city. Sunday afternoons the lawns fill with people doing nothing. Rosa Bonheur inside is a good open-air bar.",
       "goodFor": [
         "outdoors",
         "free",
@@ -1484,8 +1484,8 @@
       "priceNote": "Lunch menus €10–15",
       "durationMin": 60,
       "minutesFromHome": 8,
-      "transit": "Walk, or M4 to Château d'Eau",
-      "why": "Your own covered passage, and completely unlike the elegant ones near the Bourse — this one has been Little India since the 1970s, wall to wall with Indian, Pakistani and Bangladeshi restaurants and grocers under a glass roof. Cheap, chaotic, excellent for vegetarian food, and eight minutes from your flat. The grocers at the Faubourg Saint-Denis end are the best-stocked in central Paris.",
+      "transit": "M4 to Château d'Eau",
+      "why": "A covered passage completely unlike the elegant ones near the Bourse — this one has been Little India since the 1970s, wall to wall with Indian, Pakistani and Bangladeshi restaurants and grocers under a glass roof. Cheap, chaotic and excellent for vegetarian food. The grocers at the Faubourg Saint-Denis end are the best-stocked in central Paris.",
       "goodFor": [
         "food",
         "cheap",
@@ -1533,7 +1533,7 @@
       "durationMin": 60,
       "minutesFromHome": 20,
       "transit": "M7bis to Danube or Botzaris",
-      "why": "A grid of cobbled private lanes behind Buttes-Chaumont, lined with two-storey houses covered in roses and wisteria, built cheaply in the 1900s because the old gypsum mines underneath meant nothing heavy could go on top. You will not believe you are still in Paris. It is twenty minutes from you and almost nobody knows it exists. Combine with the park.",
+      "why": "A grid of cobbled private lanes behind Buttes-Chaumont, lined with two-storey houses covered in roses and wisteria, built cheaply in the 1900s because the old gypsum mines underneath meant nothing heavy could go on top. You will not believe you are still in Paris. Almost nobody knows it exists. Combine with the park.",
       "goodFor": [
         "outdoors",
         "free",
@@ -1587,7 +1587,7 @@
       "durationMin": 150,
       "minutesFromHome": 30,
       "transit": "M7 direct to Place d'Italie or Corvisart",
-      "why": "A hilltop village inside the 13th that the city never flattened — cobbles, low houses, ivy, murals, and a lively cheap bar scene at night. Also here: the Piscine de la Butte-aux-Cailles, a 1920s art deco swimming pool fed by an artesian well, still open to the public for about €4. Nearby is the Cité Florale, five tiny streets named after flowers. The 13th is the arrondissement people from the 10th most reliably neglect.",
+      "why": "A hilltop village inside the 13th that the city never flattened — cobbles, low houses, ivy, murals, and a lively cheap bar scene at night. Also here: the Piscine de la Butte-aux-Cailles, a 1920s art deco swimming pool fed by an artesian well, still open to the public for about €4. Nearby is the Cité Florale, five tiny streets named after flowers. The 13th is the arrondissement Parisians most reliably neglect.",
       "goodFor": [
         "outdoors",
         "free",
@@ -1682,7 +1682,7 @@
       "priceNote": "Free",
       "durationMin": 45,
       "minutesFromHome": 4,
-      "transit": "Walk",
+      "transit": "M5 to Jacques Bonsergent",
       "why": "Your nearest proper green space — a walled garden behind the canal with a lawn you are allowed to sit on, a community vegetable plot and considerably fewer people than the canal bank on a sunny evening. Good for a coffee-and-a-book hour when you do not want a plan.",
       "goodFor": [
         "outdoors",
@@ -1922,8 +1922,8 @@
       "priceNote": "Lunch €8–15",
       "durationMin": 120,
       "minutesFromHome": 12,
-      "transit": "Walk, or M2 to La Chapelle",
-      "why": "Twelve minutes from your flat is the largest South Asian quarter in France — Tamil and Sri Lankan grocers, sari shops, sweet counters and some of the best and cheapest food in Paris. Rue Cail is the spine of it. At the top is Sri Manicka Vinayakar Alayam, the biggest Hindu temple in the country, tucked into a side street off rue Pajol. Worth knowing simply because it is close, and because most guides to Paris behave as if it does not exist.",
+      "transit": "M2 to La Chapelle",
+      "why": "La Chapelle holds the largest South Asian quarter in France — Tamil and Sri Lankan grocers, sari shops, sweet counters and some of the best and cheapest food in Paris. Rue Cail is the spine of it. At the top is Sri Manicka Vinayakar Alayam, the biggest Hindu temple in the country, tucked into a side street off rue Pajol. Worth knowing because most guides to Paris behave as if it does not exist.",
       "goodFor": [
         "food",
         "walk",
@@ -2015,8 +2015,8 @@
       "priceNote": "Mains €11–17 · starters from €5",
       "durationMin": 90,
       "minutesFromHome": 8,
-      "transit": "Walk",
-      "why": "An 1906 art nouveau dining room — peacock murals, mahogany, glass flowers — serving classic French food at prices that have not caught up with the decor. Bouillons were built to feed workers cheaply and this one still does. Eight minutes from your flat. No reservations for small tables, so go at 19:00 or after 21:30.",
+      "transit": "M4 to Strasbourg–Saint-Denis",
+      "why": "An 1906 art nouveau dining room — peacock murals, mahogany, glass flowers — serving classic French food at prices that have not caught up with the decor. Bouillons were built to feed workers cheaply and this one still does. No reservations for small tables, so go at 19:00 or after 21:30.",
       "goodFor": [
         "food",
         "couple",
@@ -2076,7 +2076,7 @@
       "priceNote": "~€8–10",
       "durationMin": 40,
       "minutesFromHome": 8,
-      "transit": "Walk",
+      "transit": "M4 to Strasbourg–Saint-Denis",
       "why": "A Kurdish grill the size of a corridor where one man has been making lahmacun and dürüm over charcoal for twenty years. Bread rolled and cooked in front of you, herbs, sumac onions, no cutlery. Around nine euros and consistently one of the best things you can eat in this city at any price. Queue is normal.",
       "goodFor": [
         "food",
@@ -2134,8 +2134,8 @@
       "priceNote": "~€15–20",
       "durationMin": 75,
       "minutesFromHome": 6,
-      "transit": "Walk",
-      "why": "Cambodian bo bun and steaming bowls, six minutes away on the corner by the canal. Fresh, herby, quick, and reliably good on a night when neither of you wants to decide anything. It is also part of the neighbourhood’s memory — the terrace was attacked in 2015 and reopening it was a deliberate act. Nobody makes a thing of it; you should just know.",
+      "transit": "M11 to Goncourt",
+      "why": "Cambodian bo bun and steaming bowls, on the corner by the canal. Fresh, herby, quick, and reliably good on a night when neither of you wants to decide anything. It is also part of the neighbourhood’s memory — the terrace was attacked in 2015 and reopening it was a deliberate act. Nobody makes a thing of it; you should just know.",
       "goodFor": [
         "food",
         "couple",
@@ -2425,9 +2425,9 @@
       "priceNote": "€2–8",
       "durationMin": 20,
       "minutesFromHome": 10,
-      "transit": "Walk — behind Saint-Vincent-de-Paul, near Gare du Nord",
+      "transit": "Rue de Belzunce, behind Saint-Vincent-de-Paul — M4/M5 Gare du Nord",
       "times": "Tuesday to Sunday, 07:00–20:00 · closed Mondays",
-      "why": "Timothy Breton cooked at the Plaza Athénée and Le Bristol and then opened a bakery on a quiet street behind Saint-Vincent-de-Paul, which tells you most of what you need to know about how the pastry is made. The charcoal croissant filled with vanilla cream is the one everyone photographs; the kouign-amann is the one to actually order. Ten minutes from home and worth the detour past the closer options.",
+      "why": "Timothy Breton cooked at the Plaza Athénée and Le Bristol and then opened a bakery on a quiet street behind Saint-Vincent-de-Paul, which tells you most of what you need to know about how the pastry is made. The charcoal croissant filled with vanilla cream is the one everyone photographs; the kouign-amann is the one to actually order. Worth the detour past whatever is closer to you.",
       "goodFor": [
         "food",
         "cheap",

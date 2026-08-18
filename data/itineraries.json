@@ -4,7 +4,7 @@
   "items": [
     {
       "id": "canal-saturday-morning",
-      "title": "Saturday Morning on Your Own Doorstep",
+      "title": "Saturday Morning on the Canal",
       "emoji": "☕",
       "type": "itinerary",
       "categories": [
@@ -18,7 +18,7 @@
       "durationMin": 180,
       "minutesFromHome": 0,
       "startTime": "09:30",
-      "why": "The mission you can do in slippers. Note the trap: Du Pain et des Idées, the best bakery near you, is closed at weekends — so the weekend route goes to Mamiche instead, and you save the other one for a weekday morning.",
+      "why": "The mission you can do in slippers. Note the trap: Du Pain et des Idées, the best bakery on the route, is closed at weekends — so the weekend route goes to Mamiche instead, and you save the other one for a weekday morning.",
       "goodFor": [
         "food",
         "weekend",
@@ -40,8 +40,7 @@
       "stops": [
         {
           "emoji": "☕",
-          "text": "Coffee at Ten Belles, rue de la Grange aux Belles",
-          "walk": "8 min from home"
+          "text": "Coffee at Ten Belles, rue de la Grange aux Belles"
         },
         {
           "emoji": "🍞",
@@ -114,7 +113,7 @@
         {
           "emoji": "🚇",
           "text": "Start at Grands Boulevards",
-          "walk": "M8/M9, 15 min from home"
+          "walk": "M8/M9"
         },
         {
           "emoji": "🏛️",
@@ -192,8 +191,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M8 to Ledru-Rollin",
-          "walk": "22 min from home"
+          "text": "M8 to Ledru-Rollin"
         },
         {
           "emoji": "🧀",
@@ -252,7 +250,7 @@
       "durationMin": 180,
       "minutesFromHome": 18,
       "startTime": "19:30",
-      "why": "The best free view in Paris, eighteen minutes from home, with none of the crowd at Sacré-Cœur. Buy the wine before you go up — there is nothing at the top. Then walk down into Belleville, which has the cheapest good food in the city.",
+      "why": "The best free view in Paris, with none of the crowd at Sacré-Cœur. Buy the wine before you go up — there is nothing at the top. Then walk down into Belleville, which has the cheapest good food in the city.",
       "goodFor": [
         "outdoors",
         "evening",
@@ -277,7 +275,7 @@
         {
           "emoji": "🍷",
           "text": "Buy a bottle and two plastic cups near Couronnes",
-          "walk": "M2, 18 min from home"
+          "walk": "M2"
         },
         {
           "emoji": "🌇",
@@ -322,7 +320,7 @@
       "durationMin": 330,
       "minutesFromHome": 30,
       "startTime": "11:00",
-      "why": "The 13th is the arrondissement people in the 10th most reliably neglect, and it has a hilltop village, an art deco swimming pool fed by a natural spring, thirteen-storey murals, streets named after flowers, and the best Asian food in France. One direct Metro line from you.",
+      "why": "The 13th is the arrondissement Parisians most reliably neglect, and it has a hilltop village, an art deco swimming pool fed by a natural spring, thirteen-storey murals, streets named after flowers, and the best Asian food in France. Line 7 runs the length of it.",
       "goodFor": [
         "walk",
         "weekend",
@@ -345,8 +343,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M7 direct to Corvisart",
-          "walk": "30 min from home"
+          "text": "M7 direct to Corvisart"
         },
         {
           "emoji": "🎨",
@@ -400,7 +397,7 @@
       "durationMin": 420,
       "minutesFromHome": 22,
       "startTime": "15:00",
-      "why": "Everything on this route is on one site, twenty-two minutes from you on line 5, and half of it is free. The trick is the timing: exhibition in the afternoon, canal-side drink as the light goes, then lie on the grass for a film at 21:00. You do not move more than 500 metres after 15:00.",
+      "why": "Everything on this route is on one site at the top of line 5, and half of it is free. The trick is the timing: exhibition in the afternoon, canal-side drink as the light goes, then lie on the grass for a film at 21:00. You do not move more than 500 metres after 15:00.",
       "goodFor": [
         "culture",
         "outdoors",
@@ -421,8 +418,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M5 to Porte de Pantin",
-          "walk": "22 min from home"
+          "text": "M5 to Porte de Pantin"
         },
         {
           "emoji": "🎨",
@@ -462,7 +458,7 @@
     },
     {
       "id": "buttes-mouzaia",
-      "title": "The Secret Village Twenty Minutes Away",
+      "title": "The Secret Village Behind the Park",
       "emoji": "🏡",
       "type": "itinerary",
       "categories": [
@@ -476,7 +472,7 @@
       "durationMin": 210,
       "minutesFromHome": 15,
       "startTime": "14:00",
-      "why": "Most people go to Buttes-Chaumont and stop there. Behind it is the Mouzaïa — a grid of cobbled private lanes of rose-covered cottages, built cheap in the 1900s because old gypsum mines underneath meant nothing heavy could be built on top. You will not believe you are in Paris, and it is fifteen minutes from your flat.",
+      "why": "Most people go to Buttes-Chaumont and stop there. Behind it is the Mouzaïa — a grid of cobbled private lanes of rose-covered cottages, built cheap in the 1900s because old gypsum mines underneath meant nothing heavy could be built on top. You will not believe you are in Paris.",
       "goodFor": [
         "walk",
         "outdoors",
@@ -499,8 +495,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M7bis to Botzaris",
-          "walk": "15 min from home"
+          "text": "M7bis to Botzaris"
         },
         {
           "emoji": "🌳",
@@ -569,8 +564,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "Walk, or M8 to Filles du Calvaire",
-          "walk": "15 min from home"
+          "text": "M8 to Filles du Calvaire"
         },
         {
           "emoji": "🏺",
@@ -646,8 +640,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M13 to Porte de Vanves — leave home by 08:00",
-          "walk": "35 min from home"
+          "text": "M13 to Porte de Vanves — leave home by 08:00"
         },
         {
           "emoji": "🪙",
@@ -697,7 +690,7 @@
       "durationMin": 300,
       "minutesFromHome": 0,
       "startTime": "19:00",
-      "why": "The whole night is within a fifteen-minute walk of your door, which means no last-Metro maths and no taxi. Faubourg Saint-Denis is the best drinking street in Paris and almost nobody outside the neighbourhood has worked that out yet.",
+      "why": "The whole night sits inside a fifteen-minute walk of itself, so once you are there it is no last-Metro maths and no taxi. Faubourg Saint-Denis is the best drinking street in Paris and almost nobody outside the neighbourhood has worked that out yet.",
       "goodFor": [
         "evening",
         "couple",
@@ -718,8 +711,7 @@
       "stops": [
         {
           "emoji": "🍷",
-          "text": "Start with a glass at Le Verre Volé, rue de Lancry",
-          "walk": "6 min from home"
+          "text": "Start with a glass at Le Verre Volé, rue de Lancry"
         },
         {
           "emoji": "🍛",
@@ -795,8 +787,7 @@
       "stops": [
         {
           "emoji": "🚇",
-          "text": "M4 to Châtelet",
-          "walk": "20 min from home"
+          "text": "M4 to Châtelet"
         },
         {
           "emoji": "🍽️",

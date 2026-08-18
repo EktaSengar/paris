@@ -26,7 +26,7 @@
       "durationMin": 120,
       "minutesFromHome": 12,
       "transit": "M5 to Stalingrad, or a 20-min walk straight up the canal",
-      "why": "24th edition. The Bassin de la Villette stretch is the one locals actually use — pétanque, deckchairs, open-air dancing, cheap drinks — and it is the closest big summer thing to your flat. Skip the Seine section, it is mostly tourists. Go on a weekday evening around 19:00 when the light is good and the crowds have thinned.",
+      "why": "24th edition. The Bassin de la Villette stretch is the one locals actually use — pétanque, deckchairs, open-air dancing, cheap drinks. Skip the Seine section, it is mostly tourists. Go on a weekday evening around 19:00 when the light is good and the crowds have thinned.",
       "goodFor": [
         "couple",
         "evening",
@@ -290,7 +290,7 @@
       "durationMin": 90,
       "minutesFromHome": 15,
       "transit": "Varies — Jardin d'Éole and Buttes-Chaumont are your closest sites",
-      "why": "The Association Française d'Astronomie sets up telescopes in Paris parks on summer nights and lets anyone look through them, for free. Jardin d'Éole is a 15-minute walk from you. Check their calendar for which park is hosting on a given night — it rotates, so this needs one click before you go.",
+      "why": "The Association Française d'Astronomie sets up telescopes in Paris parks on summer nights and lets anyone look through them, for free. Jardin d'Éole is one of the parks they use. Check their calendar for which park is hosting on a given night — it rotates, so this needs one click before you go.",
       "goodFor": [
         "couple",
         "evening",
@@ -456,7 +456,7 @@
       "durationMin": 150,
       "minutesFromHome": 30,
       "transit": "M5 direct to Bercy",
-      "why": "Riverside guinguette with DJs, live music, karaoke and comedy nights, free to get in. It is a single Metro line from you with no changes. Good low-effort answer to 'we want to be outside with a drink and something happening'.",
+      "why": "Riverside guinguette with DJs, live music, karaoke and comedy nights, free to get in. It sits on the lower quay at Javel — M10 or RER C. Good low-effort answer to 'we want to be outside with a drink and something happening'.",
       "goodFor": [
         "couple",
         "evening",
@@ -602,7 +602,7 @@
       "durationMin": 120,
       "minutesFromHome": 22,
       "transit": "M5 to Porte de Pantin",
-      "why": "3,600 m² and over 100 major graffiti and street artists, in the huge iron hall at La Villette. It is a short hop from you on line 5. Best move: do the exhibition in the afternoon, then stay in the park for the open-air cinema at 21:00 — same site, one trip, whole day sorted.",
+      "why": "3,600 m² and over 100 major graffiti and street artists, in the huge iron hall at La Villette. La Villette is the top of line 5. Best move: do the exhibition in the afternoon, then stay in the park for the open-air cinema at 21:00 — same site, one trip, whole day sorted.",
       "goodFor": [
         "couple",
         "weekend",
@@ -1092,7 +1092,7 @@
       "times": "Floats leave around midday, finishes ~19:00–20:00",
       "durationMin": 300,
       "minutesFromHome": 15,
-      "transit": "Walk to the route — it usually passes close to République",
+      "transit": "Join the route anywhere along it — it usually passes République",
       "why": "A dozen sound systems on lorries and several hundred thousand people dancing through the middle of Paris on a Saturday afternoon, for free. It is not subtle and it is not for everyone, but it is one of the few days the city gives its streets over completely. The route generally comes near République, so you can join for an hour and walk home. Note it clashes with the heritage weekend.",
       "goodFor": [
         "weekend",
@@ -1135,8 +1135,8 @@
       "times": "Doors 19:00",
       "durationMin": 210,
       "minutesFromHome": 30,
-      "transit": "M5 direct to Bercy — no changes from home",
-      "why": "Ms Lauryn Hill at Bercy, with YG Marley and Zion Marley supporting. She tours rarely and cancels sometimes, so this is a real one. Line 5 goes straight there from your street, which makes the trip home after an arena show far less grim than usual.",
+      "transit": "M5 or M14 to Bercy",
+      "why": "Ms Lauryn Hill at Bercy, with YG Marley and Zion Marley supporting. She tours rarely and cancels sometimes, so this is a real one. Bercy is on line 5 and line 14, which makes the trip home after an arena show far less grim than usual.",
       "goodFor": [
         "evening",
         "couple",
@@ -1185,7 +1185,7 @@
       "durationMin": 150,
       "minutesFromHome": 20,
       "transit": "M2 to Pigalle or Anvers",
-      "why": "Soul and folk in the loveliest mid-size hall in Paris — La Cigale is an 1887 theatre with a balcony, and it is small enough that the balcony is worth having. Twenty minutes from home and the sort of evening where you can walk down through Pigalle for a drink afterwards.",
+      "why": "Soul and folk in the loveliest mid-size hall in Paris — La Cigale is an 1887 theatre with a balcony, and it is small enough that the balcony is worth having. The sort of evening where you walk down through Pigalle for a drink afterwards.",
       "goodFor": [
         "evening",
         "couple",
@@ -1443,7 +1443,7 @@
       "durationMin": 240,
       "minutesFromHome": 15,
       "transit": "M12 to Marx Dormoy, or a 20-minute walk",
-      "why": "The Tamil community of Paris has processed Ganesh through the streets of La Chapelle every year since 1995, and it is fifteen minutes from your door. Nageshvaram players and drummers lead, then dancers carrying kavadi arches of peacock feathers and pots of burning camphor, then Ganesh himself on a decorated float with his brother Muruga behind. Twenty-five thousand people, coconuts smashed on the road, free food afterwards. Arrive by 10:00 for the procession leaving the temple.",
+      "why": "The Tamil community of Paris has processed Ganesh through the streets of La Chapelle every year since 1995. Nageshvaram players and drummers lead, then dancers carrying kavadi arches of peacock feathers and pots of burning camphor, then Ganesh himself on a decorated float with his brother Muruga behind. Twenty-five thousand people, coconuts smashed on the road, free food afterwards. Arrive by 10:00 for the procession leaving the temple.",
       "goodFor": [
         "weekend",
         "couple",
@@ -1498,8 +1498,8 @@
       "times": "Late September — confirm the exact days on the venue site",
       "durationMin": 180,
       "minutesFromHome": 30,
-      "transit": "M5 straight there from your street",
-      "why": "Gymnastics is the best live sport nobody thinks to buy tickets for: six things happen at once, the crowd gasps in unison, and a €20 seat at Bercy is closer to the floor than a €90 football ticket is to the pitch. Line 5 goes directly there. Sit high rather than ringside — you want to see all the apparatus at the same time, which is the whole pleasure of it.",
+      "transit": "M5 or M14 to Bercy",
+      "why": "Gymnastics is the best live sport nobody thinks to buy tickets for: six things happen at once, the crowd gasps in unison, and a €20 seat at Bercy is closer to the floor than a €90 football ticket is to the pitch. Bercy is on line 5 and line 14. Sit high rather than ringside — you want to see all the apparatus at the same time, which is the whole pleasure of it.",
       "spectator": "Go for a qualification session rather than the final: half the price, twice the length, and all four apparatus running simultaneously.",
       "goodFor": [
         "weekend",
