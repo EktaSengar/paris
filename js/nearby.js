@@ -140,18 +140,38 @@ const Near = (() => {
   };
 
   const mins = i => i.minutesFromHome ?? 999;
+  const known = i => tierOf(i) !== 'found';
 
-  function ring(items, rings, want) {
+  /* Two conditions, not one.
+
+     Enough places is the obvious one. The second is enough places the
+     site can say something about, and it exists because of a case in the
+     19th: eight anonymous bakeries within two minutes, and the two the
+     guide actually knows about thirteen minutes away. Stopping at the
+     first ring that is merely *full* buries them, and hands the reader a
+     list of names — which is the complaint this whole layer exists to
+     answer.
+
+     So the radius grows until the answer is worth giving, or until the
+     rings run out. A quarter with nothing written about it still gets
+     the widest ring and an honest heading rather than a wider search
+     that would not have helped. */
+  function ring(items, rings, want, wantKnown = 0) {
+    let fallback = null;
     for (const r of rings) {
       const inside = items.filter(i => mins(i) <= r);
-      if (inside.length >= want) return { items: inside, radius: r };
+      if (inside.length >= want) {
+        if (inside.filter(known).length >= wantKnown) return { items: inside, radius: r };
+        fallback = fallback || { items: inside, radius: r };
+      }
     }
     const last = rings[rings.length - 1];
     const inside = items.filter(i => mins(i) <= last);
+    if (inside.length) return fallback && inside.length < want
+      ? fallback : { items: inside, radius: last };
     /* Nothing at all within the widest ring — return what exists rather
        than an empty section, and say so by reporting no radius. */
-    return inside.length ? { items: inside, radius: last }
-                         : { items: items.slice(), radius: null };
+    return { items: items.slice(), radius: null };
   }
 
   /* ---------- the pipeline ----------
@@ -166,9 +186,9 @@ const Near = (() => {
      radius the answer actually came from. */
 
   function pick(match, opts = {}) {
-    const { rings = RINGS.near, want = 6, limit = 24, exclude = null } = opts;
+    const { rings = RINGS.near, want = 6, wantKnown = 2, limit = 24, exclude = null } = opts;
     const ok = i => match(i) && !(exclude && exclude(i));
-    const found = ring(CURATED.filter(ok).concat(FOUND.filter(ok)), rings, want);
+    const found = ring(CURATED.filter(ok).concat(FOUND.filter(ok)), rings, want, wantKnown);
     return {
       radius: found.radius,
       items: dedupe(found.items

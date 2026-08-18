@@ -20,7 +20,8 @@ index.html
 css/style.css
 js/
   location.js   where you are exploring from — position, not stored distances
-  nearby.js     retrieval: which places exist within reach of that position
+  nearby.js     retrieval and the provenance ladder: what exists nearby, and
+                how much anybody knows about it
   state.js      what the site remembers about you (localStorage only)
   weather.js    Open-Meteo — no key, no account, coordinates rounded to the neighbourhood
   scoring.js    the ranking engine — is this good today
@@ -37,8 +38,17 @@ data/
   quests.json         long-running exploration goals
   home.json           the default location, on first visit only
   discovered.json     ~14k Paris places from OpenStreetMap — coverage, not opinion
+  civic.json          markets with their days and hours, pools, parks, libraries
+  notable.json        places with a verifiable distinction, from Wikidata
+  editorial.json      researched recommendations — opinionated, never visited
+  notes.json          handwritten, hand-edited, and it beats everything above
 scripts/
   discover.mjs  build the Paris-wide index from OpenStreetMap
+  civic.mjs     what the Mairie de Paris publishes about its own facilities
+  notable.mjs   Wikidata + Wikipedia + pageviews — distinction, and fame
+  editorial.mjs resolve hand-written records against real places
+  draft.mjs     start a handwritten note, id and all
+  check-location.mjs  does moving change the answers, and are they any good
   geocode.mjs   give every curated record real coordinates
   relocate.mjs  (legacy) rewrite stored distances for a new home
   refresh.mjs   prune + validate; run daily by CI
@@ -259,17 +269,35 @@ The site used to be *about* the 10th. Now it starts there and goes wherever
 you point it — a different arrondissement, an address, a hotel, or the
 browser's own idea of where you are.
 
-**Two layers, deliberately different in kind.**
+**Four tiers, by how much anybody actually knows.**
 
-| | | |
-|---|---|---|
-| **Curated** | ~180 records | A reason to care, photographs, pairings. The voice. |
-| **Discovered** | ~14,000 places | Name, category, position, from OpenStreetMap. No opinion, and the interface never pretends otherwise — cards say *found nearby* and are drawn with a dashed border. |
+"Curated or not" turned out to be too blunt a question. The gap between
+somebody having stood in a shop and a name existing on a map is real — but so
+are the two states in between, and collapsing them is what left the 5th ranked
+by walking time.
 
-Curated wins wherever it exists. Discovered fills the gaps, which is what
-makes a neighbourhood the catalogue has never visited still have a bakery in
-it. Places present in both are de-duplicated by name so the OSM copy never
-shadows the one somebody wrote about.
+| Tier | What it means | Where it comes from | Count |
+|---|---|---|---|
+| **personal** | You went and wrote it up | `places.json` and friends, plus `notes.json` | ~200 |
+| **editorial** | Researched and argued for, **nobody visited** | `editorial.json`, written by hand | ~42 |
+| **sourced** | A verifiable distinction — an article, a listing, an official record | `notable.json`, `civic.json`, generated weekly | ~2,300 |
+| **found** | A name and a position, and no claim beyond that | `discovered.json`, from OpenStreetMap | ~14,000 |
+
+The tier drives the ranking, the mark on the card (★ ◆ ◇ ·), the weight of the
+rule under it, and the wording. Nothing is ever presented as more than it is:
+an editorial card says *researched, not visited*, and a found one says nobody
+has vouched for it.
+
+**Personal always wins.** `data/notes.json` is the only data file meant to be
+edited by hand and the only one no script rewrites. A note can attach to
+anything with an id — including a place that arrived from OpenStreetMap with
+nothing but a name — and writing a reason down is what promotes it. Ids encode
+a rounded coordinate, so `node scripts/draft.mjs <search>` generates them; the
+first one worked out by hand in this repo was wrong, because JavaScript rounds
+a .5 up and Python rounds it to even.
+
+Places present in more than one layer are de-duplicated by name and position,
+so the one that knows most about a place wins and the others drop out.
 
 **Distance is computed, not stored.** Every record carries coordinates and
 the browser works out the travel time from wherever you currently are. That
@@ -309,6 +337,15 @@ definition of what counts as near and one place to change it.
   of a coffee chain as enthusiastically as the one good café on the street. A
   name that appears all over the city is a chain — derivable from the shipped
   file, so there is no hand-maintained list to rot.
+- **The ring widens until it finds something worth recommending**, not merely
+  until it is full. Eight anonymous bakeries two minutes away used to bury the
+  two the guide actually knew about thirteen minutes away, which is how you end
+  up handing somebody a list of names.
+- **Fame is not quality.** A notability signal on its own recommends Le Procope
+  and La Tour d'Argent: genuinely notable, and genuinely not where you send
+  someone for coffee. Monthly Wikipedia pageviews separate a landmark from a
+  local place that happens to have an article, and landmarks are pushed down in
+  the everyday sections while staying eligible for Culture and *Worth the trip*.
 - **Nothing is lost to the radius.** What falls outside it and is genuinely
   excellent moves to *Worth the trip*, which is where the 10th's classics go
   when you are standing in the 15th.
@@ -331,7 +368,17 @@ have not really moved, whatever the distances say.
 node scripts/discover.mjs                    # rebuild the Paris-wide index
 node scripts/discover.mjs --only restaurant  # one category
 node scripts/geocode.mjs                     # place the curated records
+node scripts/civic.mjs                       # markets, pools, parks, libraries
+node scripts/notable.mjs                     # Wikidata + Wikipedia + pageviews
+node scripts/editorial.mjs                   # resolve hand-written records
+node scripts/draft.mjs mouffetard            # start a handwritten note
+node scripts/check-location.mjs --verbose    # does location change the answers?
 ```
+
+`editorial.json` carries no coordinates. Each record names the place it is
+talking about and `editorial.mjs` resolves it against the discovery index, so a
+recommendation for somewhere that does not exist is dropped rather than
+shipped — inventing a café is impossible by construction.
 
 Two things worth knowing before touching the discovery script: `overpass.osm.ch`
 looks like a mirror and is a **Switzerland-only** extract that answers 200 with
@@ -384,8 +431,17 @@ longer determines what the site recommends:
 |---|---|---|
 | Curated cafés within 15 min of the rue Mouffetard | 1 | 1 |
 | Cafés the Eat tab offers there | 5, all of them in the 10th/11th/3rd | 24, in the 5th |
+| …of which the guide knows something about | 0 | 3 |
 
-The second row is the fix. The first row is why the discovered layer exists.
+The second row was the retrieval fix. The third is the tiers, and it is the one
+that decides whether the answer is a recommendation or a phone book.
+
+`check-location.mjs` enforces both: every arrondissement must return materially
+different lists *and* at least two of its top five must be more than a name on
+a map. Seven of eighty arrondissement/category pairs still fail that, listed in
+`THIN` in the script — a to-do list that fails loudly the moment it gets
+longer. Adding a line to it should feel like an admission; removing one is the
+actual work.
 
 So a real relocation is three jobs, in order of how much of it is a machine's:
 

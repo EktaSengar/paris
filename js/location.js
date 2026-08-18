@@ -21,14 +21,33 @@ const Loc = (() => {
   const KEY = 'paris-for-you.location.v1';
   const UA_NOTE = 'paris-for-you (personal site)';
 
-  /* Arrondissement centroids — the preset list, and the fallback when a
-     record has no coordinates of its own. */
+  /* Where each arrondissement actually lives — the preset list, and the
+     fallback when a record has no coordinates of its own.
+
+     These are deliberately NOT the geometric centroids the city
+     publishes. The 12th and the 16th each have a wood bolted onto them,
+     and averaging the polygon puts the 12th two kilometres out in the
+     Bois de Vincennes: click "12e" and the guide would helpfully find
+     you the nearest bakery to a forest. So each point is the median
+     position of the city's own facilities in that postcode — schools,
+     crèches, libraries, gyms — which sit where people are rather than
+     where the boundary happens to run.
+
+     Where an arrondissement is all city, the two agree to within a few
+     hundred metres, which is the check that this is measuring something
+     real. Only the two with woods move far.
+
+     The build scripts keep the geometric centroids, on purpose: they use
+     them to work out which arrondissement a point falls in, and for that
+     job an evenly spaced set approximates the boundaries better than a
+     set pulled towards where the shops are. Different question, different
+     table. */
   const ARR = {
-    1:[48.8626,2.3363],  2:[48.8683,2.3413],  3:[48.8637,2.3615],  4:[48.8546,2.3572],
-    5:[48.8448,2.3501],  6:[48.8496,2.3329],  7:[48.8565,2.3120],  8:[48.8726,2.3120],
-    9:[48.8768,2.3374],  10:[48.8760,2.3595], 11:[48.8578,2.3792], 12:[48.8351,2.4212],
-    13:[48.8283,2.3626], 14:[48.8331,2.3264], 15:[48.8412,2.3000], 16:[48.8637,2.2769],
-    17:[48.8872,2.3070], 18:[48.8925,2.3444], 19:[48.8871,2.3828], 20:[48.8635,2.3985]
+    1:[48.8620,2.3426],  2:[48.8668,2.3450],  3:[48.8625,2.3609],  4:[48.8549,2.3569],
+    5:[48.8436,2.3497],  6:[48.8495,2.3328],  7:[48.8569,2.3127],  8:[48.8760,2.3148],
+    9:[48.8780,2.3404],  10:[48.8755,2.3639], 11:[48.8582,2.3807], 12:[48.8412,2.3956],
+    13:[48.8275,2.3620], 14:[48.8304,2.3226], 15:[48.8403,2.2954], 16:[48.8559,2.2713],
+    17:[48.8889,2.3123], 18:[48.8918,2.3476], 19:[48.8852,2.3810], 20:[48.8660,2.4009]
   };
 
   const ARR_NAMES = {

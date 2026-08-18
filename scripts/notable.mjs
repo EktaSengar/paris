@@ -196,7 +196,40 @@ async function fame(list) {
 
 /* ---------- assemble ---------- */
 
+/* Wikidata labels a lot of listed buildings by what the heritage
+   register recorded, which is an address or a trade rather than a name.
+   "34 avenue de Choisy, Paris" and "boulangerie-pâtisserie-confiserie"
+   are both perfectly good database keys and useless things to send
+   somebody to for breakfast.
+
+   Rejecting these is not tidying. A recommendation whose name is a
+   street address tells the reader nothing and makes the whole list look
+   automated, which is exactly what it must not look like. */
+
+const STREET = 'rue|avenue|boulevard|bd|place|quai|impasse|passage|cour|allée|allee|villa|square';
+
+/* A name that is only a trade — with or without hyphens or ampersands. */
+const GENERIC = new Set([
+  'boulangerie', 'patisserie', 'boulangerie patisserie', 'boulangerie patisserie confiserie',
+  'cafe', 'restaurant', 'bar', 'brasserie', 'bistrot', 'bistro', 'librairie', 'hotel',
+  'confiserie', 'chocolaterie', 'salon de the', 'cinema', 'theatre', 'musee',
+  'boucherie', 'epicerie', 'commerce', 'magasin', 'immeuble', 'maison'
+]);
+
+function unusableName(raw) {
+  const n = (raw || '').trim();
+  if (!n || n.length < 3) return true;
+  if (/^\d/.test(n)) return true;                                  // "34 avenue de Choisy"
+  if (/,\s*Paris\b/i.test(n)) return true;                         // "…, Paris"
+  if (new RegExp(`^(${STREET})\\s`, 'i').test(n)) return true;       // "rue de …"
+  if (new RegExp(`,\\s*\\d+\\s*(${STREET})\\b`, 'i').test(n)) return true; // "Boulangerie, 16 rue …"
+  const flat = n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[-–—&]/g, ' ').replace(/\s+/g, ' ').trim();
+  return GENERIC.has(flat);
+}
+
 function toRecord(p) {
+  if (unusableName(p.name)) return null;
   const bits = [];
   if (p.extract) bits.push(p.extract);
   else {

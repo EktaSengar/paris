@@ -349,11 +349,14 @@ const App = (() => {
   }
 
   function priceText(item) {
-    /* A discovered record has no price because nobody checked, which is a
-       different thing from being free. Saying "Free" about a restaurant
-       OSM happens to know the name of would be an invention. */
-    if (item.discovered && item.price == null) return '';
-    if (!item.price) return 'Free';
+    /* Free is a claim, and it needs evidence. Every curated record states
+       a price — fifty-two of them state zero — so an absent price means
+       nobody checked rather than nothing to pay, and the honest output is
+       silence. Saying "Free" under a café because no source mentioned
+       money would be an invention, and it is the kind nobody would think
+       to check. */
+    if (item.price == null) return '';
+    if (item.price === 0) return 'Free';
     return `€${item.price}`;
   }
 
@@ -387,12 +390,24 @@ const App = (() => {
   const tierCls  = i => tier(i).cls;
   const tierMark = i => tier(i).mark;
 
+  /* OSM cuisine values are machine strings — "coffee_shop", "sushi;ramen".
+     Worth showing, because "Vietnamese" is the single most useful word
+     you can put next to an unfamiliar restaurant, but not raw, and not
+     when it only repeats the category the section is already about. */
+  const CUISINE_NOISE = { coffee_shop: 1, cafe: 1, bakery: 1, pastry: 1, restaurant: 1, bar: 1 };
+
+  function cuisineText(item) {
+    const raw = (item.cuisine || '').split(';')[0].trim().toLowerCase();
+    if (!raw || CUISINE_NOISE[raw]) return '';
+    return raw.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
+  }
+
   /* The line under a name. Anything with a reason written down shows it,
      whoever wrote it. A place with nothing but a position says so. */
   function blurb(item) {
     if (item.why) return item.why;
     if (Near.tierOf(item) !== 'found') return '';
-    const what = [item.cuisine, item.area].filter(Boolean).join(' · ');
+    const what = [cuisineText(item), item.area].filter(Boolean).join(' · ');
     return what ? `${what} — found on the map, nobody has vouched for it.`
                 : 'Found on the map, nobody has vouched for it.';
   }
@@ -568,6 +583,7 @@ const App = (() => {
     if (item.area) bits.push(esc(item.area));
     if (item.priceNote) bits.push(esc(item.priceNote));
     else bits.push(priceText(item));
+    bits.push(esc(cuisineText(item)));
     const pic = thumb && item.image
       ? `<div class="row-thumb">${img(item, '96px', 'loaded')}</div>`
       : (thumb ? `<div class="row-thumb ph"><span class="e">${item.emoji || (item.discovered ? '·' : '·')}</span></div>` : '');
@@ -1329,7 +1345,7 @@ const App = (() => {
       candidates.push({
         emoji, step,
         name: it.title,
-        note: [it.area, it.cuisine].filter(Boolean).join(' · ') || null,
+        note: [it.area, cuisineText(it)].filter(Boolean).join(' · ') || null,
         walk: it.minutesFromHome != null ? `~${it.minutesFromHome} min` : ''
       });
     }

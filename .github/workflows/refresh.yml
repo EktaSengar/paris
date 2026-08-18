@@ -51,9 +51,16 @@ jobs:
           if [ "$(date -u +%u)" = "1" ]; then
             node scripts/discover.mjs || echo "discovery skipped — Overpass unavailable"
             node scripts/geocode.mjs  || echo "geocoding skipped"
+            node scripts/civic.mjs    || echo "civic data skipped — opendata.paris.fr unavailable"
+            node scripts/notable.mjs  || echo "notable layer skipped — Wikidata unavailable"
           else
             echo "not Monday — discovery index left alone"
           fi
+
+      # editorial.json is hand-written and carries no coordinates; this checks
+      # every record still points at a place that exists.
+      - name: Check the hand-written records still resolve
+        run: node scripts/editorial.mjs --check
 
       # The site can look completely healthy while location silently fails to
       # reach the retrieval layer — the whole page renders, every distance is

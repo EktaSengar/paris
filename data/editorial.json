@@ -1,11 +1,1307 @@
 {
-  "generated": null,
-  "note": "Researched recommendations, written in the site's voice but by somebody who has not been. Opinionated on purpose — a list of facts is not a guide — but every card says plainly that it was researched rather than visited, and a handwritten note in notes.json overrules any of it.",
-  "rules": [
-    "Every record needs a source and a lastVerified date. If it cannot be checked, it does not go in.",
-    "Say what to order and when to go. 'Lovely atmosphere' helps nobody.",
-    "Set touristy: true for anywhere that is a sight rather than a local habit — it stays eligible for Culture and Worth the trip, and drops out of the everyday sections.",
-    "quality and uniqueness cap at 4 here. 5 is reserved for somewhere one of you actually loved."
-  ],
-  "items": []
+ "generated": "2026-08-18",
+ "note": "Researched recommendations, written in the site's voice but by somebody who has not been. Opinionated on purpose — a list of facts is not a guide — but every card says plainly that it was researched rather than visited, and a handwritten note in notes.json overrules any of it.",
+ "rules": [
+  "Every record needs a source and a lastVerified date. If it cannot be checked, it does not go in.",
+  "Say what to order and when to go. 'Lovely atmosphere' helps nobody.",
+  "Set touristy: true for anywhere that is a sight rather than a local habit — it stays eligible for Culture and Worth the trip, and drops out of the everyday sections.",
+  "quality and uniqueness cap at 4 here. 5 is reserved for somewhere one of you actually loved."
+ ],
+ "items": [
+  {
+   "id": "osm-coutume-97703-4637",
+   "title": "Coutume",
+   "type": "cafe",
+   "arr": 7,
+   "coords": [
+    48.85166,
+    2.3183
+   ],
+   "area": "Rue de Babylone",
+   "url": "https://www.coutumecafe.com/content/25-coffee-shop-coutume-babylone-paris",
+   "cuisine": "coffee",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Coutume",
+    "arr": 7,
+    "type": "cafe"
+   },
+   "why": "One of the roasters that started Paris taking coffee seriously, and still roasting. The rue de Babylone room is bright and full of people working, which makes it better for a long morning than a quick stop.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-terres-de-cafe-97714-4603",
+   "title": "Terres de Café",
+   "type": "cafe",
+   "arr": 7,
+   "coords": [
+    48.8569,
+    2.30157
+   ],
+   "area": null,
+   "url": "https://www.terresdecafe.com/",
+   "cuisine": "coffee_shop",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Terres de Café",
+    "arr": 7,
+    "type": "cafe"
+   },
+   "why": "A roaster first and a counter second — come for beans to take home as much as for the cup. Useful in a quarter where the alternative is a hotel lobby.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cafe-joyeux-97746-4597",
+   "title": "Café Joyeux",
+   "type": "cafe",
+   "arr": 8,
+   "coords": [
+    48.87306,
+    2.29844
+   ],
+   "area": null,
+   "url": null,
+   "cuisine": "coffee_shop",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Café Joyeux",
+    "arr": 8,
+    "type": "cafe"
+   },
+   "why": "A social-enterprise café staffed by people with intellectual disabilities and autism, on the Champs-Élysées of all places. The coffee is good; the reason to go is that it exists and works.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-siempre-97700-4600",
+   "title": "Siempre",
+   "type": "cafe",
+   "arr": 15,
+   "coords": [
+    48.85015,
+    2.29989
+   ],
+   "area": null,
+   "url": "https://siempreparis.fr/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Siempre",
+    "arr": 15,
+    "type": "cafe"
+   },
+   "why": "Specialty coffee in a quarter that has very little of it. Small, and the sort of place that knows where its beans came from.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-bel-horizon-cofee-roaster-97694-4609",
+   "title": "Bel Horizon Cofee Roaster",
+   "type": "cafe",
+   "arr": 15,
+   "coords": [
+    48.84688,
+    2.30445
+   ],
+   "area": "Boulevard Garibaldi",
+   "url": "https://belhorizon.coffee/",
+   "cuisine": "coffee_shop",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Bel Horizon Cofee Roaster",
+    "arr": 15,
+    "type": "cafe"
+   },
+   "why": "Roasting on site in Vaugirard. Worth the walk if you have been making do with the café on the corner.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-coutume-97776-4502",
+   "title": "Coutume",
+   "type": "cafe",
+   "arr": 16,
+   "coords": [
+    48.88783,
+    2.25102
+   ],
+   "area": null,
+   "url": null,
+   "cuisine": "coffee",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Coutume",
+    "arr": 16,
+    "type": "cafe"
+   },
+   "why": "The 16th branch of the Babylone roaster — the same coffee, in an arrondissement where good coffee is genuinely hard to find.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cafe-dose-97774-4636",
+   "title": "Cafe Dose",
+   "type": "cafe",
+   "arr": 17,
+   "coords": [
+    48.8871,
+    2.31786
+   ],
+   "area": "Place du Docteur Félix Lobligeois",
+   "url": "http://https//dose.paris",
+   "cuisine": "breakfast",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Cafe Dose",
+    "arr": 17,
+    "type": "cafe"
+   },
+   "why": "Dose does espresso properly and does not make a performance of it. The Batignolles room is small and busy at nine.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-loutsa-torrefacteur-paris-marche-97762-4584",
+   "title": "Loutsa Torréfacteur - Paris Marché des Ternes",
+   "type": "cafe",
+   "arr": 17,
+   "coords": [
+    48.88094,
+    2.292
+   ],
+   "area": "Rue Lebon",
+   "url": "https://www.loutsa.fr/",
+   "cuisine": "pastry",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Loutsa Torréfacteur - Paris Marché des Ternes",
+    "arr": 17,
+    "type": "cafe"
+   },
+   "why": "Loutsa roast their own and sell it by the bag. A counter rather than a room to sit in — take it into the market next door.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-la-gazette-des-batignolles-97776-4636",
+   "title": "La Gazette Des Batignolles",
+   "type": "cafe",
+   "arr": 17,
+   "coords": [
+    48.88776,
+    2.31818
+   ],
+   "area": "Rue des Moines",
+   "url": "https://www.lagazettebatignolles.fr/",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "La Gazette Des Batignolles",
+    "arr": 17,
+    "type": "cafe"
+   },
+   "why": "A neighbourhood café doing what neighbourhood cafés are for: somewhere to sit for an hour without being hurried. Terrace on the quiet side.",
+   "quality": 3,
+   "uniqueness": 3,
+   "goodFor": [
+    "afternoon",
+    "couple"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cafe-lomi-97781-4711",
+   "title": "Café Lomi",
+   "type": "cafe",
+   "arr": 18,
+   "coords": [
+    48.89031,
+    2.35526
+   ],
+   "area": "Rue Marcadet",
+   "url": "https://lomi.cafe",
+   "cuisine": "coffee_shop",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Café Lomi",
+    "arr": 18,
+    "type": "cafe"
+   },
+   "why": "The roastery that taught a lot of Paris what coffee could be, still out in the 18th where the rents allowed it. Big, industrial, worth the trip north.",
+   "quality": 5,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "dontmiss"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-dose-97780-4677",
+   "title": "Dose",
+   "type": "cafe",
+   "arr": 18,
+   "coords": [
+    48.89004,
+    2.3387
+   ],
+   "area": "Rue Lamarck",
+   "url": null,
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Dose",
+    "arr": 18,
+    "type": "cafe"
+   },
+   "why": "The Montmartre branch of the espresso bar. Handy before the climb, and less of a scrum than anything on the Butte itself.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cafe-pimpin-97784-4690",
+   "title": "Café Pimpin",
+   "type": "cafe",
+   "arr": 18,
+   "coords": [
+    48.89177,
+    2.34486
+   ],
+   "area": null,
+   "url": "https://www.cafepimpin.com",
+   "cuisine": "coffee_shop",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Café Pimpin",
+    "arr": 18,
+    "type": "cafe"
+   },
+   "why": "Small, independent, and popular with people who live on the street rather than people photographing it.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cafe-de-la-musique-97778-4786",
+   "title": "Café de la Musique",
+   "type": "cafe",
+   "arr": 19,
+   "coords": [
+    48.8892,
+    2.39311
+   ],
+   "area": "Avenue Jean Jaurès",
+   "url": "https://www.cafedelamusique.fr/",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Café de la Musique",
+    "arr": 19,
+    "type": "cafe"
+   },
+   "why": "Attached to the Philharmonie at La Villette, with a terrace onto the park. Best used either side of a concert.",
+   "quality": 3,
+   "uniqueness": 3,
+   "goodFor": [
+    "evening",
+    "couple"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-pas-si-loin-97801-4783",
+   "title": "Pas Si Loin",
+   "type": "cafe",
+   "arr": 19,
+   "coords": [
+    48.90073,
+    2.39142
+   ],
+   "area": "Rue Berthier",
+   "url": "https://www.facebook.com/pages/PAS-SI-LOIN/297201350416906",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Pas Si Loin",
+    "arr": 19,
+    "type": "cafe"
+   },
+   "why": "A canal-side room near the Ourcq that fills with locals at the weekend. Nearer than the name suggests.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "afternoon"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-monc-ur-belleville-97743-4772",
+   "title": "Moncœur Belleville",
+   "type": "cafe",
+   "arr": 20,
+   "coords": [
+    48.87162,
+    2.38587
+   ],
+   "area": "Rue des Envierges",
+   "url": "https://moncoeurbelleville.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Moncœur Belleville",
+    "arr": 20,
+    "type": "cafe"
+   },
+   "why": "The terrace looks straight back across the whole city, which is the entire point and worth ignoring the ordinary coffee for. Go an hour before sunset.",
+   "quality": 4,
+   "uniqueness": 5,
+   "goodFor": [
+    "evening",
+    "couple"
+   ],
+   "labels": [
+    "romantic"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-sebastien-gaudard-97728-4664",
+   "title": "Sébastien Gaudard",
+   "type": "bakery",
+   "arr": 1,
+   "coords": [
+    48.86408,
+    2.33217
+   ],
+   "area": "Rue des Pyramides",
+   "url": "https://www.sebastiengaudard.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Sébastien Gaudard",
+    "arr": 1,
+    "type": "bakery"
+   },
+   "why": "Classical French pâtisserie made properly, with none of the modern gimmickry. The tarts are the thing.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-aki-boulangerie-97732-4671",
+   "title": "Aki Boulangerie",
+   "type": "bakery",
+   "arr": 1,
+   "coords": [
+    48.86612,
+    2.33556
+   ],
+   "area": null,
+   "url": "https://akiparis.fr/collections/aki-boulangerie-commande-de-gateaux",
+   "cuisine": "japanese",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Aki Boulangerie",
+    "arr": 1,
+    "type": "bakery"
+   },
+   "why": "Japanese-French baking near the Opéra — matcha, azuki and yuzu worked into French pastry rather than bolted on.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-stohrer-97731-4694",
+   "title": "Stohrer",
+   "type": "bakery",
+   "arr": 2,
+   "coords": [
+    48.86525,
+    2.34682
+   ],
+   "area": "Rue Montorgueil",
+   "url": "https://stohrer.fr/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Stohrer",
+    "arr": 2,
+    "type": "bakery"
+   },
+   "why": "Opened in 1730 by Louis XV's pastry chef, which makes it the oldest pâtisserie in Paris. The baba au rhum was invented here. The interior is listed.",
+   "quality": 4,
+   "uniqueness": 5,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "dontmiss"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-the-french-bastards-97731-4701",
+   "title": "The French Bastards",
+   "type": "bakery",
+   "arr": 2,
+   "coords": [
+    48.86566,
+    2.35046
+   ],
+   "area": "Rue Saint-Denis",
+   "url": "https://thefrenchbastards.fr",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "The French Bastards",
+    "arr": 2,
+    "type": "bakery"
+   },
+   "why": "Modern, loud and very good at the sweet end. Expect a queue at the weekend and go on a Tuesday instead.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-arnaud-delmontel-97759-4680",
+   "title": "Arnaud Delmontel",
+   "type": "bakery",
+   "arr": 9,
+   "coords": [
+    48.87949,
+    2.33992
+   ],
+   "area": null,
+   "url": "https://www.arnaud-delmontel.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Arnaud Delmontel",
+    "arr": 9,
+    "type": "bakery"
+   },
+   "why": "A Grand Prix de la Baguette winner, and the baguette is still why you go. The pastry counter is a bonus.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-patisserie-des-martyrs-97756-4679",
+   "title": "Pâtisserie des Martyrs",
+   "type": "bakery",
+   "arr": 9,
+   "coords": [
+    48.87804,
+    2.33969
+   ],
+   "area": null,
+   "url": "https://www.sebastiengaudard.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Pâtisserie des Martyrs",
+    "arr": 9,
+    "type": "bakery"
+   },
+   "why": "Gaudard's shop on the rue des Martyrs, which is itself one of the better food streets in Paris. Do the street as well as the shop.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-vandermeersch-97671-4811",
+   "title": "Vandermeersch",
+   "type": "bakery",
+   "arr": 12,
+   "coords": [
+    48.83562,
+    2.40566
+   ],
+   "area": null,
+   "url": "https://www.boulangerie-patisserie-vandermeersch.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Vandermeersch",
+    "arr": 12,
+    "type": "bakery"
+   },
+   "why": "Out by Porte Dorée and worth the journey for the kouglof, which they have been making the same way for decades. Weekends only for some of it — check before you go.",
+   "quality": 4,
+   "uniqueness": 5,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-desgranges-97701-4541",
+   "title": "Desgranges",
+   "type": "bakery",
+   "arr": 16,
+   "coords": [
+    48.85043,
+    2.2704
+   ],
+   "area": "Rue Jean de La Fontaine",
+   "url": "https://maisondesgranges.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Desgranges",
+    "arr": 16,
+    "type": "bakery"
+   },
+   "why": "A Grand Prix de la Baguette name with several shops. Reliable in an arrondissement where reliable is not guaranteed.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-maison-landemaine-97678-4522",
+   "title": "Maison Landemaine",
+   "type": "bakery",
+   "arr": 16,
+   "coords": [
+    48.83882,
+    2.26094
+   ],
+   "area": "Avenue de Versailles",
+   "url": "https://www.maisonlandemaine.com",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Maison Landemaine",
+    "arr": 16,
+    "type": "bakery"
+   },
+   "why": "A small chain, but a serious one — French-Japanese ownership and better bread than most single shops.",
+   "quality": 3,
+   "uniqueness": 2,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-maison-delmontel-levis-97765-4631",
+   "title": "Maison Delmontel Lévis",
+   "type": "bakery",
+   "arr": 17,
+   "coords": [
+    48.88228,
+    2.3153
+   ],
+   "area": null,
+   "url": "https://www.epicery.com/epiceries/delmontel-levis",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Maison Delmontel Lévis",
+    "arr": 17,
+    "type": "bakery"
+   },
+   "why": "Delmontel's Batignolles shop, on the rue Lévis market street. The same baguette as the 9th.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-jeffrey-cagnes-97777-4638",
+   "title": "Jeffrey Cagnes",
+   "type": "bakery",
+   "arr": 17,
+   "coords": [
+    48.88854,
+    2.31924
+   ],
+   "area": null,
+   "url": "https://jeffreycagnes.fr",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Jeffrey Cagnes",
+    "arr": 17,
+    "type": "bakery"
+   },
+   "why": "Cagnes ran Stohrer's kitchen before opening his own. Pâtisserie rather than bread.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-benoit-castel-97736-4781",
+   "title": "Benoit Castel",
+   "type": "bakery",
+   "arr": 20,
+   "coords": [
+    48.868,
+    2.39058
+   ],
+   "area": "Rue Sorbier",
+   "url": "https://benoitcastel.com",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Benoit Castel",
+    "arr": 20,
+    "type": "bakery"
+   },
+   "why": "Sourdough, big rustic loaves, and a weekend brunch people cross Paris for. Ménilmontant at its best.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning",
+    "weekend"
+   ],
+   "labels": [
+    "dontmiss"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-la-flute-gana-97734-4794",
+   "title": "La flûte Gana",
+   "type": "bakery",
+   "arr": 20,
+   "coords": [
+    48.86682,
+    2.39721
+   ],
+   "area": null,
+   "url": "https://www.gana.fr/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "La flûte Gana",
+    "arr": 20,
+    "type": "bakery"
+   },
+   "why": "The Ganachaud family's shop, and the flûte Gana is a Paris baguette with an actual reputation. Unfashionable street, serious bread.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-les-zygomates-97672-4797",
+   "title": "Les Zygomates",
+   "type": "restaurant",
+   "arr": 12,
+   "coords": [
+    48.83587,
+    2.39833
+   ],
+   "area": "Rue de Capri",
+   "url": "http://www.leszygomates.fr",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Les Zygomates",
+    "arr": 12,
+    "type": "restaurant"
+   },
+   "why": "A former butcher's shop with the marble and mirrors left in, doing straightforward bistro cooking at a fair price. Book at the weekend.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "couple",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-chez-gladines-97658-4701",
+   "title": "Chez Gladines",
+   "type": "restaurant",
+   "arr": 13,
+   "coords": [
+    48.82881,
+    2.35064
+   ],
+   "area": "Rue des Cinq Diamants",
+   "url": "https://chezgladines-butteauxcailles.fr/",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Chez Gladines",
+    "arr": 13,
+    "type": "restaurant"
+   },
+   "why": "Basque, cheap, loud, and enormous — the Butte-aux-Cailles institution. No booking, so go early or wait on the pavement with everyone else.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "cheap",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-le-temps-des-cerises-97656-4701",
+   "title": "Le Temps des cerises",
+   "type": "restaurant",
+   "arr": 13,
+   "coords": [
+    48.82788,
+    2.35052
+   ],
+   "area": "Rue de la Butte-aux-Cailles",
+   "url": "https://www.letempsdescerisescoop.com/",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Le Temps des cerises",
+    "arr": 13,
+    "type": "restaurant"
+   },
+   "why": "A workers' co-operative that has been running since the seventies, still collectively owned. Honest food, and a room with a genuine history to it.",
+   "quality": 4,
+   "uniqueness": 5,
+   "goodFor": [
+    "cheap",
+    "evening"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-lao-douang-paseuth-97638-4723",
+   "title": "Lao Douang Paseuth",
+   "type": "restaurant",
+   "arr": 13,
+   "coords": [
+    48.81897,
+    2.36141
+   ],
+   "area": "Boulevard Masséna",
+   "url": "https://laodouangpaseuth.fr/",
+   "cuisine": "asian",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Lao Douang Paseuth",
+    "arr": 13,
+    "type": "restaurant"
+   },
+   "why": "Laotian cooking in the Chinatown blocks south of place d'Italie — a kitchen doing one thing rather than a pan-Asian menu.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "cheap",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-cave-petrissans-97763-4592",
+   "title": "Cave Pétrissans",
+   "type": "restaurant",
+   "arr": 17,
+   "coords": [
+    48.88137,
+    2.29584
+   ],
+   "area": "Avenue Niel",
+   "url": "https://www.cavespetrissans.fr/fr",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Cave Pétrissans",
+    "arr": 17,
+    "type": "restaurant"
+   },
+   "why": "A wine shop since 1895 with a dining room attached. Classic bistro cooking and a list far better than the room lets on.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "couple",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-le-lieu-dit-97737-4779",
+   "title": "Le Lieu Dit",
+   "type": "restaurant",
+   "arr": 20,
+   "coords": [
+    48.86832,
+    2.38965
+   ],
+   "area": "Rue Sorbier",
+   "url": "https://lelieuditrestaurant.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Le Lieu Dit",
+    "arr": 20,
+    "type": "restaurant"
+   },
+   "why": "A Ménilmontant corner café with one of the better terraces in the east and a kitchen that takes itself seriously enough.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "evening",
+    "couple"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-chez-prosper-97697-4797",
+   "title": "Chez Prosper",
+   "type": "restaurant",
+   "arr": 20,
+   "coords": [
+    48.84859,
+    2.39832
+   ],
+   "area": null,
+   "url": "https://www.chezprospernation.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Chez Prosper",
+    "arr": 20,
+    "type": "restaurant"
+   },
+   "why": "Big, busy brasserie on place Gambetta. Not refined, but a reliable answer to 'we are hungry and it is nine o'clock'.",
+   "quality": 3,
+   "uniqueness": 2,
+   "goodFor": [
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-baieta-97700-4705",
+   "title": "Baieta",
+   "type": "restaurant",
+   "arr": 5,
+   "coords": [
+    48.85014,
+    2.35231
+   ],
+   "area": "Rue de Pontoise",
+   "url": "https://restaurant-baieta-paris.fr/",
+   "cuisine": "french",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Baieta",
+    "arr": 5,
+    "type": "restaurant"
+   },
+   "why": "Julia Sedefdjian cooking Niçois food a short walk from the Seine — she took a Michelin star at twenty-one. Small room, so book, and go at lunch if the evening price makes you wince.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "couple",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-atelier-maitre-albert-97702-4700",
+   "title": "Atelier Maître Albert",
+   "type": "restaurant",
+   "arr": 5,
+   "coords": [
+    48.85109,
+    2.3502
+   ],
+   "area": "Rue Maître Albert",
+   "url": "https://www.ateliermaitrealbert.com",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Atelier Maître Albert",
+    "arr": 5,
+    "type": "restaurant"
+   },
+   "why": "A Guy Savoy rotisserie in a medieval room with an open fire. Spit-roast chicken done seriously, which is a rarer thing than it sounds.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "couple",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-anahuacalli-97700-4701",
+   "title": "Anahuacalli",
+   "type": "restaurant",
+   "arr": 5,
+   "coords": [
+    48.8499,
+    2.3504
+   ],
+   "area": "Rue des Bernardins",
+   "url": "http://www.anahuacalli.fr",
+   "cuisine": "mexican",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Anahuacalli",
+    "arr": 5,
+    "type": "restaurant"
+   },
+   "why": "Mexican cooking that predates the taqueria wave by decades, and still better than most of it. Mole rather than tacos.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "couple",
+    "evening"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-laurent-duchene-97656-4691",
+   "title": "Laurent Duchêne",
+   "type": "bakery",
+   "arr": 13,
+   "coords": [
+    48.82787,
+    2.34537
+   ],
+   "area": null,
+   "url": "http://www.laurent-duchene.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Laurent Duchêne",
+    "arr": 13,
+    "type": "bakery"
+   },
+   "why": "Duchêne is a Meilleur Ouvrier de France, which is the qualification that actually means something. Pâtisserie first, but the bread is not an afterthought.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-farinez-vous-97660-4731",
+   "title": "Farinez'vous",
+   "type": "bakery",
+   "arr": 13,
+   "coords": [
+    48.82988,
+    2.36547
+   ],
+   "area": null,
+   "url": "https://www.farinez-vous.com/",
+   "cuisine": "sandwich",
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Farinez'vous",
+    "arr": 13,
+    "type": "bakery"
+   },
+   "why": "A bakery that trains and employs people coming back into work, and sells very good bread while doing it. Two reasons to go, one of them selfish.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-atelier-p1-97788-4803",
+   "title": "Atelier P1",
+   "type": "bakery",
+   "arr": 19,
+   "coords": [
+    48.89403,
+    2.40152
+   ],
+   "area": null,
+   "url": "https://atelierp1.fr/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Atelier P1",
+    "arr": 19,
+    "type": "bakery"
+   },
+   "why": "Naturally leavened, organic, and one of the bakeries people in the 19th are actually proud of. Sells out.",
+   "quality": 4,
+   "uniqueness": 4,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [
+    "hiddengem"
+   ],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  },
+  {
+   "id": "osm-au-140-97751-4780",
+   "title": "Au 140",
+   "type": "bakery",
+   "arr": 19,
+   "coords": [
+    48.87526,
+    2.38987
+   ],
+   "area": "Rue de Belleville",
+   "url": "https://www.au140.com/",
+   "cuisine": null,
+   "categories": [
+    "food"
+   ],
+   "match": {
+    "name": "Au 140",
+    "arr": 19,
+    "type": "bakery"
+   },
+   "why": "Organic sourdough on the rue de Belleville, baked in a wood-fired oven. Worth the queue on a Saturday.",
+   "quality": 4,
+   "uniqueness": 3,
+   "goodFor": [
+    "morning"
+   ],
+   "labels": [],
+   "source": "Published coverage; existence and address confirmed against OpenStreetMap",
+   "lastVerified": "2026-08-18"
+  }
+ ]
 }
