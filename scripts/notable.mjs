@@ -243,13 +243,22 @@ function toRecord(p) {
   if (p.heritage && p.extract && !/listed|monument historique|heritage/i.test(p.extract))
     bits.push('A listed building.');
 
+  const why = bits.join(' ').slice(0, 340);
+
+  /* "Cafe in Paris, France." is a true sentence that tells the reader
+     nothing, and a card carrying it is a database row wearing a
+     recommendation's clothes. If the only thing we can say about a place
+     is its own category, it has no distinction — so it is not in this
+     tier. It stays in the map layer, where a bare name is honest. */
+  if (/^(a |an )?[\w\s'’-]{0,34}\s+in\s+paris(,\s*france)?\.?$/i.test(why.trim())) return null;
+
   return {
     n: p.name.slice(0, 70),
     c: p.cat,
     lat: +p.lat.toFixed(5),
     lon: +p.lon.toFixed(5),
     a: nearestArr(p.lat, p.lon),
-    why: bits.join(' ').slice(0, 340),
+    why,
     w: p.article ? `https://en.wikipedia.org/wiki/${encodeURIComponent(p.article)}` : null,
     src: p.article ? 'Wikipedia' : 'Wikidata',
     ...(p.views ? { v: p.views } : {}),

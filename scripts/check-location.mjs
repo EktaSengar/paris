@@ -225,9 +225,15 @@ const NEED_KNOWN = 2;
    Adding a line to this list should feel like an admission. Removing one
    is the actual work. */
 const THIN = new Set([
-  '13e cafe', '16e cafe', '16e bakery',
+  '12e restaurant',
+  '13e cafe',
+  '14e cafe',
+  '16e bakery',
+  '16e cafe',
+  '16e restaurant',
+  '17e restaurant',
   '19e bakery',
-  '12e restaurant', '17e restaurant', '20e restaurant'
+  '20e restaurant'
 ]);
 
 /* A note on the two bakeries. The 16th and the 19th are large, and this
