@@ -74,25 +74,55 @@ const Near = (() => {
   /* ---------- what a candidate is worth, here ----------
 
      Merit is the same scale the main ranking uses, so the two agree
-     about which places are good. Authority is the premium for somebody
-     having written a reason down.
+     about which places are good. On top of it sits authority: how much
+     anybody actually knows about this place.
+
+     Four tiers, because "curated or not" was too blunt a question. The
+     gap between somebody having stood in a shop and a name existing on a
+     map is real, but so are the two states in between — a place with a
+     verifiable distinction, and a place somebody researched and argued
+     for without going. Collapsing those into "not curated" is what left
+     the 5th ranked by walking time.
+
+       personal   you went, you wrote it up
+       editorial  researched and argued for, nobody visited
+       sourced    a verifiable distinction — article, listing, award
+       found      a name and a position, and no claim beyond that
 
      Authority is multiplied by reach along with everything else, and
-     that is the whole point: being written about makes a place worth
+     that is the whole point: knowing more about a place makes it worth
      more, but it does not make it closer. A café somebody loved in the
      3rd stays a café in the 3rd when you are standing in the 5th. */
 
-  const AUTHORITY = 7;
+  const AUTHORITY = {
+    personal:  7,
+    editorial: 5,
+    sourced:   4,
+    found:     0
+  };
+
+  /* Records predating the tiers say only whether they were discovered. */
+  const tierOf = i => i.provenance || (i.discovered ? 'found' : 'personal');
 
   function localScore(i) {
     const merit = (i.quality || 3) * 2.2 + (i.uniqueness || 3) * 2.0;
+    const tier  = tierOf(i);
+    let auth = AUTHORITY[tier] ?? 0;
+
     /* OSM records vary from a maintained business listing to a name
        somebody dropped on a map in 2011. A website is the one signal in
-       the data that separates them, and it is worth about that much. */
-    const kept = i.discovered
-      ? (i.url ? 1 : 0) + (i.noted ? 2 : 0) - chainPenalty(i)
-      : AUTHORITY;
-    return Math.max(0.5, merit + kept) * reach(i.minutesFromHome);
+       the data that separates them, and it is worth about that much.
+       Only `found` needs these — the tiers above have been looked at. */
+    if (tier === 'found') auth += (i.url ? 1 : 0) - chainPenalty(i);
+
+    /* A landmark is not a recommendation. Somewhere with a Wikipedia
+       article and a coach party outside is a fine answer to "what should
+       we see" and a poor one to "where should we get coffee", so the
+       everyday sections push it down. Set from pageview counts at build
+       time, or by hand on an editorial record. */
+    if (i.touristy) auth -= 4;
+
+    return Math.max(0.5, merit + auth) * reach(i.minutesFromHome);
   }
 
   /* ---------- how far to reach ----------
@@ -163,20 +193,52 @@ const Near = (() => {
     });
   }
 
-  /* The counterweight to a radius. Curated only, outside the ring, and
-     only the things good enough that the journey is the point — so that
-     narrowing a section to your own neighbourhood loses nothing, it just
-     moves it somewhere honest. */
+  /* The counterweight to a radius: what is outside it and worth the
+     journey anyway, so narrowing a section to your own quarter loses
+     nothing — it just moves it somewhere honest.
+
+     The first version of this returned the curated list minus whatever
+     happened to be nearby, which from anywhere in Paris is the 10th. It
+     gave the same two cafés in the 5th and the 15th, which is the
+     original bug wearing a different hat. Three things fix it:
+
+       · anything above `found` may qualify, not only curated records,
+         so the 15th can be pointed at Berthillon rather than at the
+         10th's bakeries again;
+       · one place per arrondissement, so it reads as the best of Paris
+         rather than a tour of one postcode;
+       · distance still counts a little, so the answer differs depending
+         on where the journey would start from. */
   function beyond(match, radius, opts = {}) {
     const { limit = 4, floor = 4, exclude = null } = opts;
     if (radius == null) return [];
-    return CURATED
-      .filter(i => match(i) && mins(i) > radius && !(exclude && exclude(i)) &&
-                   (i.quality || 0) >= floor && (i.uniqueness || 0) >= floor)
-      .sort((a, b) => ((b.quality || 0) + (b.uniqueness || 0)) -
-                      ((a.quality || 0) + (a.uniqueness || 0)) ||
-                      mins(a) - mins(b))
-      .slice(0, limit);
+
+    const eligible = i =>
+      match(i) && mins(i) > radius && !(exclude && exclude(i)) &&
+      tierOf(i) !== 'found' &&
+      (i.quality || 0) >= floor && (i.uniqueness || 0) >= floor;
+
+    /* Merit first, then a gentle distance term — gentle because the
+       whole premise of this section is that distance is not the point. */
+    const worth = i => (i.quality || 0) + (i.uniqueness || 0)
+      + (AUTHORITY[tierOf(i)] ?? 0) * 0.3
+      - mins(i) / 45;
+
+    const ranked = dedupe(CURATED.concat(FOUND).filter(eligible)
+      .map(i => ({ i, s: worth(i) }))
+      .sort((a, b) => b.s - a.s)
+      .map(x => x.i));
+
+    const perArr = new Set();
+    const out = [];
+    for (const i of ranked) {
+      const key = i.arr ?? `x${out.length}`;      // no arrondissement — never collides
+      if (perArr.has(key)) continue;
+      perArr.add(key);
+      out.push(i);
+      if (out.length >= limit) break;
+    }
+    return out;
   }
 
   /* Retrieval by area rather than by radius — for the pages that are
@@ -209,5 +271,6 @@ const Near = (() => {
     nightlife:  i => ['nightlife', 'bar', 'jazz', 'venue', 'club', 'comedy'].includes(i.type)
   };
 
-  return { use, pick, beyond, inArr, reach, localScore, ring, RINGS, KIND, HALF, chainPenalty };
+  return { use, pick, beyond, inArr, reach, localScore, ring, RINGS, KIND, HALF,
+           chainPenalty, tierOf, AUTHORITY };
 })();

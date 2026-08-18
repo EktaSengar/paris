@@ -132,9 +132,14 @@ const Rank = (() => {
     s += (item.quality    || 3) * 2.2;
     s += (item.uniqueness || 3) * 2.0;
 
-    // A discovered place has a name and a position but nobody vouched for
-    // it, so it should never outrank something written about on purpose.
-    if (item.discovered) s -= 6;
+    // How much anybody actually knows about this place. The same ladder
+    // the retrieval layer uses, expressed as a penalty against the
+    // best-known tier, so the two rankings cannot disagree about whether
+    // a researched place beats a name on a map.
+    s -= 7 - (Near.AUTHORITY[Near.tierOf(item)] ?? 0);
+
+    // A landmark is not a recommendation — see the note in nearby.js.
+    if (item.touristy) s -= 4;
 
     // proximity — a great thing 15 minutes away beats a great thing an hour
     // away. minutesFromHome is stamped from the *current* location on load.

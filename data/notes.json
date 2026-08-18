@@ -1,0 +1,35 @@
+{
+  "note": "Handwritten notes. The only data file meant to be edited by hand, and the only one no script ever rewrites. Everything here wins over the generated tiers, so this is where you overrule the site.",
+  "how": [
+    "Key each entry by the id of the place you are overriding. Curated ids look like 'du-pain-et-des-idees'; places found on the map look like 'osm-strada-cafe-97690-4703' and are stable across the weekly rebuild.",
+    "Whatever you set replaces what was there. A 'why' is the useful one — it turns a name on a map into a recommendation, and marks it as somewhere you have actually been.",
+    "'node scripts/draft.mjs <search terms>' finds a place and writes a filled-in stub here for you.",
+    "To hide something for good, set \"hide\": true."
+  ],
+  "items": {
+    "osm-salon-de-the-de-la-mosquee-de-pa-97683-4711": {
+      "why": "Mint tea and honeyed pastries in a tiled courtyard under fig trees, attached to the mosque. Sit outside, pay at the counter, take as long as you like. It is the closest thing the 5th has to being somewhere else entirely.",
+      "quality": 5,
+      "uniqueness": 5,
+      "labels": [
+        "hiddengem"
+      ],
+      "goodFor": [
+        "couple",
+        "afternoon"
+      ]
+    },
+    "osm-shakespeare-and-company-cafe-97705-4695": {
+      "why": "The bookshop café, upstairs from the shop. Coffee is fine rather than good — you are paying for the room and the view of Notre-Dame, and on a quiet weekday morning that is a fair trade. Go before eleven or queue with everyone else.",
+      "quality": 4,
+      "uniqueness": 5,
+      "labels": [
+        "hiddengem"
+      ],
+      "goodFor": [
+        "morning",
+        "couple"
+      ]
+    }
+  }
+}

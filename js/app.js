@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered'];
+  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'notes'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -178,10 +178,49 @@ const App = (() => {
       .concat(D.daytrips.items || [])
       .filter(i => !(i.end && i.end < TODAY_ISO));
 
+    /* Everything in the curated files was written by somebody who went.
+       Anything arriving from a generated tier states its own provenance. */
+    ALL.forEach(i => { if (!i.provenance) i.provenance = 'personal'; });
+    DISCOVERED.forEach(i => { if (!i.provenance) i.provenance = 'found'; });
+
+    applyNotes();
+
     /* The retrieval layer holds both layers from here on. Every section
        that asks "what is near me" goes through it, so there is one place
        that decides what counts as near and one place to change. */
     Near.use(ALL, DISCOVERED);
+  }
+
+  /* ---------- handwritten notes ----------
+
+     The last word, and the only data file a human edits. A note can
+     attach to anything with an id — including a place that arrived from
+     OpenStreetMap with nothing but a name — and writing a `why` for one
+     is what promotes it to somewhere you have actually been.
+
+     Applied after every other layer precisely so it cannot be argued
+     with by a rebuild. */
+
+  function applyNotes() {
+    const notes = (D.notes && D.notes.items) || {};
+    if (!Object.keys(notes).length) return;
+
+    const byId = new Map([...ALL, ...DISCOVERED].map(i => [i.id, i]));
+    let hidden = 0;
+
+    for (const [id, note] of Object.entries(notes)) {
+      const item = byId.get(id);
+      if (!item) { console.warn('note for a place that is not here:', id); continue; }
+      if (note.hide) { item.hidden = true; hidden++; continue; }
+      Object.assign(item, note);
+      /* Writing a reason down is the whole definition of the top tier. */
+      if (note.why) item.provenance = 'personal';
+    }
+
+    if (hidden) {
+      ALL = ALL.filter(i => !i.hidden);
+      DISCOVERED = DISCOVERED.filter(i => !i.hidden);
+    }
   }
 
   /* Distance is a property of *where you are*, not of the record. Stamping
@@ -242,11 +281,31 @@ const App = (() => {
     return `€${item.price}`;
   }
 
-  /* The line under a name. Curated records have a reason; discovered ones
-     have a street and a category, and the honest thing is to say which
-     kind of record the reader is looking at rather than blur the two. */
+  /* ---------- how much anybody knows about this place ----------
+
+     Four tiers, one definition, used by every card shape. The reader
+     should never have to guess whether a recommendation comes from
+     somebody who went, somebody who read up on it, or a row in a
+     database — so each one carries its own mark and its own wording,
+     and the wording is the honest version rather than the flattering
+     one. See the ladder in nearby.js for how they rank. */
+
+  const TIER = {
+    personal:  { mark: '★', cls: 'personal',   note: null },
+    editorial: { mark: '◆', cls: 'researched', note: 'Researched, not visited' },
+    sourced:   { mark: '◆', cls: 'researched', note: 'From the record, not a visit' },
+    found:     { mark: '·', cls: 'found',      note: 'Found on the map' }
+  };
+
+  const tier     = i => TIER[Near.tierOf(i)] || TIER.found;
+  const tierCls  = i => tier(i).cls;
+  const tierMark = i => tier(i).mark;
+
+  /* The line under a name. Anything with a reason written down shows it,
+     whoever wrote it. A place with nothing but a position says so. */
   function blurb(item) {
-    if (!item.discovered) return item.why || '';
+    if (item.why) return item.why;
+    if (Near.tierOf(item) !== 'found') return '';
     const what = [item.cuisine, item.area].filter(Boolean).join(' · ');
     return what ? `${what} — found on the map, nobody has vouched for it.`
                 : 'Found on the map, nobody has vouched for it.';
@@ -258,7 +317,7 @@ const App = (() => {
     else if (item.type === 'daytrip') bits.push('Out of town');
     if (item.minutesFromHome != null) bits.push(`${item.minutesFromHome} min`);
     bits.push(priceText(item));
-    if (item.discovered) bits.push('found nearby');
+    if (tier(item).note) bits.push(tier(item).note.toLowerCase());
     if (isRomantic(item)) bits.push('<span class="duo" title="Romantic">♥</span>');
     return bits.filter(Boolean).join(' · ');
   }
@@ -376,7 +435,7 @@ const App = (() => {
   }
 
   function card(item, cls = '', overline = '') {
-    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${item.discovered ? 'found' : ''} ${cls}" data-id="${esc(item.id)}">
+    return `<article class="card ${Store.isDone(item.id) ? 'done' : ''} ${tierCls(item)} ${cls}" data-id="${esc(item.id)}">
       ${shot(item)}
       <p class="kicker">${overline ? `<b>${esc(overline)}</b> · ` : ''}${kicker(item)}</p>
       <h2 class="card-title">${esc(item.title)}</h2>
@@ -425,7 +484,7 @@ const App = (() => {
     const pic = thumb && item.image
       ? `<div class="row-thumb">${img(item, '96px', 'loaded')}</div>`
       : (thumb ? `<div class="row-thumb ph"><span class="e">${item.emoji || (item.discovered ? '·' : '·')}</span></div>` : '');
-    return `<div class="row ${thumb ? 'has-thumb' : ''} ${item.discovered ? 'found' : ''} ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
+    return `<div class="row ${thumb ? 'has-thumb' : ''} ${tierCls(item)} ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
       ${pic}
       <h3 class="row-name">${esc(item.title)}${isRomantic(item) ? ' <span class="duo" title="Romantic">♥</span>' : ''}</h3>
       <span class="row-dist">${item.minutesFromHome != null ? `${item.minutesFromHome} min` : ''}</span>
@@ -569,11 +628,11 @@ const App = (() => {
 
   function aroundYouCard(item, label, emoji) {
     const mins = item.minutesFromHome;
-    const line = item.discovered ? blurb(item) : (item.why || '').split('. ')[0] + '.';
-    return `<div class="near-card ${item.discovered ? 'found' : ''}" data-id="${esc(item.id)}">
+    const line = item.why ? item.why.split('. ')[0] + '.' : blurb(item);
+    return `<div class="near-card ${tierCls(item)}" data-id="${esc(item.id)}">
       <p class="near-label"><span class="e">${emoji}</span>${esc(label)}</p>
       <h4 class="near-name">${esc(item.title)}</h4>
-      <p class="near-meta">~${mins} min${item.arr ? ` · ${item.arr}<sup>e</sup>` : ''}${item.discovered ? ' · found nearby' : ''}</p>
+      <p class="near-meta">~${mins} min${item.arr ? ` · ${item.arr}<sup>e</sup>` : ''}${tier(item).note ? ` · ${esc(tier(item).note.toLowerCase())}` : ''}</p>
       <p class="near-why">${esc(line)}</p>
       <a class="near-link" href="${item.url ? esc(item.url) : mapsLink(item)}" target="_blank" rel="noopener">
         ${item.url ? 'Look it up' : 'Directions'}</a>
@@ -601,12 +660,14 @@ const App = (() => {
       + `<div class="near-grid">${picks.join('')}</div>`;
   }
 
-  /* The counterweight: things good enough that distance is not the point. */
+  /* The counterweight: things good enough that distance is not the point.
+     Through Near.beyond so it inherits the one-per-arrondissement cap —
+     three suggestions that turn out to be three stops on the same street
+     is not a counterweight, it is a rut. */
   function worthGoingFurther() {
-    const far = Rank.rank(ALL, CTX, i =>
-      (i.minutesFromHome ?? 0) > WIDER_MIN &&
-      (i.uniqueness || 0) >= 5 && (i.quality || 0) >= 5 &&
-      !Store.isDone(i.id)).slice(0, 3);
+    const far = Near.beyond(i => i.type !== 'daytrip', WIDER_MIN, {
+      limit: 3, floor: 5, exclude: i => spent(i) || !Rank.isOpenOn(i, TODAY_ISO)
+    });
     if (!far.length) return '';
     return stripHead('Worth going further for', 'Good enough that the journey is not the point')
       + `<div class="grid">${far.map(i => card(i)).join('')}</div>`;
@@ -1081,7 +1142,7 @@ const App = (() => {
         <div>
           <h3>${item.emoji || ''} ${esc(item.title)}</h3>
           <p class="sotw-meta">${[item.area, item.minutesFromHome != null ? `${item.minutesFromHome} min away` : '',
-                                  item.priceNote || priceText(item), item.discovered ? 'found nearby' : '']
+                                  item.priceNote || priceText(item), tier(item).note || '']
                                   .filter(Boolean).map(esc).join(' · ')}</p>
           <p class="sotw-why">${esc(blurb(item))}</p>
           ${pairings(item)}
@@ -1224,11 +1285,12 @@ const App = (() => {
 
     if (!items.length && !further.length) return `<p class="empty">Nothing here yet.</p>`;
 
-    /* "Start here — the one to try first" is a recommendation, so only a
-       record somebody wrote about can fill that slot. Where the catalogue
-       has never been, the honest page is the list itself: these are the
-       places that exist near you, and the guide has no opinion yet. */
-    const vouched = items.filter(i => !i.discovered);
+    /* "Start here — the one to try first" is a recommendation, so it needs
+       a record that makes some kind of claim — visited, researched or
+       distinguished. Where nothing does, the honest page is the list
+       itself: these are the places near you, and the guide has no opinion
+       about them yet. */
+    const vouched = items.filter(i => Near.tierOf(i) !== 'found');
     const lead = vouched.filter(hasRealPhoto)[0] || vouched[0] || null;
     const rest = items.filter(i => i.id !== (lead && lead.id));
 
@@ -1256,11 +1318,19 @@ const App = (() => {
      Paris is the bug this whole layer exists to prevent, so the number is
      printed rather than implied. */
   function radiusNote(radius, items) {
-    const vouched = items.filter(i => !i.discovered).length;
     const where = radius == null ? 'anywhere in reach' : `within about ${radius} minutes`;
-    if (!vouched) return `${items.length} ${where} — nobody has written this quarter up yet, so these are names on the map, nearest first`;
-    if (vouched === items.length) return `${items.length} ${where}, all written about`;
-    return `${items.length} ${where} · ${vouched} written about, the rest found on the map`;
+    const n = t => items.filter(i => Near.tierOf(i) === t).length;
+    const been = n('personal'), read = n('editorial') + n('sourced');
+
+    if (!been && !read)
+      return `${items.length} ${where} — nobody has written this quarter up yet, so these are names on the map, nearest first`;
+
+    const bits = [];
+    if (been) bits.push(`${been} written up`);
+    if (read) bits.push(`${read} researched`);
+    const rest = items.length - been - read;
+    if (rest) bits.push(`${rest} found on the map`);
+    return `${items.length} ${where} · ${bits.join(', ')}`;
   }
   /* ---------- quests ----------
      A checklist is not an achievement. These get a progress ring, a

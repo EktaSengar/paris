@@ -574,10 +574,14 @@ body {
 .row:hover .row-name { color: var(--accent); }
 .row.done .row-name { color: var(--faint); }
 
-/* A record from the map layer, sitting in the same list as one somebody
-   wrote about. The dashed rule is the same signal the Around You cards
-   use: this is a name and a position, not a recommendation. */
-.row.found { border-top-style: dashed; }
+/* Three weights of rule for three kinds of knowledge, so how much the
+   site actually knows about a place is legible before you read a word:
+
+     solid   somebody went and wrote it up
+     dotted  researched, or a matter of record — but nobody went
+     dashed  a name and a position, and no claim beyond that            */
+.row.researched { border-top-style: dotted; }
+.row.found      { border-top-style: dashed; }
 .row.found .row-name { font-family: var(--sans); font-size: 1.02rem; }
 
 .row-name {
@@ -1155,8 +1159,10 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   padding: .9rem 1rem 1rem;
   background: var(--card);
 }
-.near-card.found { border-style: dashed; }
-.card.found .shot.ph { border-style: dashed; }
+.near-card.researched { border-style: dotted; }
+.near-card.found      { border-style: dashed; }
+.card.researched .shot.ph { border-style: dotted; }
+.card.found .shot.ph      { border-style: dashed; }
 .near-label {
   margin: 0 0 .3rem;
   font-size: .64rem; letter-spacing: .15em; text-transform: uppercase;
