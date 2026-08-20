@@ -113,7 +113,7 @@ const Hours = (() => {
          that has shut. Saying so is more useful than refusing to read
          it — a closed shop is exactly what the site must not suggest. */
       if (/^(off|closed)$/i.test(rule)) {
-        rules.push({ days: parseDays('Mo-Su'), ranges: [], off: true });
+        rules.push({ days: parseDays('Mo-Su'), ranges: [], off: true, whole: true });
         continue;
       }
 
@@ -135,7 +135,19 @@ const Hours = (() => {
       if (!ranges) return remember(null);
       rules.push({ days, ranges });
     }
-    return remember(rules.length ? rules : null);
+    /* A spec made only of exceptions says when a place is *shut* and
+       nothing about when it is open. `Su off` means closed on Sunday —
+       it does not mean closed all week, which is what treating every
+       unmentioned day as having no hours amounts to. Twenty-two records
+       were being read as permanently closed on the strength of it, and
+       so dropped from every dated section.
+
+       Unknown is the honest answer, and this module already has one.
+       The exception is a bare `closed` with no day attached, which
+       genuinely does mean shut — that carries `whole`. */
+    if (!rules.length) return remember(null);
+    if (!rules.some(r => r.ranges.length || r.whole)) return remember(null);
+    return remember(rules);
   }
 
   /* ---------- asking ---------- */

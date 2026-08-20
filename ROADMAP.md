@@ -108,8 +108,8 @@ has no licence problem.
 Which points at the deeper reason the choice matters less than it looks: the
 discovered layer is *defined* as names and positions carrying no opinion.
 Swapping its source upgrades the one tier that carries no judgement. What needs
-upgrading is the gate — Phase 1's opening hours and evidence score, Phase 1.5's
-liveness check, and Phase 4's contract.
+upgrading is the gate — Phase 1's opening hours and evidence score, and Phase
+4's contract.
 
 ---
 
@@ -203,33 +203,72 @@ and `check-location.mjs` caught it.
 The file is now 3.3 MB, which moves Phase 3 from "eventually" to "next time
 this grows".
 
-## Phase 1.5 — is it still there?
+## Phase 1.5 — is it still there?  ·  *dropped, 21 August 2026*
 
-OpenStreetMap cannot answer this, structurally. A café that closed in 2023 sits
-on the map until a mapper happens to walk past and edit it, and nothing in the
-record says how long it has been since anybody checked. Every other quality
-signal is worthless if the shop has gone.
+The plan was INSEE's SIRENE — the French business register, open under Licence
+Ouverte v2, carrying every establishment's activity code and, the part that
+mattered, its **cessation date**. The reasoning was that OpenStreetMap cannot
+structurally answer "is this place still there": a café that closed in 2023
+sits on the map until a mapper walks past, and every other quality signal is
+worthless if the shop has gone.
 
-**INSEE's SIRENE** answers it. It is the French business register, published on
-data.gouv.fr under Licence Ouverte v2 — no key, no scraping, redistributable.
-Every establishment carries its activity code (`56.10A` restaurants, `10.71C`
-artisan boulangerie-pâtisserie, `56.30Z` bars) and, the part that matters, its
-**cessation date**.
+The reasoning was sound and the premise turned out to be false. Measured
+against the shipped index on 21 August 2026:
 
-- Pull the Paris extract, filter to the activity codes the site has sections
-  for, and match against the index on name and address.
-- A match with no cessation date becomes a positive liveness signal, dated —
-  *still trading as of last month*, which is a stronger claim than anything
-  else in the data.
-- A confident match on a *closed* establishment demotes the record hard, or
-  drops it. This is the only route the site has to noticing a place has gone.
-- Matching will be imperfect — SIRENE records legal entities and OSM records
-  shopfronts, and the names differ. Unmatched is not evidence of closure and
-  must not be treated as any evidence at all.
+**The gate already does this job.** Of the 5,432 found records that clear the
+bar, 88% were edited in OpenStreetMap this year or last and 99% within three
+years — twenty records in total are four or more years stale. Among the records
+the gate *rejects*, 16% are four or more years old. That separation is not a
+coincidence: `evidence` rewards `check_date` and edit recency, so filtering on
+quality filtered on freshness as a side effect. Stronger still, 69% of gated
+records carry a mapper's explicit *check_date* within three years. Phase 1 had
+mostly solved this before Phase 1.5 was written.
 
-Two smaller sources worth the same slot, both permissively licensed: **Overture
-Maps** and **Foursquare's open Places** carry per-POI confidence scores and
-would fill whatever OSM misses. And the high-signal French lists — the city's
+**Matching would fail on half of them.** SIRENE matches on legal name or
+*enseigne* plus address. Only 54% of gated records carry both a house number
+and a street; the rest would fall back to fuzzy name matching — OSM shopfront
+names against registry entries like "SARL DUPONT" — which is where false
+matches come from.
+
+**The failure mode is asymmetric and silent.** A missed closure shows a reader
+one dud. A false *closed* verdict deletes a good place, with no error and
+nothing on screen to say so — the same class of failure as location not
+reaching retrieval, which this repository has been bitten by more than once.
+
+**And it is heavy.** `StockEtablissement` is 2.86 GB zipped, national,
+refreshed monthly. That would be the largest piece of machinery here by an
+order of magnitude, in a project whose whole architecture is no build step, no
+backend, no API keys.
+
+The honest steelman: edit recency is a *proxy* and a cessation date is *direct
+evidence*; an edit could be somebody adding `wheelchair=yes` to a shop that
+shut last year. True. But `check_date` is the field that means "somebody
+confirmed this exists", and the real gap is the 31% of gated records with
+recent edits and no recent check — of which SIRENE could adjudicate about half
+on address. Realistic coverage of the actual problem is around 15% of gated
+records, bought with 2.86 GB a month and a silent-deletion failure mode.
+
+**What was worth doing instead**, and what looking for closure signals actually
+turned up: a bug in `js/hours.js` from Phase 1. `Su off` means closed on
+Sunday, but `rangesOn()` returned nothing for every unmentioned day, so
+`closedDays()` reported all seven shut — 22 records read as permanently closed
+and dropped from every dated section. `check-hours.mjs` had been reporting it
+as "9 strings parse but are never open — suspicious" and it went unchased. One
+real bug in the closure logic already here, worth more than the register.
+
+**Still open, and cheap:** surface the check date in the interface. `checked`
+and `edited` are already carried, and a line reading "confirmed by a mapper in
+2025" turns an uncertainty that cannot be resolved into information a reader
+can weigh — far more this site's voice than silently guessing. `notes.json`
+already supports `hide` for the case where somebody walks past a closed shop.
+
+*If this is ever reopened, it needs a new argument — not this one. The numbers
+above are the reason it was dropped and they are recorded so the same case does
+not get made twice.*
+
+**The other sources named here are not dropped**, only unscheduled: **Overture
+Maps** and **Foursquare's open Places** are permissively licensed and carry
+per-POI confidence scores. And the high-signal French lists — the city's
 *Meilleure baguette de Paris* winners, Michelin's Bib Gourmand — are a few
 hundred names that belong straight in the `sourced` tier. Twenty names that
 mean something beat two thousand that do not.
@@ -384,15 +423,14 @@ Smallest risk first, and each step shippable on its own.
 
 1. ~~**Phase 0** — the two bugs.~~ Done.
 2. ~~**Phase 1** — hours, wider layers, computed evidence.~~ Done.
-3. **Phase 1.5** — SIRENE liveness. Feeds the same `evidence` score, and the
-   index it has to match against is the wider one Phase 1 produces.
+3. ~~**Phase 1.5** — SIRENE liveness.~~ Dropped on the measurements; see above.
 4. ~~**Phase 4** — gate-then-distance.~~ Done.
 5. ~~**Phase 2** — events.~~ Done.
 6. ~~**Phase 3** — sharding.~~ Done.
 
-Every phase in this document is now built except **Phase 1.5**, the SIRENE
-liveness check — which is also the one with the most left to give, since
-nothing else in the data can notice that a place has closed.
+Every phase in this document is now either built or deliberately dropped. The
+one piece of unfinished work it leaves behind is small: show the reader when a
+record was last confirmed, rather than deciding on their behalf.
 
 Phases 1 and 4 are the pair that delivers what was asked for. Phase 2 is the
 one that stops an existing section from quietly dying.
