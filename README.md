@@ -32,6 +32,7 @@ js/
   app.js        loading and rendering
 data/
   events.json         time-sensitive; expires and is pruned automatically
+  events-city.json    what the city says is on — collected daily, gated hard
   places.json         cafés, bakeries, markets, shops, museums, parks, classes
   nightlife.json      jazz rooms, live venues, clubs and bars
   sports.json         play vs watch — activities, venues, running routes
@@ -48,6 +49,8 @@ data/
   notes.json          handwritten, hand-edited, and it beats everything above
 scripts/
   discover.mjs  build the Paris-wide index from OpenStreetMap
+  events.mjs    what is on, from the city's own feed — and the gate that
+                decides which fraction of it earns a place
   civic.mjs     what the Mairie de Paris publishes about its own facilities
   notable.mjs   Wikidata + Wikipedia + pageviews — distinction, and fame
   editorial.mjs resolve hand-written records against real places
@@ -262,12 +265,17 @@ Then run `node scripts/refresh.mjs --check` before committing.
 
 ### Automating collection
 
-`scripts/refresh.mjs` deliberately prunes but does not invent. The extension
-point is documented at the bottom of that file. The rule worth keeping: never
-write an event without `url`, `source` and `lastVerified`, and resolve
-aggregator listings back to the venue's own page before trusting a date.
-Paris.fr publishes an open events feed at `opendata.paris.fr`, which is the
-city's own data and needs no key.
+`scripts/refresh.mjs` still prunes without inventing. Collection lives in
+`scripts/events.mjs`, which reads the city's own feed at `opendata.paris.fr`
+— keyless, around 2,200 live listings — and writes the fraction that clears
+its gate to `events-city.json`. It runs daily in CI, before the prune, so what
+it writes is validated by the same run that writes it.
+
+The rule that keeps this useful rather than noisy is unchanged: never write an
+event without `url`, `source` and `lastVerified`. The one that keeps it honest
+is newer — a collected record is `sourced`, so its `why` carries the city's own
+summary and never a claim about whether the two of you would enjoy it. That
+claim is what `events.json` is for, and no script can make it.
 
 ---
 

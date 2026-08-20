@@ -163,8 +163,16 @@ const Rank = (() => {
     s += 14 * Near.reach(item.minutesFromHome ?? 30);
 
     // price
-    const p = item.price ?? 0;
+    //
+    // A missing price is not a free one. This read `item.price ?? 0` and
+    // so handed the free bonus to every record that simply did not say —
+    // which since the discovery layer arrived means all 22,635 of them,
+    // and every city event whose ticket price is prose rather than a
+    // number. Every hand-written record states a price, so nothing in the
+    // curated files moves; what stops is a bonus nothing had earned.
+    const p = item.price;
     if (p === 0) s += 5;
+    else if (p == null) { /* unknown — neither cheap nor dear */ }
     else if (p <= 10) s += 3;
     else if (p <= 20) s += 1.5;
     else if (p > 60)  s -= 2;

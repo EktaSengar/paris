@@ -37,6 +37,11 @@ const notes = [];
 /* Which files hold what, and how strictly to treat them. */
 const FILES = {
   'events.json':        { timeSensitive: true,  required: ['id', 'title', 'why', 'url', 'lastVerified', 'source'] },
+  /* Generated daily by scripts/events.mjs, and pruned here like anything
+     else with a date on it — the collector fetches a rolling window, but
+     nothing guarantees a run happened today, and an event that ended
+     yesterday must not survive because a fetch failed. */
+  'events-city.json':   { timeSensitive: true,  required: ['id', 'title', 'why', 'url', 'lastVerified', 'source'] },
   'places.json':        { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },
   'nightlife.json':     { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },
   'sports.json':        { timeSensitive: false, required: ['id', 'title', 'why', 'url'] },

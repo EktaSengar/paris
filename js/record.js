@@ -193,6 +193,14 @@ const Rec = (() => {
     const written = (D.editorial?.items || []).map(i =>
       Object.assign({ provenance: 'editorial' }, i));
 
+    /* What the city says is on. Already in the full shape — scripts/
+       events.mjs writes it that way — so it only needs its tier stating.
+       These sit in `all` rather than the discovered layer because they
+       are dated things to do, not places, and the expiry filter below is
+       the whole reason the section cannot go stale. */
+    const cityEvents = (D['events-city']?.items || []).map(i =>
+      Object.assign({ provenance: 'sourced' }, i));
+
     /* Where a place exists in more than one layer, the one that knows most
        about it wins and the others are dropped — otherwise Marché Monge
        appears three times, once per source, which reads as a bug because
@@ -202,6 +210,7 @@ const Rec = (() => {
     const all = []
       .concat(written)
       .concat(D.events?.items || [])
+      .concat(cityEvents)
       .concat(D.places?.items || [])
       .concat(D.nightlife?.items || [])
       .concat(D.sports?.items || [])

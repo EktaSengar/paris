@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'civic', 'notable', 'editorial', 'notes'];
+  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'civic', 'notable', 'editorial', 'notes'];
   const D = {};
   let ALL = [];
   let CTX = {};

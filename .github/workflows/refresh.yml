@@ -39,6 +39,20 @@ jobs:
         if: github.event_name == 'pull_request'
         run: node scripts/refresh.mjs --check
 
+      # Events are the one layer that genuinely changes daily — the city
+      # adds and withdraws listings all week, and an events section that
+      # refreshes on Mondays is an events section that is wrong by Friday.
+      #
+      # Collected BEFORE the prune, so that what it writes is validated by
+      # the same run that writes it. The other way round ships a day of
+      # unchecked records and prunes them tomorrow. A failure here leaves
+      # yesterday's file in place, and the prune then cleans it of
+      # anything that has since finished — which is the arrangement that
+      # lets this be best-effort without the section ever going stale.
+      - name: Collect what the city says is on (daily)
+        if: github.event_name == 'schedule'
+        run: node scripts/events.mjs || echo "events skipped — opendata.paris.fr unavailable"
+
       - name: Prune expired entries and validate
         if: github.event_name != 'pull_request'
         run: node scripts/refresh.mjs

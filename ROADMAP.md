@@ -234,7 +234,7 @@ would fill whatever OSM misses. And the high-signal French lists — the city's
 hundred names that belong straight in the `sourced` tier. Twenty names that
 mean something beat two thousand that do not.
 
-## Phase 2 — events, which is the actual hole
+## Phase 2 — events, which is the actual hole  ·  *done, 20 August 2026*
 
 Thirty-one hand-written events, a window closing on 31 October 2026, and a
 refresh script that deliberately prunes without adding. This section decays to
@@ -252,9 +252,38 @@ coordinates, price, indoor/outdoor, cover image and occurrence times.
 - Run **daily**. OpenStreetMap is weekly because the city's bakeries do not
   move; its concerts do.
 - The hard part is the gate, not the fetch. The feed carries a great deal of
-  municipal filler. Require the venue to resolve to a place already in the
-  index, allowlist the `univers` categories the site has sections for, and cap
-  per category per day.
+  municipal filler.
+
+**What the gate turned out to be.** 2,174 live in a 60-day window, 345
+shipped. In order: coordinates and an official link, inside Paris, filed under
+something, not the municipal notice board (children's, health, solidarity),
+adults in the intended audience, at least one tag that is *a reason to go*
+rather than one that merely files the record, and one per venue and one per
+programme.
+
+That last cap does most of the work — 1,043 down to 345. Four jazz rooms and
+two municipal series were producing a quarter of the feed, and a venue with
+sixty dated nights is a venue rather than sixty events. `nightlife.json`
+already made that split and links to the room's own calendar; this follows it.
+
+Three things came out different from the plan:
+
+*Requiring the venue to resolve to a known place does nothing.* It was in the
+plan as a quality signal and it removes 17 records out of 615, because the
+22,635-place index already contains almost every Paris venue. Dropped rather
+than kept as decoration.
+
+*The estimate of ~150 was low; the answer is 345.* Roughly six per
+arrondissement across two months, and it is a candidate pool rather than a
+page — the sections show a handful and the ranking picks them. Forcing it to
+150 would have meant inventing a rule to hit a number.
+
+*Tags miss what the `audience` field states plainly.* A youth theatre workshop
+is filed under `Théâtre` and never under `Enfants`, and it reached the page.
+The feed states its intended audience in a structured way, so the test is
+whether adults are in it at all. Six records fall to that and all six are
+genuinely for children — where a keyword filter on titles would have dropped
+an exhibition about Marilyn Monroe to catch two workshops.
 
 ## Phase 3 — serving a bigger index without a slower first paint
 
@@ -336,9 +365,9 @@ Smallest risk first, and each step shippable on its own.
 3. **Phase 1.5** — SIRENE liveness. Feeds the same `evidence` score, and the
    index it has to match against is the wider one Phase 1 produces.
 4. ~~**Phase 4** — gate-then-distance.~~ Done.
-5. **Phase 2** — events. Independent of all of the above, and now the oldest
-   outstanding problem: the section still decays to empty on its own.
-6. **Phase 3** — sharding. The index is 3.3 MB. Due.
+5. ~~**Phase 2** — events.~~ Done.
+6. **Phase 3** — sharding. The index is 3.3 MB and `events-city.json` adds
+   another 349 KB. Due, and now the only structural work left.
 
 Phases 1 and 4 are the pair that delivers what was asked for. Phase 2 is the
 one that stops an existing section from quietly dying.
