@@ -67,6 +67,7 @@ jobs:
             node scripts/geocode.mjs  || echo "geocoding skipped"
             node scripts/civic.mjs    || echo "civic data skipped — opendata.paris.fr unavailable"
             node scripts/notable.mjs  || echo "notable layer skipped — Wikidata unavailable"
+            node scripts/invaders.mjs || echo "invaders skipped — Overpass unavailable"
           else
             echo "not Monday — discovery index left alone"
           fi

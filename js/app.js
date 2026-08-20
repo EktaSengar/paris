@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'places/index', 'civic', 'notable', 'editorial', 'notes'];
+  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'places/index', 'civic', 'notable', 'editorial', 'invaders', 'notes'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -212,6 +212,10 @@ const App = (() => {
     HOME = Loc.active();
 
     await loadShards(shardOrder().slice(0, FIRST_BATCH));
+
+    /* 391 mosaics, 25 KB — small enough to arrive whole with the first
+       batch, and the hunt is meaningless without all of them. */
+    Invaders.use(D.invaders?.items || []);
   }
 
   /* Distance is a property of *where you are*, not of the record. Stamping
@@ -844,7 +848,7 @@ const App = (() => {
   function sportOfTheWeek(pool) {
     const week = Math.floor((TODAY - new Date(TODAY.getFullYear(), 0, 1)) / 604800000);
     const candidates = pool.filter(i =>
-      (i.intent || []).includes('try') && !Store.isDone(i.id));
+      (i.intent || []).includes('try') && !Store.isDone(i.id) && !isCityGame(i));
     if (!candidates.length) return null;
     const ranked = Rank.rank(candidates, CTX);
     return ranked[Math.floor(week) % ranked.length] || ranked[0];
@@ -894,6 +898,126 @@ const App = (() => {
     return modeBar + (SPORT_MODE === 'play' ? renderPlay(play) : renderWatch(sports));
   }
 
+  /* ---------- active city exploration ----------
+
+     Play is not only pitches and pools. The instinct this section is
+     built on is that getting out of the flat and moving around Paris
+     *is* the sport, and a mosaic hunt, a scavenger route or a long walk
+     across four arrondissements belongs here more honestly than a gym
+     does.
+
+     The strip below is generic: anything in sports.json carrying the
+     `citygame` category appears in it, so scavenger hunts, orienteering,
+     cycling and running challenges slot in as one JSON object each. One
+     of them, the Invader hunt, has real positions behind it and gets an
+     interactive panel; the rest render as ordinary cards until somebody
+     gives them data too. */
+
+  const isCityGame = i => (i.categories || []).includes('citygame');
+
+  function invaderPanel(item) {
+    const p = Invaders.progress();
+    /* Found ones stay in the list rather than vanishing the instant you
+       tick them. Dropping them looked tidy and made the tick a one-way
+       door — no way to see what you had just marked, and no way back
+       from a mis-tap on a phone held at arm's length under a wall. */
+    const near = Invaders.nearby({ limit: 5, within: 25, includeFound: true });
+    const missions = Invaders.missions({
+      exploredArrs: Store.arrs(),
+      homeArr: Loc.active()?.arr ?? null
+    });
+
+    /* Never a percentage. The denominator is what OpenStreetMap knows,
+       not what Invader has put up — about 1,500 pieces exist and a few
+       hundred are mapped — so a progress bar would be quietly lying
+       about how far along you are. A count is true. */
+    const score = `
+      <div class="inv-score">
+        <div class="inv-stat"><b>${p.found}</b><span>found</span></div>
+        <div class="inv-stat"><b>${p.total}</b><span>on the map</span></div>
+        <div class="inv-stat"><b>${p.arrs}</b><span>${p.arrs === 1 ? 'arrondissement' : 'arrondissements'}</span></div>
+      </div>`;
+
+    const list = near.length ? `
+      <p class="inv-sub">Nearest to ${esc(Loc.displayName(Loc.active()))}</p>
+      <ul class="inv-list">
+        ${near.map(i => `
+          <li class="inv-item${Invaders.isFound(i.code) ? ' done' : ''}">
+            <button class="inv-tick" data-invader="${esc(i.code)}"
+                    aria-pressed="${Invaders.isFound(i.code)}"
+                    title="Mark as found">${Invaders.isFound(i.code) ? '✓' : '○'}</button>
+            <span class="inv-code">${esc(i.official ? i.code : 'unnumbered')}</span>
+            <span class="inv-where">${esc(i.street || `${i.arr}e`)}${i.note ? ` · ${esc(i.note)}` : ''}</span>
+            <span class="inv-dist">${i.minutes} min walk</span>
+            <a class="inv-map" href="https://www.google.com/maps/search/?api=1&query=${i.coords[0]},${i.coords[1]}"
+               target="_blank" rel="noopener">Map</a>
+          </li>`).join('')}
+      </ul>` : `<p class="inv-sub">None mapped within a 25-minute walk of here — the missions below reach further.</p>`;
+
+    const missionCards = missions.length ? `
+      <p class="inv-sub">Missions</p>
+      <div class="inv-missions">
+        ${missions.map(m => `
+          <div class="inv-mission">
+            <h5>${m.emoji} ${esc(m.title)}</h5>
+            <p class="inv-mission-line">${esc(m.line)}</p>
+            <p class="inv-mission-meta">${m.stops.length} to find · ${m.km} km · about ${m.minutes} min${m.newArr ? ' · somewhere new' : ''}</p>
+            <p class="inv-mission-stops">${m.stops.map(x => esc(x.official ? x.code : `${x.arr}e`)).join(' → ')}</p>
+            ${pairedWith(m)}
+          </div>`).join('')}
+      </div>` : '';
+
+    return `
+      <div class="inv-panel">
+        ${score}
+        ${list}
+        ${missionCards}
+        <p class="inv-caveat">These are the mosaics OpenStreetMap knows about — roughly a few hundred
+        of the ~1,500 Invader has put up, and some of those are painted over by now. Treat an empty
+        wall as part of the game.</p>
+      </div>`;
+  }
+
+  /* The rest of the guide, hung off the end of a mission. A hunt that
+     ends at a bakery is a better afternoon than a hunt that ends, and
+     these come from the same retrieval layer as everything else — gated,
+     nearest first — measured from where the mission finishes rather than
+     from where you are standing now. */
+  function pairedWith(mission) {
+    const last = mission.stops[mission.stops.length - 1];
+    if (!last) return '';
+
+    const here = Loc.active();
+    const at = { lat: last.coords[0], lon: last.coords[1] };
+    const nearEnd = (kind, want) => {
+      const all = Near.pick(Near.KIND[kind], { rings: [20], want: 3, limit: 12, exclude: notWanted }).items;
+      return all
+        .map(i => ({ i, d: i.coords ? Loc.km([at.lat, at.lon], i.coords) : 99 }))
+        .sort((a, b) => a.d - b.d)
+        .filter(x => x.d < 1.2)[0]?.i || null;
+    };
+
+    const chain = [['☕', 'cafe'], ['🥐', 'bakery'], ['🌳', 'park'], ['🍽️', 'restaurant']]
+      .map(([emoji, kind]) => { const i = nearEnd(kind); return i ? `${emoji} ${esc(i.title)}` : null; })
+      .filter(Boolean);
+
+    if (!chain.length) return '';
+    return `<p class="inv-pair">Finish there, then → ${chain.join(' → ')}</p>`;
+  }
+
+  function cityGames(pool) {
+    const games = pool.filter(isCityGame);
+    if (!games.length) return '';
+    return stripHead('Active city exploration',
+                     'Sport that is really just leaving the flat and moving around Paris')
+      + games.map(g => `
+          <div class="citygame">
+            <h4>${g.emoji || ''} ${esc(g.title)}</h4>
+            <p class="citygame-why">${esc(g.why || '')}</p>
+            ${g.game === 'invaders' ? invaderPanel(g) : ''}
+          </div>`).join('');
+  }
+
   function renderPlay(play) {
     const featured = sportOfTheWeek(play);
 
@@ -914,7 +1038,7 @@ const App = (() => {
        empty in a quarter the catalogue never visited. */
     const local = Near.pick(i => Near.KIND.sport(i) && i.type !== 'run' && matches(i), {
       rings: Near.RINGS.out, want: 8, limit: 20,
-      exclude: i => notWanted(i) || (featured && i.id === featured.id)
+      exclude: i => notWanted(i) || isCityGame(i) || (featured && i.id === featured.id)
     });
     const activities = local.items;
     const furtherSport = Near.beyond(
@@ -940,6 +1064,7 @@ const App = (() => {
       </div>` : '';
 
     return feature
+      + cityGames(play)
       + stripHead('Add sport to the week', 'Four slots you would actually keep')
       + weekPlan(play)
       + stripHead('What do you want out of it?')
@@ -1939,6 +2064,19 @@ const App = (() => {
       const b = e.target.closest('[data-mode]'); if (!b) return;
       SPORT_MODE = b.dataset.mode;
       render();
+    });
+
+    /* Marking an Invader found. Repaints the panel only — a full render
+       would scroll you back to the top of Sport every time you ticked
+       one off, which on a hunt means every few minutes. */
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-invader]'); if (!b) return;
+      const code = b.dataset.invader;
+      const after = Invaders.toggle(code).length;
+      const panel = b.closest('.inv-panel');
+      const game = (D.sports.items || []).find(i => i.game === 'invaders');
+      if (panel && game) panel.outerHTML = invaderPanel(game);
+      toast(after ? `${after} found` : 'Unmarked');
     });
 
     // Sport: what do you want out of it

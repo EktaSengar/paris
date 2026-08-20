@@ -1183,3 +1183,77 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   border-radius: 8px; padding: .8rem 1rem; margin: 0 0 1.2rem;
   white-space: pre; overflow-x: auto; color: var(--soft);
 }
+
+/* ---------- active city exploration ----------
+   The Invader hunt, and whatever joins it. Built to read as a panel you
+   act on rather than a card you look at: the score line, the nearest few
+   with a tick beside each, then the missions. */
+
+.citygame { margin: 0 0 2rem; }
+.citygame h4 { font-size: 1.25rem; margin: 0 0 .35rem; letter-spacing: -.01em; }
+.citygame-why { margin: 0 0 1rem; max-width: 62ch; color: var(--ink-2, #5b5651); }
+
+.inv-panel {
+  border: 1px solid var(--rule, #e6e0d8);
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem 1rem;
+  background: var(--card, #fffdf9);
+}
+
+.inv-score { display: flex; gap: 2rem; margin: 0 0 1.1rem; flex-wrap: wrap; }
+.inv-stat { display: flex; flex-direction: column; line-height: 1.1; }
+.inv-stat b { font-size: 1.7rem; font-weight: 500; letter-spacing: -.02em; }
+.inv-stat span { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+                 color: var(--ink-3, #8a827a); margin-top: .2rem; }
+
+.inv-sub { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+           color: var(--ink-3, #8a827a); margin: 1.1rem 0 .5rem; }
+.inv-sub:first-of-type { margin-top: 0; }
+
+.inv-list { list-style: none; margin: 0; padding: 0; }
+.inv-item {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto auto;
+  align-items: baseline;
+  gap: .6rem;
+  padding: .45rem 0;
+  border-bottom: 1px solid var(--rule-soft, #f0ebe3);
+  font-size: .92rem;
+}
+.inv-item:last-child { border-bottom: 0; }
+.inv-item.done .inv-code, .inv-item.done .inv-where { opacity: .45; text-decoration: line-through; }
+
+.inv-tick {
+  border: 1px solid var(--rule, #e6e0d8); background: transparent; cursor: pointer;
+  width: 1.55rem; height: 1.55rem; border-radius: 50%; line-height: 1;
+  font-size: .85rem; color: var(--ink-2, #5b5651); padding: 0;
+}
+.inv-tick[aria-pressed="true"] { background: var(--accent, #8c2f39); border-color: var(--accent, #8c2f39); color: #fff; }
+
+.inv-code { font-variant-numeric: tabular-nums; font-size: .82rem;
+            color: var(--ink-3, #8a827a); white-space: nowrap; }
+.inv-where { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inv-dist { font-size: .82rem; color: var(--ink-3, #8a827a); white-space: nowrap; }
+.inv-map { font-size: .82rem; white-space: nowrap; }
+
+.inv-missions { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.inv-mission {
+  border: 1px solid var(--rule-soft, #f0ebe3); border-radius: 8px;
+  padding: .8rem .9rem; background: var(--bg, #fbf8f3);
+}
+.inv-mission h5 { margin: 0 0 .3rem; font-size: 1rem; font-weight: 500; }
+.inv-mission-line { margin: 0 0 .5rem; font-size: .9rem; }
+.inv-mission-meta { margin: 0 0 .4rem; font-size: .82rem; color: var(--ink-3, #8a827a); }
+.inv-mission-stops { margin: 0; font-size: .8rem; font-variant-numeric: tabular-nums;
+                     color: var(--ink-3, #8a827a); word-break: break-word; }
+.inv-pair { margin: .5rem 0 0; font-size: .84rem; }
+
+.inv-caveat { margin: 1rem 0 0; font-size: .8rem; color: var(--ink-3, #8a827a); max-width: 68ch; }
+
+@media (max-width: 560px) {
+  .inv-item { grid-template-columns: auto 1fr auto; row-gap: .15rem; }
+  .inv-code { grid-column: 2; }
+  .inv-where { grid-column: 2; white-space: normal; }
+  .inv-dist, .inv-map { grid-column: 3; }
+  .inv-score { gap: 1.4rem; }
+}

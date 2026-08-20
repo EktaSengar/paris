@@ -24,6 +24,7 @@ js/
                 when it cannot, rather than guessing
   record.js     what a record is, and how the data files stack into two
                 layers — shared with the tests so they cannot disagree
+  invaders.js   the mosaic hunt: what is near you, routed missions, progress
   nearby.js     retrieval and the provenance ladder: what exists nearby, and
                 how much anybody knows about it
   state.js      what the site remembers about you (localStorage only)
@@ -41,6 +42,7 @@ data/
   daytrips.json       reachable from Gare du Nord / Gare de l'Est
   neighborhoods.json  all 20 arrondissement profiles
   quests.json         long-running exploration goals
+  invaders.json       ~390 Invader mosaics, for the hunt in Sport → Play
   home.json           the default location, on first visit only
   places/             the discovery index, ~23k Paris places from OpenStreetMap
                       — coverage, not opinion. Twenty files, one per
@@ -53,6 +55,7 @@ data/
 scripts/
   discover.mjs  build the Paris-wide index from OpenStreetMap
   shard.mjs     split that index by arrondissement, and read it back whole
+  invaders.mjs  where the Space Invader mosaics are, so the hunt is real
   events.mjs    what is on, from the city's own feed — and the gate that
                 decides which fraction of it earns a place
   civic.mjs     what the Mairie de Paris publishes about its own facilities
@@ -144,6 +147,28 @@ Away. On a phone the bar scrolls, with a fade on the right edge so that reads
 as "more this way" rather than as clipped text.
 Free, For two and Hidden are *filters*, not places, and live in the filter row.
 Quests and Your list are utilities, kept small.
+
+### Sport: active city exploration
+
+Play is not only pitches and pools. Anything in `sports.json` carrying the
+`citygame` category appears in its own strip at the top of Play, on the
+principle that getting out of the flat and moving around Paris *is* the sport —
+so a mosaic hunt, a scavenger route or a long walk across four arrondissements
+belongs there more honestly than a gym does. Scavenger hunts, orienteering,
+cycling and running challenges slot in as one JSON object each.
+
+The first of them, the Invader hunt, has real positions behind it
+(`data/invaders.json`, from OpenStreetMap) and so gets an interactive panel:
+what is within a walk, three missions routed nearest-neighbour from where you
+are standing, and a count of what you have found — kept in this browser, on the
+same shelf as the quests. Missions end by handing you back to the rest of the
+guide: coffee, a bakery, a park, lunch, picked near the last stop.
+
+Two things it deliberately does not do. It never shows a percentage, because
+the denominator is what OpenStreetMap knows — a few hundred of the ~1,500
+pieces Invader has put up — and a progress bar would quietly lie about how far
+along you are. And a mission that cannot be filled is not offered, rather than
+being offered short.
 
 ### Sport: play vs watch
 
