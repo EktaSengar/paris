@@ -46,9 +46,10 @@ const load = (file, name, extra = {}) => loadModule(file, name, {
   ...extra
 });
 
-const Loc  = load('location.js', 'Loc');
-const Rec  = load('record.js',   'Rec', { Loc });
-const Near = load('nearby.js',   'Near');
+const Loc   = load('location.js', 'Loc');
+const Hours = load('hours.js',    'Hours');
+const Rec   = load('record.js',   'Rec', { Loc });
+const Near  = load('nearby.js',   'Near', { Hours });
 
 const readOpt = f => { try { return read(f); } catch { return { items: [] }; } };
 

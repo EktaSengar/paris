@@ -264,7 +264,7 @@ neighbours, lazy-load the rest. This keeps the property that matters — locatio
 is an input, so changing it changes what *exists* nearby — while the index
 grows underneath it.
 
-## Phase 4 — the recommendation contract
+## Phase 4 — the recommendation contract  ·  *done, 20 August 2026*
 
 Distance is currently a *scoring term*: `+14 × reach` in `js/scoring.js`, and a
 multiplier inside `localScore`. That is a defensible design, and it is not the
@@ -277,11 +277,44 @@ lexicographic rather than weighted:
 3. If the gate cannot fill the section, widen the ring — and print the radius
    that was actually used. Never quietly lower the bar.
 
-This also finishes separating two rankers that presently overlap. `Rank` keeps
-the question it is good at — *is this good today*, with weather, urgency and
-season, which is a question about events. `Near` becomes purely *what is around
-me that clears the bar*. `beyond()` stays exactly as it is: the labelled escape
-hatch, and the one section where distance deliberately does not sort.
+This also finishes separating two rankers that overlapped. `Rank` keeps the
+question it is good at — *is this good today*, with weather, urgency and
+season, which is a question about events. `Near` is purely *what is around me
+that clears the bar*. `beyond()` is unchanged: the labelled escape hatch, and
+the one section where distance deliberately does not sort.
+
+**Where the bar sits.** `evidence >= 0.35`, plus a chain cut-off — about the
+top quarter of what OpenStreetMap knows, 6,340 of 21,880 found records. Chosen
+from the measured distribution rather than picked: within ten minutes of the
+10th it leaves 55 cafés, 36 bakeries and 215 restaurants, which is more than
+any section needs, while a quiet quarter has to reach further. Anything above
+the `found` tier is in regardless — somebody looked at it, which is a stronger
+claim than any count of tags.
+
+**Open now is a disqualification, not a demotion** — but only where the record
+says so. `Hours.isOpen` returns null for a spec it cannot read, and null never
+excludes: more than half the city states no hours, and a section that hid
+everything it could not read would hide Paris. The gate is passed a Date by
+the sections that are genuinely about this minute, which today means the
+"Around you" cards, since those hand you directions to a named shop.
+
+Two things learned in the doing:
+
+*The known-guarantee and the distance sort had to be separated.* `keepKnown()`
+decides membership; the distance sort decides order. It filters an
+already-ordered list rather than resorting it, so a promoted record lands
+wherever its own walk puts it and "nearest first" stays literally true of
+whatever comes out.
+
+*At `limit: 1` the guarantee decides everything.* The "Around you" cards ask
+for one place per category, so a `wantKnown` of 1 means the guide's own record
+wins over a gated bare name a minute closer. That is right — one card per
+category is the site speaking rather than listing — but it was arriving as an
+accident of a default, and it is now written down at the call site. It costs
+something worth recording: the curated files carry no opening hours, so a known
+record almost always answers "we cannot tell" to the open-now gate and sails
+through it. The gate bites hardest on found records. That is the safe way
+round, and it is an argument for carrying hours on the written-up places too.
 
 ## Phase 5 — guardrails
 
@@ -302,11 +335,10 @@ Smallest risk first, and each step shippable on its own.
 2. ~~**Phase 1** — hours, wider layers, computed evidence.~~ Done.
 3. **Phase 1.5** — SIRENE liveness. Feeds the same `evidence` score, and the
    index it has to match against is the wider one Phase 1 produces.
-4. **Phase 4** — gate-then-distance. Depends on Phase 1's `evidence` field.
-5. **Phase 2** — events. Independent of all of the above; can run in parallel
-   if the decaying section wants attention sooner.
-6. **Phase 3** — sharding. Only once the index has actually grown. Premature
-   before that.
+4. ~~**Phase 4** — gate-then-distance.~~ Done.
+5. **Phase 2** — events. Independent of all of the above, and now the oldest
+   outstanding problem: the section still decays to empty on its own.
+6. **Phase 3** — sharding. The index is 3.3 MB. Due.
 
 Phases 1 and 4 are the pair that delivers what was asked for. Phase 2 is the
 one that stops an existing section from quietly dying.

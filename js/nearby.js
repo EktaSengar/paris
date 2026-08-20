@@ -241,15 +241,87 @@ const Near = (() => {
      that says "within about 10 minutes" is only honest if it is the
      radius the answer actually came from. */
 
+  /* ---------- the bar ----------
+
+     The contract this layer answers is "only things worth offering,
+     nearest first" — and that is lexicographic, not weighted. Quality
+     decides *membership*; distance decides *order*. Something below the
+     bar is not shown at any distance, and nothing above it is reordered
+     because it happens to be excellent.
+
+     That is a real change from what this file used to do. Merit and
+     distance used to be multiplied together, so a superb place across
+     the city and a fair one round the corner could trade places
+     depending on the arithmetic. Readable, defensible, and not what
+     anybody standing on a street corner is asking.
+
+     0.35 is about the top quarter of what OpenStreetMap knows: 6,340 of
+     21,880 found records. Below that the record is a name, a position
+     and very little else. The number is a judgement and it is meant to
+     be adjusted — what is not adjustable is that it stays fixed while
+     the radius moves, which is the whole of the locked decision. */
+
+  const BAR = 0.35;
+
+  /* An outlet of something is not a discovery. The chain penalty already
+     scales with how many of them the city has; past this it is a brand,
+     not a place. */
+  const CHAIN_OUT = 3;
+
+  /* Definitely shut — not "we cannot tell". Hours.isOpen returns null for
+     a spec outside the subset it reads, and null must never exclude
+     anything: more than half of Paris carries no hours at all, and a
+     section that hid everything it could not read would hide the city. */
+  function shutNow(i, when) {
+    if (!i.hours || typeof Hours === 'undefined') return false;
+    return Hours.isOpen(i.hours, when) === false;
+  }
+
+  function clears(i, when) {
+    if (when && shutNow(i, when)) return false;
+    /* Somebody looked at it — visited, researched, or a matter of record.
+       That is a stronger claim than any count of tags, so these are in. */
+    if (tierOf(i) !== 'found') return true;
+    if (chainPenalty(i) >= CHAIN_OUT) return false;
+    return evidence(i) >= BAR;
+  }
+
+  /* ---------- the pipeline, restated ----------
+
+     gate → widen until the gated answer is worth giving → order by distance
+
+     `openNow` takes a Date and makes "definitely shut right now" a
+     disqualification rather than a demotion. Sections about right now
+     pass it; sections about the weekend must not. */
+
   function pick(match, opts = {}) {
-    const { rings = RINGS.near, want = 6, wantKnown = 2, limit = 24, exclude = null } = opts;
-    const ok = i => match(i) && !(exclude && exclude(i));
+    const { rings = RINGS.near, want = 6, wantKnown = 2, limit = 24,
+            exclude = null, openNow = null } = opts;
+
+    const ok = i => match(i) && !(exclude && exclude(i)) && clears(i, openNow);
+
+    /* The ring counts what survives the gate, not what exists. Widening
+       on raw counts would stop at the first ring merely full of places
+       that are then all filtered away — an empty section drawn from a
+       ten-minute radius, when twenty minutes had the answer. */
     const found = ring(CURATED.filter(ok).concat(FOUND.filter(ok)), rings, want, wantKnown);
-    const ranked = dedupe(found.items
-      .map(i => ({ i, s: localScore(i) }))
-      .sort((a, b) => b.s - a.s)
-      .map(x => x.i));
-    return { radius: found.radius, items: keepKnown(ranked, limit, wantKnown) };
+
+    /* Membership: the nearest that clear the bar. Order: the same thing,
+       which is the point — one sort, and it is distance. Ties go to the
+       better-attested record, since two places on the same street corner
+       have to be separated by something. */
+    const near = dedupe(found.items.slice().sort((a, b) =>
+      (mins(a) - mins(b)) || (localScore(b) - localScore(a))));
+
+    return {
+      radius: found.radius,
+      /* The locked rule is that the bar holds still and the radius moves.
+         That is only honest if the page can say when it moved, so the
+         fact travels with the answer rather than being inferred from the
+         number by each caller. */
+      widened: found.radius != null && found.radius > rings[0],
+      items: keepKnown(near, limit, wantKnown)
+    };
   }
 
   /* The ring guarantees that `wantKnown` places the site knows something
@@ -267,22 +339,36 @@ const Near = (() => {
 
      So the guarantee is made explicit rather than left to arithmetic: if
      the top `limit` does not contain `wantKnown` records above the `found`
-     tier, the best ones that exist are promoted into it, displacing the
-     weakest bare names. Everything else keeps its order. This is a
-     deliberate editorial thumb on the scale and the whole premise of the
-     site — a list of names is what the reader could have got from a map. */
-  function keepKnown(ranked, limit, wantKnown) {
-    const head = ranked.slice(0, limit);
-    if (!wantKnown || head.filter(known).length >= wantKnown) return head;
+     tier, the nearest ones that exist are promoted into it, displacing the
+     furthest bare names. This is a deliberate editorial thumb on the
+     scale and the whole premise of the site — a list of names is what the
+     reader could have got from a map.
 
-    const missing = wantKnown - head.filter(known).length;
+     It decides membership only. The list it is handed is already ordered
+     by distance and it filters that order rather than resorting it, so a
+     promoted record lands wherever its own walk puts it. "Nearest first"
+     stays literally true of whatever comes out. */
+  function keepKnown(ranked, limit, wantKnown) {
+    /* Never guarantee more than there is room for. `nearestOfKind` asks
+       for a single answer, and a promotion rule that returned two would
+       be handing back a list where the caller asked for one place. */
+    const guarantee = Math.min(wantKnown || 0, limit);
+
+    const head = ranked.slice(0, limit);
+    if (!guarantee || head.filter(known).length >= guarantee) return head;
+
+    const missing = guarantee - head.filter(known).length;
     const promote = ranked.slice(limit).filter(known).slice(0, missing);
     if (!promote.length) return head;
 
-    /* Drop from the tail, worst first, and only ever bare names. */
+    /* Keep the known ones, then as many of the nearest bare names as
+       still fit, and drop the furthest to make room. */
     const kept = head.filter(known);
-    const bare = head.filter(i => !known(i)).slice(0, Math.max(0, limit - kept.length - promote.length));
-    return ranked.filter(i => kept.includes(i) || bare.includes(i) || promote.includes(i));
+    const bare = head.filter(i => !known(i))
+      .slice(0, Math.max(0, limit - kept.length - promote.length));
+    return ranked
+      .filter(i => kept.includes(i) || bare.includes(i) || promote.includes(i))
+      .slice(0, limit);
   }
 
   /* One market that runs the length of a street is several nodes in OSM,
@@ -389,5 +475,6 @@ const Near = (() => {
   };
 
   return { use, pick, beyond, inArr, reach, localScore, ring, RINGS, KIND, HALF,
-           chainPenalty, tierOf, AUTHORITY, evidence, EVIDENCE_WORTH };
+           chainPenalty, tierOf, AUTHORITY, evidence, EVIDENCE_WORTH,
+           clears, BAR };
 })();

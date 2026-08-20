@@ -561,13 +561,28 @@ const App = (() => {
   const notWanted = i => Store.rating(i.id) === 'never';
   const spent     = i => notWanted(i) || Store.isDone(i.id);
 
-  /* Best answer of a kind within reach. Reach-weighted merit rather than
-     pure nearest: "the best bakery you can walk to" is a better answer
-     than "the bakery with the smallest number next to it", and the decay
-     in Near.reach is steep enough that it never means crossing town. */
-  function nearestOfKind(cat, maxMin) {
+  /* Best answer of a kind within reach — which since the gate went in is
+     the same thing as the nearest one. This used to weigh merit against
+     distance so that "the best bakery you can walk to" beat "the bakery
+     with the smallest number next to it". Now nothing reaches the list
+     without clearing the bar, so the nearest of them *is* the best one
+     you can walk to, and there is no arithmetic left to argue with. */
+  function nearestOfKind(cat, maxMin, when = null) {
     const { items } = Near.pick(Near.KIND[cat], {
-      rings: [maxMin], want: 1, limit: 1, exclude: spent
+      rings: [maxMin], want: 1, limit: 1, exclude: spent, openNow: when,
+      /* Explicit, because it decides the whole answer at limit 1: where
+         the ring holds somewhere the guide knows about, that is the one
+         named, even if a gated bare name is a minute closer. One card per
+         category is the site speaking rather than listing, and this is
+         the one place where being right beats being nearest.
+
+         Worth knowing what it costs: the curated files do not record
+         opening hours, so a known record almost always answers `null` to
+         "is it open" and sails through the gate above. The gate bites
+         hardest on found records — which is the right way round for
+         safety, and an argument for carrying hours on the written-up
+         places too. */
+      wantKnown: 1
     });
     return items[0] || null;
   }
@@ -590,10 +605,19 @@ const App = (() => {
     const picks = [];
     const used = new Set();
 
+    /* The one section that is unambiguously about this minute: it names a
+       bakery and hands you directions to it. Anywhere whose own opening
+       hours say it is shut right now is dropped rather than demoted —
+       walking someone to a closed shop is the failure the hours were
+       carried for. A record that does not state its hours is still
+       offered, because "we cannot tell" is not "it is shut", and more
+       than half the city does not say. */
+    const now = new Date();
+
     for (const [cat, emoji, label] of AROUND) {
-      let it = nearestOfKind(cat, NEAR_MIN);
+      let it = nearestOfKind(cat, NEAR_MIN, now);
       if (it && used.has(it.id)) it = null;
-      if (!it) it = nearestOfKind(cat, WIDER_MIN);
+      if (!it) it = nearestOfKind(cat, WIDER_MIN, now);
       if (!it || used.has(it.id)) continue;
       used.add(it.id);
       picks.push(aroundYouCard(it, label, emoji));
@@ -602,7 +626,7 @@ const App = (() => {
 
     if (!picks.length) return '';
     return stripHead(`Around ${Loc.displayName(loc)}`,
-                     `Within about ${NEAR_MIN} minutes`)
+                     `Within about ${NEAR_MIN} minutes · nothing that says it is shut right now`)
       + `<div class="near-grid">${picks.join('')}</div>`;
   }
 
@@ -647,7 +671,7 @@ const App = (() => {
     return hero(lead)
       + renderAroundYou()
       + (also.items.length
-          ? stripHead(`Also around ${Loc.displayName(Loc.active())}`, radiusNote(also.radius, also.items))
+          ? stripHead(`Also around ${Loc.displayName(Loc.active())}`, radiusNote(also.radius, also.items, also.widened))
             + rows(also.items)
           : '')
       + worthGoingFurther()
@@ -706,7 +730,7 @@ const App = (() => {
       + group('A drink first', 'Wine, cocktails, and one taqueria with a secret door', i => i.type === 'bar')
       + (localNight.items.length
           ? stripHead(`Open around ${Loc.displayName(Loc.active())}`,
-                      radiusNote(localNight.radius, localNight.items))
+                      radiusNote(localNight.radius, localNight.items, localNight.widened))
             + rows(localNight.items, null, false)
           : '')
       + (routes.length
@@ -849,7 +873,7 @@ const App = (() => {
       + stripHead('What do you want out of it?')
       + chips
       + (activities.length
-          ? stripHead(`Around ${Loc.displayName(Loc.active())}`, radiusNote(local.radius, activities))
+          ? stripHead(`Around ${Loc.displayName(Loc.active())}`, radiusNote(local.radius, activities, local.widened))
             + `<div class="grid play-grid">${activities.map(i => card(i)).join('')}</div>`
           : `<p class="empty">Nothing matches that. Try another intent.</p>`)
       + (furtherSport.length
@@ -1222,7 +1246,7 @@ const App = (() => {
        is actually there — so this list is a list of places near you that
        happen to include the ones somebody wrote about, rather than the
        written-about list with your distances printed on it. */
-    const { items, radius } = Near.pick(Near.KIND[type], {
+    const { items, radius, widened } = Near.pick(Near.KIND[type], {
       rings: Near.RINGS.walk, want: 8, limit: 24, exclude: notWanted
     });
 
@@ -1249,7 +1273,7 @@ const App = (() => {
 
     return (lead ? featured(lead, KICKERS[EAT_MODE] || 'Start here') : '')
       + (rest.length
-          ? stripHead(`${label} around ${here}`, radiusNote(radius, items))
+          ? stripHead(`${label} around ${here}`, radiusNote(radius, items, widened))
             + rows(rest, null, true)
           : '')
       + (further.length
@@ -1263,20 +1287,26 @@ const App = (() => {
      for. A heading that claims "near you" while listing the other side of
      Paris is the bug this whole layer exists to prevent, so the number is
      printed rather than implied. */
-  function radiusNote(radius, items) {
-    const where = radius == null ? 'anywhere in reach' : `within about ${radius} minutes`;
+  function radiusNote(radius, items, widened) {
+    /* The bar does not move, so when a quarter is quiet the honest thing
+       to report is the reach it took to answer — not a shorter number
+       and a thinner list. */
+    const where = radius == null ? 'anywhere in reach'
+      : `within ${widened ? '' : 'about '}${radius} minutes`;
+    const why = widened ? ' — nothing closer cleared the bar' : '';
+
     const n = t => items.filter(i => Near.tierOf(i) === t).length;
     const been = n('personal'), read = n('editorial') + n('sourced');
 
     if (!been && !read)
-      return `${items.length} ${where} — nobody has written this quarter up yet, so these are names on the map, nearest first`;
+      return `${items.length} ${where}${why} — nobody has written this quarter up yet, so these are names on the map, nearest first`;
 
     const bits = [];
     if (been) bits.push(`${been} written up`);
     if (read) bits.push(`${read} researched`);
     const rest = items.length - been - read;
     if (rest) bits.push(`${rest} found on the map`);
-    return `${items.length} ${where} · ${bits.join(', ')}`;
+    return `${items.length} ${where}${why} · ${bits.join(', ')} · nearest first`;
   }
   /* ---------- quests ----------
      A checklist is not an achievement. These get a progress ring, a
@@ -1443,11 +1473,11 @@ const App = (() => {
     return standing
       + dossier
       + (walk.items.length
-          ? stripHead('Walks and routes', radiusNote(walk.radius, walk.items))
+          ? stripHead('Walks and routes', radiusNote(walk.radius, walk.items, walk.widened))
             + `<div class="routes">${walk.items.map(routeCard).join('')}</div>`
           : '')
       + (gems.items.length
-          ? stripHead('Hidden Paris', radiusNote(gems.radius, gems.items))
+          ? stripHead('Hidden Paris', radiusNote(gems.radius, gems.items, gems.widened))
             + rows(gems.items)
           : '')
       + stripHead('All twenty')
