@@ -285,13 +285,35 @@ whether adults are in it at all. Six records fall to that and all six are
 genuinely for children — where a keyword filter on titles would have dropped
 an exhibition about Marilyn Monroe to catch two workshops.
 
-## Phase 3 — serving a bigger index without a slower first paint
+## Phase 3 — serving a bigger index without a slower first paint  ·  *done, 20 August 2026*
 
-`discovered.json` is already 1.5 MB parsed on every load, and Phase 1 roughly
-doubles it. Shard it per arrondissement, fetch the active one and its
-neighbours, lazy-load the rest. This keeps the property that matters — location
-is an input, so changing it changes what *exists* nearby — while the index
-grows underneath it.
+**First, a correction to this document.** Phases 1 and 4 both described the
+index as 3.3 MB and treated that as the number to fix. It is the number on
+disk. Pages serves it gzipped, so what actually crosses the wire is **778 KB**
+— still by a wide margin the largest thing the site asks for, still ahead of
+the first paint, but not the emergency the raw figure implied. Worth measuring
+before optimising, and worth writing down having not done so twice.
+
+The index now ships as twenty files, one per arrondissement, in `data/places/`.
+`discovered.json` is gone. The browser fetches the four nearest by centroid —
+**about 20% of the index** — paints, and pulls the remaining sixteen in the
+background, rebuilding once when they land.
+
+The rule that makes this safe rather than merely clever: **the site may be
+briefly partial and must never stay partial.** A section quietly returning
+fewer results because a file has not arrived is the same class of failure as
+location not reaching retrieval — the page looks completely healthy and the
+answers are somebody else's neighbourhood. So `whenComplete()` is awaited
+before any move, and every view repaints once the fill lands.
+
+Only the `found` layer is split. The tiers that carry judgement are small and
+needed city-wide: `beyond()` answers "worth the trip" from them alone, and
+would be wrong with a partial file.
+
+Rebuilding runs the same code path twice rather than merging incrementally. It
+costs a few tens of milliseconds and is far easier to be sure of than a merge
+that would have to re-apply de-duplication and handwritten notes to a growing
+list.
 
 ## Phase 4 — the recommendation contract  ·  *done, 20 August 2026*
 
@@ -366,8 +388,11 @@ Smallest risk first, and each step shippable on its own.
    index it has to match against is the wider one Phase 1 produces.
 4. ~~**Phase 4** — gate-then-distance.~~ Done.
 5. ~~**Phase 2** — events.~~ Done.
-6. **Phase 3** — sharding. The index is 3.3 MB and `events-city.json` adds
-   another 349 KB. Due, and now the only structural work left.
+6. ~~**Phase 3** — sharding.~~ Done.
+
+Every phase in this document is now built except **Phase 1.5**, the SIRENE
+liveness check — which is also the one with the most left to give, since
+nothing else in the data can notice that a place has closed.
 
 Phases 1 and 4 are the pair that delivers what was asked for. Phase 2 is the
 one that stops an existing section from quietly dying.

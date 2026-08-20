@@ -24,7 +24,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadRecord } from './shim.mjs';
+import { loadRecord, readDiscovered } from './shim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(ROOT, 'data');
@@ -62,7 +62,7 @@ function findPlace(pool, m) {
 
 async function run() {
   const doc = await read('editorial');
-  const disc = await read('discovered');
+  const disc = await readDiscovered();
   const pool = disc.items || [];
 
   const missed = [];

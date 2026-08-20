@@ -23,7 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadModule } from './shim.mjs';
+import { loadModule, readDiscovered } from './shim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VERBOSE = process.argv.includes('--verbose');
@@ -64,8 +64,9 @@ const readOpt = f => { try { return read(f); } catch { return { items: [] }; } }
 
 const D = {};
 for (const n of ['events', 'places', 'nightlife', 'sports', 'food', 'itineraries',
-                 'daytrips', 'discovered'])
+                 'daytrips'])
   D[n] = read(n);
+D.discovered = await readDiscovered();
 
 for (const n of ['civic', 'notable', 'editorial', 'notes', 'events-city']) D[n] = readOpt(n);
 

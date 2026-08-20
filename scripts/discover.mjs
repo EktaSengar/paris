@@ -32,6 +32,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readShards, shard } from './shard.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(ROOT, 'data');
@@ -272,16 +273,22 @@ async function run() {
   if (DRY) { console.log('\n  --dry, nothing written\n'); return; }
 
   if (ONLY) {
-    // keep everything we already have for the categories we did not re-run
-    let prev = { items: [], counts: {}, hours: [] };
-    try { prev = JSON.parse(await fs.readFile(path.join(DATA, 'discovered.json'), 'utf8')); } catch {}
+    /* Keep everything we already have for the categories we did not
+       re-run. Read back from data/places/ — the shipped index lives
+       there now, and the empty fallback this used to have would silently
+       drop every category the run did not crawl. */
+    let prev;
+    try { prev = await readShards(); }
+    catch { throw new Error('no index at data/places/ to merge into — run without --only first'); }
     doc.items = prev.items.filter(p => !ONLY.includes(p.c)).concat(doc.items);
     doc.counts = { ...prev.counts, ...doc.counts };
     console.log(`  merged with existing → ${doc.items.length} total`);
   }
-  await fs.writeFile(path.join(DATA, 'discovered.json'), JSON.stringify(doc) + '\n', 'utf8');
-  const kb = Math.round((await fs.stat(path.join(DATA, 'discovered.json'))).size / 1024);
-  console.log(`\n  wrote data/discovered.json — ${kb} KB\n`);
+  /* Straight to data/places/. The index has not been one file since it
+     outgrew a first paint — see scripts/shard.mjs. */
+  const { manifest } = await shard(doc);
+  const n = Object.keys(manifest.shards).length;
+  console.log(`\n  wrote data/places/ — ${doc.items.length} places across ${n} shards\n`);
 }
 
 console.log('\nDiscovering Paris from OpenStreetMap…\n');

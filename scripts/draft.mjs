@@ -20,7 +20,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadRecord } from './shim.mjs';
+import { loadRecord, readDiscovered } from './shim.mjs';
 
 const { Rec } = loadRecord();
 
@@ -49,7 +49,7 @@ const ARR_NAMES = {
 };
 
 async function run() {
-  const disc = await read('discovered');
+  const disc = await readDiscovered();
   const curatedFiles = ['places', 'nightlife', 'sports', 'food', 'events', 'itineraries', 'daytrips'];
 
   const hits = [];

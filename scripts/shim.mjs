@@ -21,6 +21,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readShards } from './shard.mjs';
+
+/* The discovery index ships as twenty files so the browser can paint
+   before it has all of them. Nothing in Node has any reason to care, so
+   this is the one place that reassembles it. */
+export const readDiscovered = readShards;
 
 const JS = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'js');
 

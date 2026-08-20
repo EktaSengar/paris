@@ -21,7 +21,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadModule } from './shim.mjs';
+import { loadModule, readDiscovered } from './shim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VERBOSE = process.argv.includes('--verbose');
@@ -31,7 +31,7 @@ const Hours = loadModule('hours.js', 'Hours');
    on and the honest move would be to stop using it. */
 const FLOOR = 0.80;
 
-const doc = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'discovered.json'), 'utf8'));
+const doc = await readDiscovered();
 
 /* Weight by usage: one unreadable string on four hundred bakeries
    matters four hundred times more than one on a single museum. */

@@ -5,7 +5,7 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'discovered', 'civic', 'notable', 'editorial', 'notes'];
+  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'places/index', 'civic', 'notable', 'editorial', 'notes'];
   const D = {};
   let ALL = [];
   let CTX = {};
@@ -110,6 +110,85 @@ const App = (() => {
      rather than copied into it, so the site and the test that grades it
      cannot disagree about what actually shipped. */
 
+  /* ---------- the discovery index, in pieces ----------
+
+     22,635 places is 778 KB over the wire once Pages has gzipped it, and
+     for most of the life of this site every visitor waited for all of it
+     — including the nineteen arrondissements they were not standing in —
+     before the page could say anything.
+
+     So it ships as twenty files. The ones nearest you arrive first,
+     about 150 KB of them, the page paints, and the rest follow in the
+     background.
+
+     The rule that makes this safe rather than clever: the site may be
+     *briefly* partial and must never *stay* partial. A section quietly
+     returning fewer results because a file has not landed yet is the
+     same class of failure as location not reaching retrieval — the page
+     looks completely healthy and the answers are wrong — and it is the
+     reason scripts/check-location.mjs exists. So `whenComplete` is
+     awaited by anything that changes what is being asked, and the
+     background fill repaints once when it finishes. */
+
+  const FIRST_BATCH = 4;
+  let PLACES = [];
+  let loadedShards = new Set();
+  let fillingIn = null;
+
+  async function fetchShard(key) {
+    try {
+      const r = await fetch(`data/places/${key}.json`, { cache: 'no-cache' });
+      if (!r.ok) throw new Error(r.status);
+      return (await r.json()).items || [];
+    } catch (e) {
+      console.warn('could not load shard', key, e);
+      return [];
+    }
+  }
+
+  /* Nearest first, by arrondissement centroid. The orphan shard — a
+     handful of places on the edge of the bounding box with no
+     arrondissement — is tiny and comes with the first batch. */
+  function shardOrder() {
+    const keys = Object.keys(D['places/index']?.shards || {});
+    const here = Loc.active();
+    const far = k => {
+      if (!/^\d+$/.test(k)) return -1;
+      const c = Loc.arrCoords(Number(k));
+      return (c && here) ? Loc.km(c, [here.lat, here.lon]) : 1e6;
+    };
+    return keys.sort((a, b) => far(a) - far(b));
+  }
+
+  async function loadShards(keys) {
+    const lists = await Promise.all(keys.map(fetchShard));
+    keys.forEach(k => loadedShards.add(k));
+    PLACES = PLACES.concat(...lists);
+    rebuild();
+  }
+
+  /* One code path, run twice. Rebuilding 22,635 records costs a few tens
+     of milliseconds and is far easier to be sure of than a merge that
+     has to re-apply de-duplication and handwritten notes to a growing
+     list. */
+  function rebuild() {
+    D.discovered = { ...(D['places/index'] || {}), items: PLACES };
+    const built = Rec.build(D, TODAY_ISO);
+    ALL = built.all;
+    DISCOVERED = built.discovered;
+    Near.use(ALL, DISCOVERED);
+  }
+
+  /* Resolves when the whole city is in memory. Cheap to await repeatedly
+     — after the first fill it is an already-settled promise. */
+  function whenComplete() {
+    if (!fillingIn) {
+      const rest = shardOrder().filter(k => !loadedShards.has(k));
+      fillingIn = rest.length ? loadShards(rest) : Promise.resolve();
+    }
+    return fillingIn;
+  }
+
   async function load() {
     const results = await Promise.all(FILES.map(async name => {
       try {
@@ -132,14 +211,7 @@ const App = (() => {
     Loc.boot(fallback);
     HOME = Loc.active();
 
-    const built = Rec.build(D, TODAY_ISO);
-    ALL = built.all;
-    DISCOVERED = built.discovered;
-
-    /* The retrieval layer holds both layers from here on. Every section
-       that asks "what is near me" goes through it, so there is one place
-       that decides what counts as near and one place to change. */
-    Near.use(ALL, DISCOVERED);
+    await loadShards(shardOrder().slice(0, FIRST_BATCH));
   }
 
   /* Distance is a property of *where you are*, not of the record. Stamping
@@ -1660,6 +1732,16 @@ const App = (() => {
      repaint only if the weather actually arrived and changed anything. */
   async function moveTo(loc, { asHome = false } = {}) {
     if (asHome) Loc.setHome(loc); else Loc.explore(loc);
+
+    /* Moving is exactly the case the partial index would get wrong, and
+       get wrong invisibly: every distance would be recomputed correctly
+       against whichever quarters happened to have loaded, and the
+       recommendations would be somebody else's neighbourhood with the
+       right numbers next to them. That is the bug this site has had
+       once already. So a move waits for the whole city — normally
+       already there, since the fill starts at first paint. */
+    await whenComplete();
+
     applyLocation();
     buildContext();
     renderLocation();
@@ -1794,11 +1876,21 @@ const App = (() => {
     });
 
     // Both the nav bar and the footer links change view.
+    //
+    // Paints immediately from whatever has loaded, then again once the
+    // whole city is in memory. The Explore view is the reason: the
+    // neighbourhood dossier reads other arrondissements directly through
+    // Near.inArr, so it is the one place that asks about quarters whose
+    // shard may still be in flight. Waiting first would make every tab
+    // feel slow to fix a window that is normally already closed; the
+    // second paint costs nothing when it is.
     document.addEventListener('click', e => {
       const t = e.target.closest('.tab, .tab-link'); if (!t) return;
       VIEW = t.dataset.view;
       render();
       window.scrollTo({ top: $('#main').offsetTop - 60, behavior: 'smooth' });
+      const view = VIEW;
+      whenComplete().then(() => { if (VIEW === view) render(); });
     });
 
     $('#surprise').addEventListener('click', surprise);
@@ -1992,6 +2084,18 @@ const App = (() => {
     render();
     wire();
     renderDebug();
+
+    /* The rest of the city, behind the first paint. Repainting the same
+       view is safe — render() draws whatever VIEW currently is — and it
+       is the same "paint, then fetch, then repaint" the forecast already
+       uses. Deliberately not awaited: nothing above needs it, and the
+       page is usable while it runs. */
+    whenComplete().then(() => {
+      applyLocation();      // the new records have no distances on them yet
+      buildContext();
+      render();
+      renderDebug();
+    });
   }
 
   return { init };

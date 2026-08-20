@@ -42,13 +42,17 @@ data/
   neighborhoods.json  all 20 arrondissement profiles
   quests.json         long-running exploration goals
   home.json           the default location, on first visit only
-  discovered.json     ~14k Paris places from OpenStreetMap — coverage, not opinion
+  places/             the discovery index, ~23k Paris places from OpenStreetMap
+                      — coverage, not opinion. Twenty files, one per
+                      arrondissement, so a first paint does not wait for
+                      the nineteen you are not standing in
   civic.json          markets with their days and hours, pools, parks, libraries
   notable.json        places with a verifiable distinction, from Wikidata
   editorial.json      researched recommendations — opinionated, never visited
   notes.json          handwritten, hand-edited, and it beats everything above
 scripts/
   discover.mjs  build the Paris-wide index from OpenStreetMap
+  shard.mjs     split that index by arrondissement, and read it back whole
   events.mjs    what is on, from the city's own feed — and the gate that
                 decides which fraction of it earns a place
   civic.mjs     what the Mairie de Paris publishes about its own facilities
