@@ -20,6 +20,9 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadRecord } from './shim.mjs';
+
+const { Rec } = loadRecord();
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(ROOT, 'data');
@@ -34,10 +37,9 @@ if (!terms) {
 const read = async f => JSON.parse(await fs.readFile(path.join(DATA, f + '.json'), 'utf8'));
 const flat = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-/* The one definition that has to agree with js/app.js. If you change it
-   there, change it here — and every existing note id changes with it. */
-const osmId = p => 'osm-' + flat(p.n).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
-  + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000);
+/* Not a copy of the browser's id rule — the browser's id rule. Change
+   it in js/record.js and every existing note id changes with it. */
+const osmId = Rec.compactId;
 
 const ARR_NAMES = {
   1:'Louvre', 2:'Bourse', 3:'Haut Marais', 4:'Marais', 5:'Latin Quarter', 6:'Saint-Germain',

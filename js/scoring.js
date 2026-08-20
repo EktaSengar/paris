@@ -53,6 +53,15 @@ const Rank = (() => {
     if (Array.isArray(item.days) && !item.days.includes(dow)) return false;
     if (item.closedWeekends && (dow === 0 || dow === 6)) return false;
 
+    /* A record that carries real opening hours can answer this properly
+       rather than by assumption. Only ever used to rule a day *out* —
+       an unparseable or absent spec leaves the answer where it was,
+       because "we cannot read this" is not the same as "it is shut". */
+    if (item.hours) {
+      const shut = Hours.closedDays(item.hours);
+      if (shut && shut.includes(dow)) return false;
+    }
+
     // Do not send them to a bakery on a day the bakery is shut.
     if (HOLIDAYS[dateStr]) {
       if (SHUTS_ON_HOLIDAY.includes(item.type)) return false;
@@ -223,6 +232,15 @@ const Rank = (() => {
     closingsoon:['⏳ Closing soon', 'soon']
   };
 
-  return { score, rank, isLive, isOpenOn, urgency, daysBetween, iso, parse, seasonOf,
-           LABEL_TEXT, HOLIDAYS };
+  /* Open at this moment: true, false, or null when the record does not
+     say. Three states on purpose — a section that hides everything it
+     cannot read would hide most of the city. */
+  function openRightNow(item, when = new Date()) {
+    if (!item.hours) return null;
+    if (!isOpenOn(item, iso(when))) return false;
+    return Hours.isOpen(item.hours, when);
+  }
+
+  return { score, rank, isLive, isOpenOn, openRightNow, urgency, daysBetween, iso, parse,
+           seasonOf, LABEL_TEXT, HOLIDAYS };
 })();

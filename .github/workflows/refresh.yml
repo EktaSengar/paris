@@ -57,6 +57,13 @@ jobs:
             echo "not Monday — discovery index left alone"
           fi
 
+      # The "is it open" filter acts on a parser that deliberately refuses
+      # what it cannot read. This fails if the share of Paris it can read
+      # drops below the floor — which would make the filter unsafe to act
+      # on long before anything looked wrong on the page.
+      - name: Check the opening-hours parser still covers the city
+        run: node scripts/check-hours.mjs
+
       # editorial.json is hand-written and carries no coordinates; this checks
       # every record still points at a place that exists.
       - name: Check the hand-written records still resolve

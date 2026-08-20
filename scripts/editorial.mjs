@@ -24,6 +24,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadRecord } from './shim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(ROOT, 'data');
@@ -32,10 +33,11 @@ const CHECK = process.argv.includes('--check');
 const read = async f => JSON.parse(await fs.readFile(path.join(DATA, f + '.json'), 'utf8'));
 const flat = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
 
-/* Must agree with fromCompact() in js/app.js. */
-const compactId = p => 'osm-' + (p.n || '').toLowerCase().normalize('NFD')
-    .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
-  + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000);
+/* Not a copy of the browser's id rule — the browser's id rule. Every
+   note in data/notes.json is keyed by it, so a second implementation
+   drifting by one character silently orphans them all. */
+const { Rec } = loadRecord();
+const compactId = Rec.compactId;
 
 /* Exact name first, then a contains match, then the same words in any
    order — enough slack for "Boulangerie Utopie" vs "Utopie", not enough

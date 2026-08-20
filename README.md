@@ -20,6 +20,10 @@ index.html
 css/style.css
 js/
   location.js   where you are exploring from — position, not stored distances
+  hours.js      reads the OpenStreetMap opening-hours syntax — and says so
+                when it cannot, rather than guessing
+  record.js     what a record is, and how the data files stack into two
+                layers — shared with the tests so they cannot disagree
   nearby.js     retrieval and the provenance ladder: what exists nearby, and
                 how much anybody knows about it
   state.js      what the site remembers about you (localStorage only)
@@ -49,6 +53,8 @@ scripts/
   editorial.mjs resolve hand-written records against real places
   draft.mjs     start a handwritten note, id and all
   check-location.mjs  does moving change the answers, and are they any good
+  check-hours.mjs     how much of the city's opening hours can we actually read
+  shim.mjs      run a js/ module in Node, so scripts share the browser's rules
   geocode.mjs   give every curated record real coordinates
   relocate.mjs  (legacy) rewrite stored distances for a new home
   refresh.mjs   prune + validate; run daily by CI
@@ -222,6 +228,8 @@ expire, which is why the site is still useful on a quiet week.
 ---
 
 ## Working on it
+
+Where this is going next, and the reasoning behind it: **[ROADMAP.md](ROADMAP.md)**.
 
 ```bash
 node scripts/serve.mjs      # http://localhost:4321

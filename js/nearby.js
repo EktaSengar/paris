@@ -104,16 +104,72 @@ const Near = (() => {
   /* Records predating the tiers say only whether they were discovered. */
   const tierOf = i => i.provenance || (i.discovered ? 'found' : 'personal');
 
+  /* ---------- how well attested is this? ----------
+
+     Every `found` record used to score identically: quality 3,
+     uniqueness 2, both invented by the loader because OpenStreetMap does
+     not rate anything. Fourteen thousand places tied on merit, separated
+     only by distance — which is how an anonymous counter two minutes
+     away beat a hundred-year-old boulangerie six minutes away.
+
+     Nothing here is an opinion or a rating. It counts what somebody has
+     bothered to record, which is a different and much weaker claim: a
+     place with opening hours, a website, twenty tags and a mapper's
+     check last year is being looked after, and one with a name and a
+     position is not. That is all this measures, and it is the most the
+     data supports.
+
+     Returns 0–1. The weights are deliberately readable rather than
+     tuned: if one of them is wrong it should be obvious which. */
+
+  const NOW_YEAR = new Date().getFullYear();
+
+  const SIGNALS = [
+    // being open is a fact about the place *and* the strongest sign
+    // anybody is maintaining the record
+    [3.0, i => !!i.hours],
+    [1.0, i => !!i.url],
+    [0.5, i => !!i.phone],
+    // somebody stood there and said "still here"
+    [2.0, i => i.checked && NOW_YEAR - i.checked <= 3],
+    [1.0, i => i.checked && NOW_YEAR - i.checked > 3 && NOW_YEAR - i.checked <= 6],
+    // or at least touched the record recently
+    [1.5, i => i.edited && NOW_YEAR - i.edited <= 2],
+    [0.5, i => i.edited && NOW_YEAR - i.edited > 2 && NOW_YEAR - i.edited <= 5],
+    // how much is written down at all
+    [2.0, i => (i.tags || 0) >= 16],
+    [1.0, i => (i.tags || 0) >= 9 && (i.tags || 0) < 16],
+    // distinctions OSM occasionally records
+    [1.5, i => !!i.noted],
+    [1.0, i => !!i.heritage],
+    [1.0, i => !!i.artisan],
+    [0.5, i => !!i.organic],
+    [1.0, i => i.since && i.since < 1980],
+    [0.5, i => !!i.why]
+  ];
+
+  const SIGNAL_MAX = SIGNALS.reduce((n, [w]) => n + w, 0);
+
+  function evidence(i) {
+    let n = 0;
+    for (const [weight, test] of SIGNALS) if (test(i)) n += weight;
+    return n / SIGNAL_MAX;
+  }
+
+  /* Evidence is worth less than the weakest tier above it. A thoroughly
+     documented café is still a café nobody has said anything about, and
+     it should not outrank a place somebody researched — knowing more
+     facts is not the same as knowing whether it is any good. */
+  const EVIDENCE_WORTH = 3.5;
+
   function localScore(i) {
     const merit = (i.quality || 3) * 2.2 + (i.uniqueness || 3) * 2.0;
     const tier  = tierOf(i);
     let auth = AUTHORITY[tier] ?? 0;
 
-    /* OSM records vary from a maintained business listing to a name
-       somebody dropped on a map in 2011. A website is the one signal in
-       the data that separates them, and it is worth about that much.
-       Only `found` needs these — the tiers above have been looked at. */
-    if (tier === 'found') auth += (i.url ? 1 : 0) - chainPenalty(i);
+    /* Only `found` needs this — the tiers above have been looked at by
+       somebody, which is a stronger claim than any of these signals. */
+    if (tier === 'found') auth += EVIDENCE_WORTH * evidence(i) - chainPenalty(i);
 
     /* A landmark is not a recommendation. Somewhere with a Wikipedia
        article and a coach party outside is a fine answer to "what should
@@ -189,13 +245,44 @@ const Near = (() => {
     const { rings = RINGS.near, want = 6, wantKnown = 2, limit = 24, exclude = null } = opts;
     const ok = i => match(i) && !(exclude && exclude(i));
     const found = ring(CURATED.filter(ok).concat(FOUND.filter(ok)), rings, want, wantKnown);
-    return {
-      radius: found.radius,
-      items: dedupe(found.items
-        .map(i => ({ i, s: localScore(i) }))
-        .sort((a, b) => b.s - a.s)
-        .map(x => x.i)).slice(0, limit)
-    };
+    const ranked = dedupe(found.items
+      .map(i => ({ i, s: localScore(i) }))
+      .sort((a, b) => b.s - a.s)
+      .map(x => x.i));
+    return { radius: found.radius, items: keepKnown(ranked, limit, wantKnown) };
+  }
+
+  /* The ring guarantees that `wantKnown` places the site knows something
+     about are *inside* the radius. Nothing guaranteed they survived the
+     cut to `limit`, and for most of the site's life nothing had to: there
+     were few enough anonymous records nearby that the known ones scored
+     their way into the top five on their own.
+
+     Widening the discovery index to 22,635 places ended that. Twice as
+     many bare names now sit within a few minutes of anywhere, the best of
+     them scores well, and in the 5th, 12th and 19th they filled the whole
+     section — burying the two cafés the guide actually has something to
+     say about thirteen minutes away. Which is the original complaint this
+     layer was built to answer, arriving by a new route.
+
+     So the guarantee is made explicit rather than left to arithmetic: if
+     the top `limit` does not contain `wantKnown` records above the `found`
+     tier, the best ones that exist are promoted into it, displacing the
+     weakest bare names. Everything else keeps its order. This is a
+     deliberate editorial thumb on the scale and the whole premise of the
+     site — a list of names is what the reader could have got from a map. */
+  function keepKnown(ranked, limit, wantKnown) {
+    const head = ranked.slice(0, limit);
+    if (!wantKnown || head.filter(known).length >= wantKnown) return head;
+
+    const missing = wantKnown - head.filter(known).length;
+    const promote = ranked.slice(limit).filter(known).slice(0, missing);
+    if (!promote.length) return head;
+
+    /* Drop from the tail, worst first, and only ever bare names. */
+    const kept = head.filter(known);
+    const bare = head.filter(i => !known(i)).slice(0, Math.max(0, limit - kept.length - promote.length));
+    return ranked.filter(i => kept.includes(i) || bare.includes(i) || promote.includes(i));
   }
 
   /* One market that runs the length of a street is several nodes in OSM,
@@ -262,12 +349,22 @@ const Near = (() => {
   }
 
   /* Retrieval by area rather than by radius — for the pages that are
-     about somewhere else, like the neighbourhood dossier. */
+     about somewhere else, like the neighbourhood dossier.
+
+     No reach term: the dossier is about an arrondissement, and how far
+     away it happens to be from you does not change which café in it is
+     the best one. Authority still counts, on the same ladder the rest of
+     the file uses — this asked `i.discovered ? 0 : AUTHORITY` for a
+     while, which put the lookup *table* into the arithmetic and scored
+     every curated record NaN. The dossier ordered itself arbitrarily and
+     nothing said so, which is the argument for there being one ladder
+     and one way to read it. */
   function inArr(arr, match, limit = 6) {
     const ok = i => i.arr === arr && match(i);
+    const worth = i => (i.quality || 3) * 2.2 + (i.uniqueness || 3) * 2.0
+      + (AUTHORITY[tierOf(i)] ?? 0) - chainPenalty(i);
     return dedupe(CURATED.filter(ok).concat(FOUND.filter(ok))
-      .map(i => ({ i, s: (i.quality || 3) * 2.2 + (i.uniqueness || 3) * 2.0 +
-                         (i.discovered ? 0 : AUTHORITY) - chainPenalty(i) }))
+      .map(i => ({ i, s: worth(i) }))
       .sort((a, b) => b.s - a.s)
       .map(x => x.i)).slice(0, limit);
   }
@@ -292,5 +389,5 @@ const Near = (() => {
   };
 
   return { use, pick, beyond, inArr, reach, localScore, ring, RINGS, KIND, HALF,
-           chainPenalty, tierOf, AUTHORITY };
+           chainPenalty, tierOf, AUTHORITY, evidence, EVIDENCE_WORTH };
 })();

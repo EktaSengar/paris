@@ -23,6 +23,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadModule } from './shim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const VERBOSE = process.argv.includes('--verbose');
@@ -39,84 +40,36 @@ const Store = {
 };
 const localStorage = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
 
-function load(file, name, extra = {}) {
-  const src = fs.readFileSync(path.join(ROOT, 'js', file), 'utf8');
-  const keys = ['Store', 'localStorage', 'navigator', 'fetch', 'console', ...Object.keys(extra)];
-  const vals = [Store, localStorage, {}, () => { throw new Error('no network in tests'); },
-                console, ...Object.values(extra)];
-  return new Function(...keys, `${src}\n; return ${name};`)(...vals);
-}
+const load = (file, name, extra = {}) => loadModule(file, name, {
+  Store, localStorage, navigator: {},
+  fetch: () => { throw new Error('no network in tests'); },
+  ...extra
+});
 
 const Loc  = load('location.js', 'Loc');
+const Rec  = load('record.js',   'Rec', { Loc });
 const Near = load('nearby.js',   'Near');
 
 const readOpt = f => { try { return read(f); } catch { return { items: [] }; } };
 
-/* ---------- the two layers, built the way app.js builds them ---------- */
+/* ---------- the two layers ----------
+
+   Built by js/record.js, which is the same module the browser runs. This
+   file used to assemble them itself, "the way app.js builds them", and
+   the two copies had already drifted on `categories` — so the test was
+   grading a slightly different site than the one that ships. A test that
+   can pass while the site is wrong is the failure this whole script
+   exists to catch, so it should not be the thing committing it. */
 
 const D = {};
-for (const n of ['events','places','nightlife','sports','food','itineraries','daytrips','discovered'])
+for (const n of ['events', 'places', 'nightlife', 'sports', 'food', 'itineraries',
+                 'daytrips', 'discovered'])
   D[n] = read(n);
 
-const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
-const curatedNames = new Set([].concat(
-  D.events.items, D.places.items, D.nightlife.items, D.sports.items, D.food.items
-).map(i => norm(i.title)));
+for (const n of ['civic', 'notable', 'editorial', 'notes']) D[n] = readOpt(n);
 
-/* Mirrors fromCompact() in js/app.js. The three generated files share
-   one shape, so one mapper reads all of them. */
-const fromCompact = p => ({
-  id: 'osm-' + norm(p.n).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
-      + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000),
-  title: p.n, type: p.c, arr: p.a, coords: [p.lat, p.lon], area: p.s || null,
-  url: p.w || null, cuisine: p.k || null, discovered: true, why: p.why || p.x || '',
-  branded: !!p.b, noted: !!p.d, heritage: !!p.h,
-  quality: p.q ?? 3, uniqueness: p.u ?? 2, categories: [p.c], goodFor: [], labels: []
-});
-
-const civic    = readOpt('civic');
-const notable  = readOpt('notable');
-const editorial = readOpt('editorial');
-const notes    = readOpt('notes');
-
-const SOURCED = []
-  .concat((civic.items || []).map(p => ({ ...fromCompact(p), provenance: 'sourced' })))
-  .concat((notable.items || []).map(p => ({ ...fromCompact(p), provenance: 'sourced',
-                                            touristy: !!p.landmark })));
-const WRITTEN = (editorial.items || []).map(i => ({ provenance: 'editorial', ...i }));
-
-const km = (a, b) => Loc.km(a, b);
-const claimed = new Map();
-SOURCED.concat(WRITTEN).forEach(w => {
-  const k = norm(w.title);
-  if (!claimed.has(k)) claimed.set(k, []);
-  claimed.get(k).push(w.coords);
-});
-
-const FOUND = D.discovered.items
-  .filter(p => !curatedNames.has(norm(p.n)))
-  .map(fromCompact)
-  .filter(p => {
-    const near = claimed.get(norm(p.title));
-    return !near || !near.some(c => c && p.coords && km(c, p.coords) < 0.25);
-  });
-
-const DISCOVERED = SOURCED.concat(FOUND);
-
-const ALL = [].concat(WRITTEN, D.events.items, D.places.items, D.nightlife.items,
-                      D.sports.items, D.food.items, D.itineraries.items, D.daytrips.items);
-
-ALL.forEach(i => { if (!i.provenance) i.provenance = 'personal'; });
-DISCOVERED.forEach(i => { if (!i.provenance) i.provenance = 'found'; });
-
-/* Handwritten notes win, exactly as they do in the browser. */
-const byId = new Map([...ALL, ...DISCOVERED].map(i => [i.id, i]));
-for (const [id, note] of Object.entries(notes.items || {})) {
-  const it = byId.get(id);
-  if (!it) { console.warn(`  ! note for a place that is not here: ${id}`); continue; }
-  Object.assign(it, note);
-  if (note.why) it.provenance = 'personal';
-}
+const TODAY = new Date().toISOString().slice(0, 10);
+const { all: ALL, discovered: DISCOVERED } = Rec.build(D, TODAY);
 
 Loc.boot(Loc.fromArr(1));
 Near.use(ALL, DISCOVERED);
@@ -147,7 +100,18 @@ function at(arr) {
    suggest it. Sharing one entry is the retrieval working. Sharing five
    was the bug this all started with. */
 const KINDS = [
-  ['cafe',       'walk', 1],
+  /* Cafés allow two rather than one since the retrieval layer started
+     guaranteeing that two known places survive the cut (keepKnown, in
+     nearby.js). Where the guide knows only a handful of cafés in a
+     corner of the city, two adjacent quarters will now promote the same
+     two — the 5th and the 13th share the Mosquée salon de thé and Le
+     Renard Café, both hand-written, both physically on the boundary
+     between them, and the 13th's other three are entirely its own.
+
+     That is the guarantee working, not the leak returning. The leak has
+     its own assertion at the bottom of this file and it is not relaxed:
+     the 10th's cafés must still be absent from the 5th. */
+  ['cafe',       'walk', 2],
   ['bakery',     'walk', 1],
   ['restaurant', 'walk', 1],
   ['market',     'walk', 2],
@@ -224,26 +188,23 @@ const NEED_KNOWN = 2;
 
    Adding a line to this list should feel like an admission. Removing one
    is the actual work. */
-const THIN = new Set([
-  '12e restaurant',
-  '13e cafe',
-  '14e cafe',
-  '16e bakery',
-  '16e cafe',
-  '16e restaurant',
-  '17e restaurant',
-  '19e bakery',
-  '20e restaurant'
-]);
+/* Empty, and it should stay that way.
 
-/* A note on the two bakeries. The 16th and the 19th are large, and this
-   test samples a single point in each — so an editorial record can be a
-   real bakery in the right arrondissement and still sit outside the ring
-   drawn from its centre. The ring widens looking for somewhere known,
-   but it will not promote a bakery twenty-five minutes away into a list
-   headed "around you", because that would not be true. Closing these
-   means writing about somewhere near the middle of those two, not
-   loosening the rule. */
+   This held nine arrondissement/category cells where the top five was
+   mostly names on a map — places the guide covered thinly, recorded here
+   as a to-do list that failed loudly if it grew. All nine closed at once
+   on 20 August 2026, when the discovery index went from 13,930 places to
+   22,635 and the retrieval layer started guaranteeing that what the site
+   knows survives the cut. Every cell now passes: 80 of 80.
+
+   Two things worth keeping in mind if one reopens. Promotion only ever
+   reaches inside the ring, so a bakery twenty-five minutes away will
+   still not be promoted into a list headed "around you" — that would not
+   be true, and closing such a cell means writing about somewhere near
+   the middle of that arrondissement rather than loosening the rule. And
+   an entry here is a to-do, never an excuse: it says somebody looked and
+   decided the honest answer was thin, not that thin is acceptable. */
+const THIN = new Set([]);
 const EVERYDAY = [['cafe', 'walk'], ['bakery', 'walk'], ['restaurant', 'walk'], ['market', 'walk']];
 const ALL_ARRS = Array.from({ length: 20 }, (_, i) => i + 1);
 

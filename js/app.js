@@ -103,79 +103,12 @@ const App = (() => {
     return best;
   }
 
-  /* ---------- the generated layers ----------
+  /* ---------- load ----------
 
-     Three files arrive in the same compact shape — the OpenStreetMap
-     index, the city's own facilities, and the places that are a matter
-     of record. Compact because there are fourteen thousand of them and
-     every byte ships to the browser; one shape because to everything
-     downstream they are the same kind of thing. */
-
-  const flatten = s => (s || '').toLowerCase().normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '').trim();
-
-  /* The id has to survive the weekly rebuild. An array position does not
-     — places come and go and everything after them shifts, which would
-     quietly repoint a saved rating, or a handwritten note, at a
-     different shop. A name and a position do survive.
-
-     scripts/draft.mjs computes this too. If it changes here it changes
-     there, and every existing note id changes with it. */
-  const compactId = p => 'osm-' + flatten(p.n)
-      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 32)
-    + '-' + Math.round(p.lat * 2000) + '-' + Math.round(p.lon * 2000);
-
-  const FOOD = ['cafe', 'bakery', 'restaurant', 'market', 'deli'];
-
-  function fromCompact(p) {
-    return {
-      id: compactId(p),
-      title: p.n,
-      type: p.c,
-      arr: p.a,
-      coords: [p.lat, p.lon],
-      area: p.s || null,
-      url: p.w || null,
-      cuisine: p.k || null,
-      emoji: p.emoji || null,
-      discovered: true,
-      /* A record with a factual line has something to say; one without is
-         a name and a position, and the interface says so. */
-      why: p.why || p.x || '',
-      days: p.days || undefined,
-      branded: !!p.b, noted: !!p.d,
-      heritage: !!p.h, artisan: !!p.r, organic: !!p.o, since: p.y || null,
-      /* Anything the generating script did not rate stays at the floor.
-         What separates those is distance and the weak signals nearby.js
-         reads off the record — never a number invented here. */
-      quality: p.q ?? 3,
-      uniqueness: p.u ?? 2,
-      categories: [FOOD.includes(p.c) ? 'food' : p.c],
-      goodFor: [], labels: []
-    };
-  }
-
-  /* One place, listed by two sources, is still one place. Matched on name
-     and position rather than id, because the three files round their
-     coordinates from different originals and so disagree in the last
-     decimal. 250 m is wide enough to catch a market that moved down the
-     street and narrow enough not to merge two branches of a chain. */
-  function dropDuplicates(pool, winners) {
-    if (!winners.length) return pool;
-    const claimed = new Map();
-    winners.forEach(w => {
-      const k = flatten(w.title);
-      if (!claimed.has(k)) claimed.set(k, []);
-      claimed.get(k).push(w.coords);
-    });
-    return pool.filter(p => {
-      const near = claimed.get(flatten(p.title));
-      if (!near) return true;
-      return !near.some(c => c && p.coords && Loc.km(c, p.coords) < 0.25);
-    });
-  }
-
-  /* ---------- load ---------- */
+     What a record is, and how the six data files stack into two layers,
+     lives in js/record.js. It is shared with scripts/check-location.mjs
+     rather than copied into it, so the site and the test that grades it
+     cannot disagree about what actually shipped. */
 
   async function load() {
     const results = await Promise.all(FILES.map(async name => {
@@ -199,104 +132,14 @@ const App = (() => {
     Loc.boot(fallback);
     HOME = Loc.active();
 
-    /* Discovered places become first-class items so they can be ranked and
-       rendered like anything else — but they carry no `why`, and the
-       interface marks them as found rather than recommended. */
-    /* The same shop often exists in both layers. Ours wins — it has a
-       reason attached — so the OSM copy is dropped rather than competing
-       with itself under the same name. */
-    const curatedNames = new Set(
-      [].concat(D.events.items||[], D.places.items||[], D.nightlife.items||[],
-                D.sports.items||[], D.food.items||[])
-        .map(i => flatten(i.title)));
-
-    DISCOVERED = (D.discovered?.items || [])
-      .filter(p => !curatedNames.has(flatten(p.n)))
-      .map(fromCompact);
-
-    /* The middle tier: what the city and the record say. Two files, one
-       shape, because to everything downstream they are the same kind of
-       thing — a real place with a factual line and a source behind it. */
-    const SOURCED = []
-      .concat((D.civic?.items || []).map(p => Object.assign(fromCompact(p), {
-        provenance: 'sourced',
-        source: 'Ville de Paris — opendata.paris.fr',
-        lastVerified: D.civic.generated || null
-      })))
-      .concat((D.notable?.items || []).map(p => Object.assign(fromCompact(p), {
-        provenance: 'sourced',
-        source: p.src || 'Wikipedia',
-        lastVerified: D.notable.generated || null,
-        touristy: !!p.landmark
-      })));
-
-    /* Editorial records are written in full rather than compacted — they
-       are prose, and there are only a couple of hundred of them. */
-    const WRITTEN = (D.editorial?.items || []).map(i =>
-      Object.assign({ provenance: 'editorial' }, i));
-
-    /* Where a place exists in more than one layer, the one that knows most
-       about it wins and the others are dropped — otherwise Marché Monge
-       appears three times, once per source, which reads as a bug because
-       it is one. */
-    DISCOVERED = dropDuplicates(DISCOVERED, SOURCED.concat(WRITTEN));
-
-    DISCOVERED = SOURCED.concat(DISCOVERED);
-
-    ALL = []
-      .concat(WRITTEN)
-      .concat(D.events.items || [])
-      .concat(D.places.items || [])
-      .concat(D.nightlife.items || [])
-      .concat(D.sports.items || [])
-      .concat(D.food.items || [])
-      .concat(D.itineraries.items || [])
-      .concat(D.daytrips.items || [])
-      .filter(i => !(i.end && i.end < TODAY_ISO));
-
-    /* Everything in the curated files was written by somebody who went.
-       Anything arriving from a generated tier states its own provenance. */
-    ALL.forEach(i => { if (!i.provenance) i.provenance = 'personal'; });
-    DISCOVERED.forEach(i => { if (!i.provenance) i.provenance = 'found'; });
-
-    applyNotes();
+    const built = Rec.build(D, TODAY_ISO);
+    ALL = built.all;
+    DISCOVERED = built.discovered;
 
     /* The retrieval layer holds both layers from here on. Every section
        that asks "what is near me" goes through it, so there is one place
        that decides what counts as near and one place to change. */
     Near.use(ALL, DISCOVERED);
-  }
-
-  /* ---------- handwritten notes ----------
-
-     The last word, and the only data file a human edits. A note can
-     attach to anything with an id — including a place that arrived from
-     OpenStreetMap with nothing but a name — and writing a `why` for one
-     is what promotes it to somewhere you have actually been.
-
-     Applied after every other layer precisely so it cannot be argued
-     with by a rebuild. */
-
-  function applyNotes() {
-    const notes = (D.notes && D.notes.items) || {};
-    if (!Object.keys(notes).length) return;
-
-    const byId = new Map([...ALL, ...DISCOVERED].map(i => [i.id, i]));
-    let hidden = 0;
-
-    for (const [id, note] of Object.entries(notes)) {
-      const item = byId.get(id);
-      if (!item) { console.warn('note for a place that is not here:', id); continue; }
-      if (note.hide) { item.hidden = true; hidden++; continue; }
-      Object.assign(item, note);
-      /* Writing a reason down is the whole definition of the top tier. */
-      if (note.why) item.provenance = 'personal';
-    }
-
-    if (hidden) {
-      ALL = ALL.filter(i => !i.hidden);
-      DISCOVERED = DISCOVERED.filter(i => !i.hidden);
-    }
   }
 
   /* Distance is a property of *where you are*, not of the record. Stamping
