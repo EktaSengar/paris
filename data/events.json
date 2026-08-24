@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-23",
+  "generated": "2026-08-24",
   "window": {
     "from": "2026-08-13",
     "to": "2026-10-31"
@@ -383,55 +383,6 @@
       "coords": [
         48.8546,
         2.3572
-      ],
-      "coordsFrom": "arr-centroid"
-    },
-    {
-      "id": "fete-des-tuileries-2026",
-      "title": "Fête des Tuileries Funfair",
-      "emoji": "🎡",
-      "type": "event",
-      "categories": [
-        "outdoor",
-        "seasonal",
-        "unusual"
-      ],
-      "arr": 1,
-      "area": "Jardin des Tuileries",
-      "price": 0,
-      "priceNote": "Free entry · rides paid individually",
-      "start": "2026-06-27",
-      "end": "2026-08-23",
-      "times": "Daily from 11:00 until late",
-      "durationMin": 90,
-      "minutesFromHome": 22,
-      "transit": "M8 to Concorde",
-      "why": "A proper old-fashioned funfair in the Tuileries with a big wheel that gives you one of the best cheap views in Paris. Worth combining with the Olympic cauldron after dark — they are in the same garden. Ten days left.",
-      "goodFor": [
-        "couple",
-        "evening",
-        "outdoor",
-        "spontaneous"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "outdoor",
-        "couple",
-        "afterwork"
-      ],
-      "uniqueness": 3,
-      "quality": 3,
-      "source": "Secrets of Paris",
-      "url": "https://www.sortiraparis.com/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg/500px-Jardin_des_Tuileries_-_panoramio_-_Javier_B.jpg",
-      "imageSubject": "Jardin des Tuileries",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8626,
-        2.3363
       ],
       "coordsFrom": "arr-centroid"
     },
@@ -970,50 +921,6 @@
       "imageSubject": "Palais de l'Élysée",
       "imageCredit": "Wikimedia Commons",
       "imageKind": "context"
-    },
-    {
-      "id": "esports-world-cup-paris-2026",
-      "title": "Esports World Cup",
-      "emoji": "🎮",
-      "type": "event",
-      "categories": [
-        "unusual",
-        "indoor"
-      ],
-      "arr": 15,
-      "area": "Paris Expo Porte de Versailles",
-      "price": 25,
-      "priceNote": "From ~€25",
-      "start": "2026-08-01",
-      "end": "2026-08-23",
-      "durationMin": 240,
-      "minutesFromHome": 40,
-      "transit": "M12 to Porte de Versailles",
-      "why": "Included because it is genuinely unlike anything else on this list: a 500 m² gaming floor, showmatches, talks and live music inside the Expo halls. Worth it if you are at all curious about what a 20,000-person crowd watching a video game feels like. Skip it otherwise.",
-      "goodFor": [
-        "unusual",
-        "indoor",
-        "weekend"
-      ],
-      "indoor": true,
-      "labels": [
-        "unusual",
-        "indoor"
-      ],
-      "uniqueness": 4,
-      "quality": 3,
-      "source": "Sortiraparis",
-      "url": "https://esportsworldcup.com/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG/500px-P1050990_Paris_XV_pte_de_Versailles_entr%C3%A9e_du_parc_des_expositions_rwk.JPG",
-      "imageSubject": "Paris Expo Porte de Versailles",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "context",
-      "coords": [
-        48.8412,
-        2.3
-      ],
-      "coordsFrom": "arr-centroid"
     },
     {
       "id": "jazz-a-la-villette-2026",
