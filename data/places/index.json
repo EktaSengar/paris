@@ -1,17 +1,17 @@
 {
-  "generated": "2026-08-20",
+  "generated": "2026-08-24",
   "source": "OpenStreetMap via Overpass · ODbL",
   "note": "Names, categories, positions and the practical facts OSM records — opening hours, contact, access, and when anybody last checked. No opinions: the curated files carry the judgement, this carries the coverage, so that changing location changes what exists nearby rather than only how far away the old list is.",
   "counts": {
     "bakery": 1811,
-    "cafe": 2854,
-    "restaurant": 10044,
+    "cafe": 2863,
+    "restaurant": 10052,
     "market": 128,
-    "deli": 1707,
+    "deli": 1709,
     "park": 915,
-    "museum": 651,
-    "sport": 807,
-    "nightlife": 2315,
+    "museum": 652,
+    "sport": 808,
+    "nightlife": 2316,
     "culture": 513,
     "books": 981
   },
@@ -26,49 +26,49 @@
       "n": 1143
     },
     "4": {
-      "n": 922
+      "n": 923
     },
     "5": {
-      "n": 1149
+      "n": 1148
     },
     "6": {
       "n": 1021
     },
     "7": {
-      "n": 418
+      "n": 432
     },
     "8": {
       "n": 828
     },
     "9": {
-      "n": 1606
+      "n": 1605
     },
     "10": {
       "n": 1164
     },
     "11": {
-      "n": 2076
+      "n": 2078
     },
     "12": {
       "n": 482
     },
     "13": {
-      "n": 1010
+      "n": 1011
     },
     "14": {
       "n": 1166
     },
     "15": {
-      "n": 1527
+      "n": 1533
     },
     "16": {
       "n": 1470
     },
     "17": {
-      "n": 1499
+      "n": 1500
     },
     "18": {
-      "n": 1011
+      "n": 1012
     },
     "19": {
       "n": 1056
