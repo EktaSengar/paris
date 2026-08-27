@@ -19,7 +19,7 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA = path.join(ROOT, 'data');
@@ -294,8 +294,12 @@ async function api(url, attempt = 0) {
   }
 }
 
-/* Look up many articles at once. Returns Map<requestedTitle, imageUrl>. */
-async function pageImages(titles, lang) {
+/* Look up many articles at once. Returns Map<requestedTitle, imageUrl>.
+
+   Exported because scripts/photos.mjs does the same lookup for the
+   generated tiers. One implementation, so a fix to redirect-following or
+   the Commons-only rule cannot land in one of them and not the other. */
+export async function pageImages(titles, lang) {
   const found = new Map();
 
   for (let i = 0; i < titles.length; i += BATCH) {
@@ -505,5 +509,10 @@ async function run() {
   }
 }
 
-const main = process.argv.includes('--resize') ? resizePass : run;
-main().catch(e => { console.error(e); process.exit(1); });
+/* Only run when this file is the thing that was invoked. Without the
+   guard, `import { pageImages }` from another script would kick off a
+   full resolution pass as a side effect of the import. */
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const main = process.argv.includes('--resize') ? resizePass : run;
+  main().catch(e => { console.error(e); process.exit(1); });
+}

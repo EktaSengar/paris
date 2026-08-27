@@ -64,12 +64,14 @@ scripts/
   draft.mjs     start a handwritten note, id and all
   check-location.mjs  does moving change the answers, and are they any good
   check-hours.mjs     how much of the city's opening hours can we actually read
+  check-perf.mjs      how long does the page make somebody wait, and has that got worse
   shim.mjs      run a js/ module in Node, so scripts share the browser's rules
   geocode.mjs   give every curated record real coordinates
   relocate.mjs  (legacy) rewrite stored distances for a new home
   refresh.mjs   prune + validate; run daily by CI
-  images.mjs    resolve one openly-licensed photo per card
-  version.mjs   content-hash the CSS/JS URLs so caches cannot go stale
+  images.mjs    resolve one openly-licensed photo per hand-written card
+  photos.mjs    the same, for the tiers that are generated weekly
+  version.mjs   content-hash the CSS/JS/data URLs so caches cannot go stale
   serve.mjs     local preview server
 ```
 
@@ -84,13 +86,96 @@ heard of them.
 
 `scripts/version.mjs` stamps every local CSS/JS link with a hash of that
 file's contents, so a changed file always gets a new URL and an unchanged one
-stays cached. **Run it after touching anything in `css/` or `js/`** — CI runs
-it too, as a backstop:
+stays cached. **Run it after touching anything in `css/`, `js/` or `data/`** —
+CI runs it too, as a backstop:
 
 ```bash
 node scripts/version.mjs           # restamp
 node scripts/version.mjs --check   # fail if stamps are stale
 ```
+
+The data files have the same problem and now the same answer. They are not
+linked from the HTML, so instead of an href the script writes a
+`window.__DV` map of `name → hash` into `index.html`, and `js/app.js` builds
+every data URL through it. This replaced `cache: 'no-cache'` on thirty-seven
+fetches — a round trip per file, on every visit, to be told nothing had
+changed.
+
+Freshness now comes from the deploy rather than from asking: a changed file is
+at a URL no cache has ever seen, and an unchanged one costs no network at all.
+
+**`sw.js`** is where the caching rule actually changes, because `max-age=600`
+is not negotiable on Pages and a service worker is the only place to override
+it. It is deliberately small, and its safety rests on the hashing above:
+
+* hashed URLs (all CSS, JS and data) — served from cache without asking,
+  which is arithmetic rather than a judgement call
+* `index.html` — the one file with no hash, so always network-first, with the
+  cached copy as an offline fallback. It carries the hashes of everything
+  else, so a deploy is picked up in full on the first load after it
+* the forecast and the address lookup — never cached
+* photographs — cached by URL, which already encodes the rendition width
+
+Nothing in it can make a finished event look like it is on: expiry is applied
+when the records are built, against today's date, not when they are fetched.
+
+A second visit currently costs **zero network requests**.
+
+### Keeping it quick
+
+`scripts/check-perf.mjs` measures the page against a local server that
+behaves like GitHub Pages — gzip, `max-age=600`, ETags — and compares the
+result with `scripts/perf-baseline.json`.
+
+```bash
+export CHROME_PATH="/Applications/Google Chrome 2.app/Contents/MacOS/Google Chrome"
+node scripts/check-perf.mjs --runs 5 --inp     # measure and compare
+node scripts/check-perf.mjs --real             # real throttling, not simulated
+node scripts/check-perf.mjs --save --note "…"  # adopt these numbers as the baseline
+```
+
+It **reports and never fails**. Lighthouse scores have real run-to-run
+variance, and a red check that is sometimes just noise is a check people
+learn to scroll past. Drift has to clear both a relative and an absolute
+threshold before it is called a regression, which is what keeps CLS going
+from 0.001 to 0.002 — a 100% increase, and meaningless — off the report.
+
+The interaction-latency row needs `npm install --no-save puppeteer-core`;
+without it that row is skipped rather than the run failing. Everything else
+runs through `npx`, so the repo stays dependency-free.
+
+`.github/workflows/perf.yml` runs it weekly and puts the table in the job
+summary. Weekly rather than per-push because what it guards against is
+drift: the discovery index and the events file are regenerated on their own
+schedule, so the page can get heavier with nobody having touched the code.
+
+Why any given number is what it is —  and which arrangements in this
+codebase exist to keep it that way — is in
+`.claude/skills/paris-performance/references/invariants.md`. Read it before
+changing the boot sequence, adding a file to the critical path, touching an
+image slot, or adding a render pass. Several fast-looking changes here are
+known to be slow, and the file says which and by how much.
+
+### What the first paint waits for
+
+`js/app.js` splits the data files three ways, and the split is load-bearing:
+
+* `FIRST` — `home` and `places/index`, two small files that decide *where the
+  reader is*, and therefore which shards are the near ones. Nothing else can
+  be ordered until this is known
+* `CORE` — what the first render actually draws from
+* `LATER` — `civic` and `notable`, which feed only the discovered layer, the
+  layer that is already briefly incomplete by design
+
+`index.html` starts `FIRST` and `CORE` from a script in the head, before the
+nine JS files have even been downloaded; `app.js` picks up the in-flight
+requests through `window.__PRELOAD` rather than asking twice.
+
+After the paint the fill runs nearest-consequence-first — the hero photograph,
+then `LATER` (which changes what the sections about *around you* say), then
+the sixteen far shards (which do not). The rule that makes any of this safe is
+unchanged: the page may be **briefly** partial and must never **stay** partial,
+and `whenComplete()` is still awaited by anything that changes the question.
 
 ### Photographs
 
@@ -98,10 +183,88 @@ Every card carries a picture from Wikimedia Commons, resolved at build time by
 `scripts/images.mjs` and baked into the JSON as a plain URL — so the browser
 makes no API call and nothing can rate-limit the page.
 
+Commons renders a fixed set of thumbnail widths, and its 1280px rendering of a
+single card photograph is 696 KB. On a phone at 2.6 device pixels an honest
+`sizes` asks for exactly that, which is how the first screen came to cost
+1.1 MB of photographs nobody could see the difference in.
+
+So `img()` in `js/app.js` caps each slot at the point where more pixels stop
+being visible — 250px for the list thumbnails, 500px for cards, 960px only for
+a picture that runs the width of a desktop page. `sizes` stays honest about how
+wide the slot is; the srcset simply stops offering renditions past the cap. The
+two wide slots use `<picture>` with a `media` query, because `srcset` cannot
+tell a 1000px desktop hero from a 390px phone one and would hand both the big
+file.
+
 Small businesses rarely have a freely licensed photograph of their own. Rather
 than fake it, those cards borrow a picture of the street or quarter they stand
 on, and `imageSubject` records what is genuinely in the frame so the card can
 say so in its credit line. Each card names the photographer and the licence.
+
+**Two scripts, because there are two kinds of record.** `images.mjs` resolves
+the ~160 hand-written cards from a table that names an article per record — it
+works because a person maintains those files and can maintain the table with
+them. The generated tiers cannot be handled that way: `notable.json` is 793
+records rebuilt from Wikidata every Monday and `events-city.json` is 345
+rebuilt from the city's open data every morning. `scripts/photos.mjs` resolves
+those from the records themselves:
+
+| Layer | How the picture is found | Of what | Coverage |
+|---|---|---|---|
+| `notable.json` | its own Wikipedia article, else the Wikidata `P18` image | the subject | 86% |
+| `civic.json` | the record's name, as an article title | the subject | 20% |
+| `events-city.json` | the venue in `area` | the room, not the concert | 32% |
+| `editorial.json` | the street in `area` | the street | 52% |
+
+Nothing is matched by proximity. The Wikidata join is on the exact coordinate —
+those coordinates *came from* those items, so a match is the same record rather
+than something that happens to be nearby — and the name lookups go through the
+article title, which the API normalises and follows redirects for. The nearest
+photographed thing to a municipal tennis court is not a picture of the tennis
+court, and attaching it would be inventing a claim.
+
+Two filters earn their place. Wikipedia's page image for the Centre Pompidou is
+its logo, and Wikidata's `P18` for a park is often a plan — so anything drawn
+as vectors is rejected (Commons serves SVG thumbnails as `.svg.png`, so the
+format test alone is not enough), along with filenames that announce themselves
+as logos, coats of arms or maps. And a record that carries a photograph carries
+the Commons **path fragment**, not a URL: a thumbnail URL names the file twice
+behind a fifty-character prefix that is identical for every record on the site,
+and `events-city.json` is a file the first paint waits for. `js/record.js`
+rebuilds the URL — the directory is the MD5 of the filename, so it is
+arithmetic rather than a lookup.
+
+`scripts/photo-cache.json` remembers every lookup, misses included, which is
+what makes this cheap enough to run on a schedule: a weekly rebuild returning
+the same 1,100 places asks Wikimedia about none of them.
+
+The 22,635 places in the discovery index get no photograph and should not. No
+free picture of them exists, and the section they appear in says plainly that
+nobody has vouched for them — borrowing a street scene would be the one claim
+that page is built to avoid making.
+
+**Markets have no photograph either, and the tile says so by being a drawing.**
+Four sources were tried and measured before giving up on it: Wikipedia page
+images matched none of a forty-name sample; Wikidata has no item for a
+municipal market, so the `P18` join reaches nothing; Commons categories covered
+five markets of twenty-four, and one of those five is a photograph of
+counterfeit perfume. The fourth is the tempting one — **the city photographs its
+own venues and publishes the URLs, 95% of them** — and it is the one to stay away
+from:
+
+- The dataset is ODbL, which licenses the *database*. The photographs inside it
+  are separate works, and the credits name individual photographers — "Sophie
+  Robichon / Ville de Paris", "DSol". 41% carry no credit at all, so they could
+  not be attributed even if the licence allowed it.
+- They are 229–508 KB JPEGs with no thumbnail API. Every other picture here can
+  be rewritten to a capped width because Commons renders fixed sizes; a
+  `cdn.paris.fr` URL cannot, so a 64-pixel list thumbnail would cost a third of
+  a megabyte.
+
+So the market tile is striped canvas drawn in CSS — a market awning, which is
+what the thing actually looks like, at no bytes and no request. It is plainly
+not a photograph, which is the point, and it is the same decision as the
+typographic tile: draw something honest rather than borrow something false.
 
 Two things worth knowing before touching this:
 
@@ -116,6 +279,8 @@ Two things worth knowing before touching this:
 node scripts/images.mjs           # fill in anything missing
 node scripts/images.mjs --force   # re-resolve everything
 node scripts/images.mjs --resize  # normalise widths, verifying each
+node scripts/photos.mjs           # the generated tiers, from the records themselves
+node scripts/photos.mjs --dry     # what it would resolve, writing nothing
 ```
 
 ### The layouts
@@ -386,6 +551,22 @@ definition of what counts as near and one place to change it.
   until it is full. Eight anonymous bakeries two minutes away used to bury the
   two the guide actually knew about thirteen minutes away, which is how you end
   up handing somebody a list of names.
+- **The recommendations and the map come back as two lists, never one.** A
+  place somebody visited, researched, or can point to a listing for is a
+  recommendation. A name and a position off OpenStreetMap is *coverage* — it
+  answers "is there a bakery near me at all", which is a real question and the
+  reason the discovery layer exists, but it is not an answer to "where should
+  we get coffee". Blended and sorted by distance they are indistinguishable to
+  a reader, and since the city has twenty-two thousand names against a few
+  hundred write-ups, the names take every row: *Coffee around Saint-Germain*
+  once meant twenty-two places nobody had been to. So the sections print the
+  guide first and the map underneath its own heading, and where a quarter has
+  nothing written about it the names become the answer and say so.
+- **A record that says it closed is not a place.** Wikipedia describes a café
+  the same way whether it is serving coffee this morning or shut in 1902, and
+  the sourced tier inherits the tone along with the coordinates. Only a plain
+  statement of closure counts — *"was a"* does not, because half the museums in
+  Paris had an earlier life and the Maison de Balzac is very much open.
 - **Fame is not quality.** A notability signal on its own recommends Le Procope
   and La Tour d'Argent: genuinely notable, and genuinely not where you send
   someone for coffee. Monthly Wikipedia pageviews separate a landmark from a

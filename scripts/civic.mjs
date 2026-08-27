@@ -80,6 +80,29 @@ function titleCase(s) {
   return clean(s).toLowerCase().replace(/(^|[\s'’\-])([\p{L}])/gu, (_, a, b) => a + b.toUpperCase());
 }
 
+/* ---------- streets the city typed in lower case ----------
+
+   Forty of the thousand-odd addresses arrive as "rue de la fontaine au
+   roi" rather than "rue de la Fontaine-au-Roi". Only those are touched:
+   an address that already has capitals is left exactly as it is, because
+   "rue d'Alésia" and "avenue de la Bourdonnais" are correct French and a
+   naive title-caser would turn the particles into "De" and "La".
+
+   So the rule is narrow — capitalise a word only where nothing in the
+   name is capitalised already, and never the particles. */
+
+const PARTICLES = new Set(['de','du','des','la','le','les','d','l','au','aux','sur','et','en','a','à']);
+
+function fixStreetCase(name) {
+  if (!name) return name;
+  const words = name.split(/(\s+|[-'’])/);          // keep the separators
+  const significant = words.filter(w => /\p{L}/u.test(w) && !PARTICLES.has(w.toLowerCase()));
+  if (!significant.length || significant.some(w => /^\p{Lu}/u.test(w))) return name;
+  return words.map(w =>
+    (/\p{L}/u.test(w) && !PARTICLES.has(w.toLowerCase()))
+      ? w[0].toUpperCase() + w.slice(1) : w).join('');
+}
+
 async function page(dataset, params = {}) {
   const out = [];
   for (let offset = 0; ; offset += 100) {
@@ -111,6 +134,18 @@ const KIND = {
   'Création artistique': 'Art market'
 };
 
+/* A stamp market and a flower market are not the same errand, and both
+   were drawn as a shopping basket. The city already tells us which is
+   which in `produit`; this is only a matter of reading it. */
+const MARKET_MARK = {
+  'Alimentaire':         '🧺',
+  'Alimentaire bio':     '🥬',
+  'Fleurs':              '💐',
+  'Puces':               '🪞',
+  'Timbres':             '📮',
+  'Création artistique': '🎨'
+};
+
 /* "Wednesday, Friday and Sunday" — the list a person would say out loud. */
 function sayDays(days) {
   const names = days.slice().sort((a, b) => (a || 7) - (b || 7)).map(d => DOW_EN[d]);
@@ -140,8 +175,17 @@ async function markets() {
     if (days.includes(6) && sat && sat !== base) extra.push(`Saturday to ${sat.split('–')[1]}`);
     if (days.includes(0) && sun && sun !== base) extra.push(`Sunday to ${sun.split('–')[1]}`);
 
+    /* How much market there actually is. The city measures every one of
+       them in metres of stall frontage and it ranges from 45 to 1,182 —
+       the difference between a handful of trestles and one of the largest
+       markets in Paris. Every market said "Food market." and nothing
+       else; this is the number that tells them apart. Rounded, because
+       "783 metres" claims a precision nobody needs. */
+    const metres = Number(r.lineaire) || 0;
+    const size = metres >= 100 ? `${Math.round(metres / 10) * 10} metres of stalls` : null;
+
     const why = [
-      kind + '.',
+      [kind, size].filter(Boolean).join(', ') + '.',
       days.length ? sayDays(days) + (base ? `, ${base}` : '') : null
     ].filter(Boolean).join(' ')
       + (extra.length ? ` (${extra.join(', ')})` : '') + '.';
@@ -155,7 +199,7 @@ async function markets() {
       s: clean(r.localisation).slice(0, 60) || null,
       why,
       days,
-      emoji: r.produit === 'Fleurs' ? '💐' : r.produit === 'Puces' ? '🪞' : '🧺',
+      emoji: MARKET_MARK[r.produit] || '🧺',
       q: 4, u: r.produit === 'Alimentaire' ? 3 : 4
     };
   }).filter(Boolean);
@@ -171,6 +215,18 @@ async function municipal() {
     if (!mapped || r.latitude == null || r.longitude == null || !r.name) continue;
     const [cat, emoji, label] = mapped;
 
+    /* "68 boulevard Poniatowski" → "boulevard Poniatowski". The number is
+       on the card's address line already, and a sentence that opens with
+       a house number reads like a database row. */
+    const street = clean(r.address_street)
+      /* House numbers arrive in every shape the city has ever typed:
+         "68 boulevard", "- 19, avenue", "-32 Port". Strip anything before
+         the first letter rather than trying to enumerate them. */
+      .replace(/^[^a-zA-ZÀ-ÿ]*/, '')
+      .replace(/^(bis|ter)\s*,?\s*/i, '')
+      .trim() || null;
+    const streetName = fixStreetCase(street);
+
     out.push({
       n: titleCase(r.name),
       c: cat,
@@ -179,7 +235,19 @@ async function municipal() {
       a: nearestArr(Number(r.latitude), Number(r.longitude)),
       s: clean(r.address_street) || null,
       w: r.url || null,
-      why: `${label}, run by the City of Paris. Hours and closures are on the city's own page.`,
+      /* The street, not the proprietor. Every one of these used to read
+         "<label>, run by the City of Paris. Hours and closures are on the
+         city's own page." — two sentences, 1,028 records, and identical
+         on all of them but the first word. The second sentence was pure
+         redundancy: `w` already carries the city's page and the card
+         already links it.
+
+         The street is the one fact the dataset holds that differs per
+         record, and it is the fact somebody standing nearby actually
+         wants. "Municipal pool on rue de Pontoise" is not a
+         recommendation, and it was never going to be — but it is a
+         sentence about *this* pool. */
+      why: streetName ? `${label} on ${streetName}.` : `${label}.`,
       emoji,
       /* A municipal facility is a real, maintained thing — but a gymnasium
          is not a discovery. Rated as useful rather than remarkable. */

@@ -13,6 +13,15 @@
    gets a new URL, so it can never be answered from a stale cache, while an
    unchanged file keeps its URL and stays cached.
 
+   The data files have exactly the same problem and, until recently, a
+   worse answer: the page asked for all thirty-seven of them with
+   `cache: 'no-cache'`, spending a round trip per file, on every visit, to
+   be told nothing had changed. So they are hashed too — not into their
+   own href, since nothing in the HTML links to them, but into a
+   `window.__DV` map the page reads when it builds each data URL. Same
+   guarantee, same mechanism: a changed file is unreachable from any
+   cache, and an unchanged one costs no network at all.
+
    Usage:  node scripts/version.mjs [--check]
            --check  exit non-zero if the stamps are out of date (for CI)
    --------------------------------------------------------- */
@@ -30,6 +39,29 @@ const hash = buf => crypto.createHash('sha256').update(buf).digest('hex').slice(
 
 /* Matches href/src for a local css or js file, with or without an existing ?v= */
 const ASSET = /(href|src)="((?:css|js)\/[^"?]+\.(?:css|js))(\?v=[^"]*)?"/g;
+
+/* The one line in index.html that carries the data hashes. Rewritten
+   whole each run, so the map cannot drift from what is on disk. */
+const DV_LINE = /^(\s*)window\.__DV = .*;$/m;
+
+/* Every .json under data/, including the twenty shards, keyed the way the
+   page asks for them: "civic", "places/index", "places/11". */
+async function dataVersions() {
+  const base = path.join(ROOT, 'data');
+  const names = [];
+  for (const e of await fs.readdir(base, { withFileTypes: true })) {
+    if (e.isFile() && e.name.endsWith('.json')) names.push(e.name.slice(0, -5));
+    else if (e.isDirectory()) {
+      for (const f of await fs.readdir(path.join(base, e.name))) {
+        if (f.endsWith('.json')) names.push(`${e.name}/${f.slice(0, -5)}`);
+      }
+    }
+  }
+  names.sort();
+  const map = {};
+  for (const n of names) map[n] = hash(await fs.readFile(path.join(base, `${n}.json`)));
+  return map;
+}
 
 async function run() {
   const original = await fs.readFile(HTML, 'utf8');
@@ -51,6 +83,14 @@ async function run() {
 
   let out = original;
   replacements.forEach(([from, to]) => { out = out.replace(from, to); });
+
+  const dv = await dataVersions();
+  if (!DV_LINE.test(out)) {
+    console.error('index.html has no `window.__DV = ...;` line to stamp.');
+    process.exit(1);
+  }
+  out = out.replace(DV_LINE, (_, indent) => `${indent}window.__DV = ${JSON.stringify(dv)};`);
+  stamped.push(`data/*.json → ${Object.keys(dv).length} hashes`);
 
   if (missing.length) {
     console.error('Referenced but not found:');

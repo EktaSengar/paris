@@ -1,0 +1,30 @@
+{
+  "recorded": "2026-08-21",
+  "runs": 5,
+  "throttling": "simulated",
+  "note": "recorded straight after the August 2026 optimisation pass; see the paris-performance skill for what each number depends on",
+  "metrics": {
+    "performance": 58,
+    "fcp": 1509.1927500000002,
+    "lcp": 4507.202,
+    "cls": 0.0008607335731619546,
+    "tbt": 1507.0000000000005,
+    "speedIndex": 1575.3603928226594,
+    "requests": 55,
+    "totalBytes": 773396,
+    "jsBytes": 71546,
+    "cssBytes": 12069,
+    "dataBytes": 333957,
+    "imageBytes": 351208,
+    "inp": 384,
+    "inpPerTab": {
+      "nights": 304,
+      "weekend": 96,
+      "eat": 200,
+      "sport": 384,
+      "explore": 128,
+      "away": 48,
+      "today": 224
+    }
+  }
+}
