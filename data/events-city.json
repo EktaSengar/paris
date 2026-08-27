@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-20",
+  "generated": "2026-08-27",
   "window": {
     "from": "2026-08-20",
     "to": "2026-10-19"
@@ -97,34 +97,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-83812",
-      "title": "Visite guidée de l'exposition Simone Veil. Mes sœurs et moi",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 4,
-      "area": "Mémorial de la Shoah",
-      "coords": [
-        48.8548509957524,
-        2.35631399897687
-      ],
-      "start": "2026-08-20",
-      "end": "2026-08-20",
-      "times": "Le jeudi 20 août 2026 de 15h00 à 17h00",
-      "priceNote": "Paid",
-      "why": "Découvrez la nouvelle exposition du Mémorial de la Shoah Simone Veil. Mes sœurs et moi Visite guidée pour Adultes",
-      "url": "https://www.paris.fr/evenements/visite-guidee-de-l-exposition-simone-veil-mes-soeurs-et-moi-110211",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "b/ba/Mém._de_la_Shoah_(Paris).jpg",
-      "ik": "c"
-    },
-    {
       "id": "qfap-84492",
       "title": "Exposition photographique",
       "emoji": "🖼️",
@@ -182,36 +154,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-84941",
-      "title": "LECTURE - « Macaques », Hédi Tillette de Clermont-Tonnerre",
-      "emoji": "🎭",
-      "type": "event",
-      "categories": [
-        "theatre"
-      ],
-      "arr": 16,
-      "area": "Théâtre de Verdure du Jardin Shakespeare",
-      "coords": [
-        48.861405500443,
-        2.24676585191979
-      ],
-      "start": "2026-08-25",
-      "end": "2026-08-25",
-      "times": "Le mardi 25 août 2026 de 18h00 à 19h00",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "L’odyssée sensible d’une petite fille qui peu à peu fait le deuil de sa mère. Au cours de ce chemin d’acceptation, elle croise toute une galerie de personnages au milieu d’un monde en proie à la peur et à la guerre civile.",
-      "url": "https://www.paris.fr/evenements/lecture-macaques-hedi-tillette-de-clermont-tonnerre-111376",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": false,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-85635",
       "title": "« Hip-hop don't stop » : dans l'objectif de Maï Lucas",
       "emoji": "🖼️",
@@ -240,34 +182,6 @@
       ],
       "quality": 3,
       "uniqueness": 3
-    },
-    {
-      "id": "qfap-85977",
-      "title": "#FestivalEstivalDeJam2026 JAM SESSION DE FRANÇOIS CONSTANTIN – SPECIALE BRESIL",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music"
-      ],
-      "arr": 1,
-      "area": "Le Baiser Salé",
-      "coords": [
-        48.8598354,
-        2.3478728
-      ],
-      "start": "2026-08-21",
-      "end": "2026-08-22",
-      "times": "Le vendredi 21 août 2026 de 21h00 à 23h59",
-      "priceNote": "Paid",
-      "why": "Percussionniste hors pair et maestro des rencontres musicales, François Constantin mène la jam avec cette énergie joyeuse et collective propre à ces soirées uniques.",
-      "url": "https://www.paris.fr/evenements/festivalestivaldejam2026-jam-session-de-francois-constantin-speciale-bresil-112516",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "9/96/Le_Baiser_Salé_-_Paris.jpg",
-      "ik": "c"
     },
     {
       "id": "qfap-86107",
@@ -1783,32 +1697,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-90002",
-      "title": "Atelier Pizza by Paolo ❁ Jardin21",
-      "emoji": "🍽️",
-      "type": "event",
-      "categories": [
-        "food"
-      ],
-      "arr": 19,
-      "area": "Jardin21",
-      "coords": [
-        48.8962979982124,
-        2.39582696109815
-      ],
-      "start": "2026-08-20",
-      "end": "2026-08-20",
-      "times": "Le jeudi 20 août 2026 de 16h00 à 17h00",
-      "priceNote": "Paid",
-      "why": "Choisissez, confectionnez, mangez : un atelier pizza ça vous tente ?",
-      "url": "https://www.paris.fr/evenements/les-chiens-au-jardin-117437",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-89665",
       "title": "Les perruches à collier",
       "emoji": "🚶",
@@ -2337,34 +2225,6 @@
       "ik": "c"
     },
     {
-      "id": "qfap-88685",
-      "title": "Stages de danse Butô japonaise à Paris avec Juju Alishina",
-      "emoji": "🎭",
-      "type": "event",
-      "categories": [
-        "dance",
-        "theatre"
-      ],
-      "arr": 4,
-      "area": "Micadanses",
-      "coords": [
-        48.8544989977286,
-        2.3561939701234
-      ],
-      "start": "2026-07-20",
-      "end": "2026-08-22",
-      "times": "Du lundi 17 août 2026 au samedi 22 août 2026 : lundi, mardi, mercredi, jeudi, vendredi, samedi de 14h00 à 19h00",
-      "price": 35,
-      "priceNote": "485 € &nbsp;(450 € pour le stage + 35 € d'adhésion)",
-      "why": "Découvrez une approche originale du mouvement inspirée du Butô japonais. Ce stage, animé par une enseignante japonaise expérimentée, développe la présence, la perception, la créativité et l’expression corporelle, en studio comme en extérieur au cœur de Paris.",
-      "url": "https://www.paris.fr/evenements/stages-de-danse-buto-japonaise-a-paris-avec-juju-alishina-115648",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-87125",
       "title": "L'Intégrale #2 : Meredith Monk - On Behalf Of Nature",
       "emoji": "🎵",
@@ -2713,33 +2573,6 @@
       "labels": [
         "free"
       ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-89863",
-      "title": "Tudo Bem? - Afterwork électro-plage, rooftop, sunset & social networking",
-      "emoji": "🌙",
-      "type": "event",
-      "categories": [
-        "nightlife"
-      ],
-      "arr": 1,
-      "area": "Rooftop Nijinsky",
-      "coords": [
-        48.8576140063152,
-        2.3467579588046
-      ],
-      "start": "2026-08-21",
-      "end": "2026-08-22",
-      "times": "Le vendredi 21 août 2026 de 18h00 à 02h00",
-      "price": 15,
-      "priceNote": "Prends dès maintenant ta place et garantis le meilleur prix ",
-      "why": "Afterwork électro-plage, rooftop, sunset & social networking. Line up 100% DJs producteurs.",
-      "url": "https://www.paris.fr/evenements/tudo-bem-afterwork-electro-piscine-rencontres-diner-117303",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
       "quality": 3,
       "uniqueness": 3
     },
@@ -3230,35 +3063,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-89771",
-      "title": "Pool Party à la piscine Keller",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music"
-      ],
-      "arr": 15,
-      "area": "Piscine Keller",
-      "coords": [
-        48.8477210136353,
-        2.28248502234112
-      ],
-      "start": "2026-08-21",
-      "end": "2026-08-22",
-      "times": "Le vendredi 21 août 2026 de 20h00 à 23h00",
-      "price": 7,
-      "priceNote": "7 euros + prix d'une entrée piscine. Réservation et vente de",
-      "why": "Pool Party à la piscine Keller le vendredi 21 août. DJ Set, aquagym géant, jeux dans l'eau, structures flottantes, JACUZZI.",
-      "url": "https://www.paris.fr/evenements/pool-party-a-la-piscine-keller-117193",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": false,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "b/b1/Piscine-Keller-decouverte.JPG",
-      "ik": "c"
-    },
-    {
       "id": "qfap-90070",
       "title": "Open-air bord de seine : La Grande fête de House Of Groove au Mazette",
       "emoji": "🎉",
@@ -3486,60 +3290,6 @@
       "source": "Que Faire à Paris — opendata.paris.fr",
       "lastVerified": "2026-08-20",
       "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-86081",
-      "title": "Esports World Cup 2026",
-      "emoji": "🎬",
-      "type": "event",
-      "categories": [
-        "film"
-      ],
-      "arr": 15,
-      "area": "Paris Expo Porte de Versailles",
-      "coords": [
-        48.8320329826474,
-        2.28870799871567
-      ],
-      "start": "2026-07-06",
-      "end": "2026-08-23",
-      "times": "Du lundi 06 juillet 2026 au dimanche 23 août 2026 :",
-      "priceNote": "Paid",
-      "why": "L'Esports World Cup 2026 se tiendra désormais à Paris, en France, du 6 juillet au 23 août.",
-      "url": "https://www.paris.fr/evenements/esports-world-cup-2026-112621",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "1/11/P1050990_Paris_XV_pte_de_Versailles_entrée_du_parc_des_expositions_rwk.JPG",
-      "ik": "c"
-    },
-    {
-      "id": "qfap-87873",
-      "title": "À la découverte des quartiers parisiens : le quartier Bel-Air",
-      "emoji": "🚶",
-      "type": "event",
-      "categories": [
-        "walk"
-      ],
-      "arr": 12,
-      "area": "Métro Picpus",
-      "coords": [
-        48.8422325516043,
-        2.40142679213102
-      ],
-      "start": "2026-08-20",
-      "end": "2026-08-20",
-      "times": "Le jeudi 20 août 2026 de 18h30 à 20h30",
-      "priceNote": "Visite gratuite dans la limite des places disponibles (25 pe",
-      "why": "Découvrez le charme de Bel-Air, entre passages discrets entre grandes avenues, entre maisons faubouriennes et immeubles haussmanniens. Une visite guidée proposée par le Comité d'histoire de la Ville de Paris.",
-      "url": "https://www.paris.fr/evenements/a-la-decouverte-des-quartiers-le-quartier-de-bel-air-114613",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": false,
       "quality": 3,
       "uniqueness": 3
     },
@@ -4353,32 +4103,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-75345",
-      "title": "Byblos, cité éternelle",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 5,
-      "area": "L'Institut du Monde Arabe",
-      "coords": [
-        48.849172004894,
-        2.35621199121522
-      ],
-      "start": "2026-03-24",
-      "end": "2026-08-23",
-      "times": "Du mardi 24 mars 2026 au dimanche 23 août 2026 :",
-      "priceNote": "Paid",
-      "why": "Plongez dans l’histoire du premier port maritime international au monde : Byblos, qui joua un rôle clé dans l’histoire méditerranéenne, relia de haute Antiquité la côte libanaise à l’Égypte, la Mésopotamie et le monde égéen, noua des liens uniques avec les pharaons et joua un rôle majeur dans la diffusion de l’alphabet",
-      "url": "https://www.paris.fr/evenements/byblos-cite-eternelle-101209",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-78915",
       "title": "Exposition Kourtney Roy - All Inclusive",
       "emoji": "🖼️",
@@ -4862,33 +4586,6 @@
       "uniqueness": 3,
       "i": "5/59/Musée_des_Arts_et_Métiers_337.jpg",
       "ik": "c"
-    },
-    {
-      "id": "qfap-88725",
-      "title": "La soprano Anne Baquet chante au Paradis",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music",
-        "theatre"
-      ],
-      "arr": 6,
-      "area": "Lucernaire",
-      "coords": [
-        48.8442420209033,
-        2.33040302169061
-      ],
-      "start": "2026-06-17",
-      "end": "2026-08-23",
-      "times": "Du mercredi 17 juin 2026 au dimanche 23 août 2026 : dimanche de 15h30 à 16h45 mercredi, jeudi, vendredi de 19h00 à 20h15",
-      "priceNote": "Paid",
-      "why": "Après avoir présenté « ABCd’airs » et « Come Bach » au Lucernaire, Anne Baquet prend le chemin du Paradis avec un nouveau piano-voix inédit.",
-      "url": "https://www.paris.fr/evenements/la-soprano-anne-baquet-chante-au-paradis-115745",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
     },
     {
       "id": "qfap-88765",
@@ -5404,34 +5101,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-87066",
-      "title": "Les nocturnes reviennent au musée de Montmartre !",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 18,
-      "area": "Musée de Montmartre",
-      "coords": [
-        48.8877039909771,
-        2.34062600989856
-      ],
-      "start": "2026-07-01",
-      "end": "2026-08-26",
-      "times": "Du mercredi 01 juillet 2026 au mercredi 26 août 2026 :",
-      "priceNote": "Réservez sur notre billetterie&nbsp;un billet « visite libre",
-      "why": "Cet été s'annonce festif au musée de Montmartre : tous les mercredis de juillet et août, nos horaires se prolongent jusqu’à 22h ! Une expérience unique au cœur de l’histoire de Montmartre, sous les lumières dorées du crépuscule.",
-      "url": "https://www.paris.fr/evenements/les-nocturnes-reviennent-au-musee-de-montmartre-113671",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "8/8b/Musée_de_Montmartre.jpg",
-      "ik": "c"
-    },
-    {
       "id": "qfap-87671",
       "title": "Dutch Criminal Record + Hotel Mira en concert (côté Records)",
       "emoji": "🎵",
@@ -5897,33 +5566,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-87934",
-      "title": "Stage Labo Argentique Couleur intensif",
-      "emoji": "📷",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 14,
-      "area": "Juste un Labo",
-      "coords": [
-        48.82615999264,
-        2.33906203058504
-      ],
-      "start": "2026-08-21",
-      "end": "2026-08-23",
-      "times": "Du vendredi 21 août 2026 au dimanche 23 août 2026 :",
-      "price": 450,
-      "priceNote": "450€",
-      "why": "Le Passeport Argentique est un stage intensif qui dispense une formation au laboratoire argentique couleur : le stage est séquencé en 6 séances de 3h30 dont : - 1 séance de tirage planche contact et didactique du labo, - 3 séances de tirage Couleur RC -1 séance Tirage grand format 30/40cm - 1 session de développement d",
-      "url": "https://www.paris.fr/evenements/stage-labo-argentique-couleur-intensif-114710",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-80116",
       "title": "#Restitutions : Les archives en question",
       "emoji": "🖼️",
@@ -6160,33 +5802,6 @@
       "labels": [
         "free"
       ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-76862",
-      "title": "« Madame de Sévigné. Lettres parisiennes » au Musée Carnavalet",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 3,
-      "area": "Musée Carnavalet - Histoire de Paris",
-      "coords": [
-        48.8569810809972,
-        2.36279027810438
-      ],
-      "start": "2026-04-15",
-      "end": "2026-08-23",
-      "times": "Du mercredi 15 avril 2026 au dimanche 23 août 2026 : mardi, mercredi, jeudi, vendredi, samedi, dimanche de 10h00 à 17h45",
-      "price": 0,
-      "priceNote": "De 0 à 15 euros.",
-      "why": "À l’occasion du 400e anniversaire de sa naissance, le musée Carnavalet – Histoire de Paris organise une exposition consacrée à Marie de Rabutin-Chantal, marquise de Sévigné (1626-1696). Plus de 200 œuvres, peintures, objets, dessins, provenant des collections du musée, d’importantes collections publiques françaises, ét",
-      "url": "https://www.paris.fr/evenements/madame-de-sevigne-lettres-parisiennes-102956",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
       "quality": 3,
       "uniqueness": 3
     },
@@ -6945,37 +6560,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-90247",
-      "title": "Villette Tropicale : Soirée Afro-Latino live et DJ à La Petite Halle",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music",
-        "nightlife"
-      ],
-      "arr": 19,
-      "area": "La Petite Halle",
-      "coords": [
-        48.8889520144504,
-        2.39245399944133
-      ],
-      "start": "2026-08-22",
-      "end": "2026-08-23",
-      "times": "Le samedi 22 août 2026 de 20h00 à 02h00",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "Cet été, la soirée VILLETTE TROPICALE s'installe à La Petite Halle pour une série exceptionnelle de 6 soirées dédiées aux sonorités d'Afrique, les Caraïbes et l'Amérique Latine entre le 18 juillet et le 22 août !",
-      "url": "https://www.paris.fr/evenements/villette-tropicale-soiree-afro-latino-live-et-dj-a-la-petite-halle-117735",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-81667",
       "title": "Take Me Out : Antimatter + Sleeping Pulse en concert à Paris",
       "emoji": "🎵",
@@ -7349,33 +6933,6 @@
       "ik": "c"
     },
     {
-      "id": "qfap-90219",
-      "title": "Club Tropicalia : Urban Tropical vibes Party Latino, Afro, Caribbean, Brazil",
-      "emoji": "🌙",
-      "type": "event",
-      "categories": [
-        "nightlife"
-      ],
-      "arr": 10,
-      "area": "BIZZ'ART",
-      "coords": [
-        48.8791935,
-        2.36638990000006
-      ],
-      "start": "2026-08-22",
-      "end": "2026-08-22",
-      "times": "Le vendredi 21 août 2026 de 23h00 à 05h00",
-      "price": 15,
-      "priceNote": "De&nbsp;8 à 15 euros.",
-      "why": "La fiesta tropical la plus caliente de Paname est de retour et s'installe au club plus cosy du Canal St-Martin aka le Bizz'Art !",
-      "url": "https://www.paris.fr/evenements/club-tropicalia-urban-tropical-vibes-party-latino-afro-caribbean-brazil-117707",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-90258",
       "title": "Fine Arts Paris 2026",
       "emoji": "🖼️",
@@ -7493,36 +7050,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-85642",
-      "title": "Chacun cherche son chat",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 7,
-      "area": "FLUCTUART, Centre d’art urbain",
-      "coords": [
-        48.8630329905371,
-        2.30992997172751
-      ],
-      "start": "2026-05-07",
-      "end": "2026-08-23",
-      "times": "Du jeudi 07 mai 2026 au dimanche 23 août 2026 : lundi, mardi, mercredi, dimanche de 12h00 à 00h00 jeudi, vendredi, samedi de 12h00 à 02h00",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "Félin mystérieux et insaisissable, le chat fascine autant qu’il interroge. Tour à tour paisible, sauvage, mystique ou rebelle, il traverse les imaginaires et les époques. L’exposition Chacun cherche son Chat explore ses multiples facettes à travers le regard de 12 artistes issus de l’art urbain.",
-      "url": "https://www.paris.fr/evenements/chacun-cherche-son-chat-112134",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-86761",
       "title": "Voyagez avec Jules Verne dans un spectacle immersif inoubliable au Grand Hôtel des Rêves !",
       "emoji": "🎭",
@@ -7610,37 +7137,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-88823",
-      "title": "Grand marché vintage japonais",
-      "emoji": "🪑",
-      "type": "event",
-      "categories": [
-        "walk",
-        "market"
-      ],
-      "arr": 3,
-      "area": "Rue Bailly",
-      "coords": [
-        48.8649759995122,
-        2.35639496816154
-      ],
-      "start": "2026-07-11",
-      "end": "2026-08-25",
-      "times": "Du samedi 11 juillet 2026 au mardi 25 août 2026 : lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche de 11h00 à 19h00",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "Grand marché vintage organisé par le brocanteur japonais Koji et son équipe, qui s'installent au sein de la galerie Joseph au 7 Rue Bailly à Paris, du 11 juillet au 25 aout 2026.",
-      "url": "https://www.paris.fr/evenements/grand-marche-vintage-japonais-115939",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-87942",
       "title": "Les samedis du documentaire : Rashid, l'enfant de Sinjar",
       "emoji": "🎬",
@@ -7661,63 +7157,6 @@
       "priceNote": "Free",
       "why": "Ce film documentaire de 80 min réalisé en 2025 par Jasna Krajinovic a remporté le Prix du patrimoine vivant, Festival International Jean Rouch Film.",
       "url": "https://www.paris.fr/evenements/les-samedis-du-documentaire-rashid-l-enfant-de-sinjar-114718",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-89376",
-      "title": "Récital Guitare classique & Violon",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music"
-      ],
-      "arr": 17,
-      "area": "église Ste Marie des Batignolles",
-      "coords": [
-        48.8867146,
-        2.3174421
-      ],
-      "start": "2026-08-22",
-      "end": "2026-08-22",
-      "times": "Le samedi 22 août 2026 de 15h30 à 16h30",
-      "price": 8,
-      "priceNote": "Les Concerts Ne Sont Pas Gratuits &nbsp; Un Don Respectueux ",
-      "why": "Deux jeunes grands virtuoses, représentant de la nouvelle génération. Ils se produisent dans les festivals internationaux.",
-      "url": "https://www.paris.fr/evenements/recital-guitare-classique-violon-116721",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-89456",
-      "title": "Cloud control, une exposition de l'artiste Alexia Dreschmann",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 13,
-      "area": "Galerie 105",
-      "coords": [
-        48.828012979975,
-        2.34264797640157
-      ],
-      "start": "2026-07-01",
-      "end": "2026-08-24",
-      "times": "Du mercredi 01 juillet 2026 au lundi 24 août 2026 :",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "Cloud Control est une exposition qui explore les enjeux de la géo-ingénierie et interroge notre rapport aux ressources naturelles transformées, détournées ou surexploitées par l'activité humaine.",
-      "url": "https://www.paris.fr/evenements/cloud-control-une-exposition-de-l-artiste-alexia-dreschmann-116812",
       "source": "Que Faire à Paris — opendata.paris.fr",
       "lastVerified": "2026-08-20",
       "indoor": true,
@@ -7759,33 +7198,6 @@
       "uniqueness": 3
     },
     {
-      "id": "qfap-89706",
-      "title": "Soirée French Musique Only à Madame Arthur",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music",
-        "nightlife"
-      ],
-      "arr": 18,
-      "area": "Le Club de Madame Arthur",
-      "coords": [
-        48.8825189875823,
-        2.3395679622607
-      ],
-      "start": "2026-07-30",
-      "end": "2026-08-21",
-      "times": "Du jeudi 30 juillet 2026 au vendredi 21 août 2026 :",
-      "priceNote": "Paid",
-      "why": "Tout l'été, retrouve les DJs résidents de Madame Arthur, viens chanter et danser sur tes péchés mignons musicaux (ceux que tu oses avouer et les autres). Toujours en 100% musique en Français dans notre décor Belle Epoque !",
-      "url": "https://www.paris.fr/evenements/soiree-french-musique-only-a-madame-arthur-117105",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-89586",
       "title": "On a vu, on a aimé « Le Procès d’une vie » : le jour où les femmes ont dit non",
       "emoji": "🎭",
@@ -7812,91 +7224,6 @@
       "uniqueness": 3,
       "i": "1/1b/P1220786_Paris_X_rue_du_Fbg-Saint-Martin_n48_Le_Spendid_rwk.jpg",
       "ik": "c"
-    },
-    {
-      "id": "qfap-89967",
-      "title": "La Dolce Vita : rétrospective du cinéma italien",
-      "emoji": "🎬",
-      "type": "event",
-      "categories": [
-        "film"
-      ],
-      "arr": 6,
-      "area": "Cinéma les 3 Luxembourg",
-      "coords": [
-        48.8484030071871,
-        2.34078199711664
-      ],
-      "start": "2026-07-29",
-      "end": "2026-08-25",
-      "times": "Du mercredi 29 juillet 2026 au mardi 25 août 2026 :",
-      "price": 6,
-      "priceNote": "NORMAL : 11.90 € RÉDUIT (Séniors 65+ et demandeurs d’emploi)",
-      "why": "Les 3 Luxembourg repasse, à l'occasion de sa rétrospective estivale annuelle, les grands classiques du cinéma italien !",
-      "url": "https://www.paris.fr/evenements/la-dolce-vita-retrospective-du-cinema-italien-117402",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-90131",
-      "title": "Guinguette Latino - Open air 100% musica latina !",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music",
-        "nightlife"
-      ],
-      "arr": 12,
-      "area": "Les Lionnes / Parvis du Palais de la Porte Dorée",
-      "coords": [
-        48.8346379943353,
-        2.40958602279872
-      ],
-      "start": "2026-08-20",
-      "end": "2026-08-21",
-      "times": "Le jeudi 20 août 2026 de 19h00 à 23h55",
-      "price": 0,
-      "priceNote": "Free",
-      "why": "Le Bal Tropical de Paname vous donne rendez-vous pour une nouvelle soirée en plein air dédiée aux rythmes les plus chauds d'Amérique latine !",
-      "url": "https://www.paris.fr/evenements/guinguette-habibi-terrasse-100-maghreb-arabic-vibes-117594",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "labels": [
-        "free"
-      ],
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
-      "id": "qfap-89551",
-      "title": "Ciné-club du cinéma des cinéastes Paris au mois d'août",
-      "emoji": "🎬",
-      "type": "event",
-      "categories": [
-        "film"
-      ],
-      "arr": 17,
-      "area": "Cinéma des Cinéastes",
-      "coords": [
-        48.8843000162785,
-        2.32688999843174
-      ],
-      "start": "2026-08-24",
-      "end": "2026-08-24",
-      "times": "Le lundi 24 août 2026 de à",
-      "price": 7,
-      "priceNote": "De 7 à 12 euros. Cartes illimitées acceptées",
-      "why": "Chaque mois, le Cinéma des Cinéastes vous propose de découvrir un film rare et de qualité. Un petit verre est offert juste avant la séance avec une tombola !",
-      "url": "https://www.paris.fr/evenements/cine-club-du-cinema-des-cineastes-paris-au-mois-d-aout-116909",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
     },
     {
       "id": "qfap-90099",
@@ -8771,35 +8098,6 @@
       "ik": "c"
     },
     {
-      "id": "qfap-88004",
-      "title": "« Exposition générale » à la Fondation Cartier",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 1,
-      "area": "Fondation Cartier pour l'art contemporain",
-      "coords": [
-        48.8623750111379,
-        2.33731800799134
-      ],
-      "start": "2025-10-25",
-      "end": "2026-08-23",
-      "times": "Du samedi 25 octobre 2025 au dimanche 23 août 2026 :",
-      "price": 0,
-      "priceNote": "De 0 à 15 euros.",
-      "why": "« Exposition générale » retrace quarante ans d'art contemporain à la Fondation Cartier à partir d’une collection façonnée au fil de sa programmation.",
-      "url": "https://www.paris.fr/evenements/exposition-generale-a-la-fondation-cartier-114781",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3,
-      "i": "c/c0/Bâtiment_2_Place_Palais_Royal_-_Paris_I_(FR75)_-_2025-09-03_-_1.jpg",
-      "ik": "c"
-    },
-    {
       "id": "qfap-88205",
       "title": "Atelier tissu Cirque & Danse",
       "emoji": "💃",
@@ -9042,33 +8340,6 @@
       "ik": "c"
     },
     {
-      "id": "qfap-51567",
-      "title": "Ni vrai ni faux bien au contraire avec Philippe de Perthuis",
-      "emoji": "🎭",
-      "type": "event",
-      "categories": [
-        "theatre"
-      ],
-      "arr": 4,
-      "area": "Théâtre Le Double Fond",
-      "coords": [
-        48.8553759962578,
-        2.36257704084858
-      ],
-      "start": "2025-09-13",
-      "end": "2026-08-22",
-      "times": "Le samedi 22 août 2026 de 21h00 à 22h15",
-      "price": 29,
-      "priceNote": "De 29 à 34 euros.",
-      "why": "Explorer les frontières floues du réel et de l’imaginaire. Distinguer le vrai du faux. Le voulez-vous vraiment ? Jouons avec notre esprit, il n’attend que ça ! Avec intelligence et bienveillance, Philippe de Perthuis vous invite à un drôle de voyage entre mystère, partage, rires et quelques autres sentiments. Magie, me",
-      "url": "https://www.paris.fr/evenements/ni-vrai-ni-faux-bien-au-contraire-avec-philippe-de-perthuis-2024-2025-66924",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
-    },
-    {
       "id": "qfap-67059",
       "title": "Visite guidée : Histoire des Buttes-Chaumont",
       "emoji": "🚶",
@@ -9215,33 +8486,6 @@
       "uniqueness": 3,
       "i": "3/3e/L'Olympia_(Paris)_en_2010.JPG",
       "ik": "c"
-    },
-    {
-      "id": "qfap-89377",
-      "title": "Quatuor à Cordes : Les Rencontres d’Excellence",
-      "emoji": "🎵",
-      "type": "event",
-      "categories": [
-        "music"
-      ],
-      "arr": 8,
-      "area": "église St Philippe du Roule",
-      "coords": [
-        48.8730779890311,
-        2.31037798445223
-      ],
-      "start": "2026-08-23",
-      "end": "2026-08-23",
-      "times": "Le dimanche 23 août 2026 de 16h00 à 17h00",
-      "price": 8,
-      "priceNote": "Les Concerts Ne Sont Pas Gratuits &nbsp; Un Don Respectueux ",
-      "why": "Les Rencontres d’Excellence réunit des jeunes artistes issus des plus grands conservatoires français. Les musiciens se produisent en festivals à l’international.",
-      "url": "https://www.paris.fr/evenements/quatuor-a-cordes-les-rencontres-d-excellence-116723",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
     },
     {
       "id": "qfap-90059",
@@ -9592,33 +8836,6 @@
       "uniqueness": 3,
       "i": "6/62/Wikipedia-Fondation_groupe_EDF.png",
       "ik": "c"
-    },
-    {
-      "id": "qfap-84849",
-      "title": "Passion Japon, l'exposition immersive",
-      "emoji": "🖼️",
-      "type": "event",
-      "categories": [
-        "art"
-      ],
-      "arr": 19,
-      "area": "La Villette - Espace Chapiteaux",
-      "coords": [
-        48.8941675528508,
-        2.38546967243759
-      ],
-      "start": "2026-03-19",
-      "end": "2026-08-23",
-      "times": "Du jeudi 19 mars 2026 au dimanche 23 août 2026 :",
-      "price": 17.9,
-      "priceNote": "Adultes à partir de 22,90€ 6 Enfants (4 à 11 ans) à partir",
-      "why": "Une plongée fascinante dans la culture japonaise, à la découverte de ses 1001 facettes !",
-      "url": "https://www.paris.fr/evenements/passion-japon-l-exposition-immersive-111284",
-      "source": "Que Faire à Paris — opendata.paris.fr",
-      "lastVerified": "2026-08-20",
-      "indoor": true,
-      "quality": 3,
-      "uniqueness": 3
     },
     {
       "id": "qfap-84989",
