@@ -72,6 +72,18 @@ jobs:
             echo "not Monday — discovery index left alone"
           fi
 
+      # Photographs for the generated tiers. Runs after the rebuilds above,
+      # because those files are written from scratch and would otherwise
+      # drop the pictures stamped into them last week.
+      #
+      # scripts/photo-cache.json is what makes this cheap enough to run on
+      # a schedule: it remembers every lookup, misses included, so a rebuild
+      # that returns the same 1,100 places asks Wikimedia about none of them.
+      # Only genuinely new records cost a request.
+      - name: Resolve photographs for the generated tiers
+        if: github.event_name != 'pull_request'
+        run: node scripts/photos.mjs || echo "photos skipped — Wikimedia unavailable"
+
       # The "is it open" filter acts on a parser that deliberately refuses
       # what it cannot read. This fails if the share of Paris it can read
       # drops below the floor — which would make the filter unsafe to act
@@ -100,12 +112,12 @@ jobs:
       - name: Commit any changes
         if: github.event_name != 'pull_request'
         run: |
-          if [ -z "$(git status --porcelain data index.html)" ]; then
+          if [ -z "$(git status --porcelain data index.html scripts/photo-cache.json)" ]; then
             echo "Nothing changed — no events expired and assets already stamped."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data index.html
+          git add data index.html scripts/photo-cache.json
           git commit -m "chore: prune expired events and restamp assets ($(date -u +%Y-%m-%d))"
           git push

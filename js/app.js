@@ -5,11 +5,36 @@
 
 const App = (() => {
 
-  const FILES = ['home', 'events', 'events-city', 'places', 'nightlife', 'sports', 'food', 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'places/index', 'civic', 'notable', 'editorial', 'invaders', 'notes'];
+  /* ---------- what has to be here before the page can speak ----------
+
+     `FIRST` decides where the reader is standing. It is two small files
+     and it comes before everything, because until the location is known
+     nothing can say which shards are the near ones — and for most of the
+     life of this site the twenty-shard fetch sat behind the whole core
+     download waiting to find out. Nine hundred milliseconds of a phone
+     doing nothing, to learn something that fits in four hundred bytes.
+
+     `CORE` is what the first render draws from: the curated layers, the
+     things that are on, the neighbourhoods, the quests.
+
+     `LATER` is the two generated files that feed the *discovered* layer
+     and nothing else — the city's own facilities and the places that are
+     a matter of record. They are a hundred kilobytes of the critical
+     path and they land in the same layer the shards land in, which is
+     already, by design, briefly incomplete and repainted when it fills.
+     Holding the first paint for them bought nothing that the repaint a
+     second later does not also buy. */
+  const FIRST = ['home', 'places/index'];
+  const CORE  = ['events', 'events-city', 'places', 'nightlife', 'sports', 'food',
+                 'itineraries', 'daytrips', 'neighborhoods', 'quests', 'editorial',
+                 'invaders', 'notes'];
+  const LATER = ['civic', 'notable'];
+  const FILES = [...FIRST, ...CORE, ...LATER];
   const D = {};
   let ALL = [];
   let CTX = {};
   let WX = null;
+  let WXP = null;                       // the forecast, in flight
   let VIEW = 'today';
   let HOME = { label: 'Paris' };        // replaced by the location engine
   let DISCOVERED = [];                  // OpenStreetMap layer, positions only
@@ -130,16 +155,74 @@ const App = (() => {
      awaited by anything that changes what is being asked, and the
      background fill repaints once when it finishes. */
 
+  /* ---------- fetching a data file ----------
+
+     Every data file used to be requested with `cache: 'no-cache'`, which
+     asks the browser to revalidate with the server before using what it
+     already has. Thirty-seven files, one round trip each, on every
+     single visit — a quarter of a second of nothing happening on a good
+     connection and several seconds on a phone, to be told thirty-seven
+     times that nothing had changed.
+
+     The reason it was there is real: Pages serves data with `max-age=600`
+     and no version in the URL, so a plain cached fetch can hand back a
+     file ten minutes stale, and an events section that is quietly ten
+     minutes behind is exactly the failure this site is built not to have.
+
+     So do what index.html already does for CSS and JS: put a hash of the
+     file's own contents in the URL. scripts/version.mjs writes the map
+     into the page as `window.__DV`. A changed file gets a URL no cache
+     has ever seen; an unchanged one is answered from disk with no
+     network at all. Freshness comes from the deploy rather than from
+     asking, which is both correct and free.
+
+     Without the map — someone opened index.html before running
+     version.mjs — it falls back to revalidating, which is the old
+     behaviour and merely slow. */
+  const DV = (typeof window !== 'undefined' && window.__DV) || null;
+  const dataUrl = name => {
+    const v = DV && DV[name];
+    return v ? `data/${name}.json?v=${v}` : `data/${name}.json`;
+  };
+  const dataOpts = DV ? undefined : { cache: 'no-cache' };
+
+  /* index.html starts the core files from a <script> in the head, before
+     these files have even been downloaded. Take the in-flight request
+     rather than making a second one. */
+  const PRE = (typeof window !== 'undefined' && window.__PRELOAD) || {};
+
+  /* ---------- what the network should do first ----------
+
+     Everything after the first paint — the two city-record files and
+     sixteen shards, three quarters of a megabyte — is fetched at low
+     priority, and the reason is the photograph at the top of the page.
+
+     It cannot be requested until the data has been ranked and the card
+     drawn, so it starts *after* the background fill has already claimed
+     the connection, and on a phone it then queued behind all of it: the
+     hero arrived at six seconds for want of a hundred kilobytes it could
+     have had at four. Nothing about the fill is urgent — that is the
+     whole premise of doing it behind the paint — so it says so, and the
+     browser gives the picture the reader is looking at the pipe first.
+
+     `priority` is ignored by browsers that do not implement it, which
+     leaves them exactly where they were. */
+  async function fetchData(name, background = false) {
+    const started = PRE[name];
+    const opts = background ? { ...dataOpts, priority: 'low' } : dataOpts;
+    const r = await (started || fetch(dataUrl(name), opts));
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  }
+
   const FIRST_BATCH = 4;
   let PLACES = [];
   let loadedShards = new Set();
   let fillingIn = null;
 
-  async function fetchShard(key) {
+  async function fetchShard(key, background = false) {
     try {
-      const r = await fetch(`data/places/${key}.json`, { cache: 'no-cache' });
-      if (!r.ok) throw new Error(r.status);
-      return (await r.json()).items || [];
+      return (await fetchData(`places/${key}`, background)).items || [];
     } catch (e) {
       console.warn('could not load shard', key, e);
       return [];
@@ -160,10 +243,17 @@ const App = (() => {
     return keys.sort((a, b) => far(a) - far(b));
   }
 
-  async function loadShards(keys) {
-    const lists = await Promise.all(keys.map(fetchShard));
+  /* Fetching and rebuilding are separate because the first batch of
+     shards is now fetched *alongside* the core files rather than after
+     them, and there is nothing to rebuild until both have landed. */
+  async function pullShards(keys, background = false) {
+    const lists = await Promise.all(keys.map(k => fetchShard(k, background)));
     keys.forEach(k => loadedShards.add(k));
     PLACES = PLACES.concat(...lists);
+  }
+
+  async function loadShards(keys) {
+    await pullShards(keys);
     rebuild();
   }
 
@@ -181,26 +271,65 @@ const App = (() => {
 
   /* Resolves when the whole city is in memory. Cheap to await repeatedly
      — after the first fill it is an already-settled promise. */
+  /* ---------- filling in, nearest consequence first ----------
+
+     Two things are still missing when the page first paints: the two
+     city-record files, and sixteen shards. They are not equally urgent,
+     and fetching them as one batch made the less urgent one decide when
+     the more urgent one arrived.
+
+     civic and notable are a hundred kilobytes and they are about
+     everywhere, including here — so they change what the sections about
+     *around you* say. Behind three quarters of a megabyte of shards they
+     landed around eight seconds in, and the page quietly reflowed under
+     somebody who had started reading.
+
+     The sixteen shards are, by construction, the sixteen arrondissements
+     furthest from the reader. They almost never change a section about
+     the next fifteen minutes; they are what makes the Explore view
+     honest about quarters across town.
+
+     So: paint, then the near consequence, then the far one. The reflow
+     that used to happen at eight seconds now happens at three and a
+     half, while the page is still visibly settling, and the long fill
+     behind it changes nothing the reader is looking at. */
+  let nearFill = null;
+
+  function whenNear() {
+    if (!nearFill) {
+      const files = LATER.filter(n => !(n in D));
+      nearFill = Promise.all(files.map(n => pull(n, true))).then(rebuild);
+    }
+    return nearFill;
+  }
+
+  let COMPLETE = false;
   function whenComplete() {
     if (!fillingIn) {
-      const rest = shardOrder().filter(k => !loadedShards.has(k));
-      fillingIn = rest.length ? loadShards(rest) : Promise.resolve();
+      fillingIn = whenNear()
+        .then(() => pullShards(shardOrder().filter(k => !loadedShards.has(k)), true))
+        .then(() => { rebuild(); COMPLETE = true; });
     }
     return fillingIn;
   }
 
+  /* The second paint is only worth drawing while there is still something
+     in flight. Once the city is in memory the answer cannot change, and
+     re-rendering a view onto identical data is a few hundred milliseconds
+     of the reader's phone spent reaching the same conclusion. */
+  const isComplete = () => COMPLETE;
+
+  const pull = async (name, background = false) => {
+    try { D[name] = await fetchData(name, background); }
+    catch (e) { console.warn('could not load', name, e); D[name] = { items: [] }; }
+  };
+
   async function load() {
-    const results = await Promise.all(FILES.map(async name => {
-      try {
-        const r = await fetch(`data/${name}.json`, { cache: 'no-cache' });
-        if (!r.ok) throw new Error(r.status);
-        return [name, await r.json()];
-      } catch (e) {
-        console.warn('could not load', name, e);
-        return [name, { items: [] }];
-      }
-    }));
-    results.forEach(([name, payload]) => { D[name] = payload; });
+    /* Where the reader is, first and on its own — four hundred bytes and
+       a shard index, both of them already in flight from the head of the
+       document. Everything after this can be asked for in parallel
+       because this is the only thing any of it was waiting on. */
+    await Promise.all(FIRST.map(pull));
 
     /* home.json is only the *default* — the location engine owns the
        answer from here, because it may be overridden by a saved home or
@@ -211,11 +340,44 @@ const App = (() => {
     Loc.boot(fallback);
     HOME = Loc.active();
 
-    await loadShards(shardOrder().slice(0, FIRST_BATCH));
+    /* The forecast, started here rather than after the data because it
+       is a nine-hundred-byte answer from somewhere else and the only
+       thing it was ever waiting on is a pair of coordinates. Started
+       now, it is almost always back before the data is — see init(). */
+    Weather.setHome(HOME.lat, HOME.lon);
+    WXP = Weather.load().catch(e => { console.warn('weather failed', e); return null; });
+
+    /* The near shards and the core files race each other. They used to
+       queue: every core file, then the index, then the shards, then the
+       first pixel — three round trips deep for no reason but the order
+       the code happened to be written in. */
+    await Promise.all([
+      Promise.all(CORE.map(pull)),
+      pullShards(shardOrder().slice(0, FIRST_BATCH))
+    ]);
+    rebuild();
 
     /* 391 mosaics, 25 KB — small enough to arrive whole with the first
        batch, and the hunt is meaningless without all of them. */
     Invaders.use(D.invaders?.items || []);
+  }
+
+  /* ---------- the one way to redraw after data arrives ----------
+
+     Records that land after the first paint have no distances on them —
+     `minutesFromHome` is stamped by applyLocation, not carried in the
+     file. So anything that fills data in behind the page has to stamp,
+     rebuild the context, and only then render.
+
+     Two call sites did this and one did not: switching a tab kicked off
+     the fill and then called `render()` on its own. Nothing noticed for
+     as long as no section filtered the late-arriving tier by distance —
+     and then "Somewhere new this weekend" did, found every sourced record
+     sitting at the `?? 99` fallback, and rendered nothing at all. */
+  function repaint() {
+    applyLocation();
+    buildContext();
+    render();
   }
 
   /* Distance is a property of *where you are*, not of the record. Stamping
@@ -297,6 +459,41 @@ const App = (() => {
 
   const tier     = i => TIER[Near.tierOf(i)] || TIER.found;
 
+/* ---------- one mark per kind of place ----------
+
+     Drawn in eight separate places before this — a croissant for bakeries
+     here, again in the Eat tabs, again in the mission legs — and nowhere
+     did the list know what a museum or a theatre looked like, so anything
+     without an emoji of its own fell through to a literal `·`. That was
+     not even a decision: the line read
+
+         item.emoji || (item.discovered ? '·' : '·')
+
+     a ternary whose two branches are the same character. One map, keyed
+     on the type records already carry. */
+
+  const MARK = {
+    bakery: '🥐',  cafe: '☕',    restaurant: '🍽️', deli: '🧀',    market: '🧺',
+    park: '🌳',    museum: '🏛️',  gallery: '🖼️',    books: '📚',   culture: '🎭',
+    exhibition: '🖼️', shop: '🛍️', design: '🪑',
+    nightlife: '🍸', bar: '🍸',   jazz: '🎷',       venue: '🎤',   club: '🪩',
+    comedy: '🎙️',
+    sport: '🏃',   play: '🤾',    run: '🏃',        watch: '🏟️',
+    event: '🎫',   class: '🎓',   walk: '🚶',       itinerary: '🗺️',
+    mission: '🎯', daytrip: '🚆'
+  };
+
+  /* What to draw where there is no photograph. The record's own emoji
+     first — a hand-written record often has a better one than its
+     category does — then the kind of thing it is, then the category it
+     was filed under, and finally a pin, because everything here is at
+     least a place. */
+  const markFor = item =>
+    item.emoji
+    || MARK[item.type]
+    || (item.categories || []).map(c => MARK[c]).find(Boolean)
+    || '📍';
+
   /* Spelled out where the reader has stopped to look properly. The short
      label on the card is a hint; this is the actual claim being made. */
   const PROVENANCE = {
@@ -364,18 +561,90 @@ const App = (() => {
      400. Keep in sync with THUMB_WIDTHS in scripts/images.mjs. */
   const THUMB_WIDTHS = [250, 500, 960, 1280];
 
-  function srcset(url) {
+  /* ---------- how large a photograph is worth fetching ----------
+
+     Commons serves originals, and its 1280px rendering of a single card
+     photograph is 696 KB. On a phone at 2.6x device pixels an honest
+     `sizes` asks for exactly that: a 372 CSS-pixel card wants a 977px
+     image, so the browser picked 1280 and the first screen cost 1.1 MB
+     of photographs.
+
+     Nobody can see it. A photograph — as opposed to a diagram or text —
+     is indistinguishable at 1.3x from 2.6x, and the same card at 500px
+     is 135 KB. So the cap is the effective device-pixel ratio, not the
+     layout: `sizes` stays honest about how wide the slot is, and the
+     srcset simply stops offering renditions past the point where the
+     extra pixels stop being visible.
+
+     Two ceilings, because two kinds of slot: a card or a thumbnail, and
+     a picture that runs the width of the page. */
+  const CAP_THUMB = 250;    // the 96px list thumbnails
+  const CAP_CARD  = 500;    // cards, tiles, side-by-side features
+  const CAP_WIDE  = 960;    // a picture that runs the width of a desktop page
+
+  function srcset(url, cap) {
     const m = url.match(/^(.*\/thumb\/.*\/)\d+px-(.+)$/);
     if (!m) return '';
-    return THUMB_WIDTHS.map(w => `${m[1]}${w}px-${m[2]} ${w}w`).join(', ');
+    return THUMB_WIDTHS.filter(w => w <= cap)
+      .map(w => `${m[1]}${w}px-${m[2]} ${w}w`).join(', ');
   }
 
-  function img(item, sizes, cls = '') {
-    const set = srcset(item.image);
-    return `<img src="${esc(item.image)}"${set ? ` srcset="${esc(set)}" sizes="${sizes}"` : ''}
-      alt="${esc(item.imageSubject || item.title)}" class="${cls}"
-      loading="lazy" decoding="async"
+  /* The `src` is the fallback for a browser that ignores srcset, and for
+     a URL that is not a Commons thumbnail at all. Where we can, point it
+     at the capped rendition too, so the fallback is not the 696 KB one. */
+  function capped(url, cap) {
+    const m = url.match(/^(.*\/thumb\/.*\/)(\d+)px-(.+)$/);
+    if (!m) return url;
+    const w = THUMB_WIDTHS.filter(x => x <= cap).pop();
+    return (w && Number(m[2]) > w) ? `${m[1]}${w}px-${m[3]}` : url;
+  }
+
+  /* ---------- the slots a photograph can go in ----------
+
+     A ceiling on its own is not enough for the pictures that change size
+     between breakpoints. The hero is a thousand pixels wide on a desktop
+     and about four hundred on a phone, and `srcset` cannot tell those
+     apart: offer the 960px rendition for the desktop case and the phone
+     takes it too, because at 2.6 device pixels an honest `sizes` says it
+     wants 1039. That is how a phone ended up fetching 430 KB to fill a
+     372-pixel slot.
+
+     `<picture>` can tell them apart, because `media` is evaluated against
+     the viewport rather than the pixel count. So the wide slots carry two
+     candidate sets — the desktop one, and a phone one that simply does
+     not contain a rendition big enough to be wasteful. Same layout, same
+     photograph, same CSS (every rule targets the `img`, which is still
+     there); a quarter of the bytes.
+
+     Slots without a `wide` entry are one size everywhere and stay plain
+     `<img>`. */
+  const SLOT = {
+    card:    { sizes: '(min-width: 940px) 320px, (min-width: 620px) 45vw, 92vw', cap: CAP_CARD },
+    thumb:   { sizes: '96px', cap: CAP_THUMB },
+    tile:    { sizes: '(min-width: 760px) 420px, 94vw', cap: CAP_CARD },
+    trip:    { sizes: '(min-width: 760px) 520px, 94vw', cap: CAP_CARD },
+    mission: { sizes: '(min-width: 760px) 480px, 94vw', cap: CAP_CARD },
+    hero:    { sizes: '96vw',  cap: CAP_CARD,
+               wide: { media: '(min-width: 1040px)', sizes: '1000px', cap: CAP_WIDE } },
+    lead:    { sizes: '96vw',  cap: CAP_CARD,
+               wide: { media: '(min-width: 1040px)', sizes: '1000px', cap: CAP_WIDE } }
+  };
+
+  /* `eager` is for the one image that is on screen before anybody
+     scrolls. Lazy-loading the largest element above the fold is the
+     classic way to make a page report a slow LCP for no reason: the
+     browser will not even start the request until layout has run. */
+  function img(item, slot, cls = '', eager = false) {
+    const s = SLOT[slot] || SLOT.card;
+    const set = srcset(item.image, s.cap);
+    const load = eager ? ' loading="eager" fetchpriority="high"' : ' loading="lazy"';
+    const tag = `<img src="${esc(capped(item.image, s.cap))}"${set ? ` srcset="${esc(set)}" sizes="${s.sizes}"` : ''}
+      alt="${esc(item.imageSubject || item.title)}" class="${cls}"${load} decoding="async"
       onload="this.classList.add('loaded')" onerror="this.classList.add('loaded')">`;
+
+    if (!s.wide || !set) return tag;
+    const wideSet = srcset(item.image, s.wide.cap);
+    return `<picture><source media="${s.wide.media}" srcset="${esc(wideSet)}" sizes="${s.wide.sizes}">${tag}</picture>`;
   }
 
   /* Images served from cache can finish loading before the inline onload is
@@ -387,17 +656,14 @@ const App = (() => {
     });
   }
 
-  // three columns at 1040px, two from 620px, otherwise nearly full width
-  const CARD_SIZES = '(min-width: 940px) 320px, (min-width: 620px) 45vw, 92vw';
-
   function shot(item) {
     // No free photograph exists for some things. Rather than invent one or
     // drop the frame (which breaks the grid's rhythm), draw a tinted tile at
     // the same aspect ratio. It is clearly not a photograph, which is the point.
     if (!item.image) {
-      return `<div class="shot ph"><span class="ph-mark">${item.emoji || '·'}</span>${badge(item)}</div>`;
+      return `<div class="shot ph" data-kind="${esc(item.type || '')}"><span class="ph-mark">${markFor(item)}</span>${badge(item)}</div>`;
     }
-    return `<div class="shot">${img(item, CARD_SIZES)}${badge(item)}</div>`;
+    return `<div class="shot">${img(item, 'card')}${badge(item)}</div>`;
   }
 
   const RATINGS = [
@@ -487,7 +753,7 @@ const App = (() => {
   function hero(item) {
     return `<a class="hero" data-id="${esc(item.id)}" href="${item.url ? esc(item.url) : mapsLink(item)}"
         target="_blank" rel="noopener">
-      <div class="hero-img">${img(item, '(min-width: 1040px) 1000px, 96vw', 'loaded')}</div>
+      <div class="hero-img">${img(item, 'hero', 'loaded', true)}</div>
       <div class="hero-body">
         <p class="hero-kicker">${kicker(item)}</p>
         <h2 class="hero-title">${esc(item.title)}</h2>
@@ -504,8 +770,8 @@ const App = (() => {
     else bits.push(priceText(item));
     bits.push(esc(cuisineText(item)));
     const pic = thumb && item.image
-      ? `<div class="row-thumb">${img(item, '96px', 'loaded')}</div>`
-      : (thumb ? `<div class="row-thumb ph"><span class="e">${item.emoji || (item.discovered ? '·' : '·')}</span></div>` : '');
+      ? `<div class="row-thumb">${img(item, 'thumb', 'loaded')}</div>`
+      : (thumb ? `<div class="row-thumb ph" data-kind="${esc(item.type || '')}"><span class="e">${markFor(item)}</span></div>` : '');
     return `<div class="row ${thumb ? 'has-thumb' : ''} ${tierCls(item)} ${Store.isDone(item.id) ? 'done' : ''}" data-id="${esc(item.id)}">
       ${pic}
       <h3 class="row-name">${esc(item.title)}${isRomantic(item) ? ' <span class="duo" title="Romantic">♥</span>' : ''}</h3>
@@ -558,7 +824,7 @@ const App = (() => {
   function tripBlock(item) {
     return `<article class="trip" data-id="${esc(item.id)}">
       <div class="trip-img">
-        ${item.image ? img(item, '(min-width: 760px) 520px, 94vw', 'loaded') : ''}
+        ${item.image ? img(item, 'trip', 'loaded') : ''}
         <span class="trip-time">${item.minutesFromHome} min away</span>
       </div>
       <div class="trip-body">
@@ -590,6 +856,61 @@ const App = (() => {
     saved:   'What you have marked, and what you have already done.'
   };
 
+  /* ---------- drawing the same answer twice ----------
+
+     Several things repaint the current view: the forecast landing, the
+     rest of the city landing, the reader moving. Most of the time the
+     view they redraw is the one already on the screen — the forecast
+     rarely changes what today's best thing is, and the sixteen shards
+     that arrive after the first paint are, for a section about the next
+     fifteen minutes, usually about somewhere else entirely.
+
+     Assigning innerHTML regardless meant re-parsing a hundred kilobytes
+     of markup, throwing away every image element and building it again,
+     and — because the new nodes land at slightly different heights while
+     they settle — shifting the layout under somebody who may have
+     started reading. All to arrive at the page that was already there.
+
+     So the markup is built either way, which is the part that has to be
+     right, and only written when it differs from what was written last.
+     Nothing renders less; it just stops re-rendering the identical. */
+  let drawn = { view: null, html: null };
+
+  /* ---------- replacing only the parts that changed ----------
+
+     Even when a repaint does change the view, most of it is the same
+     view. The sixteen shards that land after the first paint rewrite
+     "also around you" and leave the hero exactly as it was — and
+     assigning innerHTML threw the hero away regardless, along with its
+     <img>.
+
+     That is not merely wasteful, it is measurable: a destroyed and
+     recreated image is a *new* element, so it re-requests the file (from
+     cache, but still), decodes it again, and paints for the first time
+     all over again — which makes the largest thing on the page report
+     its arrival at the moment of the last repaint rather than the moment
+     it actually appeared. The picture had been on screen for a second
+     and a half.
+
+     Views are a flat list of sections, so a flat comparison is enough:
+     same number of top-level children, and each one replaced only if its
+     markup differs. Anything more structural than that falls back to
+     replacing the lot, which is what this always did. */
+  function patch(box, html, replaceAll) {
+    if (replaceAll || !box.firstElementChild) { box.innerHTML = html; return; }
+
+    const next = document.createElement('div');
+    next.innerHTML = html;
+
+    const now = Array.from(box.children);
+    const then = Array.from(next.children);
+    if (now.length !== then.length) { box.innerHTML = html; return; }
+
+    for (let i = 0; i < now.length; i++) {
+      if (now[i].outerHTML !== then[i].outerHTML) box.replaceChild(then[i], now[i]);
+    }
+  }
+
   function render() {
     $$('.tab').forEach(t => t.classList.toggle('on', t.dataset.view === VIEW));
     // Each section gets its own accent; the CSS keys off this.
@@ -597,21 +918,34 @@ const App = (() => {
     const box = $('#view');
     const w = weekend();
 
-    $('#lede').textContent = LEDE[VIEW] || '';
+    let lede = LEDE[VIEW] || '';
+    let html = '';
 
-    if      (VIEW === 'today')   box.innerHTML = renderToday();
-    else if (VIEW === 'nights')  box.innerHTML = renderNights();
-    else if (VIEW === 'sport')   box.innerHTML = renderSport();
-    else if (VIEW === 'weekend') { $('#lede').textContent = weekendLede(w); box.innerHTML = renderWeekend(w); }
-    else if (VIEW === 'eat')     { $('#lede').textContent = eatLede(); box.innerHTML = renderEat(); }
-    else if (VIEW === 'explore') { $('#lede').textContent = exploreLede(); box.innerHTML = renderExplore(); }
-    else if (VIEW === 'away')    box.innerHTML = renderAway();
-    else if (VIEW === 'quests')  box.innerHTML = renderQuests();
-    else if (VIEW === 'saved')   box.innerHTML = renderSaved();
+    if      (VIEW === 'today')   html = renderToday();
+    else if (VIEW === 'nights')  html = renderNights();
+    else if (VIEW === 'sport')   html = renderSport();
+    else if (VIEW === 'weekend') { lede = weekendLede(w); html = renderWeekend(w); }
+    else if (VIEW === 'eat')     { lede = eatLede();      html = renderEat(); }
+    else if (VIEW === 'explore') { lede = exploreLede();  html = renderExplore(); }
+    else if (VIEW === 'away')    html = renderAway();
+    else if (VIEW === 'quests')  html = renderQuests();
+    else if (VIEW === 'saved')   html = renderSaved();
+
+    $('#lede').textContent = lede;
+
+    if (drawn.view !== VIEW || drawn.html !== html) {
+      patch(box, html, drawn.view !== VIEW);
+      drawn = { view: VIEW, html };
+    }
 
     applyFilters();
     settleImages($('#view'));
   }
+
+  /* Anything that edits the view in place — a rating, a tick, a filter —
+     has to say so, or the next render will decide the markup has not
+     changed and leave the edited DOM alone. */
+  const invalidate = () => { drawn = { view: null, html: null }; };
 
   /* ---------- around you ----------
      The strip that first made location matter, and now the shape every
@@ -621,15 +955,15 @@ const App = (() => {
   const NEAR_MIN = 15, WIDER_MIN = 30;
 
   const AROUND = [
-    ['bakery',     '🥐', 'Bakery'],
-    ['cafe',       '☕', 'Coffee'],
-    ['restaurant', '🍽️', 'Somewhere to eat'],
-    ['market',     '🧺', 'Market'],
-    ['park',       '🌳', 'Green space'],
-    ['museum',     '🏛️', 'Culture'],
-    ['books',      '📚', 'Books'],
-    ['sport',      '🏃', 'Something active'],
-    ['nightlife',  '🍸', 'A drink']
+    ['bakery',     MARK.bakery,     'Bakery'],
+    ['cafe',       MARK.cafe,       'Coffee'],
+    ['restaurant', MARK.restaurant, 'Somewhere to eat'],
+    ['market',     MARK.market,     'Market'],
+    ['park',       MARK.park,       'Green space'],
+    ['museum',     MARK.museum,     'Culture'],
+    ['books',      MARK.books,      'Books'],
+    ['sport',      MARK.sport,      'Something active'],
+    ['nightlife',  MARK.nightlife,  'A drink']
   ];
 
   /* Anything the reader has ruled out, or already done. Passed to every
@@ -825,7 +1159,7 @@ const App = (() => {
     return `<div class="pairs">
       <span class="pairs-label">Then</span>
       <div class="pairs-row">${list.map(x =>
-        `<span class="pair"><span class="e">${x.emoji || '·'}</span>${esc(x.text)}</span>`).join('')}</div>
+        `<span class="pair"><span class="e">${x.emoji || '→'}</span>${esc(x.text)}</span>`).join('')}</div>
     </div>`;
   }
 
@@ -990,14 +1324,15 @@ const App = (() => {
     const here = Loc.active();
     const at = { lat: last.coords[0], lon: last.coords[1] };
     const nearEnd = (kind, want) => {
-      const all = Near.pick(Near.KIND[kind], { rings: [20], want: 3, limit: 12, exclude: notWanted }).items;
+      const all = Near.pick(Near.KIND[kind], { rings: [20], want: 3, limit: 12,
+                                              split: false, exclude: notWanted }).items;
       return all
         .map(i => ({ i, d: i.coords ? Loc.km([at.lat, at.lon], i.coords) : 99 }))
         .sort((a, b) => a.d - b.d)
         .filter(x => x.d < 1.2)[0]?.i || null;
     };
 
-    const chain = [['☕', 'cafe'], ['🥐', 'bakery'], ['🌳', 'park'], ['🍽️', 'restaurant']]
+    const chain = [['cafe'], ['bakery'], ['park'], ['restaurant']].map(([k]) => [MARK[k], k])
       .map(([emoji, kind]) => { const i = nearEnd(kind); return i ? `${emoji} ${esc(i.title)}` : null; })
       .filter(Boolean);
 
@@ -1049,7 +1384,7 @@ const App = (() => {
       <div class="sotw">
         <p class="sotw-kicker">This week — try something you haven’t</p>
         <div class="sotw-body">
-          ${featured.image ? `<div class="sotw-img">${img(featured, '(min-width: 760px) 420px, 94vw', 'loaded')}</div>` : ''}
+          ${featured.image ? `<div class="sotw-img">${img(featured, 'tile', 'loaded')}</div>` : ''}
           <div>
             <h3>${featured.emoji || ''} ${esc(featured.title)}</h3>
             <p class="sotw-meta">${esc(featured.area || '')} · ${featured.minutesFromHome} min away · ${esc(priceText(featured))}${featured.difficulty ? ` · ${featured.difficulty}` : ''}</p>
@@ -1077,6 +1412,7 @@ const App = (() => {
           ? stripHead('Worth the trip', `Further than ${local.radius} minutes, and still worth it`)
             + rows(furtherSport, null, true)
           : '')
+      + foundStrip(local.found, Loc.displayName(Loc.active()))
       + (allRuns.length
           ? stripHead('Run Paris', 'Nearest first, and getting longer')
             + (runs.length ? `<div class="routes">${runs.map(routeCard).join('')}</div>` : '')
@@ -1162,10 +1498,106 @@ const App = (() => {
     return s;
   }
 
+  /* ---------- what a weekend may be built out of ----------
+
+     For most of this site's life: `ALL`, the hand-written files. Which
+     meant the view most about "what shall we do on Saturday" could not
+     suggest the Musée Zadkine, the Coulée verte or a theatre from 1906,
+     because those arrive from the city and from Wikidata and live in the
+     other layer.
+
+     Two things had to be true before widening it was worth anything.
+     The records needed the facts the ranking marks them on — see NATURE
+     in js/record.js, without which this change measurably does nothing at
+     all. And they needed to be worth suggesting: `tells` is the gate, and
+     it drops the hundred and eighty records whose whole description is
+     that they are the kind of thing they are.
+
+     Not the map layer. A weekend plan is a recommendation, and twenty-two
+     thousand names nobody has vouched for are the one thing it must never
+     be built from. */
+  const weekendPool = () =>
+    ALL.concat(DISCOVERED.filter(i => Near.tierOf(i) !== 'found' && i.tells));
+
+/* ---------- the same Saturday, six weekends running ----------
+
+     Simulated across six consecutive weekends, the morning slot returned
+     "Hunt Space Invaders" six times out of six. The planner takes the top
+     of each slot and the top does not move, so widening the pool cannot
+     fix it.
+
+     Rotation must be stable *within* a weekend and differ *between* them.
+     Marking each pick as seen and demoting what has been seen cannot be
+     used: this runs on every repaint, so one render's marks feed the next
+     and the plan changes under the reader. The date is the one input
+     nothing can feed back into.
+
+     Only genuine contenders rotate — within four points of the leader is
+     a coin toss the ranking has no opinion about, and a clear winner
+     stays one every week. */
+
+  const WEEK_MS = 604800000;
+  const weekIndex = iso => Math.floor(Date.parse(iso + 'T12:00:00') / WEEK_MS);
+  const CONTENDER = 4;
+
+  function rotate(ranked, iso, ctx) {
+    if (ranked.length < 2) return ranked[0] || null;
+    const lead = Rank.score(ranked[0], ctx);
+    const near = ranked.filter(i => lead - Rank.score(i, ctx) <= CONTENDER).slice(0, 6);
+    return near[weekIndex(iso) % near.length];
+  }
+
+/* ---------- the reason to open it again ----------
+
+     Six slots against a hundred and sixty-six hand-written places means
+     the sourced tier never wins one of the day plan's, and should not.
+     Widening the pool makes the *ranking* fair; it is not by itself
+     something a reader can see. This is where it becomes visible: places
+     the city and Wikipedia know about, that say something beyond their
+     own category, and that nobody has written up. Somebody who lives here
+     has done the top of the guide within a month; this is what is left.
+
+     Rotated by week like the day plan, and spread one to an arrondissement
+     so it reads as the city rather than a tour of one postcode. */
+  function somewhereNew(dISO) {
+    const c = ctxFor(dISO);
+    const ok = i => Near.tierOf(i) === 'sourced' && i.tells && !i.touristy
+      && Rec.stillStanding(i)
+      && !Store.isDone(i.id) && Store.rating(i.id) !== 'never'
+      && (i.minutesFromHome ?? 99) <= 30 && Rank.isOpenOn(i, dISO);
+
+    /* The best sixty within reach, then a window of four that walks along
+       them a week at a time — about fifteen weeks before it comes round
+       again. Rotating the whole ranked list instead does not work: the
+       one-per-arrondissement rule below skips so far down it lands on the
+       same handful every week, which is how Le Grand Véfour turned up
+       three Saturdays running. */
+    const contenders = Rank.rank(DISCOVERED, c, ok).slice(0, 60);
+    if (contenders.length < 2) return '';
+
+    const turn = (weekIndex(dISO) * 4) % contenders.length;
+    const seen = new Set();
+    const out = [];
+    for (let n = 0; n < contenders.length && out.length < 4; n++) {
+      const i = contenders[(turn + n) % contenders.length];
+      const key = i.arr ?? `x${n}`;
+      if (seen.has(key) || out.includes(i)) continue;
+      seen.add(key);
+      out.push(i);
+    }
+    if (!out.length) return '';
+
+    return stripHead('Somewhere new this weekend',
+      'On the record but not in the guide — from the city\'s own files and '
+      + 'Wikipedia, within 30 minutes, and a different four each week')
+      + rows(out, null, true);
+  }
+
   function renderWeekend(w) {
+    const pool = weekendPool();
     const used = new Set();
     const pick = (label, filter) => {
-      const it = bestForWeekend(ALL, w.satISO, w.sunISO, i => !used.has(i.id) && (!filter || filter(i)));
+      const it = bestForWeekend(pool, w.satISO, w.sunISO, i => !used.has(i.id) && (!filter || filter(i)));
       if (!it) return null;
       used.add(it.id);
       return { label, it };
@@ -1189,7 +1621,9 @@ const App = (() => {
       const c = ctxFor(dISO);
       const wx = WX && WX.byDate[dISO];
       const slots = [['Morning', isMorning], ['Afternoon', isDay], ['Evening', isEvening]].map(([when, test]) => {
-        const it = Rank.rank(ALL, c, i => Rank.isOpenOn(i, dISO) && !planned.has(i.id) && test(i))[0];
+        const ranked = Rank.rank(pool, c, i =>
+          Rank.isOpenOn(i, dISO) && !planned.has(i.id) && !Store.isDone(i.id) && test(i));
+        const it = rotate(ranked, dISO, c);
         if (!it) return '';
         planned.add(it.id);
         return `<div class="slot"><div class="t">${when}</div>
@@ -1207,6 +1641,7 @@ const App = (() => {
     return (best && hasRealPhoto(best.it) ? hero(best.it) : '')
       + stripHead('How the two days could go')
       + `<div class="plan">${day(w.sat, w.satISO)}${day(w.sun, w.sunISO)}</div>`
+      + somewhereNew(w.satISO)
       + stripHead('And if you want one thing')
       + `<div class="list">${rest.map(p => {
           const r = row(p.it);
@@ -1236,10 +1671,10 @@ const App = (() => {
   /* Each subsection: what it is, what it holds, and the quest that goes with it. */
   const EAT_MODES = [
     ['missions',   '🎯', 'Missions',    'assignments, not listings', null,         null],
-    ['cafe',       '☕', 'Coffee',      'specialty and roasters',    'cafe',       'quest-coffee'],
-    ['bakery',     '🥐', 'Bakeries',    'bread and pastry',          'bakery',     'quest-croissant'],
-    ['restaurant', '🍽️', 'Restaurants', 'where to actually eat',     'restaurant', null],
-    ['market',     '🧺', 'Markets',     'food, flea and flower',     'market',     'quest-markets']
+    ['cafe',       MARK.cafe,       'Coffee',      'specialty and roasters', 'cafe',       'quest-coffee'],
+    ['bakery',     MARK.bakery,     'Bakeries',    'bread and pastry',       'bakery',     'quest-croissant'],
+    ['restaurant', MARK.restaurant, 'Restaurants', 'where to actually eat',  'restaurant', null],
+    ['market',     MARK.market,     'Markets',     'food, flea and flower',  'market',     'quest-markets']
   ];
 
   /* A mission happens in a particular neighbourhood — the bakeries are where
@@ -1276,7 +1711,7 @@ const App = (() => {
         <span class="cand-body"><b><span class="e">${s.emoji || ''}</span>${esc(s.text)}</b></span></li>`).join('');
 
     return `<article class="mission ${lead ? 'lead' : ''}" data-id="${esc(m.id)}">
-      ${m.image ? `<div class="mission-img">${img(m, lead ? '(min-width: 1040px) 1000px, 96vw' : '(min-width: 760px) 480px, 94vw', 'loaded')}</div>` : ''}
+      ${m.image ? `<div class="mission-img">${img(m, lead ? 'lead' : 'mission', 'loaded')}</div>` : ''}
       <div class="mission-body">
         <p class="mission-kicker">${m.generated ? 'Put together from what is nearby' : (lead ? 'Today’s food mission' : 'Food mission')} · ${durText(m.durationMin)} · ${esc(m.priceNote || priceText(m))}</p>
         ${missionWhere(m) ? `<p class="mission-where">📍 ${esc(missionWhere(m))}</p>` : ''}
@@ -1305,7 +1740,7 @@ const App = (() => {
     return `<div class="sotw">
       <p class="sotw-kicker">${esc(kicker)}</p>
       <div class="sotw-body">
-        ${item.image ? `<div class="sotw-img">${img(item, '(min-width: 760px) 420px, 94vw', 'loaded')}</div>` : ''}
+        ${item.image ? `<div class="sotw-img">${img(item, 'tile', 'loaded')}</div>` : ''}
         <div>
           <h3>${item.emoji || ''} ${esc(item.title)}</h3>
           <p class="sotw-meta">${[item.area, item.minutesFromHome != null ? `${item.minutesFromHome} min away` : '',
@@ -1389,10 +1824,10 @@ const App = (() => {
      about, and it says plainly that nobody wrote about it. */
   function localMission() {
     const legs = [
-      ['bakery', '🥐', 'Breakfast'],
-      ['cafe',   '☕', 'Sit down with it'],
-      ['market', '🧺', 'Something to carry home'],
-      ['deli',   '🧀', 'Something to carry home']
+      ['bakery', MARK.bakery, 'Breakfast'],
+      ['cafe',   MARK.cafe,   'Sit down with it'],
+      ['market', MARK.market, 'Something to carry home'],
+      ['deli',   MARK.deli,   'Something to carry home']
     ];
 
     const used = new Set();
@@ -1401,7 +1836,8 @@ const App = (() => {
       if (candidates.length >= 3) break;
       if (candidates.some(c => c.step === step)) continue;
       const { items } = Near.pick(Near.KIND[kind], {
-        rings: [12, 20], want: 1, limit: 3, exclude: i => used.has(i.id) || notWanted(i)
+        rings: [12, 20], want: 1, limit: 3, split: false,
+        exclude: i => used.has(i.id) || notWanted(i)
       });
       const it = items[0];
       if (!it) continue;
@@ -1442,9 +1878,24 @@ const App = (() => {
     /* Retrieval, not re-sorting. Both layers, one radius, chosen by what
        is actually there — so this list is a list of places near you that
        happen to include the ones somebody wrote about, rather than the
-       written-about list with your distances printed on it. */
-    const { items, radius, widened } = Near.pick(Near.KIND[type], {
-      rings: Near.RINGS.walk, want: 8, limit: 24, exclude: notWanted
+       written-about list with your distances printed on it.
+
+       Two lists come back, and the section prints them as two. `items` is
+       what the guide will stand behind; `found` is what OpenStreetMap
+       knows exists. Run together they read as one set of suggestions, and
+       since the city has twenty-two thousand names against a few hundred
+       write-ups, the names take every row — which is how "Coffee around
+       Saint-Germain" came to mean twenty-two places nobody had been to. */
+    const { items, found, vouched, radius, widened } = Near.pick(Near.KIND[type], {
+      /* RINGS.walk minus its half-hour ring. That ring was there for a
+         blended list, which had to reach a long way before it held the
+         two write-ups the old guarantee promised. A list that is only
+         write-ups does not need the reach, and half an hour is past the
+         point where "around here" is a true thing to call it — the 13th
+         went out to thirty minutes for a coffee and came back with the
+         5th's cafés. Where the guide is thin the honest answer is a short
+         list plus the map strip below it, not a wider circle. */
+      rings: [10, 18], want: 8, limit: 12, exclude: notWanted
     });
 
     /* Nothing is lost by drawing a radius — the classics move here. */
@@ -1457,8 +1908,7 @@ const App = (() => {
        distinguished. Where nothing does, the honest page is the list
        itself: these are the places near you, and the guide has no opinion
        about them yet. */
-    const vouched = items.filter(i => Near.tierOf(i) !== 'found');
-    const lead = vouched.filter(hasRealPhoto)[0] || vouched[0] || null;
+    const lead = vouched ? leadOf(items) : null;
     const rest = items.filter(i => i.id !== (lead && lead.id));
 
     const KICKERS = {
@@ -1477,7 +1927,45 @@ const App = (() => {
           ? stripHead('Worth the trip', `Further than ${radius} minutes, and still worth it`)
             + rows(further, null, true)
           : '')
+      + foundStrip(found, here)
       + (questId ? questBlock(questId) : '');
+  }
+
+/* ---------- which one goes at the top ----------
+
+     This was "the nearest one with a real photograph of itself", which was
+     inert while nothing in the sourced tier had a picture. Resolving those
+     photographs turned it into an active rule and it chose badly at once:
+     the 10th led its bakeries with a Wikipedia listing fifteen minutes
+     away, because Du Pain et des Idées — six minutes away, and one of the
+     best bakeries in Paris — borrows a photograph of its own street and so
+     did not count as having one.
+
+     A picture cannot decide a recommendation. Tier decides it, then
+     distance, which is the ladder the rest of the site ranks on;
+     `featured()` drops the frame when there is no photograph, so there is
+     nothing to trade against. Distance is not compared across tiers on
+     purpose — a bakery somebody wrote up is the one to try first even at
+     thirteen minutes, and everything nearer is in the list below it. */
+  function leadOf(items) {
+    if (!items.length) return null;
+    const rank = i => Near.AUTHORITY[Near.tierOf(i)] ?? 0;
+    const best = Math.max(...items.map(rank));
+    /* The list arrives ordered by distance, so the first record of the
+       best-attested tier is also the nearest of them. */
+    return items.find(i => rank(i) === best);
+  }
+
+  /* The coverage layer, given its own heading and its own sentence rather
+     than eight more rows of what looks like advice. Last on the page on
+     purpose: it is the weakest claim the site makes, and a reader who has
+     already found somewhere to go never needs to reach it. */
+  function foundStrip(items, here) {
+    if (!items || !items.length) return '';
+    return stripHead(`Also on the map around ${here}`,
+                     `${items.length} nearby, nearest first — names and positions off `
+                     + `OpenStreetMap. Nobody has been, and nothing here is a recommendation.`)
+      + rows(items, null, true);
   }
 
   /* Say which radius the answer came from, and how much of it is vouched
@@ -1490,19 +1978,26 @@ const App = (() => {
        and a thinner list. */
     const where = radius == null ? 'anywhere in reach'
       : `within ${widened ? '' : 'about '}${radius} minutes`;
-    const why = widened ? ' — nothing closer cleared the bar' : '';
-
     const n = t => items.filter(i => Near.tierOf(i) === t).length;
     const been = n('personal'), read = n('editorial') + n('sourced');
 
+    /* Nothing vouched within reach at all. The section is the coverage
+       layer rather than the guide, and the heading above it is about to
+       claim otherwise, so this is where that gets corrected. */
     if (!been && !read)
-      return `${items.length} ${where}${why} — nobody has written this quarter up yet, so these are names on the map, nearest first`;
+      return `${items.length} ${where}${widened ? ' — nothing closer cleared the bar' : ''}`
+        + ` — nobody has written this quarter up yet, so these are names on the map, nearest first`;
 
     const bits = [];
     if (been) bits.push(`${been} written up`);
-    if (read) bits.push(`${read} researched`);
+    if (read) bits.push(`${read} researched or on the record`);
     const rest = items.length - been - read;
     if (rest) bits.push(`${rest} found on the map`);
+
+    /* The radius now widens until there is enough here worth recommending,
+       so when it has moved, that — rather than the quality bar — is what
+       it moved for, and the note should say the true reason. */
+    const why = widened ? ' — nothing closer has been written up' : '';
     return `${items.length} ${where}${why} · ${bits.join(', ')} · nearest first`;
   }
   /* ---------- quests ----------
@@ -1623,10 +2118,10 @@ const App = (() => {
          from the map every load, so the dossier for an arrondissement
          nobody has written much about still names real places in it. */
       const found = [
-        ['🥐', 'Bakeries', Near.inArr(f.arr, Near.KIND.bakery, 3)],
-        ['☕', 'Coffee',    Near.inArr(f.arr, Near.KIND.cafe, 3)],
-        ['🧺', 'Markets',   Near.inArr(f.arr, Near.KIND.market, 2)],
-        ['🌳', 'Green',     Near.inArr(f.arr, Near.KIND.park, 2)]
+        [MARK.bakery, 'Bakeries', Near.inArr(f.arr, Near.KIND.bakery, 3)],
+        [MARK.cafe,   'Coffee',   Near.inArr(f.arr, Near.KIND.cafe, 3)],
+        [MARK.market, 'Markets',  Near.inArr(f.arr, Near.KIND.market, 2)],
+        [MARK.park,   'Green',    Near.inArr(f.arr, Near.KIND.park, 2)]
       ].filter(([, , list]) => list.length);
 
       dossier = `<div class="hood">
@@ -1647,10 +2142,10 @@ const App = (() => {
     const mine = hoods.find(h => h.arr === hereArr);
     if (mine) {
       const bits = [
-        ['🥐', Near.inArr(hereArr, Near.KIND.bakery, 2)],
-        ['☕', Near.inArr(hereArr, Near.KIND.cafe, 2)],
-        ['🧺', Near.inArr(hereArr, Near.KIND.market, 1)],
-        ['📚', Near.inArr(hereArr, Near.KIND.books, 1)]
+        [MARK.bakery, Near.inArr(hereArr, Near.KIND.bakery, 2)],
+        [MARK.cafe,   Near.inArr(hereArr, Near.KIND.cafe, 2)],
+        [MARK.market, Near.inArr(hereArr, Near.KIND.market, 1)],
+        [MARK.books,  Near.inArr(hereArr, Near.KIND.books, 1)]
       ].filter(([, l]) => l.length)
        .map(([e, l]) => `<span class="pair"><span class="e">${e}</span>${esc(l.map(i => i.title).join(' · '))}</span>`);
       standing = stripHead(`You are in the ${hereArr}${hereArr === 1 ? 'er' : 'e'} — ${esc(mine.name)}`,
@@ -1791,8 +2286,6 @@ const App = (() => {
   /* ---------- header ---------- */
 
   function renderHeader() {
-    $('#dateline').textContent = fmtLong(TODAY);
-    $('#epigraph').textContent = epigraph();
     const hf = $('#home-foot');
     if (hf) hf.textContent = Loc.displayName(Loc.active());
 
@@ -1908,6 +2401,7 @@ const App = (() => {
 
     $('#lede').textContent = 'One thing, picked for today.';
     $('#view').innerHTML = `<div class="grid">${card(chosen, 'surprise open')}</div>`;
+    invalidate();          // the view is no longer the view render() last drew
     settleImages($('#view'));
     $$('.tab').forEach(t => t.classList.remove('on'));
     $('#count').textContent = '';
@@ -2014,8 +2508,10 @@ const App = (() => {
       VIEW = t.dataset.view;
       render();
       window.scrollTo({ top: $('#main').offsetTop - 60, behavior: 'smooth' });
-      const view = VIEW;
-      whenComplete().then(() => { if (VIEW === view) render(); });
+      if (!isComplete()) {
+        const view = VIEW;
+        whenComplete().then(() => { if (VIEW === view) repaint(); });
+      }
     });
 
     $('#surprise').addEventListener('click', surprise);
@@ -2075,7 +2571,7 @@ const App = (() => {
       const after = Invaders.toggle(code).length;
       const panel = b.closest('.inv-panel');
       const game = (D.sports.items || []).find(i => i.game === 'invaders');
-      if (panel && game) panel.outerHTML = invaderPanel(game);
+      if (panel && game) { panel.outerHTML = invaderPanel(game); invalidate(); }
       toast(after ? `${after} found` : 'Unmarked');
     });
 
@@ -2170,10 +2666,12 @@ const App = (() => {
     const a = Loc.active();
     const near = n => [...ALL, ...DISCOVERED].filter(i => (i.minutesFromHome ?? 999) <= n).length;
 
-    const MARK = { personal: '★', editorial: '◆', sourced: '◇', found: '·' };
+    /* Tier marks, not the kind-of-place marks in MARK — named apart so
+       the two cannot be confused when reading this. */
+    const TIER_MARK = { personal: '★', editorial: '◆', sourced: '◇', found: '·' };
     const probe = kind => {
       const r = Near.pick(Near.KIND[kind], { rings: Near.RINGS.walk, want: 6, limit: 3 });
-      const names = r.items.map(i => `${MARK[Near.tierOf(i)]}${i.title}`).join(', ');
+      const names = r.items.map(i => `${TIER_MARK[Near.tierOf(i)]}${i.title}`).join(', ');
       return `${kind.padEnd(11)} ≤${String(r.radius ?? '∞').padStart(2)}m  ${names || '—'}`;
     };
 
@@ -2210,12 +2708,102 @@ const App = (() => {
 
   /* ---------- boot ---------- */
 
+  /* Run something once the first paint is on the screen and the browser
+     has run out of more urgent work. Two frames, because work queued in
+     the first one still lands before the pixels do. */
+  function afterPaint(fn) {
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (typeof requestIdleCallback === 'function') requestIdleCallback(fn, { timeout: 1200 });
+      else setTimeout(fn, 0);
+    }));
+  }
+
+  /* ---------- let the picture at the top arrive first ----------
+
+     The hero photograph cannot be requested until the data has been
+     ranked and the card drawn, which puts it behind a background fill
+     that started the moment the paint finished. On a phone it then waits
+     its turn behind three quarters of a megabyte of JSON: the largest
+     thing on the screen, and the last thing to appear.
+
+     Saying the fill is low priority helps and is not enough, because by
+     then it already holds the connections. So the order is stated
+     outright — paint, then the photograph the reader is looking at, then
+     the rest of the city.
+
+     The deadline matters as much as the rule. A photograph that is slow,
+     broken or blocked must not be able to hold up the fill, so this
+     resolves either way after a couple of seconds. And it gates only the
+     *proactive* fill: anything that changes what is being asked still
+     calls whenComplete() directly, which starts the fetches there and
+     then, deadline or no deadline. */
+  const HERO_DEADLINE = 2500;
+
+  function heroPainted() {
+    const img = $('#view .hero-img img');
+    if (!img || img.complete) return Promise.resolve();
+    return Promise.race([
+      new Promise(done => {
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      }),
+      after(HERO_DEADLINE)
+    ]);
+  }
+
+  /* ---------- the part of the page that is not waiting for anything ----
+
+     The dateline, the epigraph and the lede are computed from the date
+     and from constants in this file. Nothing about them needs a byte of
+     data, and yet they were written by renderHeader() and render(), both
+     of which run after every data file has landed — so three lines of
+     the page sat empty for two seconds for no reason, and then appeared,
+     pushing everything below them down.
+
+     Reserving space for them in CSS would have been the usual answer and
+     the wrong one: the epigraph changes daily and the lede changes per
+     view, so any fixed reservation is one line too tall on some days and
+     one too short on others. Writing them immediately is exact. */
+  /* Each line guarded on its own, because this runs twice and the first
+     time is deliberately early — early enough that <main> has not been
+     parsed yet and #lede does not exist. Whatever is not there yet is
+     written by the second call. */
+  function renderStatics() {
+    const set = (sel, text) => { const e = $(sel); if (e) e.textContent = text; };
+    set('#dateline', fmtLong(TODAY));
+    set('#epigraph', epigraph());
+    set('#lede', LEDE[VIEW] || '');
+  }
+
+  /* ---------- how long to hold the page for the forecast ----------
+
+     The weather is not decoration: `weatherMode` goes into the ranking,
+     so a rainy morning genuinely puts the passages and the workshops
+     above the parks. Which means painting without it and painting with
+     it are two different pages, and the reader watches one turn into the
+     other.
+
+     Awaiting it outright — which is what this used to do — makes an
+     api.open-meteo.com having a slow morning into this site having a
+     slow morning, with nothing on the screen at all. Not awaiting it at
+     all trades that for a visible reshuffle a second later.
+
+     Neither, then. It is started as soon as there are coordinates, which
+     is about two seconds before the data it would be waiting behind, so
+     by the time there is anything to draw it is almost always already
+     here and the question does not arise. This is the deadline for when
+     it is not: a fifth of a second, and then the page goes up without
+     it and repaints when it arrives. The slow case degrades to the
+     honest one instead of holding everything up. */
+  const WX_GRACE = 200;
+  const after = ms => new Promise(r => setTimeout(r, ms));
+
   async function init() {
     initTheme();
+    renderStatics();      // again, harmlessly, in case the early call could not run
     await load();
+    WX = await Promise.race([WXP, after(WX_GRACE)]) || null;
     applyLocation();
-    Weather.setHome(HOME.lat, HOME.lon);
-    try { WX = await Weather.load(); } catch (e) { console.warn('weather failed', e); }
     buildContext();
     renderLocation();
     renderHeader();
@@ -2223,18 +2811,66 @@ const App = (() => {
     wire();
     renderDebug();
 
-    /* The rest of the city, behind the first paint. Repainting the same
-       view is safe — render() draws whatever VIEW currently is — and it
-       is the same "paint, then fetch, then repaint" the forecast already
-       uses. Deliberately not awaited: nothing above needs it, and the
-       page is usable while it runs. */
-    whenComplete().then(() => {
-      applyLocation();      // the new records have no distances on them yet
+    /* ---------- everything that is not the first paint ----------
+
+       Two things used to sit in front of the first render, and neither
+       of them had to.
+
+       The rest of the city — sixteen shards, three quarters of a
+       megabyte — was started the instant the first render returned, so
+       it spent the whole of the load window competing with the
+       photographs for a phone's bandwidth and with the first paint for
+       its main thread. It waits for the paint now. Not longer than that:
+       the contract is still that the page may be briefly partial and
+       must never stay partial, and `whenComplete` is still what anything
+       that changes the question awaits.
+
+       Both repaint the view they find rather than the view they started
+       in, which is what render() has always done. */
+
+    /* Only if the deadline above expired before it answered. */
+    if (!WX) WXP.then(wx => {
+      if (!wx) return;
+      WX = wx;
       buildContext();
+      renderHeader();
       render();
-      renderDebug();
     });
+
+    /* The caching rule Pages will not give us. Registered last, and
+       behind the first paint, because a service worker that competes
+       with the page it is meant to speed up is worse than none — and it
+       does nothing for this load in any case, only for the next one. */
+    afterPaint(() => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(e => console.warn('sw', e));
+      }
+    });
+
+    afterPaint(() => heroPainted().then(() => {
+      whenNear().then(repaint);
+      whenComplete().then(() => { repaint(); renderDebug(); });
+    }));
   }
+
+  /* ---------- before the first paint, not merely before the data -------
+
+     The dateline, the epigraph and the lede need no data, so init()
+     writes them at DOMContentLoaded rather than after the fetches. But
+     DOMContentLoaded is still after the browser has painted, and a
+     header that grows by fifty-eight pixels a frame in shoves the whole
+     page down — which on a phone, where the stylesheet unblocks the
+     paint a good moment before the scripts arrive, is not the rare case
+     but the usual one.
+
+     So the scripts sit immediately after </header> rather than at the
+     end of <body>, and this line runs while the parser is still stopped
+     there. The header reaches its full height before anything below it
+     has even been parsed, and there is nothing left to shift.
+
+     init() calls it again for #lede, which lives in <main> and does not
+     exist yet, and to stay correct if this ever moves again. */
+  renderStatics();
 
   return { init };
 })();

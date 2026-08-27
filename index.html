@@ -6,13 +6,67 @@
 <title>Paris for You</title>
 <meta name="description" content="A personal Paris guide for Ekta &amp; Kartik — what's worth doing today, tonight and this weekend, from wherever you are.">
 <meta name="theme-color" content="#fdfaf5">
-<link rel="stylesheet" href="css/style.css?v=7f6a1133">
+<link rel="stylesheet" href="css/style.css?v=89156270">
+
+<!-- Every photograph on the page comes from Commons and the forecast from
+     open-meteo. Both are third parties, so the first request to each pays
+     for a DNS lookup, a TCP handshake and a TLS negotiation before a byte
+     of anything moves — about a third of a second on a phone. Start them
+     while the stylesheet is still downloading. -->
+<link rel="preconnect" href="https://upload.wikimedia.org" crossorigin>
+<link rel="preconnect" href="https://api.open-meteo.com">
+
 <script>
   /* Set the theme before first paint so a saved dark preference never flashes light. */
   try {
     var t = localStorage.getItem('paris-for-you.theme');
     if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
   } catch (e) {}
+</script>
+
+<!-- ---------- start the data before the code that wants it ----------
+
+     The page used to discover its own data last. The browser parsed the
+     HTML, downloaded nine scripts, executed them, fired DOMContentLoaded,
+     and only then did app.js issue its first fetch. Everything the page
+     is made of sat behind a chain that had nothing to do with it.
+
+     These are exactly the files the first render cannot draw without —
+     FIRST and CORE in app.js, and nothing else. Kicking them off here
+     overlaps them with the download and parse of the JavaScript instead
+     of queueing them behind it. app.js picks up the in-flight requests
+     through window.__PRELOAD rather than asking twice.
+
+     What is deliberately *not* here: civic.json and notable.json, and
+     the shards. They feed the discovered layer, which repaints when it
+     fills, and starting them now would only take bandwidth from the
+     files the first paint is actually waiting for.
+
+     window.__DV is the content-hash map that scripts/version.mjs writes,
+     the same idea as the ?v= on the stylesheet above: a hashed URL can be
+     cached hard, so a returning reader spends no round trips at all
+     being told the file has not changed. -->
+<script>
+  window.__DV = {"civic":"c4750300","daytrips":"3f31dc17","editorial":"12f90064","events":"3979c54f","events-city":"cb3903bb","food":"99a09f2d","home":"6edddd6b","invaders":"88d93437","itineraries":"807a24c2","neighborhoods":"b73a752d","nightlife":"bff9740c","notable":"ec814f75","notes":"e26bc421","places":"21fb5cf5","places/1":"440e799d","places/10":"ffefb40a","places/11":"3f910a7c","places/12":"c79f9c13","places/13":"cbc2b82c","places/14":"297c60db","places/15":"ddb26950","places/16":"03f65093","places/17":"381ede3a","places/18":"31b93584","places/19":"ff082bd7","places/2":"424923c3","places/20":"b96d5e90","places/3":"6fadc060","places/4":"e7b05f20","places/5":"7a453d70","places/6":"3d8baa80","places/7":"724172c9","places/8":"068ff438","places/9":"2b7ba046","places/index":"74fe8197","quests":"c4177174","sports":"8e43cb56"};
+  (function () {
+    var core = ['home', 'places/index',
+                'events', 'events-city', 'places', 'nightlife', 'sports', 'food',
+                'itineraries', 'daytrips', 'neighborhoods', 'quests', 'editorial',
+                'invaders', 'notes'];
+    var pre = window.__PRELOAD = {};
+    var dv = window.__DV;
+    for (var i = 0; i < core.length; i++) {
+      var n = core[i];
+      var v = dv[n];
+      try {
+        pre[n] = fetch('data/' + n + '.json' + (v ? '?v=' + v : ''),
+                       v ? undefined : { cache: 'no-cache' });
+        /* A rejection nobody is listening to yet is an unhandled rejection.
+           app.js attaches the real handler a moment from now. */
+        pre[n].catch(function () {});
+      } catch (e) {}
+    }
+  })();
 </script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥐</text></svg>">
 </head>
@@ -33,7 +87,11 @@
       <button id="loc-open" class="locbtn" type="button" aria-expanded="false">
         <span class="loc-pin">📍</span>
         <span class="loc-text">
-          <span class="loc-kicker" id="loc-kicker">Exploring from</span>
+          <!-- "Home" rather than "Exploring from": on a fresh load there is
+               no saved elsewhere, so this is the label the location engine
+               is about to write, and starting on the other one made the
+               button change width a second in. -->
+          <span class="loc-kicker" id="loc-kicker">Home</span>
           <span class="loc-name" id="loc-name">…</span>
         </span>
         <span class="loc-change">Change</span>
@@ -68,6 +126,30 @@
     <div id="notice"></div>
   </div>
 </header>
+
+<!-- ---------- why the scripts are here and not at the end of <body> ----
+
+     Three lines of the header — the dateline, the epigraph and the lede
+     — are written by JavaScript and need no data to write. At the end of
+     <body> that still happened after the first paint: the stylesheet is
+     what unblocks painting and it arrives before nine script files do,
+     so the browser drew a header three lines short and then grew it,
+     shoving the page down by fifty-eight pixels.
+
+     Here, the parser stops at these tags with the header parsed and
+     nothing below it parsed yet, app.js fills those three lines as it
+     evaluates, and the header is its full height before anything is
+     drawn. Nothing is delayed by the move: these scripts were always
+     parser-blocking, so this changes the order, not the total. -->
+<script src="js/location.js?v=62da7970"></script>
+<script src="js/state.js?v=c5c186fb"></script>
+<script src="js/weather.js?v=ef258e4e"></script>
+<script src="js/hours.js?v=f3930310"></script>
+<script src="js/record.js?v=8cda4dbc"></script>
+<script src="js/invaders.js?v=00fec559"></script>
+<script src="js/nearby.js?v=a1c9f21d"></script>
+<script src="js/scoring.js?v=07f5b5ff"></script>
+<script src="js/app.js?v=773811ed"></script>
 
 <nav class="tabs" id="tabs">
   <div class="wrap tabs-inner">
@@ -156,14 +238,5 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<script src="js/location.js?v=62da7970"></script>
-<script src="js/state.js?v=c5c186fb"></script>
-<script src="js/weather.js?v=ef258e4e"></script>
-<script src="js/hours.js?v=f3930310"></script>
-<script src="js/record.js?v=2cc4f3aa"></script>
-<script src="js/invaders.js?v=00fec559"></script>
-<script src="js/nearby.js?v=1152741d"></script>
-<script src="js/scoring.js?v=07f5b5ff"></script>
-<script src="js/app.js?v=74e8b0eb"></script>
 </body>
 </html>

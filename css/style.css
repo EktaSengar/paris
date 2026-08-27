@@ -63,6 +63,37 @@ body {
 
 .head-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
 
+/* ---------- lines that arrive a moment after the page does ----------
+
+   Four lines of the header are written by JavaScript, and all four start
+   empty: the dateline, the epigraph, the conditions line and the lede.
+   Four empty elements collapse to nothing, so the header was several
+   lines shorter than its real height until they were written, and then
+   everything below — the wordmark, the location bar, the whole of main,
+   the footer — moved down at once. One shift, 0.759 of layout shift,
+   which is most of a failing grade on its own.
+
+   Three of them never needed data at all and are written the moment this
+   file's script runs rather than after the fetches (renderStatics() in
+   js/app.js), which closes most of the gap. It does not close all of it:
+   the stylesheet is what unblocks the first paint, and the scripts
+   arrive just behind it, so there is a frame or two where the markup is
+   on screen and the text is not.
+
+   Hence `:empty`. The reservation exists for exactly the moment it is
+   for and stops applying the instant there is something in the element,
+   so it can never add height to the finished page — which is the usual
+   failure of holding space open, and the reason not to do it with a
+   plain min-height.
+
+   How much to hold, measured rather than guessed, at 360–1280px:
+     · the dateline is one line, always, at every width — exact
+     · the lede on the opening view is one line from 412px up
+     · the epigraph is two lines on nine days in fourteen, one on the
+       other five, so two is the honest reservation and five days a year
+       it gives back a line
+   The conditions line waits on a forecast from a third party, and at
+   phone widths it is two lines, not one. */
 .date {
   margin: 0 0 .5rem;
   font-size: .7rem;
@@ -70,6 +101,9 @@ body {
   text-transform: uppercase;
   color: var(--faint);
 }
+.date:empty     { min-height: 1.4em; min-height: 1lh; }
+.epigraph:empty { min-height: 3em;   min-height: 2lh; }
+.lede:empty     { min-height: 1.5em; min-height: 1lh; }
 .title {
   font-family: var(--serif);
   font-size: clamp(2.5rem, 9vw, 3.6rem);
@@ -98,10 +132,18 @@ body {
   max-width: 42ch;
 }
 
+/* The forecast is a third party and arrives after the first paint by
+   design. At phone widths "overcast · favour museums, passages and
+   workshops" is two lines, not one, so that is what gets held open. */
 .meta-line {
   margin: .55rem 0 0;
   color: var(--soft);
   font-size: .9rem;
+  min-height: 3em;
+  min-height: 2lh;
+}
+@media (min-width: 640px) {
+  .meta-line { min-height: 1.5em; min-height: 1lh; }
 }
 
 /* theme toggle — deliberately small */
@@ -177,6 +219,26 @@ body {
   gap: 1rem; flex-wrap: wrap;
   padding: 2rem 0 1.25rem;
 }
+/* The views are drawn into this. Empty, it is zero pixels tall, so the
+   footer sat just under the tab bar and then dropped a full screen the
+   moment the first view rendered — the single largest layout shift on
+   the page.
+
+   `:empty` rather than a bare `#view`, so the reservation exists only
+   during the moment it is for. A permanent `min-height` in viewport
+   units is a rule that keeps having opinions long after it is needed:
+   it re-evaluates on every resize, including the synthetic full-height
+   resize a page audit does to photograph the whole page, where 78vh of
+   a five-thousand-pixel viewport is not a placeholder but a shove. */
+#view:empty { min-height: 78vh; }
+
+/* The wide photographs are wrapped in <picture> so a phone is not offered
+   a desktop-sized rendition. Nothing about the layout should notice: every
+   rule in this file targets the <img>, and `display: contents` takes the
+   wrapper out of the box tree entirely, so the image stays a direct child
+   of whatever frame it was in. */
+picture { display: contents; }
+
 .lede {
   margin: 0;
   color: var(--soft);
@@ -1060,7 +1122,58 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
   display: grid; place-items: center;
 }
 .row-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.row-thumb.ph .e { font-size: 1.3rem; opacity: .45; margin: 0; }
+
+/* A row with no photograph gets the same tile the cards use rather than a
+   flat square — most of the list has no picture and never will, so the
+   thing that stands in for one has to look composed rather than missing.
+   The tint comes from --blush, which each view already shifts, so a
+   bakery tile in Eat and a pitch in Sport are not the same colour. */
+.row-thumb.ph {
+  background:
+    radial-gradient(120% 100% at 30% 0%, color-mix(in srgb, var(--blush) 20%, transparent), transparent 70%),
+    linear-gradient(150deg, var(--bg-2), var(--img-bg));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--line) 70%, transparent);
+}
+.row-thumb.ph .e { font-size: 1.6rem; opacity: .55; margin: 0; filter: saturate(.75); }
+
+/* ---------- markets get an awning, not a photograph ----------
+
+   There is no openly licensed photograph of a Paris food market to be
+   had. Measured, not assumed: Wikipedia page images matched none of a
+   forty-name sample, Wikidata has no item for a municipal market, and
+   Commons categories covered five of twenty-four — one of which is a
+   picture of counterfeit perfume. The city photographs its own markets
+   and those images are 300 KB each, cannot be thumbnailed, and are not
+   ours to republish.
+
+   So the tile stops pretending and becomes a drawing instead. Striped
+   canvas is what a French market awning actually looks like, it costs no
+   request and no bytes, and it makes a market row identifiable at a
+   glance without claiming to be a photograph of anywhere in particular.
+   The stripes take the accent the view is already using, so they sit in
+   the palette rather than beside it. */
+.row-thumb.ph[data-kind="market"],
+.shot.ph[data-kind="market"] {
+  --stripe: 5px;
+  --canvas: color-mix(in srgb, var(--blush) 34%, transparent);
+  background:
+    repeating-linear-gradient(90deg,
+      var(--canvas) 0 var(--stripe),
+      transparent var(--stripe) calc(var(--stripe) * 2))
+      top / 100% var(--awning, 100%) no-repeat,
+    linear-gradient(170deg, var(--bg-2), var(--img-bg));
+}
+
+/* At card size the stripes have to stop being the whole tile. Run over
+   300 pixels they read as wallpaper and swallow the mark; confined to a
+   band across the top with the rest left quiet, the same two gradients
+   read as a canopy over an empty stall, which is the thing being drawn.
+   The row thumbnail is 64px and keeps the full stripe — a band that
+   shallow would be four pixels of nothing. */
+.shot.ph[data-kind="market"] {
+  --stripe: 22px;
+  --awning: 38%;
+}
 .row.has-thumb .row-name  { grid-column: 2; }
 .row.has-thumb .row-dist  { grid-column: 3; grid-row: 1; }
 .row.has-thumb .row-meta  { grid-column: 2 / -1; }

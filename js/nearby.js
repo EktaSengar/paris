@@ -42,20 +42,46 @@ const Near = (() => {
   const nameKey = s => (s || '').toLowerCase().normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '').trim();
 
+  /* ---------- what is worth computing twice, and what is not ----------
+
+     The gate below runs over every record the site knows about — around
+     twenty-four thousand of them — and it runs again for each section on
+     the page. A single tap on Sport spent two seconds in here, and most
+     of it went on deriving the same two numbers about the same records
+     over and over: `nameKey`, which decomposes a Unicode string, and
+     `evidence`, which walks a sixteen-entry table.
+
+     Both are pure functions of fields that never change after the record
+     is built, so they are derived once, when the layers are handed over,
+     and read from the record afterwards. Nothing about the answer
+     changes; it is simply not recomputed twenty times a tap.
+
+     `localScore` is deliberately *not* cached: it multiplies by distance,
+     and distance changes whenever the reader moves. */
+
   function chainPenalty(i) {
     if (!i.discovered) return 0;                 // a curated chain is there on purpose
-    const n = outlets.get(nameKey(i.title)) || 1;
-    if (i.branded && n < CHAIN_AT) return 1.5;   // OSM says branch, the city has one or two
-    return n < CHAIN_AT ? 0 : Math.min(5, 1.5 + Math.log2(n));
+    if (i._chain !== undefined) return i._chain;
+    const n = outlets.get(i._nk ?? nameKey(i.title)) || 1;
+    const v = (i.branded && n < CHAIN_AT) ? 1.5  // OSM says branch, the city has one or two
+            : n < CHAIN_AT ? 0 : Math.min(5, 1.5 + Math.log2(n));
+    i._chain = v;
+    return v;
   }
 
-  /* Called once, after both layers are loaded and stamped with distances. */
+  /* Called once, after both layers are loaded and stamped with distances.
+     The pass that counts outlets already visits every found record and
+     already has its flattened name in hand, so that is where the name
+     key is stamped — and where anything derived from a previous set of
+     layers is dropped, since the outlet counts it was based on have just
+     been recomputed. */
   function use(curated, discovered) {
     CURATED = curated;
     FOUND = discovered;
     outlets = new Map();
     FOUND.forEach(i => {
-      const k = nameKey(i.title);
+      const k = i._nk = nameKey(i.title);
+      i._chain = undefined;
       outlets.set(k, (outlets.get(k) || 0) + 1);
     });
   }
@@ -151,9 +177,10 @@ const Near = (() => {
   const SIGNAL_MAX = SIGNALS.reduce((n, [w]) => n + w, 0);
 
   function evidence(i) {
+    if (i._ev !== undefined) return i._ev;
     let n = 0;
     for (const [weight, test] of SIGNALS) if (test(i)) n += weight;
-    return n / SIGNAL_MAX;
+    return (i._ev = n / SIGNAL_MAX);
   }
 
   /* Evidence is worth less than the weakest tier above it. A thoroughly
@@ -288,88 +315,127 @@ const Near = (() => {
 
   /* ---------- the pipeline, restated ----------
 
-     gate → widen until the gated answer is worth giving → order by distance
+     gate → widen until the *recommendable* answer is worth giving →
+     order by distance → hand back the recommendations and the bare names
+     as two lists, never one
 
      `openNow` takes a Date and makes "definitely shut right now" a
      disqualification rather than a demotion. Sections about right now
-     pass it; sections about the weekend must not. */
+     pass it; sections about the weekend must not.
+
+     `wantKnown` is half of the fix for the complaint that started this.
+     It used to be a flat 2: the ring stopped at the first radius holding
+     six *places*, of which only two had to be places anybody had looked
+     at — so the other four, and then the other twenty-two, were names off
+     the map. Widening until the guide has a section's worth to say costs
+     a few minutes of radius and is the difference between a
+     recommendation and a directory.
+
+     Four, and not more, because the radius is the price. Measured across
+     ten quarters for cafés and bakeries, four settles almost everywhere
+     at the middle walking ring; six drags the 12th out to half an hour
+     for a coffee, and eight does the same to the 15th and the 16th.
+     Reaching further than somebody would walk is its own way of not
+     answering the question. */
 
   function pick(match, opts = {}) {
-    const { rings = RINGS.near, want = 6, wantKnown = 2, limit = 24,
-            exclude = null, openNow = null } = opts;
+    const { rings = RINGS.near, want = 6, wantKnown = Math.min(want, 4), limit = 24,
+            bare = 6, split = true, exclude = null, openNow = null } = opts;
 
     const ok = i => match(i) && !(exclude && exclude(i)) && clears(i, openNow);
+
+    /* ---------- do not gate what the rings cannot reach ----------
+
+       `ring` widens through the ring set and stops; nothing outside the
+       widest ring is ever returned *except* in one case, which is when
+       the widest ring caught nothing at all and returning something far
+       away beats returning an empty section.
+
+       So the expensive gate — hours, chain counts, evidence — only ever
+       needs to run on what is inside the widest ring. It used to run on
+       all twenty-four thousand records to produce a list drawn from the
+       few hundred within an hour of the reader, which is the whole of
+       why one tap on Sport took two seconds.
+
+       The far case is preserved exactly: if nothing in range survives,
+       fall back to the full scan and let `ring` reach for it, which is
+       precisely the branch it takes today. */
+    const far = rings[rings.length - 1];
+    const gate = i => (i.minutesFromHome ?? 999) <= far && ok(i);
+
+    let pool = CURATED.filter(gate).concat(FOUND.filter(gate));
+    if (!pool.length) pool = CURATED.filter(ok).concat(FOUND.filter(ok));
 
     /* The ring counts what survives the gate, not what exists. Widening
        on raw counts would stop at the first ring merely full of places
        that are then all filtered away — an empty section drawn from a
        ten-minute radius, when twenty minutes had the answer. */
-    const found = ring(CURATED.filter(ok).concat(FOUND.filter(ok)), rings, want, wantKnown);
+    const reached = ring(pool, rings, want, wantKnown);
 
     /* Membership: the nearest that clear the bar. Order: the same thing,
        which is the point — one sort, and it is distance. Ties go to the
        better-attested record, since two places on the same street corner
        have to be separated by something. */
-    const near = dedupe(found.items.slice().sort((a, b) =>
+    const near = dedupe(reached.items.slice().sort((a, b) =>
       (mins(a) - mins(b)) || (localScore(b) - localScore(a))));
 
+/* ---------- two lists, and why they are not one ----------
+
+       A place somebody visited, researched, or can point to a listing for
+       is a recommendation. A name and a position off OpenStreetMap is
+       coverage — it answers "is there a bakery near me at all", which is
+       the reason the discovery layer exists, but not "where should we get
+       coffee". Blended and sorted by distance they are indistinguishable,
+       and since the city has twenty-two thousand names against a few
+       hundred write-ups the names take every row.
+
+       So they come back separate and the page decides how to say it.
+       Neither is reordered — both are nearest-first and stay that way.
+       The exception is the whole reason the coverage layer exists: where
+       the guide has nothing to say about a quarter, the bare names *are*
+       the answer, so they become `items` and `vouched` says false. */
+    const good = near.filter(known);
+    const rest = near.filter(i => !known(i));
+    const has  = good.length > 0;
+
+    /* `split: false` for the two callers that are genuinely asking "what
+       is nearest", not "what do you suggest" — the assembled local
+       mission, whose whole text is that nobody wrote it, and the shops at
+       the end of an Invader hunt. Preferring a write-up there would make
+       a route claim a doorstep it does not have. */
+    if (!split) return {
+      radius: reached.radius,
+      widened: reached.radius != null && reached.radius > rings[0],
+      vouched: has,
+      items: near.slice(0, limit),
+      found: []
+    };
+
     return {
-      radius: found.radius,
+      radius: reached.radius,
       /* The locked rule is that the bar holds still and the radius moves.
          That is only honest if the page can say when it moved, so the
          fact travels with the answer rather than being inferred from the
          number by each caller. */
-      widened: found.radius != null && found.radius > rings[0],
-      items: keepKnown(near, limit, wantKnown)
+      widened: reached.radius != null && reached.radius > rings[0],
+      vouched: has,
+      items: (has ? good : rest).slice(0, limit),
+      found: has ? rest.slice(0, bare) : []
     };
   }
 
-  /* The ring guarantees that `wantKnown` places the site knows something
-     about are *inside* the radius. Nothing guaranteed they survived the
-     cut to `limit`, and for most of the site's life nothing had to: there
-     were few enough anonymous records nearby that the known ones scored
-     their way into the top five on their own.
+/* Where the promotion rule used to be.
 
-     Widening the discovery index to 22,635 places ended that. Twice as
-     many bare names now sit within a few minutes of anywhere, the best of
-     them scores well, and in the 5th, 12th and 19th they filled the whole
-     section — burying the two cafés the guide actually has something to
-     say about thirteen minutes away. Which is the original complaint this
-     layer was built to answer, arriving by a new route.
+     It guaranteed that the nearest few known records survived the cut to
+     `limit`, because twenty-two thousand bare names sit within minutes of
+     anywhere and nearest-first handed them every slot. That was a thumb on
+     the scale holding up a list whose shape was wrong: two write-ups among
+     twenty-two names still reads as twenty-four suggestions. Splitting the
+     answer in `pick` removes the need — the recommendations are their own
+     list and cannot be crowded out of it.
 
-     So the guarantee is made explicit rather than left to arithmetic: if
-     the top `limit` does not contain `wantKnown` records above the `found`
-     tier, the nearest ones that exist are promoted into it, displacing the
-     furthest bare names. This is a deliberate editorial thumb on the
-     scale and the whole premise of the site — a list of names is what the
-     reader could have got from a map.
-
-     It decides membership only. The list it is handed is already ordered
-     by distance and it filters that order rather than resorting it, so a
-     promoted record lands wherever its own walk puts it. "Nearest first"
-     stays literally true of whatever comes out. */
-  function keepKnown(ranked, limit, wantKnown) {
-    /* Never guarantee more than there is room for. `nearestOfKind` asks
-       for a single answer, and a promotion rule that returned two would
-       be handing back a list where the caller asked for one place. */
-    const guarantee = Math.min(wantKnown || 0, limit);
-
-    const head = ranked.slice(0, limit);
-    if (!guarantee || head.filter(known).length >= guarantee) return head;
-
-    const missing = guarantee - head.filter(known).length;
-    const promote = ranked.slice(limit).filter(known).slice(0, missing);
-    if (!promote.length) return head;
-
-    /* Keep the known ones, then as many of the nearest bare names as
-       still fit, and drop the furthest to make room. */
-    const kept = head.filter(known);
-    const bare = head.filter(i => !known(i))
-      .slice(0, Math.max(0, limit - kept.length - promote.length));
-    return ranked
-      .filter(i => kept.includes(i) || bare.includes(i) || promote.includes(i))
-      .slice(0, limit);
-  }
+     Noted because the failure it patched is real, and will look like a new
+     bug the next time somebody blends the two layers. */
 
   /* One market that runs the length of a street is several nodes in OSM,
      and the build-time de-duplication only catches the ones that round to
