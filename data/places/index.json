@@ -1,50 +1,50 @@
 {
-  "generated": "2026-08-24",
+  "generated": "2026-08-31",
   "source": "OpenStreetMap via Overpass · ODbL",
   "note": "Names, categories, positions and the practical facts OSM records — opening hours, contact, access, and when anybody last checked. No opinions: the curated files carry the judgement, this carries the coverage, so that changing location changes what exists nearby rather than only how far away the old list is.",
   "counts": {
-    "bakery": 1811,
-    "cafe": 2863,
-    "restaurant": 10052,
+    "bakery": 1816,
+    "cafe": 2869,
+    "restaurant": 10081,
     "market": 128,
-    "deli": 1709,
+    "deli": 1713,
     "park": 915,
-    "museum": 652,
-    "sport": 808,
-    "nightlife": 2316,
-    "culture": 513,
+    "museum": 653,
+    "sport": 810,
+    "nightlife": 2318,
+    "culture": 512,
     "books": 981
   },
   "shards": {
     "1": {
-      "n": 728
+      "n": 729
     },
     "2": {
-      "n": 1273
+      "n": 1274
     },
     "3": {
-      "n": 1143
+      "n": 1142
     },
     "4": {
-      "n": 923
+      "n": 922
     },
     "5": {
-      "n": 1148
+      "n": 1149
     },
     "6": {
-      "n": 1021
+      "n": 1020
     },
     "7": {
-      "n": 432
+      "n": 461
     },
     "8": {
-      "n": 828
+      "n": 832
     },
     "9": {
-      "n": 1605
+      "n": 1603
     },
     "10": {
-      "n": 1164
+      "n": 1166
     },
     "11": {
       "n": 2078
@@ -53,25 +53,25 @@
       "n": 482
     },
     "13": {
-      "n": 1011
+      "n": 1013
     },
     "14": {
       "n": 1166
     },
     "15": {
-      "n": 1533
+      "n": 1531
     },
     "16": {
-      "n": 1470
+      "n": 1471
     },
     "17": {
-      "n": 1500
+      "n": 1512
     },
     "18": {
       "n": 1012
     },
     "19": {
-      "n": 1056
+      "n": 1057
     },
     "20": {
       "n": 1086

@@ -1,77 +1,11 @@
 {
-  "generated": "2026-08-30",
+  "generated": "2026-08-31",
   "window": {
     "from": "2026-08-13",
     "to": "2026-10-31"
   },
   "note": "Time-sensitive entries. Anything past its `end` date is pruned automatically by scripts/refresh.mjs. Verify prices and times at the official URL before travelling.",
   "items": [
-    {
-      "id": "paris-plages-2026",
-      "title": "Paris Plages",
-      "emoji": "🏖️",
-      "type": "event",
-      "categories": [
-        "outdoor",
-        "seasonal",
-        "free"
-      ],
-      "arr": 19,
-      "area": "Bassin de la Villette + Seine banks",
-      "price": 0,
-      "priceNote": "Free",
-      "start": "2026-07-04",
-      "end": "2026-08-30",
-      "times": "Daily, roughly 10:00–22:00",
-      "durationMin": 120,
-      "minutesFromHome": 12,
-      "transit": "M5 to Stalingrad, or a 20-min walk straight up the canal",
-      "why": "24th edition. The Bassin de la Villette stretch is the one locals actually use — pétanque, deckchairs, open-air dancing, cheap drinks. Skip the Seine section, it is mostly tourists. Go on a weekday evening around 19:00 when the light is good and the crowds have thinned.",
-      "goodFor": [
-        "couple",
-        "evening",
-        "outdoor",
-        "free",
-        "spontaneous",
-        "relax"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "outdoor",
-        "afterwork",
-        "couple"
-      ],
-      "uniqueness": 3,
-      "quality": 4,
-      "nearby": [
-        {
-          "emoji": "🥐",
-          "text": "Du Pain et des Idées → 12 min walk"
-        },
-        {
-          "emoji": "☕",
-          "text": "Ten Belles → 15 min walk"
-        },
-        {
-          "emoji": "🎬",
-          "text": "MK2 Quai de Seine / Quai de Loire → on site"
-        }
-      ],
-      "source": "Paris.fr",
-      "url": "https://www.paris.fr/pages/paris-plages-2211",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Bassin_villette.jpg/500px-Bassin_villette.jpg",
-      "imageSubject": "Bassin de la Villette",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8871,
-        2.3828
-      ],
-      "coordsFrom": "arr-centroid"
-    },
     {
       "id": "olympic-cauldron-2026",
       "title": "The Olympic Cauldron Rises at Sunset",
@@ -387,59 +321,6 @@
       "coordsFrom": "arr-centroid"
     },
     {
-      "id": "javelle-guinguette-2026",
-      "title": "La Javelle Summer Guinguette",
-      "emoji": "🍹",
-      "type": "event",
-      "categories": [
-        "outdoor",
-        "music",
-        "food",
-        "free"
-      ],
-      "arr": 12,
-      "area": "Bercy",
-      "price": 0,
-      "priceNote": "Free entry",
-      "start": "2026-05-01",
-      "end": "2026-08-30",
-      "times": "Weekdays 17:00–00:00 · weekends 12:00–00:00",
-      "durationMin": 150,
-      "minutesFromHome": 30,
-      "transit": "M5 direct to Bercy",
-      "why": "Riverside guinguette with DJs, live music, karaoke and comedy nights, free to get in. It sits on the lower quay at Javel — M10 or RER C. Good low-effort answer to 'we want to be outside with a drink and something happening'.",
-      "goodFor": [
-        "couple",
-        "evening",
-        "outdoor",
-        "free",
-        "socialize",
-        "spontaneous"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "afterwork",
-        "outdoor",
-        "couple"
-      ],
-      "uniqueness": 3,
-      "quality": 4,
-      "source": "Secrets of Paris",
-      "url": "https://www.lajavelle.fr/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg/500px-Cascade_du_parc_de_Bercy%2C_Paris_2017_001.jpg",
-      "imageSubject": "Parc de Bercy",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8351,
-        2.4212
-      ],
-      "coordsFrom": "arr-centroid"
-    },
-    {
       "id": "grand-palais-leandro-erlich-2026",
       "title": "Leandro Erlich — Grand Palais",
       "emoji": "🎨",
@@ -484,103 +365,6 @@
       "coords": [
         48.8726,
         2.312
-      ],
-      "coordsFrom": "arr-centroid"
-    },
-    {
-      "id": "grand-palais-hilma-af-klint-2026",
-      "title": "Hilma af Klint — Grand Palais",
-      "emoji": "🖼️",
-      "type": "exhibition",
-      "categories": [
-        "art",
-        "culture",
-        "indoor"
-      ],
-      "arr": 8,
-      "area": "Grand Palais",
-      "price": 17,
-      "priceNote": "~€17 · book a slot online",
-      "start": "2026-03-01",
-      "end": "2026-08-30",
-      "durationMin": 105,
-      "minutesFromHome": 28,
-      "transit": "M1 to Champs-Élysées–Clemenceau",
-      "why": "Her first showing in France, and it closes August 30. Af Klint was painting large abstract canvases years before Kandinsky and then asked for them to stay hidden for 20 years after her death. Seeing them in person is a genuinely strange experience. Closing soon — this is a now-or-never one.",
-      "goodFor": [
-        "couple",
-        "weekend",
-        "culture",
-        "indoor"
-      ],
-      "indoor": true,
-      "labels": [
-        "dontmiss",
-        "indoor",
-        "closingsoon"
-      ],
-      "uniqueness": 5,
-      "quality": 5,
-      "source": "Grand Palais",
-      "url": "https://www.grandpalais.fr/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Hilma-af-Klint-uncropped.jpg/500px-Hilma-af-Klint-uncropped.jpg",
-      "imageSubject": "Hilma af Klint",
-      "imageCredit": "AnonymousUnknown author · Public domain",
-      "imageKind": "context",
-      "coords": [
-        48.8726,
-        2.312
-      ],
-      "coordsFrom": "arr-centroid"
-    },
-    {
-      "id": "beyond-the-streets-villette-2026",
-      "title": "Beyond the Streets — Graffiti & Street Art",
-      "emoji": "🎨",
-      "type": "exhibition",
-      "categories": [
-        "art",
-        "culture",
-        "indoor"
-      ],
-      "arr": 19,
-      "area": "Grande Halle de la Villette",
-      "price": 18,
-      "priceNote": "~€18",
-      "start": "2026-04-01",
-      "end": "2026-08-30",
-      "durationMin": 120,
-      "minutesFromHome": 22,
-      "transit": "M5 to Porte de Pantin",
-      "why": "3,600 m² and over 100 major graffiti and street artists, in the huge iron hall at La Villette. La Villette is the top of line 5. Best move: do the exhibition in the afternoon, then stay in the park for the open-air cinema at 21:00 — same site, one trip, whole day sorted.",
-      "goodFor": [
-        "couple",
-        "weekend",
-        "culture",
-        "indoor"
-      ],
-      "indoor": true,
-      "labels": [
-        "couple",
-        "indoor",
-        "closingsoon"
-      ],
-      "uniqueness": 4,
-      "quality": 4,
-      "pairsWith": [
-        "villette-open-air-cinema-2026"
-      ],
-      "source": "La Villette",
-      "url": "https://lavillette.com/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg/500px-Grande_halle_de_la_Villette%2C_Paris_12_March_2016.jpg",
-      "imageSubject": "Grande halle de la Villette",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8871,
-        2.3828
       ],
       "coordsFrom": "arr-centroid"
     },
@@ -829,50 +613,6 @@
         2.2769
       ],
       "coordsFrom": "arr-centroid"
-    },
-    {
-      "id": "rock-en-seine-2026",
-      "title": "Rock en Seine",
-      "emoji": "🎸",
-      "type": "event",
-      "categories": [
-        "music",
-        "festival",
-        "outdoor"
-      ],
-      "arr": null,
-      "area": "Domaine national de Saint-Cloud",
-      "price": 75,
-      "priceNote": "~€75/day · passes cost more",
-      "start": "2026-08-26",
-      "end": "2026-08-30",
-      "durationMin": 600,
-      "minutesFromHome": 55,
-      "transit": "M9 to Pont de Sèvres + shuttle, or M10 to Boulogne",
-      "why": "The big one at the end of August, in the grounds of a former royal estate. The Cure close it on the 30th, Nick Cave and the Bad Seeds play the 28th, Tyler the Creator opens on the 26th, Lorde headlines the 27th. Day tickets beat passes unless you want all five. Book now if you want it — this sells through.",
-      "goodFor": [
-        "couple",
-        "weekend",
-        "outdoor",
-        "music"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "bookAhead": true,
-      "labels": [
-        "dontmiss",
-        "outdoor",
-        "bookahead"
-      ],
-      "uniqueness": 4,
-      "quality": 5,
-      "source": "Rock en Seine",
-      "url": "https://www.rockenseine.com/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Parc_saint-cloud.jpg/500px-Parc_saint-cloud.jpg",
-      "imageSubject": "Domaine national de Saint-Cloud",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject"
     },
     {
       "id": "journees-du-patrimoine-2026",
@@ -1324,65 +1064,6 @@
       "imageSubject": "La Défense",
       "imageKind": "context",
       "imageCredit": "Wikimedia Commons"
-    },
-    {
-      "id": "fete-de-ganesh-2026",
-      "title": "Fête de Ganesh",
-      "emoji": "🐘",
-      "type": "event",
-      "categories": [
-        "culture",
-        "indian",
-        "free",
-        "outdoor",
-        "music"
-      ],
-      "arr": 18,
-      "area": "Temple Sri Manicka Vinayakar Alayam, 17 rue Pajol",
-      "price": 0,
-      "priceNote": "Free",
-      "start": "2026-08-30",
-      "end": "2026-08-30",
-      "days": [
-        0
-      ],
-      "times": "Ceremonies from 09:00 · procession leaves 10:30 · ends ~15:00",
-      "durationMin": 240,
-      "minutesFromHome": 15,
-      "transit": "M12 to Marx Dormoy, or a 20-minute walk",
-      "why": "The Tamil community of Paris has processed Ganesh through the streets of La Chapelle every year since 1995. Nageshvaram players and drummers lead, then dancers carrying kavadi arches of peacock feathers and pots of burning camphor, then Ganesh himself on a decorated float with his brother Muruga behind. Twenty-five thousand people, coconuts smashed on the road, free food afterwards. Arrive by 10:00 for the procession leaving the temple.",
-      "goodFor": [
-        "weekend",
-        "couple",
-        "free",
-        "culture",
-        "outdoor",
-        "unusual",
-        "morning"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "dontmiss",
-        "unusual",
-        "outdoor",
-        "couple"
-      ],
-      "uniqueness": 5,
-      "quality": 5,
-      "source": "Ville de Paris / Sortiraparis",
-      "url": "https://www.paris.fr/evenements/fete-de-ganesh-a-paris-25089",
-      "lastVerified": "2026-08-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/P1060179_Paris_XVIII_rue_Pajol_rwk.jpg/500px-P1060179_Paris_XVIII_rue_Pajol_rwk.jpg",
-      "imageSubject": "Rue Pajol",
-      "imageKind": "context",
-      "imageCredit": "Wikimedia Commons",
-      "coords": [
-        48.8925,
-        2.3444
-      ],
-      "coordsFrom": "arr-centroid"
     },
     {
       "id": "gymnastics-championships-2026",
