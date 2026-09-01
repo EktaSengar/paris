@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-31",
+  "generated": "2026-09-01",
   "window": {
     "from": "2026-08-13",
     "to": "2026-10-31"
@@ -253,74 +253,6 @@
       "imageKind": "context"
     },
     {
-      "id": "marcounet-guinguette-2026",
-      "title": "Salsa & Swing on the Péniche Marcounet",
-      "emoji": "💃",
-      "type": "event",
-      "categories": [
-        "music",
-        "dance",
-        "outdoor",
-        "free"
-      ],
-      "arr": 4,
-      "area": "Quai des Célestins, near Pont Marie",
-      "price": 0,
-      "priceNote": "Free entry · drinks paid",
-      "start": "2026-06-01",
-      "end": "2026-08-31",
-      "days": [
-        6,
-        0
-      ],
-      "times": "Salsa Sat 15:30–18:30 · Swing Sun 15:00–21:00",
-      "durationMin": 150,
-      "minutesFromHome": 20,
-      "transit": "M7 to Pont Marie, or a 35-min walk down the canal and along the Seine",
-      "why": "A barge moored on the Seine that turns into an open-air dance floor at weekends. Nobody minds if you cannot dance — half the crowd is learning. Free, unpretentious, and about as romantic as a Sunday afternoon in Paris gets. Sunday swing is the better of the two.",
-      "goodFor": [
-        "couple",
-        "weekend",
-        "outdoor",
-        "free",
-        "romantic",
-        "socialize"
-      ],
-      "indoor": false,
-      "weatherSensitive": true,
-      "labels": [
-        "free",
-        "romantic",
-        "couple",
-        "weekend",
-        "hiddengem"
-      ],
-      "uniqueness": 5,
-      "quality": 4,
-      "nearby": [
-        {
-          "emoji": "🏝️",
-          "text": "Île Saint-Louis + Berthillon → 8 min"
-        },
-        {
-          "emoji": "🌳",
-          "text": "Village Saint-Paul antique shops → 6 min"
-        }
-      ],
-      "source": "Secrets of Paris",
-      "url": "https://www.peniche-marcounet.fr/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Pont_Marie.jpg/500px-Pont_Marie.jpg",
-      "imageSubject": "Pont Marie",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "context",
-      "coords": [
-        48.8546,
-        2.3572
-      ],
-      "coordsFrom": "arr-centroid"
-    },
-    {
       "id": "grand-palais-leandro-erlich-2026",
       "title": "Leandro Erlich — Grand Palais",
       "emoji": "🎨",
@@ -511,58 +443,6 @@
         2.29797
       ],
       "coordsFrom": "nominatim"
-    },
-    {
-      "id": "palais-tokyo-nocturnes-2026",
-      "title": "Nocturnes d'Été — Palais de Tokyo",
-      "emoji": "🌙",
-      "type": "event",
-      "categories": [
-        "art",
-        "culture",
-        "free",
-        "indoor"
-      ],
-      "arr": 16,
-      "area": "Palais de Tokyo",
-      "price": 0,
-      "priceNote": "Free on nocturne evenings",
-      "start": "2026-07-01",
-      "end": "2026-08-31",
-      "times": "One evening per week — check the site for this week's date",
-      "durationMin": 120,
-      "minutesFromHome": 30,
-      "transit": "M9 to Iéna",
-      "why": "Palais de Tokyo is open until midnight most nights anyway, but during the summer nocturnes the contemporary art shows are free. It is the least reverent museum in Paris — concrete, loud, occasionally baffling — and much better as a date than a worthy afternoon at the Louvre. Confirm the evening on their site before you go.",
-      "goodFor": [
-        "couple",
-        "evening",
-        "culture",
-        "free",
-        "indoor",
-        "unusual"
-      ],
-      "indoor": true,
-      "labels": [
-        "free",
-        "afterwork",
-        "couple",
-        "indoor"
-      ],
-      "uniqueness": 4,
-      "quality": 4,
-      "source": "Palais de Tokyo",
-      "url": "https://palaisdetokyo.com/",
-      "lastVerified": "2026-08-13",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Palais_de_Tokyo_20030101w.JPG/500px-Palais_de_Tokyo_20030101w.JPG",
-      "imageSubject": "Palais de Tokyo",
-      "imageCredit": "Wikimedia Commons",
-      "imageKind": "subject",
-      "coords": [
-        48.8637,
-        2.2769
-      ],
-      "coordsFrom": "arr-centroid"
     },
     {
       "id": "theatre-verdure-shakespeare-2026",
