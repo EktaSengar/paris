@@ -90,6 +90,75 @@
       "coordsFrom": "osm-match"
     },
     {
+      "id": "cafe-margo",
+      "title": "Café Margo",
+      "emoji": "☕",
+      "type": "cafe",
+      "categories": [
+        "food",
+        "coffee"
+      ],
+      "arr": 10,
+      "area": "14 avenue Richerand",
+      "durationMin": 30,
+      "minutesFromHome": 3,
+      "why": "The best dirty chai in the neighbourhood, and the medialunas are what people come back for — Argentinian pastries, made in-house. A step off the canal.",
+      "goodFor": [
+        "food",
+        "morning",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [],
+      "uniqueness": 3,
+      "quality": 5,
+      "url": "https://maps.google.com/?q=Caf%C3%A9+Margo+14+avenue+Richerand+Paris",
+      "lastVerified": "2026-08-28",
+      "coords": [
+        48.87228,
+        2.36637
+      ],
+      "coordsFrom": "google-maps-pin",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/P1040721_Paris_X_avenue_Richerand_rwk.jpg/500px-P1040721_Paris_X_avenue_Richerand_rwk.jpg",
+      "imageSubject": "Avenue Richerand",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons",
+      "cuisine": "argentinian"
+    },
+    {
+      "id": "cafe-pli-parmentier",
+      "title": "Café Pli — Parmentier",
+      "emoji": "☕",
+      "type": "cafe",
+      "categories": [
+        "food",
+        "coffee"
+      ],
+      "arr": 10,
+      "area": "141 avenue Parmentier",
+      "durationMin": 30,
+      "minutesFromHome": 6,
+      "why": "The Parmentier branch, two hundred metres from the one on the faubourg du Temple. Not on any map this site pulls from — it is here because we go.",
+      "goodFor": [
+        "food",
+        "morning",
+        "spontaneous",
+        "couple"
+      ],
+      "indoor": true,
+      "labels": [],
+      "uniqueness": 3,
+      "quality": 5,
+      "url": "https://www.cafe-pli.fr/",
+      "lastVerified": "2026-08-28",
+      "coords": [
+        48.87046,
+        2.37051
+      ],
+      "coordsFrom": "google-maps-pin"
+    },
+    {
       "id": "holybelly",
       "title": "Holybelly 5 & 19",
       "emoji": "🥞",

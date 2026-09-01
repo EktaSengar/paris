@@ -30,6 +30,26 @@
         "morning",
         "couple"
       ]
+    },
+    "osm-radiodays-97743-4735": {
+      "why": "The vibe and the music are half the reason to go. Fresh-baked cookies and the flat white to have them with, and seats inside and out — one of the easier places in the quarter to settle in with work for an hour.",
+      "quality": 5,
+      "uniqueness": 3,
+      "labels": [
+        "outdoor"
+      ],
+      "goodFor": [
+        "food",
+        "music",
+        "morning",
+        "relax",
+        "couple"
+      ],
+      "area": "Rue Alibert",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Rue_Alibert_-_Paris.jpg/500px-Rue_Alibert_-_Paris.jpg",
+      "imageSubject": "Rue Alibert",
+      "imageKind": "context",
+      "imageCredit": "Wikimedia Commons"
     }
   }
 }

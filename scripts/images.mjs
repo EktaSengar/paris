@@ -54,6 +54,7 @@ const QUERIES = {
   // places
   'du-pain-et-des-idees': 'Rue Yves-Toudic',
   'ten-belles': 'Canal Saint-Martin',
+  'cafe-margo': 'Avenue Richerand',
   'holybelly': 'Rue Lucien-Sampaix',
   'boulangerie-utopie': 'Rue Jean-Pierre-Timbaud',
   'mamiche': '10e arrondissement de Paris',
@@ -233,7 +234,7 @@ const QUERIES = {
    Anything not listed here is assumed to be a photo of the subject itself. */
 const CONTEXT_ONLY = new Set([
   'du-pain-et-des-idees', 'ten-belles', 'holybelly', 'boulangerie-utopie', 'mamiche',
-  'cafe-oberkampf', 'belleville-brulerie', 'boot-cafe', 'la-tresorerie', 'empreintes',
+  'cafe-oberkampf', 'belleville-brulerie', 'boot-cafe', 'cafe-margo', 'la-tresorerie', 'empreintes',
   'e-dehillerin', 'artazart', 'ofr-bookshop', 'green-factory', 'sennelier',
   'musee-vie-romantique', 'la-cuisine-paris', 'studio-des-parfums', 'o-chateau-wine',
   'ceramics-workshop-paris', 'puces-vanves', 'vanves-flea-sunday',
