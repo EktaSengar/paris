@@ -676,12 +676,36 @@ picture { display: contents; }
 .routes { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
 @media (min-width: 800px) { .routes { grid-template-columns: 1fr 1fr; } }
 
+/* A card left alone in the last row spans it. Sport has exactly one run
+   with stops, so the two-column grid put a 488px card above three rows
+   running the full 1000px — which reads as a layout fault rather than as
+   the section's lead item. The same rule catches the third of three walks
+   in Explore. */
+.routes > .route:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
 .route {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 1.35rem 1.4rem;
   background: var(--card);
 }
+/* Stacked, the photograph is a band across the head of the card: wide and
+   shallow, so it introduces the route rather than becoming it. The fade is
+   the one the grid cards use — these load lazily, well below the fold. */
+.route-shot {
+  aspect-ratio: 21 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--img-bg);
+  margin-bottom: 1.1rem;
+}
+.route-shot img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  opacity: 0; transition: opacity .22s;
+}
+.route-shot img.loaded { opacity: 1; }
+
 .route-head { margin-bottom: 1.1rem; }
 .route h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; margin: 0 0 .25rem; }
 .route-meta {
@@ -716,6 +740,34 @@ picture { display: contents; }
 .steps li:last-child { padding-bottom: 0; }
 .steps li:last-child::after { display: none; }
 .steps .w { display: block; color: var(--faint); font-size: .75rem; margin-top: .1rem; }
+
+/* Widened, the card stops stacking: the write-up takes one column and the
+   stops the other. Ninety-character lines of prose and a numbered list
+   trailing half a page of white space are what stacking looks like at
+   1000px, and neither is the reason the card is the lead item. Cards that
+   are still sharing the row keep the stacked layout. */
+@media (min-width: 800px) {
+  .route:last-child:nth-child(odd) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 2.75rem;
+    align-items: start;
+  }
+  .route:last-child:nth-child(odd) .route-head { margin-bottom: 0; }
+
+  /* With the room to do it, the picture takes a column instead of a band —
+     which is the anatomy of the rows underneath it, at the size the lead
+     item deserves: photograph, then name, then the detail. A shallow strip
+     over a card this wide would only be a rule with a view. */
+  .route.has-shot:last-child:nth-child(odd) {
+    grid-template-columns: 17rem minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0 2.25rem;
+  }
+  .route.has-shot:last-child:nth-child(odd) .route-shot {
+    aspect-ratio: 4 / 3;
+    margin-bottom: 0;
+  }
+}
 
 /* ---------- trip (wide editorial) ---------- */
 

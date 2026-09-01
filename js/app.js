@@ -623,6 +623,7 @@ const App = (() => {
     thumb:   { sizes: '96px', cap: CAP_THUMB },
     tile:    { sizes: '(min-width: 760px) 420px, 94vw', cap: CAP_CARD },
     trip:    { sizes: '(min-width: 760px) 520px, 94vw', cap: CAP_CARD },
+    route:   { sizes: '(min-width: 1040px) 460px, (min-width: 800px) 46vw, 92vw', cap: CAP_CARD },
     mission: { sizes: '(min-width: 760px) 480px, 94vw', cap: CAP_CARD },
     hero:    { sizes: '96vw',  cap: CAP_CARD,
                wide: { media: '(min-width: 1040px)', sizes: '1000px', cap: CAP_WIDE } },
@@ -804,6 +805,15 @@ const App = (() => {
       const w = stopWalk(item, s, n);
       return `<li>${esc(s.text)}${w ? `<span class="w">${esc(w)}</span>` : ''}</li>`;
     }).join('');
+    /* A route is a place you can picture before you have read a word of it,
+       and every route in the data has a photograph. No tinted stand-in when
+       one is missing, though — unlike the grid, nothing here is holding a
+       rhythm the gap would break, so the card simply starts at its title.
+       The class rides on the card because the wide layout gives the picture
+       a column of its own, and an empty one would be worse than none. */
+    const shot = item.image
+      ? `<div class="route-shot">${img(item, 'route')}</div>`
+      : '';
     const meta = [
       item.arr ? `${item.arr}e` : null,
       item.startTime ? `from ${item.startTime}` : null,
@@ -811,7 +821,8 @@ const App = (() => {
       item.priceNote || (item.price ? `€${item.price}` : 'Free')
     ].filter(Boolean).join(' · ');
 
-    return `<div class="route" data-id="${esc(item.id)}">
+    return `<div class="route${shot ? ' has-shot' : ''}" data-id="${esc(item.id)}">
+      ${shot}
       <div class="route-head">
         <h3>${esc(item.title)}</h3>
         <p class="route-meta">${esc(meta)}</p>
