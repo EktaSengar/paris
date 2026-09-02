@@ -1260,6 +1260,41 @@ const App = (() => {
 
   const isCityGame = i => (i.categories || []).includes('citygame');
 
+  /* ---------- a drawing, because a photograph would not be ours ----------
+
+     There is no photograph of an Invader mosaic this site could carry.
+     They are one artist's work on somebody else's wall, and the ones on
+     Commons are photographs of that work rather than free images of it.
+     The rule the market stalls already follow applies: a picture the
+     site cannot honestly have becomes a drawing instead.
+
+     Which suits this subject better than a photograph would anyway —
+     the whole form is tesserae on a grid. Eleven squares by eight, in
+     the accent the view is already using, with the grout showing
+     between them. Our own creature rather than any wall's, and no
+     request: the markup is about 700 bytes and there is nothing to
+     fetch, wait for, or lay out around. */
+  const INVADER = [
+    '00100100100',
+    '00011111000',
+    '00111111100',
+    '01101110110',
+    '11111111111',
+    '10111111101',
+    '00100100100',
+    '01100000110'
+  ];
+
+  const invaderTile = () => {
+    const cells = INVADER.flatMap((row, y) =>
+      [...row].map((bit, x) => bit === '1'
+        ? `<rect x="${x + .06}" y="${y + .06}" width=".88" height=".88" rx=".12"/>` : '')
+    ).join('');
+    return `<div class="citygame-tile" aria-hidden="true">
+      <svg viewBox="0 0 11 8" fill="currentColor">${cells}</svg>
+    </div>`;
+  };
+
   function invaderPanel(item) {
     const p = Invaders.progress();
     /* Found ones stay in the list rather than vanishing the instant you
@@ -1280,7 +1315,7 @@ const App = (() => {
       <div class="inv-score">
         <div class="inv-stat"><b>${p.found}</b><span>found</span></div>
         <div class="inv-stat"><b>${p.total}</b><span>on the map</span></div>
-        <div class="inv-stat"><b>${p.arrs}</b><span>${p.arrs === 1 ? 'arrondissement' : 'arrondissements'}</span></div>
+        ${p.arrs ? `<div class="inv-stat"><b>${p.arrs}</b><span>${p.arrs === 1 ? 'arrondissement' : 'arrondissements'}</span></div>` : ''}
       </div>`;
 
     const list = near.length ? `
@@ -1317,9 +1352,8 @@ const App = (() => {
         ${score}
         ${list}
         ${missionCards}
-        <p class="inv-caveat">These are the mosaics OpenStreetMap knows about — roughly a few hundred
-        of the ~1,500 Invader has put up, and some of those are painted over by now. Treat an empty
-        wall as part of the game.</p>
+        <p class="inv-caveat">These are the ones OpenStreetMap knows about — a few hundred of the
+        ~1,500 out there, and some are painted over by now. An empty wall is part of the game.</p>
       </div>`;
   }
 
@@ -1358,8 +1392,13 @@ const App = (() => {
                      'Sport that is really just leaving the flat and moving around Paris')
       + games.map(g => `
           <div class="citygame">
-            <h4>${g.emoji || ''} ${esc(g.title)}</h4>
-            <p class="citygame-why">${esc(g.why || '')}</p>
+            <div class="citygame-head">
+              <div>
+                <h4>${g.emoji || ''} ${esc(g.title)}</h4>
+                <p class="citygame-why">${esc(g.why || '')}</p>
+              </div>
+              ${g.game === 'invaders' ? invaderTile() : ''}
+            </div>
             ${g.game === 'invaders' ? invaderPanel(g) : ''}
           </div>`).join('');
   }

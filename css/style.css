@@ -1358,6 +1358,34 @@ body[data-view="away"]    { --accent: #3f5e7a; --blush: #93add0; }
 .citygame h4 { font-size: 1.25rem; margin: 0 0 .35rem; letter-spacing: -.01em; }
 .citygame-why { margin: 0 0 1rem; max-width: 62ch; color: var(--ink-2, #5b5651); }
 
+/* The write-up stops at 62 characters and the panel below runs the full
+   width, which left a column of nothing beside the opening paragraph and
+   made the section read as heavier than it is. The drawing goes there. */
+.citygame-head { display: flex; flex-direction: column; }
+.citygame-tile {
+  width: 5rem; order: -1; margin: 0 0 .8rem;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  display: grid; place-items: center;
+  padding: .9rem;
+  color: var(--accent);
+  background:
+    radial-gradient(120% 100% at 30% 0%, color-mix(in srgb, var(--blush) 22%, transparent), transparent 70%),
+    linear-gradient(150deg, var(--bg-2), var(--img-bg));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--line) 70%, transparent);
+}
+.citygame-tile svg { width: 100%; height: auto; display: block; }
+
+@media (min-width: 760px) {
+  .citygame-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 10rem;
+    gap: 0 2.5rem;
+    align-items: start;
+  }
+  .citygame-tile { width: 10rem; order: 0; margin: .2rem 0 0; }
+}
+
 .inv-panel {
   border: 1px solid var(--rule, #e6e0d8);
   border-radius: 10px;
