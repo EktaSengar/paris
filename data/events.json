@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-02",
+  "generated": "2026-09-03",
   "window": {
     "from": "2026-08-13",
     "to": "2026-10-31"
@@ -643,55 +643,6 @@
       "source": "Technopol",
       "url": "https://www.technoparade.fr/",
       "lastVerified": "2026-08-15"
-    },
-    {
-      "id": "lauryn-hill-bercy-2026",
-      "title": "Lauryn Hill — Accor Arena",
-      "emoji": "🎤",
-      "type": "event",
-      "categories": [
-        "nightlife",
-        "music"
-      ],
-      "arr": 12,
-      "area": "Accor Arena, Bercy",
-      "price": 70,
-      "priceNote": "From ~€55",
-      "start": "2026-09-02",
-      "end": "2026-09-02",
-      "times": "Doors 19:00",
-      "durationMin": 210,
-      "minutesFromHome": 30,
-      "transit": "M5 or M14 to Bercy",
-      "why": "Ms Lauryn Hill at Bercy, with YG Marley and Zion Marley supporting. She tours rarely and cancels sometimes, so this is a real one. Bercy is on line 5 and line 14, which makes the trip home after an arena show far less grim than usual.",
-      "goodFor": [
-        "evening",
-        "couple",
-        "music"
-      ],
-      "indoor": true,
-      "bookAhead": true,
-      "labels": [
-        "dontmiss",
-        "afterwork",
-        "couple",
-        "bookahead",
-        "indoor"
-      ],
-      "uniqueness": 4,
-      "quality": 5,
-      "source": "Sortiraparis / Accor Arena",
-      "url": "https://www.accorarena.com/",
-      "lastVerified": "2026-08-15",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Palais_Omnisports_de_Paris-Bercy_2007.jpg/500px-Palais_Omnisports_de_Paris-Bercy_2007.jpg",
-      "imageSubject": "Accor Arena",
-      "imageKind": "context",
-      "imageCredit": "Wikimedia Commons",
-      "coords": [
-        48.8351,
-        2.4212
-      ],
-      "coordsFrom": "arr-centroid"
     },
     {
       "id": "ayo-cigale-2026",
